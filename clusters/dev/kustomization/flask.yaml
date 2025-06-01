@@ -1,0 +1,16 @@
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: flask
+  namespace: flux-system
+spec:
+  interval: 5m0s
+  path: ./infrastructure/flask
+  prune: false
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  images:
+  - name: andreyolv/flask-flux
+    newName: andreyolv/flask-flux # {"$imagepolicy": "flux-system:flask-flux:name"}
+    newTag: main-b217b05f891da7c72202572bea54f5be4b481c12-2023-08-01T23-08-41Z # {"$imagepolicy": "flux-system:flask-flux:tag"}

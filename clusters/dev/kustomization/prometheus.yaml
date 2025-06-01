@@ -1,0 +1,14 @@
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: prometheus
+  namespace: flux-system
+spec:
+  dependsOn:
+  - name: nginx
+  interval: 5m0s
+  path: ./infrastructure/observability/metrics/prometheus/kube-prometheus-stack
+  prune: false
+  sourceRef:
+    kind: GitRepository
+    name: flux-system

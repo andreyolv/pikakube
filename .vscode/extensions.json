@@ -1,0 +1,19 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=827846
+	// for the documentation about the extensions.json format
+    "recommendations": [
+        "ms-kubernetes-tools.vscode-kubernetes-tools",
+        "ms-azuretools.vscode-docker",
+        "redhat.vscode-yaml",
+        "ShaiMendel.kubernetesapply",
+        "adamhartford.vscode-base64",
+        "ms-python.python",
+        "ms-python.pylint",
+        "charliermarsh.ruff",
+        "ms-toolsai.jupyter",
+        "shd101wyy.markdown-preview-enhanced",
+        "github.copilot",
+        "github.copilot-chat",
+        "mutantdino.resourcemonitor"
+    ]
+}

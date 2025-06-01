@@ -1,0 +1,84 @@
+kind: Cluster
+apiVersion: kind.x-k8s.io/v1alpha4
+name: pikakube
+nodes:
+- role: control-plane
+  kubeadmConfigPatches:
+  - |
+    kind: InitConfiguration
+    nodeRegistration:
+      kubeletExtraArgs:
+        node-labels: "ingress-ready=true"
+  - |      
+    kind: ClusterConfiguration
+    apiServer:
+      # enable auditing flags on the API server
+      extraArgs:
+        audit-log-path: /var/log/kubernetes/kube-apiserver-audit.log
+        audit-policy-file: /etc/kubernetes/policies/audit-policy.yaml
+      # mount new files / directories on the control plane
+      extraVolumes:
+      - name: audit-policies
+        hostPath: /etc/kubernetes/policies
+        mountPath: /etc/kubernetes/policies
+        readOnly: true
+        pathType: "DirectoryOrCreate"
+      - name: "audit-logs"
+        hostPath: "/var/log/kubernetes"
+        mountPath: "/var/log/kubernetes"
+        readOnly: false
+        pathType: DirectoryOrCreate
+  extraMounts:
+    # mount the audit policy file on the control plane
+  - hostPath: /home/andreyolv/projects/big-data-platform-on-k8s/infrastructure/security/audit-policy.yaml
+    containerPath: /etc/kubernetes/policies/audit-policy.yaml
+    readOnly: true
+    # allow Falco to use devices provided by the kernel module
+  - hostPath: /dev
+    containerPath: /dev
+    # allow Falco to use the Docker unix socket
+  - hostPath: /var/run/docker.sock
+    containerPath: /var/run/docker.sock
+    # Tetragon’s correct operation depends on access to the host /proc filesystem
+  - hostPath: /proc
+    containerPath: /procHost
+    # Seccomp profiels
+  - hostPath: "infrastructure/security/linux/seccomp/profiles"
+    containerPath: "/var/lib/kubelet/seccomp/profiles"
+  extraPortMappings:
+  #- containerPort: 30000
+  #  hostPort: 30000
+  #  protocol: TCP
+  - containerPort: 80
+    hostPort: 80
+    listenAddress: 127.0.0.1
+    protocol: TCP
+  - containerPort: 443
+    hostPort: 443
+    listenAddress: 127.0.0.1
+    protocol: TCP
+# docker exec -it k8s-platform-worker ls -la dags
+- role: worker
+  extraMounts:
+  - hostPath: /home/andreyolv/projects/big-data-platform-on-k8s/infrastructure/data-engineering/orchestration/airflow/dags
+    containerPath: /dags
+    readOnly: false
+- role: worker
+  extraMounts:
+  - hostPath: /home/andreyolv/projects/big-data-platform-on-k8s/infrastructure/data-engineering/orchestration/airflow/dags
+    containerPath: /dags
+    readOnly: false
+- role: worker
+  extraMounts:
+  - hostPath: /home/andreyolv/projects/big-data-platform-on-k8s/infrastructure/data-engineering/orchestration/airflow/dags
+    containerPath: /dags
+    readOnly: false
+  # - hostPath: /home/andreyolv/projects/plumbers/notebooks
+  #   containerPath: /notebooks
+  #   readOnly: false
+  # - hostPath: /home/andreyolv/projects/plumbers/docker/flask
+  #   containerPath: /kaniko-context
+  #   readOnly: false
+# networking:
+#   disableDefaultCNI: true
+#   kubeProxyMode: none

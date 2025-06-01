@@ -1,0 +1,58 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: ingress-nginx
+  namespace: ingress-nginx
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: ingress-nginx
+      version: 4.11.3
+      sourceRef:
+        kind: HelmRepository
+        name: ingress-nginx
+        namespace: flux-system
+  values:
+  # https://artifacthub.io/packages/helm/ingress-nginx/ingress-nginx
+  # https://github.com/kubernetes/ingress-nginx/blob/main/charts/ingress-nginx/values.yaml
+    controller:
+      updateStrategy:
+        type: RollingUpdate
+        rollingUpdate:
+          maxUnavailable: 1
+      allowSnippetAnnotations: 'true'
+      config:
+        http2-max-field-size: "32k"
+        large-client-header-buffers: "4 64k"
+        http-snippet: |
+          limit_req_zone $cookie__pomerium zone=prog_pomerium:5m rate=300r/m;
+          limit_req_zone $binary_remote_addr zone=backstage:5m rate=1r/s;
+      hostPort:
+        enabled: true
+      terminationGracePeriodSeconds: 0
+      service:
+        #annotations:
+        #  metallb.universe.tf/loadBalancerIPs: 172.18.0.2
+        type: NodePort
+        #nodePorts:
+        #  http: 30080
+        #  https: 30443
+      watchIngressWithoutClass: true
+      nodeSelector:
+        agentpool: sysephem
+      tolerations:
+      - effect: "NoSchedule"
+        key: "CriticalAddonsOnly"
+        operator: "Equal"
+        value: "true"
+      metrics:
+        enabled: true
+        service:
+          annotations:
+            prometheus.io/scrape: "true"
+            prometheus.io/port: "10254"
+      publishService:
+        enabled: false
+      #extraArgs:
+      #  publish-status-address: localhost
