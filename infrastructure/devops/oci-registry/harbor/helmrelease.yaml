@@ -1,0 +1,25 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: harbor
+  namespace: harbor
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: harbor
+      version: 1.16.0
+      sourceRef:
+        kind: HelmRepository
+        name: harbor
+        namespace: flux-system
+  values:
+  # https://artifacthub.io/packages/helm/harbor/harbor
+  # https://github.com/goharbor/harbor-helm/blob/master/values.yaml
+    expose:
+      tls:
+        enabled: false
+      ingress:
+        hosts:
+          core: harbor.127.0.0.1.nip.io
+    externalURL: http://harbor.127.0.0.1.nip.io
