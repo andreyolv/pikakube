@@ -10,6 +10,7 @@
     "fluxcd@latest",
     "jq@latest",
     "yq@latest",
+    "jp@latest",
     "python@latest",
     "go@latest",
     "dnsutils@latest",
@@ -18,7 +19,14 @@
     "telnet@latest",
     "trivy@latest",
     "poetry@latest",
-    "uv@latest"
+    "uv@latest",
+    "velero@latest",
+    "terraform@latest",
+    "kubectl-cnpg@latest",
+    "vault@latest",
+    "cilium-cli@latest",
+    "podman@latest",
+    "act@latest"
   ],
   "shell": {
     "init_hook": [

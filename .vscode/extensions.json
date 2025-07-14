@@ -4,6 +4,7 @@
     "recommendations": [
         "ms-kubernetes-tools.vscode-kubernetes-tools",
         "ms-azuretools.vscode-docker",
+        "docker.docker",
         "redhat.vscode-yaml",
         "ShaiMendel.kubernetesapply",
         "adamhartford.vscode-base64",
