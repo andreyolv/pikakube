@@ -4,7 +4,7 @@ metadata:
   name: flask
   namespace: flux-system
 spec:
-  interval: 5m0s
+  interval: 5m
   path: ./infrastructure/flask
   prune: false
   sourceRef:

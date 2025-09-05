@@ -1,0 +1,59 @@
+apiVersion: fluxcd.controlplane.io/v1
+kind: FluxInstance
+metadata:
+  name: flux
+  namespace: flux-system
+  annotations:
+    fluxcd.controlplane.io/reconcileEvery: "1h"
+    fluxcd.controlplane.io/reconcileTimeout: "5m"
+spec:
+  distribution:
+    version: "2.x"
+    registry: "ghcr.io/fluxcd"
+  components:
+    - source-controller
+    - kustomize-controller
+    - helm-controller
+    #- notification-controller
+    - image-reflector-controller
+    - image-automation-controller
+  sync:
+    kind: GitRepository
+    provider: github
+    url: "https://github.com/andreyolv/pikakube.git"
+    ref: "refs/heads/main"
+    path: "clusters/dev/kustomization"
+    interval: "1m"
+    pullSecret: "flux-system"
+  storage:
+    class: "standard"
+    size: "2Gi"
+  kustomize:
+    patches:
+      - target:
+          kind: Deployment
+        patch: |
+          apiVersion: apps/v1
+          kind: Deployment
+          metadata:
+            name: all
+          spec:
+            template:
+              metadata:
+                annotations:
+                  cluster-autoscaler.kubernetes.io/safe-to-evict: "true"
+              spec:
+                affinity:
+                  nodeAffinity:
+                    requiredDuringSchedulingIgnoredDuringExecution:
+                      nodeSelectorTerms:
+                        - matchExpressions:
+                            - key: agentpool
+                              operator: In
+                              values:
+                                - system
+                tolerations:
+                  - effect: NoSchedule
+                    key: agentpool
+                    operator: Equal
+                    value: system

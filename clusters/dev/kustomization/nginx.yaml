@@ -7,7 +7,7 @@ spec:
   #dependsOn:
   #- name: cert-manager
   #- name: metallb-ipaddresspool
-  interval: 5m0s
+  interval: 5m
   path: ./infrastructure/network/ingress-controller/ingress-nginx
   prune: false
   sourceRef:

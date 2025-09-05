@@ -4,7 +4,7 @@ metadata:
   name: metallb
   namespace: flux-system
 spec:
-  interval: 5m0s
+  interval: 5m
   path: ./infrastructure/network/load-balancer/metallb/
   prune: false
   sourceRef:
@@ -19,7 +19,7 @@ metadata:
 spec:
   dependsOn:
   - name: metallb
-  interval: 5m0s
+  interval: 5m
   path: ./infrastructure/network/load-balancer/metallb/example
   prune: false
   sourceRef:

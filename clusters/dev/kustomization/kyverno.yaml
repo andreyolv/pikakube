@@ -4,7 +4,7 @@ metadata:
   name: kyverno
   namespace: flux-system
 spec:
-  interval: 5m0s
+  interval: 5m
   path: ./infrastructure/security/policies/kyverno
   prune: false
   sourceRef:
@@ -19,7 +19,7 @@ metadata:
 spec:
   dependsOn:
   - name: kyverno
-  interval: 5m0s
+  interval: 5m
   path: ./infrastructure/security/policies/kyverno/policies
   prune: false
   sourceRef:

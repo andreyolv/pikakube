@@ -2,4 +2,3 @@ resources:
   - namespace.yaml
   - helmrepository.yaml
   - helmrelease.yaml
-  - mkcert-tls-secret.yaml

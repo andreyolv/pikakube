@@ -4,7 +4,7 @@ metadata:
   name: vault
   namespace: flux-system
 spec:
-  interval: 5m0s
+  interval: 5m
   path: ./infrastructure/security/secrets/vault/vault-dev
   prune: false
   sourceRef:

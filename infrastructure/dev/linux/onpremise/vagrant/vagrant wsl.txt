@@ -1,0 +1,18 @@
+vagrant same version windows and wsl
+
+echo 'export VAGRANT_WSL_ENABLE_WINDOWS_ACCESS="1"' >> ~/.bashrc
+echo 'export PATH="$PATH:/mnt/c/Program Files/Oracle/VirtualBox"' >> ~/.bashrc
+echo 'export VAGRANT_WSL_WINDOWS_ACCESS_USER_HOME_PATH="/mnt/c/Users/andre/vagrant/hello-world"' >> ~/.bashrc
+source ~/.bashrc
+cat ~/.bashrc
+
+https://github.com/joelhandwell/ubuntu_vagrant_boxes/issues/1
+
+vagrant plugin install virtualbox_WSL2
+https://github.com/Karandash8/virtualbox_WSL2
+
+cd /mnt/c/Users/andre/vagrant
+vagrant up
+vagrant ssh
+
+ssh-keygen

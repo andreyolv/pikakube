@@ -1,0 +1,24 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+machines = {
+  'control-plane' => {'memory' => '2048', 'cpus' => 2, 'ip' => '10', 'image' => 'ubuntu/focal64'},
+  'worker-1' => {'memory' => '2048', 'cpus' => 1, 'ip' => '20', 'image' => 'ubuntu/focal64'},
+  'worker-2' => {'memory' => '2048', 'cpus' => 1, 'ip' => '30', 'image' => 'ubuntu/focal64'},
+  'worker-3' => {'memory' => '2048', 'cpus' => 1, 'ip' => '40', 'image' => 'ubuntu/focal64'},
+}
+
+Vagrant.configure('2') do |config|
+  machines.each do |name, conf| 
+    config.vm.define "#{name}" do |machine|
+      machine.vm.box = conf['image']
+      machine.vm.hostname = "#{name}.example.com"
+      machine.vm.network 'private_network', ip: "192.168.56.#{conf['ip']}" 
+      machine.vm.provider 'virtualbox' do |vb|
+        vb.name = "#{name}"
+        vb.memory = conf['memory']
+        vb.cpus = conf['cpus']
+      end
+    end
+  end
+end

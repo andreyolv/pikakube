@@ -4,8 +4,7 @@ metadata:
   name: pikakube
   namespace: flux-system
 spec:
-
-  interval: 5m0s
+  interval: 5m
   path: ./infrastructure/platform-engineering/kubernetes/dashboard-ingress/forecastle
   prune: false
   sourceRef:

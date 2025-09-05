@@ -1,0 +1,14 @@
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+  name: letsencrypt-prd
+spec:
+  acme:
+    server: https://acme-staging-v02.api.letsencrypt.org/directory
+    email: pikakube@pikakube.com.br
+    privateKeySecretRef:
+      name: letsencrypt-prd
+    solvers:
+    - http01:
+        ingress:
+          ingressClassName: nginx

@@ -6,7 +6,7 @@ metadata:
 spec:
   dependsOn:
   - name: nginx
-  interval: 5m0s
+  interval: 5m
   path: ./infrastructure/observability/dashboards/grafana/grafana-operator
   prune: false
   sourceRef:

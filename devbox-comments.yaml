@@ -1,0 +1,42 @@
+{
+  "$schema": "https://raw.githubusercontent.com/jetify-com/devbox/0.14.2/.schema/devbox.schema.json",
+  "packages": [
+    "kubectl@latest",
+    "kubectx@latest",
+    "kind@latest",
+    "docker@latest",
+    "docker-compose@latest",
+    "kubernetes-helm@latest",
+    "fluxcd@latest",
+    "jq@latest", # https://github.com/jmespath/jp
+    "yq@latest", # https://github.com/mikefarah/yq
+    "jp@latest", # https://github.com/jqlang/jq
+    "python@latest",
+    "go@latest",
+    "dnsutils@latest",
+    "azure-cli@latest",
+    "git@latest",
+    "telnet@latest",
+    "trivy@latest",
+    "poetry@latest",
+    "uv@latest",
+    "velero@latest",
+    "terraform@latest",
+    "kubectl-cnpg@latest",
+    "vault@latest",
+    "cilium-cli@latest",
+    "podman@latest",
+    "act@latest"
+  ],
+  "shell": {
+    "init_hook": [
+      "echo 'Welcome to devbox!' > /dev/null"
+
+    ],
+    "scripts": {
+      "test": [
+        "echo \"Error: no test specified\" && exit 1"
+      ]
+    }
+  }
+}

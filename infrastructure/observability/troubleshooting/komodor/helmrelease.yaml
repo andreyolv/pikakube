@@ -1,0 +1,23 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: komodor
+  namespace: komodor
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: k8s-watcher
+      version: 1.18.17
+      sourceRef:
+        kind: HelmRepository
+        name: komodorio
+        namespace: flux-system
+  values:
+  # https://artifacthub.io/packages/helm/komodor/k8s-watcher
+  # https://github.com/komodorio/helm-charts/blob/master/charts/k8s-watcher/values.yaml
+    createNamespace: false
+    existingSecret: komodor-apikey
+    watcher:
+      clusterName: pikakube
+

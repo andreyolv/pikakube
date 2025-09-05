@@ -1,6 +1,9 @@
 # Custom to Pikakube
 infrastructure/platform-engineering/iac/terraform/terraform/.terraform
 infrastructure/security/secrets/vault/vault-dev/configmap-real.yaml
+infrastructure/platform-engineering/gitops/flux-operator/pikakube-flux-operator-private-key.pem
+infrastructure/security/certificates/mkcert/*pem
+infrastructure/security/certificates/mkcert/*secret.yaml
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
