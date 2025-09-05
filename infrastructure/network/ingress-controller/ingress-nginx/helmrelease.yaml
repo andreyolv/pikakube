@@ -43,9 +43,9 @@ spec:
         agentpool: sysephem
       tolerations:
       - effect: "NoSchedule"
-        key: "CriticalAddonsOnly"
+        key: "agentpool"
         operator: "Equal"
-        value: "true"
+        value: "system"
       metrics:
         enabled: true
         service:

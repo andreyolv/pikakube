@@ -23,7 +23,7 @@ kubectl apply -f infrastructure/platform-engineering/gitops/flux-operator/fluxin
 kubectl create ns vault
 kubectl apply -f infrastructure/security/secrets/vault/vault-dev/configmap-real.yaml
 kubectl create ns ingress-nginx
-kubectl apply -f infrastructure/security/certificates/cert-manager/mkcert/mkcert-tls-secret.yaml
+kubectl apply -f infrastructure/security/certificates/mkcert/mkcert-tls-secret.yaml
 
 #echo "Installing Flux..."
 #flux bootstrap github \

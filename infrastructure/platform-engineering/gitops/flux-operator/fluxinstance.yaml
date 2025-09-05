@@ -22,7 +22,7 @@ spec:
     provider: github
     url: "https://github.com/andreyolv/pikakube.git"
     ref: "refs/heads/main"
-    path: "clusters/dev/kustomization"
+    path: "clusters/dev"
     interval: "1m"
     pullSecret: "flux-system"
   storage:
