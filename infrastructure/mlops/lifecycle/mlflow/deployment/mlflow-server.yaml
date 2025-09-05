@@ -1,0 +1,54 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mlflow-server
+  namespace: mlflow
+  labels:
+    app: mlflow-server
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: mlflow-server
+  template:
+    metadata:
+      labels:
+        app: mlflow-server
+    spec:
+      containers:
+      - name: mlflow-server
+        image: joshsgoldstein/mlflow-server:latest
+        args:
+        - --host=0.0.0.0
+        - --port=5000
+        - --backend-store-uri=$(POSTGRES_CONN)
+        - --default-artifact-root=s3://mlflow/
+        - --artifacts-destination=s3://mlflow/artifacts
+        - --workers=2
+        env:
+        - name: MLFLOW_S3_ENDPOINT_URL
+          value: http://minio.minio.svc.cluster.local:9000
+        - name: AWS_ACCESS_KEY_ID
+          valueFrom:
+            secretKeyRef:
+              name: mlflow-minio
+              key: accessKey
+        - name: AWS_SECRET_ACCESS_KEY
+          valueFrom:
+            secretKeyRef:
+              name: mlflow-minio
+              key: secretKey
+        - name: POSTGRES_CONN
+          valueFrom:
+            secretKeyRef:
+              name: mlflow-minio
+              key: conn
+        ports:
+        - containerPort: 5000
+        resources:
+          requests:
+            memory: 1Gi
+      imagePullSecrets:
+      - name: acr-secret

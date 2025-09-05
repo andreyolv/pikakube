@@ -1,0 +1,10 @@
+apiVersion: source.toolkit.fluxcd.io/v1beta2
+kind: OCIRepository
+metadata:
+  name: kagent
+  namespace: flux-system
+spec:
+  interval: 24h
+  url: oci://ghcr.io/kagent-dev/kagent/helm/kagent
+  ref:
+    tag: 0.1.14

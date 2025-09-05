@@ -1,0 +1,15 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: GitRepository
+metadata:
+  name: kaito
+  namespace: flux-system
+spec:
+  interval: 24h
+  ref:
+    tag: v0.4.4
+  url: https://github.com/kaito-project/kaito.git
+  ignore: |
+    # exclude all
+    /*
+    # include deploy dir
+    !/charts/kaito

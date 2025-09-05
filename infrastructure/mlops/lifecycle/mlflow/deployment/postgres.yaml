@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgres
+  namespace: mlflow
+  labels:
+    app: postgres
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: postgres
+  template:
+    metadata:
+      labels:
+        app: postgres
+    spec:
+      containers:
+      - name: postgres
+        image: postgres:14.6
+        env:
+        - name: PGDATA
+          value: /var/lib/postgresql/data/pgdata
+        - name: POSTGRES_DB
+          value: mlflow
+        - name: POSTGRES_USER
+          valueFrom:
+            secretKeyRef:
+              name: mlflow-minio
+              key: username
+        - name: POSTGRES_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mlflow-minio
+              key: password
+        ports:
+        - containerPort: 5432
+        resources:
+          requests:
+            memory: 500Mi
+        volumeMounts:
+        - mountPath: /var/lib/postgresql/data/pgdata
+          name: mlflow-postgres-disk
+          subPath: postgres
+        imagePullPolicy: Always
+      volumes:
+      - name: mlflow-postgres-disk
+        persistentVolumeClaim:
+          claimName: mlflow-postgres

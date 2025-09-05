@@ -1,0 +1,13 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: kagent
+  namespace: kagent
+spec:
+  interval: 5m
+  chartRef:
+    kind: OCIRepository
+    name: kagent
+    namespace: flux-system
+  values:
+  # https://github.com/kagent-dev/kagent/blob/main/helm/values.yaml
