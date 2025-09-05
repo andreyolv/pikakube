@@ -1,0 +1,36 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: kubescape
+  namespace: kubescape
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: kubescape-operator
+      version: 1.27.1
+      sourceRef:
+        kind: HelmRepository
+        name: kubescape
+        namespace: flux-system
+  valuesFrom:
+  - kind: Secret
+    name: credentials
+    valuesKey: account
+    targetPath: account
+  - kind: Secret
+    name: credentials
+    valuesKey: accessKey
+    targetPath: accessKey
+  values:
+  # https://artifacthub.io/packages/helm/kubescape/kubescape-operator
+  # https://github.com/kubescape/helm-charts/blob/main/charts/kubescape-operator/values.yaml
+    clusterName: pikakube
+    server: api.armosec.io
+    capabilities:
+      relevancy: disable
+    kubescape:
+      serviceMonitor:
+        enabled: true
+    kubescapeScheduler: 
+      scanSchedule: "0 8 * * 1"

@@ -1,0 +1,19 @@
+apiVersion: kopf.dev/v1
+kind: PostgresGen
+metadata:
+  name: postgres-gen
+  namespace: datagen
+spec:
+  source:
+    host: 
+    user: plumbers
+    password: plumbers
+    database: plumbers
+    table: plumbers
+  datagen:
+    quantity: 50
+    interval: 10
+    fields:
+    - name
+    - address
+    - email

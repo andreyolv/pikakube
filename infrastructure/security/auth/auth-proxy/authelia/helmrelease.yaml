@@ -1,0 +1,33 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: authelia
+  namespace: authelia
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: authelia
+      version: 0.9.14
+      sourceRef:
+        kind: HelmRepository
+        name: authelia
+        namespace: flux-system
+  values:
+  # https://github.com/authelia/chartrepo/blob/master/charts/authelia/values.yaml
+    pod:
+      kind: Deployment
+    configMap:
+      authentication_backend:
+        file:
+          enabled: true
+      session:
+        cookies:
+        - subdomain: 'auth'
+          domain: foobar.nip.io
+      storage:
+        local:
+          enabled: true
+      notifier:
+        filesystem:
+          enabled: true

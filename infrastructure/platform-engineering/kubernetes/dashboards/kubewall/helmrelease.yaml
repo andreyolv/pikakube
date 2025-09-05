@@ -1,0 +1,14 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: kubewall
+  namespace: kubewall
+spec:
+  interval: 5m
+  chartRef:
+    kind: OCIRepository
+    name: kubewall
+    namespace: flux-system
+  values:
+  # https://artifacthub.io/packages/helm/kubewall/kubewall
+  # https://github.com/kubewall/kubewall/blob/main/charts/kubewall/values.yaml

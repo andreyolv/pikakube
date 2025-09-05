@@ -1,0 +1,35 @@
+name: StoragePath-Action-Policy-NumberOfDays
+name: (1)-(2)-(3)-(4)
+
+(1) StoragePath:
+mtolv/teste
+mtolv/sandbox
+... etc
+
+(2) Action:
+Cool - tierToCool
+Cold - tierToCold
+Archive - tierToArchive
+Delete - delete
+Auto - enableAutoTierToHotFromCool
+
+(3) Policy:
+Creation - daysAfterCreationGreaterThan
+Modification- daysAfterModificationGreaterThan
+LastAccess - daysAfterLastAccessTimeGreaterThan
+
+(4) NumberOfDays:
+30
+60
+... etc
+
+https://learn.microsoft.com/en-us/azure/storage/blobs/lifecycle-management-overview
+
+podemos tentar fazer por tag e usuarios setam tags de acordo com policy q desejam, 
+porém spns devem possuir rbacs de mudar tags precisando mudanças estruturais grandes
+https://learn.microsoft.com/en-us/azure/storage/blobs/storage-manage-find-blobs?tabs=azure-portal#role-based-access-control
+
+ou gerencia via caminho no lake mesmo, porém pra automatizar via python ou api, na solicitação de acessos
+exemplos codigo:
+https://github.com/Azure-Samples/azure-samples-python-management/blob/main/samples/storage/manage_management_policy.py
+https://medium.com/python-for-azure/python-for-azure-blob-data-lifecycle-management-automated-access-tiering-purge-c8d4003cfc3d

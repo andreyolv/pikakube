@@ -1,0 +1,13 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: kro
+  namespace: kro
+spec:
+  interval: 5m
+  chartRef:
+    kind: OCIRepository
+    name: kro
+    namespace: flux-system
+  values:
+  # https://github.com/awslabs/kro/blob/main/helm/values.yaml

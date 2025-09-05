@@ -1,0 +1,18 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: kubeapps 
+  namespace: kubeapps 
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: kubeapps 
+      version: 2.11.0
+      sourceRef:
+        kind: HelmRepository
+        name: kubeapps 
+        namespace: flux-system
+  values:
+  # https://artifacthub.io/packages/helm/bitnami/kubeapps
+  # https://github.com/vmware-tanzu/kubeapps/blob/main/chart/kubeapps/values.yaml

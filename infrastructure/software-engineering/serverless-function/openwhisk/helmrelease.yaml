@@ -1,0 +1,17 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: openwhisk
+  namespace: openwhisk
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: openwhisk
+      version: 1.0.1
+      sourceRef:
+        kind: HelmRepository
+        name: openwhisk
+        namespace: flux-system
+  values:
+  # https://github.com/apache/openwhisk-deploy-kube/blob/master/helm/openwhisk/values.yaml

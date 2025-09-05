@@ -1,0 +1,10 @@
+apiVersion: source.toolkit.fluxcd.io/v1beta2
+kind: OCIRepository
+metadata:
+  name: kubestellar
+  namespace: flux-system
+spec:
+  interval: 24h
+  url: oci://ghcr.io/kubestellar/kubestellar/core-chart
+  ref:
+    tag: 0.27.2

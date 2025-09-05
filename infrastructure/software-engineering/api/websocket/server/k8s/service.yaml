@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: websockets
+  namespace: websockets
+spec:
+  type: ClusterIP
+  selector:
+    app: websockets
+  ports:
+  - name: websockets
+    port: 8080
+    targetPort: 8080

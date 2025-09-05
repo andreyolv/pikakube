@@ -1,0 +1,8 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: HelmRepository
+metadata:
+  name: kubean-io
+  namespace: flux-system
+spec:
+  interval: 24h
+  url: https://kubean-io.github.io/kubean-helm-chart/

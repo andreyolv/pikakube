@@ -1,0 +1,55 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: granulate-maestro
+  namespace: gprofiler
+  labels:
+    app: granulate-maestro
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: granulate-maestro
+  template:
+    metadata:
+      labels:
+        app: granulate-maestro
+    spec:
+      containers:
+      - env:
+        - name: MAESTRO_CLIENT_ID
+          value: xxxxxxxxxxxxxxxxxxx
+        - name: MAESTRO_SERVICE_NAME
+          value: k8s-platform
+        - name: MAESTRO_RUN_ON_K8S
+          value: 'TRUE'
+        - name: K8S_NODE_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: spec.nodeName
+        - name: K8S_POD_NAMESPACE
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.namespace
+        - name: MAESTRO_SERVER_HOST
+          value: https://containerunits.granulate.io
+        image: index.docker.io/granulate/maestro:latest
+        name: granulate-maestro
+        ports:
+        - containerPort: 8443
+        resources:
+          limits:
+            cpu: 2
+            memory: 2.5Gi
+          requests:
+            cpu: 1
+            memory: 1.5Gi
+        securityContext:
+          allowPrivilegeEscalation: false
+          privileged: false
+          readOnlyRootFilesystem: false
+          runAsNonRoot: false
+          seccompProfile:
+            type: RuntimeDefault
+      serviceAccountName: granulate-service-account
+      terminationGracePeriodSeconds: 3

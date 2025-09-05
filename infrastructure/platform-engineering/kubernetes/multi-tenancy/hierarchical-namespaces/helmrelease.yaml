@@ -1,0 +1,16 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: hierarchical-namespaces
+  namespace: hnc-system
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: charts/hnc
+      sourceRef:
+        kind: GitRepository
+        name: hierarchical-namespaces
+        namespace: flux-system
+  values:
+  # https://github.com/kubernetes-sigs/hierarchical-namespaces/blob/master/charts/hnc/values.yaml

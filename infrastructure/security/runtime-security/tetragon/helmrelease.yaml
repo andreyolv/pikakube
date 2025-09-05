@@ -1,0 +1,19 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: tetragon
+  namespace: tetragon
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: tetragon
+      version: 1.4.0
+      sourceRef:
+        kind: HelmRepository
+        name: cilium
+        namespace: flux-system
+  values:
+  # https://artifacthub.io/packages/helm/cilium/tetragon
+  # https://github.com/cilium/tetragon/blob/main/install/kubernetes/tetragon/values.yaml
+

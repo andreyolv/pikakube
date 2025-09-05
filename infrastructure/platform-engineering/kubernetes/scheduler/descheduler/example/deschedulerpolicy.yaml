@@ -1,0 +1,29 @@
+apiVersion: "descheduler/v1alpha2"
+kind: "DeschedulerPolicy"
+profiles:
+  - name: ProfileName
+    pluginConfig:
+    - name: "PodLifeTime"
+      args:
+        maxPodLifeTimeSeconds: 1800
+        namespaces:
+          exclude:
+          - "default"
+          - "kube-system"
+          - "kube-public"
+          - "kube-node-lease"
+          - "flux-system"
+        labelSelector:
+          matchExpressions:
+          - { key: dag_id, operator: Exists }
+        states:
+        - "Pending"
+        - "PodInitializing"
+        - "ContainerCreating"
+        - "ImagePullBackOff"
+        - "ErrImagePull"
+        - "InvalidImageName"
+    plugins:
+      deschedule:
+        enabled:
+          - "PodLifeTime"

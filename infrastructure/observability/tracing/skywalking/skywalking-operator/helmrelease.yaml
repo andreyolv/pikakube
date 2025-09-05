@@ -1,0 +1,16 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: skywalking-operator
+  namespace: skywalking-operator
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: chart/operator
+      sourceRef:
+        kind: GitRepository
+        name: skywalking-helm
+        namespace: flux-system
+  values:
+  # https://github.com/apache/skywalking-helm/blob/master/chart/operator/values.yaml

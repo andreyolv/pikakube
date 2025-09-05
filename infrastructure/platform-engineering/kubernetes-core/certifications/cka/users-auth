@@ -1,0 +1,26 @@
+https://kubernetes.io/docs/reference/access-authn-authz/certificate-signing-requests/#normal-user
+
+CREATE USER CERTIFICATE:
+openssl genrsa -out myuser.key 2048
+openssl req -new -key myuser.key -out myuser.csr -subj "/CN=myuser"
+cluster keys estão em -> /etc/kubernetes/pki/ -> ca.crt ca.key:
+sudo openssl x509 -req -in myuser.csr -CAcreateserial -CA /etc/kubernetes/pki/ca.crs -CAkey /etc/kubernetes/pki/ca.key -out myuser.crt -days 1000
+rn myuser.csr
+
+ADD USER TO KUBECONFIG:
+kubectl --kubeconfig=myuser.config config set-cluster myusercluster
+cat myuser.config
+cat .kube/config -> get server
+kubectl --kubeconfig=myuser.config config set-cluster myusercluster --server=https://x.x.x.x
+kubectl --kubeconfig=myuser.config config set-cluster myusercluster --certificate-authority=/etc/kubernetes/pki/ca.crt --embed-certs
+kubectl --kubeconfig=myuser.config config set-credentials --embed-certs --client-certificate myuser.crt --client-key myuser.key myuser --username myuser
+cat myuser.config
+kubectl --kubeconfig myuser.config config set-context myuserctx --cluster myusercluster --user myuser --namespace databases
+kubectl --kubeconfig myuser.config config use-context myuserctx
+
+CREATE ROLES AND ROLEBINDINGS
+kubectl --kubeconfig myuser.config get namespace
+kubectl create ns databases
+kubectl create role databasemanager --verb=get,list,create,delete --resource=pods --namespace databases
+kubectl create rolebinding databasemanagerbinding --role databasemanager --user=myuser --namespace databases
+kubectl --kubeconfig myuser.config --namespace databases describe pod

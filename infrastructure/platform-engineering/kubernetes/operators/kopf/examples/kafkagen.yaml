@@ -1,0 +1,17 @@
+apiVersion: kopf.dev/v1
+kind: KafkaGen
+metadata:
+  name: kafka-gen
+  namespace: datagen
+spec:
+  source:
+    host: kafka-kafka-bootstrap.kafka.svc.cluster.local:9092
+    topic: plumbers
+  datagen:
+    quantity: 5
+    interval: 10
+    fields:
+    - name
+    - address
+    - email
+  

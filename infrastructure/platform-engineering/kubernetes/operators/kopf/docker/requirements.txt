@@ -1,0 +1,6 @@
+kopf==1.36.1
+kubernetes==26.1.0
+Faker==18.11.2
+boto3==1.27.0
+# psycopg==2.9.6
+# pymongo==4.4.0

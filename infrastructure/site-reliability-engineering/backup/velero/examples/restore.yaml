@@ -1,0 +1,11 @@
+apiVersion: velero.io/v1
+kind: Restore
+metadata:
+  name: restore-postgres4
+  namespace: velero
+spec:
+  backupName: backup-postgres3
+  includedNamespaces:
+  - postgresql
+  includedResources:
+  - '*'

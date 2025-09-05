@@ -1,0 +1,86 @@
+kind: Secret
+apiVersion: v1
+metadata:
+  name: credentials
+  namespace: grafana
+type: Opaque
+stringData:
+  GF_SECURITY_ADMIN_USER: root
+  GF_SECURITY_ADMIN_PASSWORD: secret
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: pyroscope-configs
+  namespace: grafana
+data:
+  GF_INSTALL_PLUGINS: grafana-pyroscope-app
+  GF_AUTH_ANONYMOUS_ENABLED: "true"
+  GF_AUTH_ANONYMOUS_ORG_ROLE: Admin
+  GF_DIAGNOSTICS_PROFILING_ENABLED: "true"
+  GF_DIAGNOSTICS_PROFILING_ADDR: "0.0.0.0"
+  GF_DIAGNOSTICS_PROFILING_PORT: "9094"
+---
+apiVersion: grafana.integreatly.org/v1beta1
+kind: Grafana
+metadata:
+  name: grafana
+  namespace: grafana
+  labels:
+    dashboards: "grafana"
+spec:
+  version: 11.6.0
+  persistentVolumeClaim:
+    spec:
+      accessModes:
+        - ReadWriteOnce
+      resources:
+        requests:
+          storage: 10Gi
+  deployment:
+    spec:
+      template:
+        metadata:
+          annotations:
+            profiles.grafana.com/cpu.scrape: "true"
+            profiles.grafana.com/cpu.port: "9094"
+            profiles.grafana.com/memory.scrape: "true"
+            profiles.grafana.com/memory.port: "9094"
+            profiles.grafana.com/goroutine.scrape: "true"
+            profiles.grafana.com/goroutine.port: "9094"
+        spec:
+          containers:
+          - name: grafana
+            envFrom:
+            - secretRef:
+                name: credentials
+            - configMapRef:
+                name: pyroscope-configs
+  config:
+    log:
+      mode: "console"
+    auth:
+      disable_login_form: "false"
+  ingress:
+    metadata:
+      annotations: 
+        forecastle.stakater.com/expose: "true"
+        forecastle.stakater.com/icon: "https://www.svgrepo.com/show/353829/grafana.svg"
+        forecastle.stakater.com/appName: "Grafana"
+        forecastle.stakater.com/group: "Observability"
+    spec:
+      rules:
+      - host: grafana.127.0.0.1.nip.io
+        http:
+          paths:
+          - backend:
+              service:
+                name: grafana-service
+                port:
+                  number: 3000
+            path: /
+            pathType: Prefix
+      tls:
+      - secretName: mkcert-tls-secret
+        hosts:
+        - grafana.127.0.0.1.nip.io

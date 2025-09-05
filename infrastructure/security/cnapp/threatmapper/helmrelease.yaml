@@ -1,0 +1,18 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: 
+  namespace: 
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: deepfence-console
+      version: 
+      sourceRef:
+        kind: HelmRepository
+        name: deepfence
+        namespace: flux-system
+  values:
+  # https://artifacthub.io/packages/helm/threatmapper/deepfence-console
+  # https://github.com/deepfence/ThreatMapper/blob/release-2.2/deployment-scripts/helm-charts/deepfence-console/values.yaml

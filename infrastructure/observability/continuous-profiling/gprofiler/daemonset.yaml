@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: granulate-gprofiler
+  namespace: gprofiler
+  labels:
+    app: granulate-gprofiler
+spec:
+  selector:
+    matchLabels:
+      app: granulate-gprofiler
+  template:
+    metadata:
+      labels:
+        app: granulate-gprofiler
+    spec:
+      automountServiceAccountToken: false
+      containers:
+      - args:
+        - -cu
+        - --token=$(GPROFILER_TOKEN)
+        - --service-name=$(GPROFILER_SERVICE)
+        - --java-safemode=
+        env:
+        - name: GPROFILER_TOKEN
+          value: xxxxxxxxxxxxxxx
+        - name: GPROFILER_SERVICE
+          value: k8s-platform
+        - name: GPROFILER_IN_K8S
+          value: '1'
+        - name: GPROFILER_SERVER_HOST
+          value: https://profiler.granulate.io
+        image: index.docker.io/granulate/gprofiler:latest
+        imagePullPolicy: Always
+        name: granulate-gprofiler
+        resources:
+          limits:
+            cpu: 3000m
+            memory: 2500Mi
+          requests:
+            cpu: 100m
+            memory: 2000Mi
+        securityContext:
+          privileged: true
+      hostPID: true
+      restartPolicy: Always
+      securityContext:
+        runAsGroup: 0
+        runAsUser: 0

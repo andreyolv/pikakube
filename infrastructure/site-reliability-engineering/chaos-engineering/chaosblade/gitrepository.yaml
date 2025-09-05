@@ -1,0 +1,10 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: GitRepository
+metadata:
+  name: chaosblade-operator
+  namespace: flux-system
+spec:
+  interval: 24h
+  ref:
+    tag: v1.7.4
+  url: https://github.com/chaosblade-io/chaosblade-operator.git

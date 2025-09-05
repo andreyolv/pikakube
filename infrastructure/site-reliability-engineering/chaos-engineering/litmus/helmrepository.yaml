@@ -1,0 +1,8 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: HelmRepository
+metadata:
+  name: litmuschaos
+  namespace: flux-system
+spec:
+  interval: 24h
+  url: https://litmuschaos.github.io/litmus-helm/

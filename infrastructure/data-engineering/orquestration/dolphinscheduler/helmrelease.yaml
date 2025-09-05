@@ -1,0 +1,20 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: dolphinscheduler
+  namespace: dolphinscheduler
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: deploy/kubernetes/dolphinscheduler
+      sourceRef:
+        kind: GitRepository
+        name: dolphinscheduler
+        namespace: flux-system
+  values:
+  # https://github.com/apache/dolphinscheduler/blob/dev/deploy/kubernetes/dolphinscheduler/values.yaml
+    api: 
+      service:
+        type: ClusterIP
+    

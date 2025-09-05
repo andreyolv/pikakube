@@ -1,0 +1,18 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: chaos-kraken
+  namespace: chaos-kraken
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: chaos-kraken
+      version: 14.6.0
+      sourceRef:
+        kind: HelmRepository
+        name: startx
+        namespace: flux-system
+  values:
+  # https://artifacthub.io/packages/helm/startx/chaos-kraken
+  # https://github.com/startxfr/helm-repository/blob/master/charts/chaos-kraken/values.yaml

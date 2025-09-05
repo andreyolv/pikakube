@@ -1,0 +1,10 @@
+apiVersion: source.toolkit.fluxcd.io/v1beta2
+kind: OCIRepository
+metadata:
+  name: kueue
+  namespace: flux-system
+spec:
+  interval: 24h
+  url: oci://registry.k8s.io/kueue/charts/kueue
+  ref:
+    tag: 0.11.3

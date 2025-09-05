@@ -1,0 +1,25 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: ocean-kubernetes-controller
+  namespace: spot-ocean
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: ocean-kubernetes-controller
+      #version: update is automatic by default, can disable by values 
+      sourceRef:
+        kind: HelmRepository
+        name: spot
+        namespace: flux-system
+  values:
+  # https://artifacthub.io/packages/helm/spot/ocean-kubernetes-controller
+  # https://github.com/spotinst/charts/blob/main/charts/ocean-kubernetes-controller/values.yaml
+    namespace: spot-ocean
+    spotinst:
+      token: XXXXXXXXXX
+      account: XXXXXXXXXX
+      clusterIdentifier: XXXXXXXXXX
+    metrics-server:
+      deployChart: false

@@ -1,0 +1,31 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: minio
+  namespace: thanos
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: minio
+      version: 5.4.0
+      sourceRef:
+        kind: HelmRepository
+        name: minio
+        namespace: flux-system
+  values:
+  # https://artifacthub.io/packages/helm/minio-official/minio
+  # https://github.com/minio/minio/blob/master/helm/minio/values.yaml
+    replicas: 3
+    existingSecret: minio-credentials
+    persistence:
+      size: 2Gi
+    resources:
+      requests:
+        memory: 2Gi
+    buckets:
+    - name: thanos
+      policy: none
+      purge: false
+      versioning: false
+      objectlocking: false

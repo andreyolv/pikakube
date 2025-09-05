@@ -1,0 +1,18 @@
+
+https://github.com/open-telemetry/opentelemetry-collector/tree/main/exporter
+https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/exporter
+
+https://github.com/open-telemetry/opentelemetry-collector/tree/main/examples/k8s
+https://github.com/open-telemetry/opentelemetry-collector-contrib/tree/main/examples/kubernetes
+
+padrões de uso
+https://www.youtube.com/watch?v=sjgvTmRwui4
+
+fila
+https://www.youtube.com/watch?v=-5SR-0l26Is
+
+ótimos exemplos
+https://www.youtube.com/watch?v=o7CYHjZuykM&t=57s
+https://github.com/jpkrohling/talks/tree/main/2024/2024-05-24-cncf-santa-catarina/receitas
+
+opentelemetry - loki, elastic, prometheus, k8s events

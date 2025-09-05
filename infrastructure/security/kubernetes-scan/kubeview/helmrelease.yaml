@@ -1,0 +1,17 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: kubeview
+  namespace: kubeview
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: charts/kubeview
+      sourceRef:
+        kind: GitRepository
+        name: kubeview
+        namespace: flux-system
+  values:
+  # https://artifacthub.io/packages/helm/kubeview/kubeview
+  # https://github.com/benc-uk/kubeview/blob/master/charts/kubeview/values.yaml

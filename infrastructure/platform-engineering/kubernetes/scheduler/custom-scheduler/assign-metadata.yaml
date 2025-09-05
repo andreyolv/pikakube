@@ -1,0 +1,15 @@
+apiVersion: mutations.gatekeeper.sh/v1
+kind: AssignMetadata
+metadata:
+  name: testing-annotation-owner
+spec:
+  match:
+    scope: Namespaced
+    kinds:
+    - apiGroups: ["*"]
+      kinds: ["Pod"]
+    namespaces: ["purview-catalog"]
+  location: "metadata.annotations.owner"
+  parameters:
+    assign:
+      value:  "usr"

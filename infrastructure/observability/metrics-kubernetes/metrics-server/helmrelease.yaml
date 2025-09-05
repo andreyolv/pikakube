@@ -1,0 +1,36 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: metrics-server
+  namespace: kube-system
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: metrics-server
+      version: 3.11.0
+      sourceRef:
+        kind: HelmRepository
+        name: metrics-server
+        namespace: flux-system
+  postRenderers:
+  - kustomize:
+      patches:
+      - target:
+          kind: Deployment
+        patch: |
+          - op: add
+            path: /metadata/labels/blablabla
+            value: teste
+          - op: add
+            path: /spec/template/spec/containers/0/args/-
+            value: --kubelet-insecure-tls
+  values:
+  # https://artifacthub.io/packages/helm/metrics-server/metrics-server
+  # https://github.com/kubernetes-sigs/metrics-server/blob/master/charts/metrics-server/values.yaml
+    # defaultArgs:
+    # - --cert-dir=/tmp
+    # - --kubelet-preferred-address-types=InternalIP,ExternalIP,Hostname
+    # - --kubelet-use-node-status-port
+    # - --metric-resolution=15s
+    # - --kubelet-insecure-tls

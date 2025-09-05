@@ -1,0 +1,283 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: cluster-turndown
+  namespace: turndown
+  labels:
+    app: cluster-turndown
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: cluster-turndown
+  labels:
+    app: cluster-turndown
+rules:
+  - apiGroups:
+      - kubecost.com
+    resources:
+      - turndownschedules
+      - turndownschedules/status
+    verbs:
+      - get
+      - list
+      - watch
+      - create
+      - patch
+      - update
+      - delete
+  - apiGroups:
+      - ""
+      - events.k8s.io
+    resources:
+      - events
+    verbs:
+      - create
+      - patch
+      - update
+  - apiGroups:
+      - ''
+    resources:
+      - deployments
+      - nodes
+      - pods
+      - resourcequotas
+      - replicationcontrollers
+      - limitranges
+      - pods/eviction
+    verbs:
+      - get
+      - list
+      - watch
+      - create
+      - patch
+      - update
+      - delete
+  - apiGroups:
+      - ''
+    resources:
+      - configmaps
+      - namespaces
+      - persistentvolumeclaims
+      - persistentvolumes
+      - endpoints
+      - events
+      - services
+    verbs:
+      - get 
+      - list
+      - watch
+  - apiGroups:
+      - extensions
+    resources:
+      - daemonsets
+      - deployments
+      - replicasets
+    verbs:
+      - get
+      - list
+      - watch
+      - create
+      - patch
+      - update
+      - delete
+  - apiGroups:
+      - apps
+    resources:
+      - statefulsets
+      - deployments
+      - daemonsets
+      - replicasets
+    verbs:
+      - get 
+      - list
+      - watch
+      - create
+      - patch
+      - update
+      - delete
+  - apiGroups:
+      - batch
+    resources:
+      - cronjobs
+      - jobs
+    verbs:
+      - get
+      - list
+      - watch
+      - create
+      - patch
+      - update
+      - delete
+  - apiGroups:
+      - autoscaling
+    resources:
+      - horizontalpodautoscalers
+    verbs:
+      - get
+      - list
+      - watch
+  - apiGroups:
+      - policy
+    resources:
+      - poddisruptionbudgets
+    verbs:
+      - get
+      - list
+      - watch
+  - apiGroups: 
+      - storage.k8s.io
+    resources: 
+      - storageclasses
+    verbs:
+      - get
+      - list
+      - watch
+  - apiGroups:
+      - events.k8s.io
+    resources:
+      - events
+    verbs:
+      - get
+      - list
+      - watch
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: cluster-turndown
+  labels:
+    app: cluster-turndown
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: cluster-turndown
+subjects:
+  - kind: ServiceAccount
+    name: cluster-turndown
+    namespace: turndown
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cluster-turndown
+  namespace: turndown
+spec:
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      app: cluster-turndown
+  template:
+    metadata:
+      namespace: turndown
+      labels:
+        app: cluster-turndown
+    spec:
+      containers:
+      - name: cluster-turndown
+        image: gcr.io/kubecost1/cluster-turndown:2.0.1
+        volumeMounts:
+        - name: turndown-keys
+          mountPath: /var/keys
+        env:
+        - name: NODE_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: spec.nodeName
+        - name: TURNDOWN_NAMESPACE
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.namespace
+        - name: TURNDOWN_DEPLOYMENT
+          value: cluster-turndown
+        - name: GOOGLE_APPLICATION_CREDENTIALS
+          value: /var/keys/service-key.json
+      serviceAccount: cluster-turndown
+      serviceAccountName: cluster-turndown
+      volumes:
+      - name: turndown-keys
+        secret:
+          secretName: cluster-turndown-service-key
+---
+# TurndownSchedule Custom Resource Definition for persistence
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  name: turndownschedules.kubecost.com
+spec:
+  group: kubecost.com
+  names:
+    kind: TurndownSchedule
+    singular: turndownschedule
+    plural: turndownschedules
+    shortNames:
+    - td
+    - tds
+  scope: Cluster
+  versions:
+    - name: v1alpha1
+      served: true
+      storage: true
+      subresources:
+        status: {}
+      schema:
+        openAPIV3Schema:
+          type: object
+          properties:
+            spec:
+              type: object
+              properties:
+                start:
+                  type: string
+                  format: date-time
+                end:
+                  type: string
+                  format: date-time
+                repeat:
+                  type: string
+                  enum: [none, daily, weekly]
+            status:
+              type: object
+              properties:
+                state:
+                  type: string
+                lastUpdated:
+                  format: date-time
+                  type: string
+                current:
+                  type: string
+                scaleDownId:
+                  type: string
+                nextScaleDownTime:
+                  format: date-time
+                  type: string
+                scaleDownMetadata:
+                  additionalProperties:
+                    type: string
+                  type: object
+                scaleUpID:
+                  type: string
+                nextScaleUpTime:
+                  format: date-time
+                  type: string
+                scaleUpMetadata:
+                  additionalProperties:
+                    type: string
+                  type: object
+      additionalPrinterColumns:
+      - name: State
+        type: string
+        description: The state of the turndownschedule
+        jsonPath: .status.state
+      - name: Next Turndown
+        type: string
+        description: The next turndown date-time
+        jsonPath: .status.nextScaleDownTime
+      - name: Next Turn Up
+        type: string
+        description: The next turn up date-time
+        jsonPath: .status.nextScaleUpTime

@@ -1,0 +1,20 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: stormforge-agent
+  namespace: stormforge-system
+spec:
+  interval: 5m
+  chartRef:
+    kind: OCIRepository
+    name: stormforge-agent
+    namespace: flux-system
+  values:
+  # https://github.com/thestormforge/helm-charts/blob/main/charts/stormforge-agent/values.yaml
+    clusterName: k8s-platform
+    stormforge:
+      address: https://api.stormforge.io/
+    authorization:
+      issuer: https://api.stormforge.io/
+      clientID: xxxxxxxxxxx
+      clientSecret: xxxxxxxxxxxxx

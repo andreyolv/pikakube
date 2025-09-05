@@ -1,0 +1,18 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: telegraf
+  namespace: telegraf
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: telegraf
+      version: 1.8.55
+      sourceRef:
+        kind: HelmRepository
+        name: influxdata
+        namespace: flux-system
+  values:
+  # https://artifacthub.io/packages/helm/influxdata/telegraf
+  # https://github.com/influxdata/helm-charts/blob/master/charts/telegraf/values.yaml

@@ -1,0 +1,64 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: thanos
+  namespace: thanos
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: thanos
+      version: 12.20.1
+      sourceRef:
+        kind: HelmRepository
+        name: bitnami
+        namespace: flux-system
+  values:
+  # https://artifacthub.io/packages/helm/bitnami/thanos
+  # https://github.com/bitnami/charts/blob/main/bitnami/thanos/values.yaml
+    objstoreConfig: 
+      type: S3
+      config:
+        bucket: thanos
+        endpoint: minio.thanos.svc.cluster.local:9000
+        access_key: pikakube
+        secret_key: pikakube
+        insecure: true
+    query:
+      enabled: true
+      replicaLabel: ["__replica__"]
+      dnsDiscovery:
+        sidecarsService: prometheus-kube-prometheus-thanos-discovery
+        sidecarsNamespace: prometheus
+    bucketweb:
+      enabled: true
+    compactor:
+      enabled: true
+      extraFlags:
+        - "--compact.concurrency=4"
+        - "--delete-delay=30m"
+      retentionResolutionRaw: 14d # 0d - disables this retention
+      retentionResolution5m: 14d # 0d - disables this retention
+      retentionResolution1h: 30d # 0d - disables this retention
+    storegateway:
+      enabled: true
+    ruler:
+      enabled: true
+      replicaLabel: __replica__
+      alertmanagers: ["http://prometheus-kube-prometheus-alertmanager.prometheus.svc.cluster.local:9093"]
+      extraFlags: ["--web.prefix-header=X-Forwarded-Prefix"]
+      config: |-
+        groups:
+          - name: PrometheusWatcher
+            rules:
+              - alert: PrometheusDown
+                annotations:
+                  summary: A Prometheus has disappeared from Prometheus target discovery
+                expr: absent(up{job="kube-prometheus-stack-prometheus"})
+                for: 5m
+                labels:
+                  severity: critical
+    metrics:
+      enabled: true
+      serviceMonitor:
+        enabled: true

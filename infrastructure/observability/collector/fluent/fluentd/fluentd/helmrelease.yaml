@@ -1,0 +1,25 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: fluent-bit
+  namespace: fluent
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: fluent-bit
+      version: 0.27.0
+      sourceRef:
+        kind: HelmRepository
+        name: fluent
+        namespace: flux-system
+  values:
+  #
+  # 
+    serviceAccount:
+      create: true
+      name: fluent-bit
+    serviceMonitor:
+      enabled: true
+      selector:
+        monitoring: portefaix

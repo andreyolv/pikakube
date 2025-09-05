@@ -1,0 +1,15 @@
+# apiVersion: velero.io/v1
+# kind: Backup
+# metadata:
+#   name: airflow-dagsfileshare
+#   namespace: velero
+#   annotations:
+#     velero.io/csi-volumesnapshot-class_file.csi.azure.com: "csi-azurefile-vsc"
+# spec:
+#   includedNamespaces:
+#   - 'airflow'
+#   includedResources:
+#   - persistentvolumeclaims
+#   - persistentvolumes
+#   ttl: 24h0m0s
+# # não funciona pois o pv é estático ou será pq é storage class azurefile-premium?

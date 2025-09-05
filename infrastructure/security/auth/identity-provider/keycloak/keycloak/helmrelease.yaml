@@ -1,0 +1,23 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: keycloak
+  namespace: keycloak
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: keycloak
+      version: 18.4.4
+      sourceRef:
+        kind: HelmRepository
+        name: keycloak
+        namespace: flux-system
+  values:
+  # https://artifacthub.io/packages/helm/codecentric/keycloak
+  # https://github.com/codecentric/helm-charts/blob/master/charts/keycloak/values.yaml
+    extraEnv: |
+      - name: KEYCLOAK_USER
+        value: andreyolv
+      - name: KEYCLOAK_PASSWORD
+        value: andreyolv

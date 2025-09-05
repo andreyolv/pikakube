@@ -1,0 +1,19 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: deepflow
+  namespace: deepflow
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: deepflow
+      version: 6.5.011
+      sourceRef:
+        kind: HelmRepository
+        name: deepflow
+        namespace: flux-system
+  values:
+  # https://artifacthub.io/packages/helm/deepflow/deepflow
+  # https://github.com/deepflowio/deepflow-charts/blob/main/charts/deepflow/values.yaml
+

@@ -1,0 +1,21 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: teleport
+  namespace: teleport
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: teleport-cluster
+      version: 15.2.2
+      sourceRef:
+        kind: HelmRepository
+        name: teleport
+        namespace: flux-system
+  values:
+  # https://artifacthub.io/packages/helm/teleport-agent-kube/teleport-cluster
+  # https://github.com/gravitational/teleport/blob/master/examples/chart/teleport-cluster/values.yaml
+    clusterName: teleport-cluster
+    service:
+      type: ClusterIP

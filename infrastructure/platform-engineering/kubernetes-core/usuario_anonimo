@@ -1,0 +1,10 @@
+grep server ~/.kube/config
+curl -k ULR_ENDPOINT/api/v1/namespaces
+curl -k https://127.0.0.1:37799/api/v1/namespaces
+curl -k https://127.0.0.1:37799/api/v1/namespaces/default/pods/users-api-nginx-589dd64f99-589fn/log?container=nginx
+
+https://arthurchiao.art/blog/cracking-k8s-authn/#12-authn-and-authz
+
+401 = usuario anonimo desativado
+403 = usuario anonimo ativado
+

@@ -1,0 +1,18 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: kubevious
+  namespace: kubevious
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: kubevious
+      version: 1.2.2
+      sourceRef:
+        kind: HelmRepository
+        name: kubevious
+        namespace: flux-system
+  values:
+  # https://artifacthub.io/packages/helm/kubevious/kubevious
+  # https://github.com/kubevious/helm/blob/master/kubevious/chart/values.yaml

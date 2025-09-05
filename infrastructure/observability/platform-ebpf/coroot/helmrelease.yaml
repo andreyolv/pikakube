@@ -1,0 +1,25 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: coroot
+  namespace: coroot
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: coroot
+      version: 0.7.5
+      sourceRef:
+        kind: HelmRepository
+        name: coroot
+        namespace: flux-system
+  install:
+    crds: CreateReplace
+    timeout: 15m
+  upgrade:
+    crds: CreateReplace
+    timeout: 15m
+  values:
+  # https://artifacthub.io/packages/helm/coroot/coroot
+  # https://github.com/coroot/helm-charts/blob/main/charts/coroot/values.yaml
+

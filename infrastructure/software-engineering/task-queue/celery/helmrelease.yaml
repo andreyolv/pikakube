@@ -1,0 +1,16 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: celery
+  namespace: celery
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: helm-chart
+      sourceRef:
+        kind: GitRepository
+        name: celery
+        namespace: flux-system
+  values:
+  # https://github.com/celery/celery/blob/main/helm-chart/values.yaml

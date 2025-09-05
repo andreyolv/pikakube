@@ -1,0 +1,15 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: GitRepository
+metadata:
+  name: skywalking-helm
+  namespace: flux-system
+spec:
+  interval: 24h
+  ref:
+    tag: v4.6.0
+  url: https://github.com/apache/skywalking-helm.git
+  ignore: |
+    # exclude all
+    /*
+    # include deploy dir
+    !/chart/skywalking

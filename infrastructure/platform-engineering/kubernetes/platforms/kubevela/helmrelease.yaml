@@ -1,0 +1,18 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: kubevela
+  namespace: kubevela
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: vela-core
+      version: 1.9.11
+      sourceRef:
+        kind: HelmRepository
+        name: kubevela
+        namespace: flux-system
+  values:
+  # https://artifacthub.io/packages/helm/kubevela/vela-core
+  # https://github.com/kubevela/kubevela/blob/master/charts/vela-core/values.yaml

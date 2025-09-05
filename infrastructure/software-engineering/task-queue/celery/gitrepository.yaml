@@ -1,0 +1,15 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: GitRepository
+metadata:
+  name: celery
+  namespace: flux-system
+spec:
+  interval: 24h
+  ref:
+    tag: v5.5.0rc4
+  url: https://github.com/celery/celery.git
+  ignore: |
+    # exclude all
+    /*
+    # include deploy dir
+    !/helm-chart

@@ -1,0 +1,17 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: nui
+  namespace: nats
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: nui
+      version: 0.1.0
+      sourceRef:
+        kind: HelmRepository
+        name: nats-nui
+        namespace: flux-system
+  values:
+  # https://github.com/nats-nui/k8s/blob/main/helm/charts/nui/values.yaml

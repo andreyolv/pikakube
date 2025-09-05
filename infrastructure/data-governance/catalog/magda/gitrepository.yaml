@@ -1,0 +1,10 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: GitRepository
+metadata:
+  name: magda
+  namespace: flux-system
+spec:
+  interval: 24h
+  ref:
+    tag: v4.2.3
+  url: https://github.com/magda-io/magda.git

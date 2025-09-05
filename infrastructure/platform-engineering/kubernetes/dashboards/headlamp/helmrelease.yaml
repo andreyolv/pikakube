@@ -1,0 +1,64 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: headlamp
+  namespace: headlamp
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: headlamp
+      version: 0.32.1
+      sourceRef:
+        kind: HelmRepository
+        name: headlamp
+        namespace: flux-system
+  values:
+  # https://artifacthub.io/packages/helm/headlamp/headlamp
+  # https://github.com/kubernetes-sigs/headlamp/blob/main/charts/headlamp/values.yaml
+    ingress:
+      enabled: false
+      annotations:
+        forecastle.stakater.com/expose: "true"
+        forecastle.stakater.com/icon: "https://raw.githubusercontent.com/cncf/artwork/refs/heads/main/projects/headlamp/icon/color/headlamp-icon-color.svg"
+        forecastle.stakater.com/appName: "Headlamp"
+        forecastle.stakater.com/group: "Observability"
+        gethomepage.dev/enabled: "true"
+        gethomepage.dev/description: Headlamp Kubernetes Dashboard
+        gethomepage.dev/group: Observability
+        gethomepage.dev/icon: "https://raw.githubusercontent.com/cncf/artwork/refs/heads/main/projects/headlamp/icon/color/headlamp-icon-color.svg"
+        gethomepage.dev/name: Headlamp
+      hosts:
+      - host: headlamp.127.0.0.1.nip.io
+        paths: 
+        - path: /
+          type: Prefix
+      tls:
+      - secretName: mkcert-tls-secret
+        hosts:
+        - headlamp.127.0.0.1.nip.io
+    config:
+      pluginsDir: /build/plugins
+    initContainers:
+      - command:
+          - /bin/sh
+          - -c
+          - mkdir -p /build/plugins && cp -r /plugins/* /build/plugins/
+        image: ghcr.io/headlamp-k8s/headlamp-plugin-flux:latest
+        imagePullPolicy: Always
+        name: headlamp-plugins
+        volumeMounts:
+          - mountPath: /build/plugins
+            name: headlamp-plugins
+    persistentVolumeClaim:
+      accessModes:
+        - ReadWriteOnce
+      enabled: true
+      size: 1Gi
+    volumeMounts:
+      - mountPath: /build/plugins
+        name: headlamp-plugins
+    volumes:
+      - name: headlamp-plugins
+        persistentVolumeClaim:
+          claimName: headlamp

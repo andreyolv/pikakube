@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deployment-rollingupdate
+  namespace: teste
+spec:
+  replicas: 5
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 0
+  selector:
+    matchLabels:
+      app: deployment-rollingupdate
+  template:
+    metadata:
+      labels:
+        app: deployment-rollingupdate
+    spec:
+      containers:
+      - name: deployment-rollingupdate
+        image: argoproj/rollouts-demo:blue # blue yellow red
+        ports:
+        - containerPort: 8080

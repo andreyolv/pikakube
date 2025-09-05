@@ -1,0 +1,6 @@
+Run ETCD Service
+./etcd
+
+Operations
+./etcdctl set chave valor
+./etcdctl get chave valor

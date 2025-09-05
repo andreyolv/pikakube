@@ -1,0 +1,53 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: kubecost
+  namespace: kubecost
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: cost-analyzer
+      version: 1.104.1
+      sourceRef:
+        kind: HelmRepository
+        name: kubecost
+        namespace: flux-system
+      interval: 1m
+  valuesFrom:
+    - kind: Secret
+      name: kubecost-token
+      valuesKey: kubecost-token
+      targetPath: kubecostToken
+  values:
+  # https://artifacthub.io/packages/helm/kubecost/cost-analyzer
+  # https://github.com/kubecost/cost-analyzer-helm-chart/blob/develop/cost-analyzer/values.yaml
+    global:
+      prometheus:
+        enabled: false
+        fqdn: http://prometheus-server.monitoring.svc:80
+      grafana:
+        enabled: false
+        proxy: false
+    prometheus:
+      server:
+        global:
+          external_labels:
+            cluster_id: ANDREYOLV_DEV
+      nodeExporter:
+        enabled: false
+      kubeStateMetrics:
+        enabled: false
+      kube-state-metrics:
+        disabled: true
+      serviceAccounts:
+        nodeExporter:
+          create: false
+    networkCosts:
+      enabled: true
+      config:
+        services:
+          azure-cloud-services: true
+    kubecostProductConfigs:
+      grafanaURL: https://...
+      cloudIntegrationSecret: cloud-integration-secret

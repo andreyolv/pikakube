@@ -1,0 +1,31 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: lakekeeper
+  namespace: lakekeeper
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: lakekeeper
+      version: 0.3.2
+      sourceRef:
+        kind: HelmRepository
+        name: lakekeeper
+        namespace: flux-system
+  values:
+  # https://artifacthub.io/packages/helm/lakekeeper/lakekeeper
+  # https://github.com/lakekeeper/lakekeeper-charts/blob/main/charts/lakekeeper/values.yaml
+    postgresql:
+      enabled: false
+    externalDatabase:
+      host_read: "localhost"
+      host_write: "localhost"
+      port: 5432
+      database: catalog
+      user: catalog
+      userSecret: 
+      userSecretKey: "postgresql-user"
+      password: ""
+      passwordSecret: ""
+      passwordSecretKey: "postgresql-password"

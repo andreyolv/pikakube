@@ -1,0 +1,25 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: nessie
+  namespace: nessie
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: nessie
+      version: 0.81.0
+      sourceRef:
+        kind: HelmRepository
+        name: nessie-helm
+        namespace: flux-system
+  values:
+  # https://artifacthub.io/packages/helm/nessie/nessie
+  # https://github.com/projectnessie/nessie/blob/main/helm/nessie/values.yaml
+    versionStoreType: JDBC
+    postgres:
+      jdbcUrl: jdbc:postgresql://postgres.nessie:5432/nessie
+      secret:
+        name: postgres-creds
+        username: postgres_username
+        password: postgres_password

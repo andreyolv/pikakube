@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pypi-server
+  namespace: pypi-server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pypi-server
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+  template:
+    metadata:
+      labels:
+        app: "pypi-server"
+    spec:
+      containers:
+      - name: "pypiserver"
+        image: andreyolv/pypi-server:0.0.1 # Replace it with the remote container registry
+        env:
+        - name: PYPI_USER
+          valueFrom:
+            secretKeyRef:
+              name: pypisecret
+              key: username
+        - name: PYPI_PASS
+          valueFrom:
+            secretKeyRef:
+              name: pypisecret
+              key: password
+        imagePullPolicy: Always  
+        securityContext:
+          privileged: true      
+        volumeMounts:
+        - mountPath: '/pypi-server/packages'
+          name: pypi-packages
+        ports:
+        - containerPort: 80
+          name: pypiserver
+      volumes:
+      - name: pypi-packages
+        persistentVolumeClaim:
+          claimName: pypi-pvc
+      #imagePullSecrets:
+      # - name: dockercreds # Add Imagepull secret in a kubernetes secret and add the secret name here

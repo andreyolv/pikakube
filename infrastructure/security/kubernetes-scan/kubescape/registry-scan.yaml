@@ -1,0 +1,15 @@
+kind: Secret
+apiVersion: v1
+metadata:
+  name: kubescape-registry-scan
+  namespace: kubescape
+type: Opaque
+stringData:
+  registriesAuth: |
+    [
+      {
+        "registry": "quay.io/kubescape",        
+        "auth_method": "public",
+        "kind": "quay.io"
+      }
+    ]

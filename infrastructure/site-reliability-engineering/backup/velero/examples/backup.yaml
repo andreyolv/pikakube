@@ -1,0 +1,14 @@
+apiVersion: velero.io/v1
+kind: Backup
+metadata:
+  name: backup-postgres3
+  namespace: velero
+spec:
+  includedNamespaces:
+  - 'postgresql'
+  includedResources:
+  - '*'
+  storageLocation: minio-dev
+  volumeSnapshotLocations: 
+  - minio-dev
+  ttl: 168h0m0s # 7 days

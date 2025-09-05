@@ -1,0 +1,17 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: guac
+  namespace: guac
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: guac
+      version: 0.6.2
+      sourceRef:
+        kind: HelmRepository
+        name: kusaridev
+        namespace: flux-system
+  values:
+  # https://github.com/guacsec/helm-charts/blob/main/charts/guac/values.yaml

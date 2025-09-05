@@ -1,0 +1,11 @@
+apiVersion: sts.min.io/v1alpha1
+kind: PolicyBinding
+metadata:
+  name: mc-job-binding
+  namespace: minio-tenant
+spec:
+  application:
+    namespace: minio-tenant
+    serviceaccount: mc-job-sa
+  policies:
+    - consoleAdmin

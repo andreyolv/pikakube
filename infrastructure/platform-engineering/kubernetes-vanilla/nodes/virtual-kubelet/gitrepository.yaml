@@ -1,0 +1,10 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: GitRepository
+metadata:
+  name: azure-aci
+  namespace: flux-system
+spec:
+  interval: 24h
+  ref:
+    tag: v1.6.2
+  url: https://github.com/virtual-kubelet/azure-aci.git

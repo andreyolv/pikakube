@@ -1,0 +1,48 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: elasticsearch
+  namespace: amundsen
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: elasticsearch
+      version: 7.17.3
+      sourceRef:
+        kind: HelmRepository
+        name: elastic
+        namespace: flux-system
+  values:
+  # https://artifacthub.io/packages/helm/elastic/elasticsearch
+    replicas: 3
+    minimumMasterNodes: 1
+    antiAffinity: "soft"
+    #podAnnotations:
+    #  cluster-autoscaler.kubernetes.io/safe-to-evict: "true"
+    resources:
+      requests:
+        cpu: "200m"
+        memory: "2Gi"
+      limits:
+        cpu: "2000m"
+        memory: "2Gi"
+    volumeClaimTemplate:
+      accessModes: [ "ReadWriteOnce" ]
+    #  storageClassName: disk
+      resources:
+        requests:
+          storage: 2Gi
+    readinessProbe:
+      failureThreshold: 10
+      initialDelaySeconds: 120
+      periodSeconds: 10
+      successThreshold: 3
+      timeoutSeconds: 10
+    clusterHealthCheckParams: 'wait_for_status=yellow&timeout=1s'
+    #nodeSelector:
+    #  spot: 'true'
+    #tolerations:
+    #- effect: NoSchedule
+    #  key: kubernetes.azure.com/scalesetpriority
+    #  operator: Exists

@@ -1,0 +1,18 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: nats
+  namespace: nats
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: nats
+      version: 1.2.6
+      sourceRef:
+        kind: HelmRepository
+        name: nats
+        namespace: flux-system
+  values:
+  # https://artifacthub.io/packages/helm/nats/nats
+  # https://github.com/nats-io/k8s/blob/main/helm/charts/nats/values.yaml

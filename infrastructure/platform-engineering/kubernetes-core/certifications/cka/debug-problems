@@ -1,0 +1,17 @@
+COMPONENTES DO KUBERNETES:
+systemctl status kubelet
+systemctl stop kubelet
+systemctl start kubelet
+systemctl enable kubelet
+sudo systemctl disable kubelet
+
+journalctl -u kubelet
+
+LOGS MASTER NODES:
+/var/log/kube-scheduler.log   
+/var/log/kube-apiserver.log 
+/var/log/kube-controller-manager.log 
+
+LOGS WORKER NODES:
+/var/log/kubelet.log   
+/var/log/kube-proxy.log   

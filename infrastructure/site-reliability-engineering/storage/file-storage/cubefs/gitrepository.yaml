@@ -1,0 +1,15 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: GitRepository
+metadata:
+  name: cubefs
+  namespace: flux-system
+spec:
+  interval: 24h
+  ref:
+    tag: v3.3.2.150.0
+  url: https://github.com/cubefs/cubefs-helm.git
+  ignore: |
+    # exclude all
+    /*
+    # include deploy dir
+    !/cubefs

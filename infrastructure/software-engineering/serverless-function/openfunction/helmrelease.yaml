@@ -1,0 +1,30 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: openfunction
+  namespace: openfunction
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: openfunction
+      version: 0.7.0
+      sourceRef:
+        kind: HelmRepository
+        name: openfunction
+        namespace: flux-system
+  values:
+  # https://github.com/OpenFunction/charts/blob/main/openfunction/values.yaml
+    global:
+      Dapr:
+        enabled: false
+      Keda:
+        enabled: false
+      KnativeServing:
+        enabled: true
+      TektonPipelines:
+        enabled: false
+      ShipwrightBuild:
+        enabled: false
+      Contour:
+        enabled: false

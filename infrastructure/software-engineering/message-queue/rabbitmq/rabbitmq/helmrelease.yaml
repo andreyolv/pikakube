@@ -1,0 +1,28 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: rabbitmq
+  namespace: rabbitmq
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: rabbitmq
+      version: 15.0.6
+      sourceRef:
+        kind: HelmRepository
+        name: bitnami
+        namespace: flux-system
+  values:
+  # https://artifacthub.io/packages/helm/bitnami/rabbitmq
+  # https://github.com/bitnami/charts/blob/main/bitnami/rabbitmq/values.yaml
+  # k port-forward svc/rabbitmq 15672
+    auth:
+      username: pikakube
+      password: pikakube
+    extraPlugins: "rabbitmq_stream rabbitmq_stream_management"
+    service:
+      extraPorts:
+      - name: streams
+        port: 5552
+        targetPort: 5552

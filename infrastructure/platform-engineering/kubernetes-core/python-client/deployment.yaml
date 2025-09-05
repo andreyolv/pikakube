@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kubernetes-client
+  namespace: teste
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kubernetes-client
+  template:
+    metadata:
+      labels:
+        app: kubernetes-client
+    spec:
+      serviceAccountName: kubernetes-client
+      containers:
+      - name: kubernetes-client
+        image: andreyolv/kubernetes-client:latest
+        imagePullPolicy: Always

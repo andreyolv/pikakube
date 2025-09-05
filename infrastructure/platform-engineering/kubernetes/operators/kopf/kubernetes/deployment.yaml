@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: datagen-operator
+  namespace: datagen
+  labels:
+    app: datagen-operator
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: datagen-operator
+  template:
+    metadata:
+      labels:
+        app: datagen-operator
+    spec:
+      serviceAccountName: datagen
+      containers:
+      - name: datagen-operator
+        image: andreyolv/datagen-operator:latest
+        imagePullPolicy: Always
+        resources:
+          requests:
+            cpu: "0.5"
+            memory: 1Gi
+          limits:
+            cpu: "0.5"
+            memory: 1Gi

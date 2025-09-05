@@ -1,0 +1,23 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: ocean-network-client
+  namespace: spot-ocean
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: ocean-network-client
+      version: 1.1.0
+      sourceRef:
+        kind: HelmRepository
+        name: spot
+        namespace: flux-system
+  values:
+  # https://artifacthub.io/packages/helm/spot/ocean-network-client
+  # https://github.com/spotinst/charts/blob/main/charts/ocean-network-client/values.yaml
+    namespace: spot-ocean
+    spotinst:
+      token: XXXXXXXXXX
+      account: XXXXXXXXXX
+      clusterIdentifier: XXXXXXXXXX

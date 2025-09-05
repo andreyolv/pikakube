@@ -1,0 +1,10 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: GitRepository
+metadata:
+  name: dolphinscheduler
+  namespace: flux-system
+spec:
+  interval: 24h
+  ref:
+    tag: 3.2.2
+  url: https://github.com/apache/dolphinscheduler.git

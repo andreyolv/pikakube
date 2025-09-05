@@ -1,0 +1,22 @@
+apiVersion: rabbitmq.com/v1beta1
+kind: RabbitmqCluster
+metadata:
+  name: my-rabbitmq-cluster
+  namespace: rabbitmq
+  annotations:
+    rabbitmq.com/topology-allowed-namespaces: "rabbitmq"
+spec:
+  replicas: 3
+  persistence:
+    storage: 2Gi
+  resources:
+    requests:
+      memory: 2Gi
+      cpu: 1
+  rabbitmq:
+    additionalConfig: |
+      default_user=pikakube
+      default_pass=pikakube
+      log.console.level=debug
+  service:
+    type: ClusterIP

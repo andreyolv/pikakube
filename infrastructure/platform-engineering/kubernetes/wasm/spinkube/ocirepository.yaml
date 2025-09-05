@@ -1,0 +1,10 @@
+apiVersion: source.toolkit.fluxcd.io/v1beta2
+kind: OCIRepository
+metadata:
+  name: spin-operator
+  namespace: flux-system
+spec:
+  interval: 24h
+  url: oci://ghcr.io/spinkube/charts/spin-operator
+  ref:
+    tag: v0.4.0

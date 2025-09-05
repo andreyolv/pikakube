@@ -1,0 +1,70 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: retina-hubble
+  namespace: kube-system
+spec:
+  interval: 5m
+  chartRef:
+    kind: OCIRepository
+    name: retina-hubble
+    namespace: flux-system
+  values:
+  # https://github.com/microsoft/retina/blob/main/deploy/hubble/manifests/controller/helm/retina/values.yaml
+    operator:
+      repository: ghcr.io/microsoft/retina/retina-operator
+      tag: v0.0.29
+      tolerations:
+      - key: "kubernetes.azure.com/scalesetpriority"
+        operator: Exists
+        effect: NoSchedule
+    agent:
+      repository: ghcr.io/microsoft/retina/retina-agent
+      tag: v0.0.29
+      init:
+        repository: ghcr.io/microsoft/retina/retina-init
+        tag: v0.0.29
+      tolerations:
+      - effect: NoSchedule
+        key: kubernetes.azure.com/scalesetpriority
+        operator: Exists
+    hubble:
+      metrics:
+        enabled:
+        - flow:sourceEgressContext=pod;destinationIngressContext=pod;labelsContext=source_namespace,destination_namespace,source_pod,destination_pod,source_ip,destination_ip,traffic_direction
+        - tcp:sourceEgressContext=pod;destinationIngressContext=pod
+        - dns:query;sourceEgressContext=pod;destinationIngressContext=pod
+        - drop:sourceEgressContext=pod;destinationIngressContext=pod
+        serviceMonitor:
+          enabled: true
+      tls:
+        enabled: false
+        auto:
+          enabled: false
+      relay:
+        tls:
+          server:
+            enabled: false
+        tolerations:
+        - effect: NoSchedule
+          key: CriticalAddonsOnly
+          operator: Exists
+        prometheus:
+          enabled: true
+          serviceMonitor:
+            enabled: true
+            namespace: kube-system
+      ui:
+        tolerations:
+        - effect: NoSchedule
+          key: kubernetes.azure.com/scalesetpriority
+          operator: Exists
+    certgen:
+      tolerations:
+      - effect: NoSchedule
+        key: kubernetes.azure.com/scalesetpriority
+        operator: Exists
+    # helm chart está errado!! abaixo é gamibiarra pq ta errado e ainda servicemonitor não pega métrica direito, uma bosta  
+    prometheus:
+      serviceMonitor:
+        namespace: kube-system

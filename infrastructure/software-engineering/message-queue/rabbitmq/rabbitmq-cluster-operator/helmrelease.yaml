@@ -1,0 +1,30 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: rabbitmq-cluster-operator
+  namespace: rabbitmq
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: rabbitmq-cluster-operator
+      version: 4.4.6
+      sourceRef:
+        kind: HelmRepository
+        name: bitnami
+        namespace: flux-system
+  values:
+  # https://artifacthub.io/packages/helm/bitnami/rabbitmq-cluster-operator
+  # https://github.com/bitnami/charts/blob/main/bitnami/rabbitmq-cluster-operator/values.yaml
+    clusterOperator:
+      metrics:
+        service:
+          enabled: true
+        serviceMonitor: 
+          enabled: true
+    msgTopologyOperator:
+      metrics:
+        service:
+          enabled: true
+        serviceMonitor: 
+          enabled: true

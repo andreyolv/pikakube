@@ -1,0 +1,10 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: GitRepository
+metadata:
+  name: kubeview
+  namespace: flux-system
+spec:
+  interval: 24h
+  ref:
+    tag: 0.1.31
+  url: https://github.com/benc-uk/kubeview.git

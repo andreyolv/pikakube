@@ -1,0 +1,87 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: opencost
+  namespace: opencost
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: opencost
+      version: 1.28.0
+      sourceRef:
+        kind: HelmRepository
+        name: opencost
+        namespace: flux-system
+  # postRenderers:
+  # - kustomize:
+  #     patches:
+  #     - target:
+  #         kind: Deployment
+  #         name: opencost
+  #       patch: |
+  #         - op: add
+  #           path: /spec/template/spec/containers/0/envFrom
+  #           value:
+  #             secretRef:
+  #               name: opencost-spn
+  values:
+  # https://artifacthub.io/packages/helm/opencost/opencost
+  # https://github.com/opencost/opencost-helm-chart/blob/main/charts/opencost/values.yaml
+    opencost: 
+      cloudIntegrationSecret: cloud-integration-secret
+      exporter:
+        defaultClusterId: AKS_DEV
+        image:
+          registry: gcr.io
+          repository: kubecost1/opencost
+          tag: cloudcost
+        resources:
+          requests:
+            cpu: '10m'
+            memory: '4Gi'
+          limits:
+            cpu: '999m'
+            memory: '4Gi'
+        livenessProbe:
+          enabled: true
+          initialDelaySeconds: 180
+        readinessProbe:
+          enabled: true
+          initialDelaySeconds: 180 
+        # persistence:
+        #   enabled: true
+        #   accessMode: ReadWriteOnce # ReadOnlyMany ReadWriteOnce ReadWriteMany
+        #   size: 2Gi
+        # extraEnv:
+        #   EMIT_KSM_V1_METRICS: false
+        #   EMIT_KSM_V1_METRICS_ONLY: true
+        #   LOG_LEVEL: warn #error
+        #   CLUSTER_INFO_FILE_ENABLED: true
+        #   EXPORT_CSV_FILE: https://rzanalyticscostdev.blob.core.windows.net/opencost/file.csv
+        extraVolumeMounts:
+        - mountPath: /var/secrets
+          name: service-key-secret
+      cloudCost:
+        enabled: true
+      prometheus:
+        internal:
+          enabled: true
+          serviceName: prometheus-server
+          namespaceName: monitoring
+          port: 80
+      ui: 
+        image:
+          registry: gcr.io
+          repository: kubecost1/opencost-ui
+          tag: cloudcost
+        livenessProbe:
+          enabled: true
+          initialDelaySeconds: 180
+        readinessProbe:
+          enabled: true
+          initialDelaySeconds: 180
+    extraVolumes:
+    - name: service-key-secret
+      secret:
+        secretName: azure-service-key

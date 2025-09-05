@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: metastore
+  namespace: hive-metastore
+spec:
+  selector:
+    matchLabels:
+      app: metastore
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: metastore
+    spec:
+      containers:
+      - name: metastore
+        image: andreyolv/hive-azure #mykidong/hivemetastore:v3.0.0
+        ports:
+        - containerPort: 9083
+        volumeMounts:
+        - name: metastore-cfg-vol
+          mountPath: /opt/hive-metastore/conf/metastore-site.xml
+          subPath: metastore-site.xml
+        - name: metastore-cfg-vol
+          mountPath: /opt/hadoop/etc/hadoop/core-site.xml
+          subPath: core-site.xml
+        command: ["/opt/hive-metastore/bin/start-metastore"]
+        args: ["-p", "9083"]
+        resources:
+          requests:
+            memory: "2G"
+            cpu: 2
+        imagePullPolicy: Always
+      volumes:
+        - name: metastore-cfg-vol
+          configMap:
+            name: metastore-cfg
+#       - name: metastore-cfg-vol
+#         secret:
+#           secretName: metastore-cfg-secret # configmap contém dados sensiveis, melhor secret

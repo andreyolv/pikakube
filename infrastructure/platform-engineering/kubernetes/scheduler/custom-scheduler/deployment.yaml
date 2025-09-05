@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: most-allocated-scheduler
+  namespace: kube-system
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: most-allocated-scheduler
+  template:
+    metadata:
+      labels:
+        component: scheduler
+        name: most-allocated-scheduler
+        tier: control-plane
+    spec:
+      serviceAccountName: most-allocated-scheduler
+      containers:
+      - name: most-allocated-scheduler
+        image: registry.k8s.io/kube-scheduler:v1.24.9
+        command:
+        - /usr/local/bin/kube-scheduler
+        - --config=/etc/kubernetes/most-allocated-scheduler/most-allocated-scheduler-config.yaml
+        livenessProbe:
+          httpGet:
+            path: /healthz
+            port: 10259
+            scheme: HTTPS
+        readinessProbe:
+          httpGet:
+            path: /healthz
+            port: 10259
+            scheme: HTTPS
+        volumeMounts:
+        - mountPath: /etc/kubernetes/most-allocated-scheduler
+          name: most-allocated-scheduler-config
+      volumes:
+      - name: most-allocated-scheduler-config
+        configMap:
+          name: most-allocated-scheduler-config

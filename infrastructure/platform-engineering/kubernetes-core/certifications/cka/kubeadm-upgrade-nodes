@@ -1,0 +1,22 @@
+UPGRADE K8S WITH KUBEADM
+-Control Plane:
+kubectl drain control-plane --ignore-daemonsets
+sudo apt-get update && sudo apt-get install -y --allow-change-held-packages kubeadm=1.22.2-00
+kubeadm version
+sudo kubeadm upgrade plan v1.22.2
+sudo kubeadm upgrade apply v1.22.2
+sudo apt-get update && sudo apt-get install -y --allow-change-held-packages kubelet=1.22.2-00 kubectl=1.22.2-00
+sudo systemctl daemon-reload
+sudo systemctl restart kubelet
+kubectl uncordon control-plane
+kubectl get nodes
+
+-Workers:
+kubectl drain worker1 --ignore-daemonsets --force
+sudo apt-get update && sudo apt-get install -y --allow-change-held-packages kubeadm=1.22.2-00
+sudo kubeadm upgrade node
+sudo apt-get update && sudo apt-get install -y --allow-change-held-packages kubelet=1.22.2-00 kubectl=1.22.2-00
+sudo systemctl daemon-reload
+sudo systemctl restart kubelet
+kubectl uncordon worker1
+kubectl get nodes

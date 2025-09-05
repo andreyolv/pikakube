@@ -1,0 +1,64 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: velero
+  namespace: velero
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: velero
+      version: 4.1.3
+      sourceRef:
+        kind: HelmRepository
+        name: velero
+        namespace: flux-system
+  upgrade:
+    crds: CreateReplace
+  values:
+  # https://artifacthub.io/packages/helm/vmware-tanzu/velero
+  # https://github.com/vmware-tanzu/helm-charts/blob/main/charts/velero/values.yaml
+  # https://github.com/vmware-tanzu/velero-plugin-for-microsoft-azure
+    resources:
+      requests:
+        cpu: 500m
+        memory: 512Mi
+      limits:
+        cpu: 1000m
+        memory: 2Gi
+    initContainers:
+    - name: velero-plugin-for-azure
+      image: velero/velero-plugin-for-microsoft-azure:v1.7.0
+      volumeMounts:
+        - mountPath: /target
+          name: plugins
+    configuration:
+      backupStorageLocation: 
+      - name: <NAME>
+        provider: azure
+        default: true
+        bucket: velero
+        config: 
+          resourceGroup: <RESOURCE-GROUP>
+          storageAccount: <STORAGE-ACCOUNT>
+          subscriptionId: <SUBSCRIPTION-ID>
+      volumeSnapshotLocation:
+      - name: <NAME>
+        provider: azure
+        config:
+          resourceGroup: <RESOURCE-GROUP>
+          subscriptionId: <SUBSCRIPTION-ID>
+          incremental: "true"
+    credentials:
+      existingSecret: azure-credentials
+    # para usar data movmenet apenas num nó que precisa, pq deamonset em todos é exagero
+    # https://github.com/vmware-tanzu/velero/discussions/7196
+    #deployNodeAgent: true
+    #nodeAgent:
+    #  affinity:
+    #    podAffinity:
+    #      requiredDuringSchedulingIgnoredDuringExecution:
+    #        - labelSelector:
+    #            matchLabels:
+    #              component: dag-processor
+    #          topologyKey: kubernetes.io/hostname

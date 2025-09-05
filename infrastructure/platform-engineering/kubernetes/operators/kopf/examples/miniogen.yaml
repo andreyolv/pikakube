@@ -1,0 +1,16 @@
+apiVersion: kopf.dev/v1
+kind: MinioGen
+metadata:
+  name: minio-gen
+  namespace: datagen
+spec:
+  source:
+    host: http://minio.minio.svc.cluster.local:9000
+    access_key: pufPA7S6HxYcew8G9ypS
+    secret_key: Z5iPcIo4vjrwsyFPUjBoVGn4kbcUJPGRxhT58jwU
+    bucket: operator
+    path: abc/ab/
+  datagen:
+    quantity: 6
+    interval: 30
+    fields: name

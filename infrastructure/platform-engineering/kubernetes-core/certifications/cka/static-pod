@@ -1,0 +1,2 @@
+/etc/kubernetes/manifests
+após aplicar static pod em /etc/kubernetes/manifests -> sudo systemctl restart kubelet

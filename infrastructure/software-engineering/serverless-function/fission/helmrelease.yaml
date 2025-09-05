@@ -1,0 +1,18 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: fission
+  namespace: fission
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: fission-all
+      version: 1.20.4
+      sourceRef:
+        kind: HelmRepository
+        name: fission-charts
+        namespace: flux-system
+  values:
+  # https://artifacthub.io/packages/helm/fission-charts/fission-all
+  # https://github.com/fission/fission/blob/main/charts/fission-all/values.yaml

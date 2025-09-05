@@ -1,0 +1,22 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: prefect
+  namespace: prefect
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: prefect-server
+      version: 2024.4.4201250
+      sourceRef:
+        kind: HelmRepository
+        name: prefect
+        namespace: flux-system
+  values:
+  # https://artifacthub.io/packages/helm/prefect/prefect-agent
+  # https://artifacthub.io/packages/helm/prefect/prefect-worker
+  # https://artifacthub.io/packages/helm/prefect/prefect-server
+  # https://github.com/PrefectHQ/prefect-helm/tree/main/charts/prefect-agent
+  # https://github.com/PrefectHQ/prefect-helm/tree/main/charts/prefect-server
+  # https://github.com/PrefectHQ/prefect-helm/tree/main/charts/prefect-worker

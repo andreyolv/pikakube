@@ -1,0 +1,15 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: GitRepository
+metadata:
+  name: security-profiles-operator
+  namespace: flux-system
+spec:
+  interval: 24h
+  ref:
+    tag: v0.8.4
+  url: https://github.com/kubernetes-sigs/security-profiles-operator
+  ignore: |
+    # exclude all
+    /*
+    # include deploy dir
+    !/deploy/helm

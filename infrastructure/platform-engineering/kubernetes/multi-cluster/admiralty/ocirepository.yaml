@@ -1,0 +1,10 @@
+apiVersion: source.toolkit.fluxcd.io/v1beta2
+kind: OCIRepository
+metadata:
+  name: admiralty
+  namespace: flux-system
+spec:
+  interval: 24h
+  url: oci://public.ecr.aws/admiralty/admiralty 
+  ref:
+    tag: 0.17.0

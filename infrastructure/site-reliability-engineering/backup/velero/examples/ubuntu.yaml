@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ubuntu
+  namespace: velero
+  labels:
+    app: ubuntu
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: ubuntu
+  template:
+    metadata:
+      labels:
+        app: ubuntu
+    spec:
+      serviceAccountName: velero-server
+      containers:
+      - name: ubuntu
+        image: ubuntu
+        resources:
+          requests:
+            cpu: "1"
+            memory: 2Gi
+          limits:
+            cpu: "2"
+            memory: 4Gi
+        command:
+        - "sleep"
+        - "3600"
+        imagePullPolicy: Always
+
+# FOR DEBUG LOGS
+# Install Velero CLI
+# apt update
+# apt install curl
+# curl -LO https://github.com/vmware-tanzu/velero/releases/download/v1.10.1/velero-v1.10.1-linux-amd64.tar.gz
+# tar zxvf velero-v1.10.1-linux-amd64.tar.gz
+# mv velero-v1.10.1-linux-amd64/velero /usr/local/bin/velero
+# velero version
+# velero get backups
+# velero describe backup <NAME> --details

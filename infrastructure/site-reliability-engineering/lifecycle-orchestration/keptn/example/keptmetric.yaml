@@ -1,0 +1,10 @@
+apiVersion: metrics.keptn.sh/v1
+kind: KeptnMetric
+metadata:
+  name: prometheus-http-requests-total
+  namespace: keptn
+spec:
+  provider:
+    name: prometheus
+  query: 'prometheus_http_requests_total{code="200", handler="/-/healthy", job="kube-prom-stack-kube-prome-prometheus", namespace="default", service="kube-prom-stack-kube-prome-prometheus"}'
+  fetchIntervalSeconds: 10

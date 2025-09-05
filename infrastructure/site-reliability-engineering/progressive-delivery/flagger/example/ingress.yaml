@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: podinfo
+  namespace: flagger
+  labels:
+    app: podinfo
+spec:
+  rules:
+    - host: "podinfo.172.18.0.2.nip.io"
+      http:
+        paths:
+          - pathType: Prefix
+            path: "/"
+            backend:
+              service:
+                name: podinfo
+                port:
+                  number: 80

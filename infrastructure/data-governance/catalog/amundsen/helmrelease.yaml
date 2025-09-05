@@ -1,0 +1,24 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: amundsen
+  namespace: amundsen
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: ./amundsen-kube-helm/templates/helm
+      version: 2.1.2
+      sourceRef:
+        kind: GitRepository
+        name: amundsen
+        namespace: flux-system
+  values:
+  # https://github.com/amundsen-io/amundsen/blob/main/amundsen-kube-helm/templates/helm/values.yaml
+    search:
+      proxy:
+        endpoint: elasticsearch-master.amundsen.svc.cluster.local
+      #  user:
+      #  password:
+    elasticsearch:
+      enabled: false

@@ -1,0 +1,10 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: GitRepository
+metadata:
+  name: kubeeye
+  namespace: flux-system
+spec:
+  interval: 24h
+  ref:
+    tag: v1.0.1
+  url: https://github.com/kubesphere/kubeeye.git

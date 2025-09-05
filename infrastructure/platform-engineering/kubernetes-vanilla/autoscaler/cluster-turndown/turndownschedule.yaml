@@ -1,0 +1,8 @@
+apiVersion: kubecost.com/v1alpha1
+kind: TurndownSchedule
+metadata:
+  name: pause-cluster
+spec:
+  start: 2025-03-12T00:00:00Z
+  end: 2027-03-12T08:00:00Z
+  repeat: daily

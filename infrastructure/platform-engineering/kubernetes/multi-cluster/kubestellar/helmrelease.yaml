@@ -1,0 +1,13 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: kubestellar
+  namespace: kubestellar
+spec:
+  interval: 5m
+  chartRef:
+    kind: OCIRepository
+    name: kubestellar
+    namespace: flux-system
+  values:
+  # https://github.com/kubestellar/kubestellar/blob/main/core-chart/values.yaml

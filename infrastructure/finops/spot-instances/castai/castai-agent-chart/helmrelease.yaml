@@ -1,0 +1,20 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: castai-agent
+  namespace: castai-agent
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: castai-agent
+      sourceRef:
+        kind: HelmRepository
+        name: castai-helm
+        namespace: flux-system
+  values:
+  # https://artifacthub.io/packages/helm/openshift/castai-agent
+  # https://github.com/castai/helm-charts/blob/main/charts/castai-agent/values.yaml
+    createNamespace: false
+    apiKeySecretRef:
+    provider: aks

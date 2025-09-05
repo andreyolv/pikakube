@@ -1,0 +1,10 @@
+apiVersion: source.toolkit.fluxcd.io/v1beta2
+kind: OCIRepository
+metadata:
+  name: wasmcloud-platform
+  namespace: flux-system
+spec:
+  interval: 24h
+  url: oci://ghcr.io/wasmcloud/charts/wasmcloud-platform
+  ref:
+    tag: v1.4.2

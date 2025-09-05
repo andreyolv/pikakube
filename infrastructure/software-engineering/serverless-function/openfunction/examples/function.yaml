@@ -1,0 +1,26 @@
+apiVersion: core.openfunction.io/v1beta1
+kind: Function
+metadata:
+  name: function-sample
+spec:
+  version: "v2.0.0"
+  image: "openfunctiondev/sample-go-func:v1"
+  imageCredentials:
+    name: push-secret
+  build:
+    builder: openfunction/builder-go:latest
+    env:
+      FUNC_NAME: "HelloWorld"
+      FUNC_CLEAR_SOURCE: "true"
+    srcRepo:
+      url: "https://github.com/OpenFunction/samples.git"
+      sourceSubPath: "functions/knative/hello-world-go"
+      revision: "main"
+      credentials:
+         name: git-repo-secret
+  serving:
+    template:
+      containers:
+        - name: function # DO NOT change this
+          imagePullPolicy: IfNotPresent 
+    runtime: "knative"

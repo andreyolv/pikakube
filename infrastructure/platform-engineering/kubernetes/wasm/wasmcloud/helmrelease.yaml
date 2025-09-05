@@ -1,0 +1,13 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: wasmcloud-platform
+  namespace: wasm
+spec:
+  interval: 5m
+  chartRef:
+    kind: OCIRepository
+    name: wasmcloud-platform
+    namespace: flux-system
+  values:
+  # https://github.com/wasmCloud/wasmCloud/blob/main/charts/wasmcloud-platform/values.yaml

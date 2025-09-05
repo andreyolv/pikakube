@@ -1,0 +1,17 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: kubean
+  namespace: kubean
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: kubean
+      version: 
+      sourceRef:
+        kind: HelmRepository
+        name: kubean-io
+        namespace: flux-system
+  values:
+  # https://github.com/kubean-io/kubean/blob/main/charts/kubean/values.yaml

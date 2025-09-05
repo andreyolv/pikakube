@@ -1,0 +1,34 @@
+apiVersion: minio.min.io/v2
+kind: Tenant
+metadata:
+  name: sandbox
+  namespace: minio-tenant
+spec:
+# https://min.io/docs/minio/kubernetes/upstream/reference/operator-crd.html
+# https://github.com/minio/operator/tree/master/examples/kustomization
+  features:
+    bucketDNS: true
+  users:
+    - name: storage-user
+  buckets:
+    - name: "test-bucket1"
+      region: "us-east-1"
+      objectLock: true
+    - name: "test-bucket2"
+      region: "us-east-1"
+      objectLock: true
+  configuration:
+    name: storage-configuration
+  pools:
+  - servers: 4
+    name: pool-0
+    volumesPerServer: 2
+    volumeClaimTemplate:
+      metadata:
+        name: data
+      spec:
+        accessModes:
+        - ReadWriteOnce
+        resources:
+          requests:
+            storage: 1Gi

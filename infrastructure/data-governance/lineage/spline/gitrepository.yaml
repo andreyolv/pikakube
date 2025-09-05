@@ -1,0 +1,10 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: GitRepository
+metadata:
+  name: spline
+  namespace: flux-system
+spec:
+  interval: 24h
+  ref:
+    branch: main
+  url: https://github.com/AbsaOSS/spline-getting-started.git

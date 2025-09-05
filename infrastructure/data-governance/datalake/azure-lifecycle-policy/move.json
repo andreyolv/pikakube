@@ -1,0 +1,35 @@
+{
+  "rules": [
+    {
+      "enabled": true,
+      "name": "mtolv/sandbox-Cool/Cold/Archive/Delete-Modification-2/4/6/7",
+      "type": "Lifecycle",
+      "definition": {
+        "actions": {
+          "baseBlob": {
+            "tierToCool": {
+              "daysAfterModificationGreaterThan": 2
+            },
+            "tierToCold": {
+              "daysAfterModificationGreaterThan": 4
+            },
+            "tierToArchive": {
+              "daysAfterModificationGreaterThan": 6
+            },
+            "delete": {
+              "daysAfterModificationGreaterThan": 7
+            }
+          }
+        },
+        "filters": {
+          "blobTypes": [
+            "blockBlob"
+          ],
+          "prefixMatch": [
+            "mtolv/sandbox"
+          ]
+        }
+      }
+    }
+  ]
+}

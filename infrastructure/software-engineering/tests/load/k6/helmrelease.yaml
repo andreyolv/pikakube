@@ -1,0 +1,18 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: k6
+  namespace: k6
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: k6-operator
+      version: 3.10.1
+      sourceRef:
+        kind: HelmRepository
+        name: grafana
+        namespace: flux-system
+  values:
+  # https://artifacthub.io/packages/helm/grafana/k6-operator
+  # https://github.com/grafana/k6-operator/blob/main/charts/k6-operator/values.yaml

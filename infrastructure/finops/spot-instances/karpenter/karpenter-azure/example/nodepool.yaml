@@ -1,0 +1,54 @@
+apiVersion: karpenter.sh/v1
+kind: NodePool
+metadata:
+  name: spot
+  annotations:
+    kubernetes.io/description: "General purpose NodePool for generic workloads"
+spec:
+  disruption:
+    consolidationPolicy: WhenEmptyOrUnderutilized
+    #consolidateAfter: 15m
+  limits:
+    cpu: 100
+    memory: 1000Gi
+  template:
+    metadata:
+      labels:
+        karpenter: "true"
+    spec:
+      nodeClassRef:
+        name: default
+      # taints: #talvez azure já coloque isso automático, testar sem isso antes pra ver
+      #   - key: kubernetes.azure.com/scalesetpriority
+      #     effect: NoSchedule
+      #     operator: Exists
+      expireAfter: 168h # Nodes expire after 7 days
+      requirements:
+        - key: kubernetes.io/arch
+          operator: In
+          values: ["amd64"]
+        - key: kubernetes.io/os
+          operator: In
+          values: ["linux"]
+        - key: "topology.kubernetes.io/zone"
+          operator: In
+          values: ["eastus2-1"]
+        - key: karpenter.sh/capacity-type
+          operator: In
+          values: ["spot"]
+        - key: karpenter.azure.com/sku-family
+          operator: In
+          values: ["D", "E", "L"]
+        #- key: karpenter.azure.com/sku-name # If you want to specify a specific SKU
+        #  operator: In
+        #  values: [".."]
+        - key: karpenter.azure.com/sku-memory # Memory in VM in MiB | 512Gi = 524288 MiB
+          operator: Lt # Less than 512Gi, not including 512Gi, there is no "Lte" operator
+          values: ["524288"]
+
+
+
+# grafana
+
+# If a pod exists with the annotation `karpenter.sh/do-not-disrupt: true` on a node, and a request is made to delete the node, Karpenter will not drain any pods from that node or otherwise try to delete the node. Nodes that have pods with a `do-not-disrupt` annotation are not considered for consolidation, though their unused capacity is considered for the purposes of running pods from other nodes which can be consolidated.
+# evitar consolidar pods que tengan la anotación `karpenter.sh/do-not-disrupt: true`

@@ -1,0 +1,68 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: lakefs
+  namespace: lakefs
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: lakefs
+      version: 1.0.12
+      sourceRef:
+        kind: HelmRepository
+        name: lakefs
+        namespace: flux-system
+  values:
+  # https://artifacthub.io/packages/helm/lakefs/lakefs
+  # https://github.com/treeverse/charts/blob/master/charts/lakefs/values.yaml
+    # lakefsConfig: |
+    #   logging:
+    #     format: json
+    #     level: WARN
+    #     output: "-"
+    #   database:
+    #     type: "postgres"
+    #     postgres:
+    #       connection_string: "postgresql://pikakube:pikakube@postgres.lakefs:5432/teste?sslmode=disable"
+    #   auth:
+    #     encrypt:
+    #       secret_key: "xxxxxxxxxxxx"
+    #   blockstore:
+    #     type: s3
+    #     s3:
+    #       force_path_style: true
+    #       endpoint: minio.minio.svc.cluster.local:9000
+    #       discover_bucket_region: false
+    #       credentials:
+    #         access_key_id: pikakube
+    #         secret_access_key: pikakube
+    lakefsConfig: |
+      logging:
+        format: json
+        level: WARN
+        output: "-"
+      database:
+        type: "postgres"
+      blockstore:
+        type: s3
+        s3:
+          force_path_style: true
+          discover_bucket_region: false
+    extraEnvVars:
+    - name: LAKEFS_DATABASE_POSTGRES_CONNECTION_STRING
+      value: postgresql://xxxxxxxxxxxxx:xxxxxxxxxxxxx@postgres.lakefs:5432/teste?sslmode=disable
+    - name: LAKEFS_BLOCKSTORE_S3_CREDENTIALS_ACCESS_KEY_ID
+      valueFrom:
+        secretKeyRef:
+          name: lakefs-auth
+          key: s3AccessKey
+    - name: LAKEFS_BLOCKSTORE_S3_CREDENTIALS_SECRET_ACCESS_KEY
+      valueFrom:
+        secretKeyRef:
+          name: lakefs-auth
+          key: s3SecretKey
+    - name: LAKEFS_BLOCKSTORE_S3_ENDPOINT
+      value: http://minio.minio.svc.cluster.local:9000
+    secretKeys:
+      authEncryptSecretKey: xxxxxxxxxxx

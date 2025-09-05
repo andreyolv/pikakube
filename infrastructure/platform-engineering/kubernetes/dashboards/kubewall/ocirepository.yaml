@@ -1,0 +1,10 @@
+apiVersion: source.toolkit.fluxcd.io/v1beta2
+kind: OCIRepository
+metadata:
+  name: kubewall
+  namespace: flux-system
+spec:
+  interval: 24h
+  url: oci://ghcr.io/kubewall/charts/kubewall
+  ref:
+    tag: 0.0.11

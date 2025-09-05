@@ -1,0 +1,18 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: open-feature-operator
+  namespace: open-feature
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: open-feature-operator
+      version: 0.8.1
+      sourceRef:
+        kind: HelmRepository
+        name: openfeature
+        namespace: flux-system
+  values:
+  # https://artifacthub.io/packages/helm/open-feature-operator/open-feature-operator
+  # https://github.com/open-feature/open-feature-operator/blob/main/chart/open-feature-operator/values.yaml

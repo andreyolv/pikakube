@@ -1,0 +1,26 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: karpor
+  namespace: karpor
+  annotations:
+    forecastle.stakater.com/expose: "true"
+    #forecastle.stakater.com/icon: ""
+    forecastle.stakater.com/appName: "Karpor"
+    forecastle.stakater.com/group: "Observability"
+spec:
+  tls:
+  - hosts:
+    - "*.127.0.0.1.nip.io"
+    secretName: mkcert-tls-secret
+  rules:
+  - host: karpor.127.0.0.1.nip.io
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: karpor-server
+            port:
+              number: 7443

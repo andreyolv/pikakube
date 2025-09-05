@@ -1,0 +1,15 @@
+# apiVersion: velero.io/v1
+# kind: Backup
+# metadata:
+#   name: fileshare
+#   namespace: velero
+#   annotations:
+#     velero.io/csi-volumesnapshot-class_file.csi.azure.com: "csi-azurefile-vsc"
+# spec:
+#   includedNamespaces:
+#   - 'plot'
+#   includedResources:
+#   - persistentvolumeclaims
+#   - persistentvolumes
+#   ttl: 24h0m0s
+# # funciona pois o pv é dinamico | storage class azurefile-internal

@@ -1,0 +1,26 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: kubewall
+  namespace: kubewall
+  annotations:
+    forecastle.stakater.com/expose: "true"
+    #forecastle.stakater.com/icon: ""
+    forecastle.stakater.com/appName: "Kubewall"
+    forecastle.stakater.com/group: "Observability"
+spec:
+  tls:
+  - hosts:
+    - "kubewall.127.0.0.1.nip.io"
+    secretName: mkcert-tls-secret
+  rules:
+  - host: kubewall.127.0.0.1.nip.io
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: kubewall
+            port:
+              number: 8443

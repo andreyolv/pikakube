@@ -1,0 +1,21 @@
+apiVersion: grafana.integreatly.org/v1beta1
+kind: GrafanaDatasource
+metadata:
+  name: pyroscope
+  namespace: grafana
+spec:
+  instanceSelector:
+    matchLabels:
+      dashboards: grafana
+  datasource:
+    name: Pyroscope
+    type: grafana-pyroscope-datasource
+    access: proxy
+    url: http://pyroscope-querier.pyroscope.svc.cluster.local:4040
+    isDefault: false
+    jsonData:
+      'tlsSkipVerify': true
+      'timeInterval': "5s"
+  #plugins:
+  #- name: grafana-pyroscope-app
+  #  version: 0.0.0

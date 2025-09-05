@@ -1,0 +1,16 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: magda
+  namespace: magda
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: deploy/helm/magda
+      sourceRef:
+        kind: GitRepository
+        name: magda
+        namespace: flux-system
+  values:
+  # https://github.com/magda-io/magda/blob/main/deploy/helm/magda/values.yaml

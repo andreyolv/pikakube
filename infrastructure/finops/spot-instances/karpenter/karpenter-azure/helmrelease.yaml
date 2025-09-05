@@ -1,0 +1,16 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: karpenter
+  namespace: kube-system
+spec:
+  interval: 5m
+  chartRef:
+    kind: OCIRepository
+    name: karpenter
+    namespace: flux-system
+  values:
+  # https://github.com/Azure/karpenter-provider-azure/blob/main/charts/karpenter/values.yaml
+    settings:
+      featureGates:
+        spotToSpotConsolidation: true

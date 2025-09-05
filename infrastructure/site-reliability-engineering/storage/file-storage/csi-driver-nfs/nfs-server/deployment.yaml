@@ -1,0 +1,41 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: nfs-server
+  namespace: nfs-server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nfs-server
+  template:
+    metadata:
+      name: nfs-server
+      labels:
+        app: nfs-server
+    spec:
+      nodeSelector:
+        "kubernetes.io/os": linux
+      containers:
+        - name: nfs-server
+          image: itsthenetwork/nfs-server-alpine:latest
+          env:
+            - name: SHARED_DIRECTORY
+              value: "/exports"
+          volumeMounts:
+            - mountPath: /exports
+              name: nfs-vol
+          securityContext:
+            privileged: true
+          ports:
+            - name: tcp-2049
+              containerPort: 2049
+              protocol: TCP
+            - name: udp-111
+              containerPort: 111
+              protocol: UDP
+      volumes:
+        - name: nfs-vol
+          hostPath:
+            path: /nfs-vol  # modify this to specify another path to store nfs share data
+            type: DirectoryOrCreate

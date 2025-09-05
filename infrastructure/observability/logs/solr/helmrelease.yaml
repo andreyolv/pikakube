@@ -1,0 +1,18 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: solr-operator
+  namespace: solr-operator
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: solr-operator
+      version: 0.8.1  
+      sourceRef:
+        kind: HelmRepository
+        name: apache-solr
+        namespace: flux-system
+  values:
+  # https://artifacthub.io/packages/helm/apache-solr/solr-operator
+  # https://github.com/apache/solr-operator/blob/main/helm/solr-operator/values.yaml

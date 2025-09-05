@@ -1,0 +1,52 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: dremio
+  namespace: dremio
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: charts/dremio_v2
+      version: 2.0.0
+      sourceRef:
+        kind: GitRepository
+        name: dremio
+        namespace: flux-system
+  values:
+  # https://artifacthub.io/packages/helm/statcan/dremio
+  # https://github.com/dremio/dremio-cloud-tools/blob/master/charts/dremio_v2/values.yaml
+  # https://github.com/dremio/dremio-cloud-tools/blob/master/charts/dremio_v2/docs/Values-Reference.md
+  # https://www.dremio.com/wp-content/uploads/2024/01/Operating-Dremio-on-Kubernetes.pdf
+    coordinator:
+      memory: 4096
+      count: 1
+      volumeSize: 1Gi      
+    executor:
+      cpu: 1
+      memory: 4096
+      count: 1
+      volumeSize: 1Gi
+      cloudCache:
+        volumes:
+        - size: 1Gi
+    zookeeper: 
+      cpu: 1
+      memory: 1024
+      count: 1
+      volumeSize: 1Gi
+    distStorage:
+      type: aws
+      aws:
+        bucketName: dremio
+        authentication: accessKeySecret
+        credentials:
+          accessKey: pikakube
+          secret: pikakube
+        extraProperties: |
+          <property>
+            <name>fs.s3a.endpoint</name>
+            <value>minio.minio:9000</value>
+          </property>
+    service:
+      type: ClusterIP

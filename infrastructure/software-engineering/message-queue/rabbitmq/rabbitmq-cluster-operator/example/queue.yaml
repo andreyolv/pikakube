@@ -1,0 +1,10 @@
+apiVersion: rabbitmq.com/v1beta1
+kind: Queue
+metadata:
+  name: pikachu
+  namespace: rabbitmq
+spec:
+  name: pikachu
+  rabbitmqClusterReference:
+    name: my-rabbitmq-cluster
+    namespace: rabbitmq

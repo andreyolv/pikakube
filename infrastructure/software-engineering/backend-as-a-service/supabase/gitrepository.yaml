@@ -1,0 +1,15 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: GitRepository
+metadata:
+  name: supabase
+  namespace: flux-system
+spec:
+  interval: 24h
+  ref:
+    branch: main
+  url: https://github.com/supabase-community/supabase-kubernetes.git
+  ignore: |
+    # exclude all
+    /*
+    # include deploy dir
+    !/charts/supabase

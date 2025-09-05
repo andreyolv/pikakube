@@ -1,0 +1,27 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: retina
+  namespace: kube-system
+spec:
+  interval: 5m
+  chartRef:
+    kind: OCIRepository
+    name: retina
+    namespace: flux-system
+  values:
+  # https://github.com/microsoft/retina/blob/main/deploy/hubble/manifests/controller/helm/retina/values.yaml
+    operator:
+      enabled: true
+      tag: v0.0.29
+      enableRetinaEndpoint: true
+    image:
+      tag: v0.0.29
+    logLevel: info
+    enabledPlugin_linux: "[dropreason,packetforward,linuxutil,dns,packetparser]"
+    enablePodLevel: true
+    metrics:
+      podMonitor:
+        enabled: true
+      serviceMonitor:
+        enabled: true

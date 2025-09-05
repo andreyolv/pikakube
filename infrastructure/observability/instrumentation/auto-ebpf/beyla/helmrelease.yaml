@@ -1,0 +1,16 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: beyla
+  namespace: beyla
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: charts/beyla
+      sourceRef:
+        kind: GitRepository
+        name: beyla
+        namespace: flux-system
+  values:
+  # https://github.com/grafana/beyla/blob/main/deployments/helm/values.yaml

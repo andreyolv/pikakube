@@ -1,0 +1,20 @@
+apiVersion: kopf.dev/v1
+kind: MongoGen
+metadata:
+  name: mongo-gen
+  namespace: datagen
+spec:
+  source:
+    host: mongodb.mongodb.svc.cluster.local
+    user: root
+    password: 9fvxjnvYXd
+    database: datagen
+    collection: pikachu
+  datagen:
+    quantity: 5
+    interval: 10
+    fields:
+    - name
+    - address
+    - email
+  

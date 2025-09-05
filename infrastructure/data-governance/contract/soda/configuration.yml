@@ -1,0 +1,8 @@
+data_source my_postgres:
+  type: postgres
+  connection:
+    host: localhost
+    username: postgres
+    password: postgres123
+  database: postgres
+  schema: transactional

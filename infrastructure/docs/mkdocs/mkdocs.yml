@@ -1,0 +1,36 @@
+site_name: Big Data & DevOps Platform on Kubernetes
+site_description: This repo is a declarative implementation of a Kubernetes cluster using GitOps.
+site_author: Andrey Oliveira
+site_url: https://andreyolv.github.io/portifolio/
+
+repo_name: andreyolv/portifolio
+repo_url: https://github.com/andreyolv/portifolio
+
+theme:
+  name: material
+  palette:
+    scheme: preference
+    primary: deep purple
+    accent: indigo
+
+extra:
+  # https://squidfunk.github.io/mkdocs-material/setup/setting-up-versioning/#versioning
+  version:
+    provider: mike
+  # https://squidfunk.github.io/mkdocs-material/setup/setting-up-the-footer/#social-links
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/andreyolv
+    - icon: fontawesome/brands/linkedin
+      link: https://www.linkedin.com/in/andreyolv/
+    #- icon: fontawesome/brands/medium
+    #  link: 
+# https://squidfunk.github.io/mkdocs-material/setup/setting-up-the-footer/#remove-generator
+  generator: false
+
+# https://squidfunk.github.io/mkdocs-material/setup/setting-up-the-footer/#copyright-notice
+copyright: Copyright &copy; 2025 - Andrey Oliveira
+
+#extra_css:
+#  - custom.css
+

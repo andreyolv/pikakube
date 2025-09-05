@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: promlens
+  namespace: promlens
+  labels:
+    app: promlens
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: promlens
+  template:
+    metadata:
+      labels:
+        app: promlens
+    spec:
+      containers:
+        - name: promlens
+          image: prom/promlens
+          ports:
+            - containerPort: 8080
+          env:
+            - name: PROMLENS_PROMETHEUS_URL
+              value: http://kube-prometheus-stack-prometheus.prometheus.svc.cluster.local:9090

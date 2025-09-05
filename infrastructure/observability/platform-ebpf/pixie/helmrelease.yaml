@@ -1,0 +1,26 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: pixie
+  namespace: pixie
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: pixie-operator-chart
+      sourceRef:
+        kind: HelmRepository
+        name: pixie
+        namespace: flux-system
+  valuesFrom:
+  - kind: Secret
+    name: deploy-key
+    valuesKey: deploy-key
+    targetPath: deployKey
+  values:
+  # https://artifacthub.io/packages/olm/community-operators/pixie-operator
+  # https://github.com/pixie-io/pixie/blob/main/k8s/operator/helm/values.yaml
+  # brew install pixie
+  # px auth login
+  # px deploy-key create
+    olmOperatorNamespace: pixie

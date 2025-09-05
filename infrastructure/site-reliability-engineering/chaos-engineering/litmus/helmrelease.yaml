@@ -1,0 +1,47 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: litmus
+  namespace: litmus
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: litmus
+      version: 3.16.0
+      sourceRef:
+        kind: HelmRepository
+        name: litmuschaos
+        namespace: flux-system
+  #install:
+  #  timeout: 10m
+  #  remediation:
+  #    retries: 3
+  values:
+  # https://artifacthub.io/packages/helm/litmuschaos/litmus
+  # https://github.com/litmuschaos/litmus-helm/blob/master/charts/litmus/values.yaml
+    adminConfig:
+      ADMIN_USERNAME: pikakube
+      ADMIN_PASSWORD: pikakube
+    ingress:
+      enabled: true
+      annotations:
+        forecastle.stakater.com/expose: "true"
+        forecastle.stakater.com/icon: "https://raw.githubusercontent.com/cncf/artwork/refs/heads/main/projects/litmus/icon/color/litmus-icon-color.svg"
+        forecastle.stakater.com/appName: "Litmus"
+        forecastle.stakater.com/group: "Observability"
+      host:
+        name: litmus.127.0.0.1.nip.io
+        frontend:
+          path: /
+          pathType: Prefix
+      tls:
+      - secretName: mkcert-tls-secret
+        hosts:
+        - litmus.127.0.0.1.nip.io
+    mongodb:
+      metrics:
+        enabled: true
+
+# kubectl apply -f https://raw.githubusercontent.com/litmuschaos/litmus/master/litmus-portal/manifests/litmus-portal-crds.yml
+# Create Environment

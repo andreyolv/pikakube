@@ -1,0 +1,10 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: GitRepository
+metadata:
+  name: hop
+  namespace: flux-system
+spec:
+  interval: 24h
+  ref:
+    tag: 2.10.0-rc1
+  url: https://github.com/apache/hop.git

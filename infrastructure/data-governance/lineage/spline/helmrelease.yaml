@@ -1,0 +1,17 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: spline
+  namespace: spline
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: 
+      version: 
+      sourceRef:
+        kind: GitRepository
+        name: spline
+        namespace: flux-system
+  values:
+  # https://github.com/AbsaOSS/spline-getting-started/blob/main/k8s/charts/spline-admin/values.yaml

@@ -1,0 +1,17 @@
+apiVersion: apiserver.config.k8s.io/v1beta1
+kind: AuthenticationConfiguration
+jwt:
+- issuer:
+    url: https://dex.example.com:32000
+    audiences:
+    - example-app
+    # cat /etc/ssl/certs/openid-ca.pem | base64 -w0
+    certificateAuthority: ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789
+  claimMappings:
+    username:
+      claim: email
+    groups:
+      claim: groups
+  userValidationRules:
+  - expression: "!user.username.startsWith('system:')"
+    message: "username cannot use reserved system: prefix"

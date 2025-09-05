@@ -1,0 +1,45 @@
+cat /etc/kubernetes/manifests/...
+
+k get pods --selector type=user-space -A
+kubectl get pods --show-labels
+k get pods -o wide --sort-by .spec.nodeName
+kubectl apply -k <directory> --dry-run=client -o yaml > manifest.yaml
+kubectl get secret airflow-fernet-key -n airflow -o jsonpath="{.data.fernet-key}" | base64 -d
+k exec pod_name -c container_name -- command
+
+kubectl create configmap my-configmap --from-literal=key1=value1 --from-literal=key2=value2
+kubectl create configmap my-configmap --from-file=config.txt
+
+alias k="kubectl"
+kubectl autocomplete
+kubectl explain <>
+kubectl cheatsheet
+
+deletar linha inteira no vim -> dd
+
+# contextos
+kubectl config get-contexts
+kubectl config set-context --current --namespace=<insert-namespace-name-here>
+kubectl config use-context <name>
+
+# Validate it
+kubectl config view --minify | grep namespace:
+
+kubectl api-resources
+
+kubectl get pods --field-selector status.phase=Running
+
+---------
+k top pod --sort-by cpu
+k explain pod.spec.containers
+k run delta-pod --image=nginx:1.17 --labels env=dev,tier=front
+explorar mais kubeconfig -> k config view
+
+k set image deployment aaaaa nginx=nginx:1.17 --record
+k rollout history deployment aaa
+k expose pod aaa --name=exemple --port=80
+k run aaa --image=busybox:1.28 --command sleep 4800
+k label pod aaaa env=dev
+k get pod -l env=dev
+
+export dr='--dry-run=lcient -o yaml'

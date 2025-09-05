@@ -1,0 +1,252 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: granulate-cluster-role
+rules:
+- apiGroups:
+  - ''
+  - apps
+  - extensions
+  resources:
+  - nodes
+  - pods
+  - services
+  - deployments
+  - daemonsets
+  - statefulsets
+  - replicasets
+  - replicationcontrollers
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - autoscaling
+  resources:
+  - horizontalpodautoscalers
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - ''
+  - apps
+  - extensions
+  - policy
+  resources:
+  - endpoints
+  - namespaces
+  - limitranges
+  - resourcequotas
+  - persistentvolumes
+  - persistentvolumeclaims
+  - poddisruptionbudget
+  - pods/log
+  - events
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - ''
+  resources:
+  - nodes/spec
+  - nodes/stats
+  - nodes/proxy
+  - nodes/metrics
+  verbs:
+  - get
+- apiGroups:
+  - metrics.k8s.io
+  resources:
+  - '*'
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - external.metrics.k8s.io
+  resources:
+  - '*'
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - custom.metrics.k8s.io
+  resources:
+  - '*'
+  verbs:
+  - get
+  - list
+  - watch
+- nonResourceURLs:
+  - /version
+  - /healthz
+  - /healthz/*
+  - /metrics
+  - /metrics/cadvisor
+  verbs:
+  - get
+- apiGroups:
+  - argoproj.io
+  resources:
+  - rollouts
+  - rollouts/scale
+  - rollouts/status
+  - experiments
+  - analysistemplates
+  - clusteranalysistemplates
+  - analysisruns
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - apiregistration.k8s.io
+  resources:
+  - '*'
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - sparkoperator.k8s.io
+  resources:
+  - sparkapplications
+  - sparkapplications/status
+  - scheduledsparkapplications
+  - scheduledsparkapplications/status
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - batch
+  resources:
+  - cronjobs
+  - jobs
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - apiextensions.k8s.io
+  resources:
+  - customresourcedefinitions
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - admissionregistration.k8s.io
+  resources:
+  - mutatingwebhookconfigurations
+  - validatingwebhookconfigurations
+  - imagepolicywebhook
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - keda.sh
+  resources:
+  - scaledjobs
+  - scaledjobs/finalizers
+  - scaledjobs/status
+  - triggerauthentications
+  - triggerauthentications/status
+  - scaledobjects
+  - scaledobjects/finalizers
+  - scaledobjects/status
+  - clustertriggerauthentications
+  - clustertriggerauthentications/status
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - flinkoperator.k8s.io
+  resources:
+  - flinkclusters
+  - flinkclusters/status
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - flink.apache.org
+  resources:
+  - flinkdeployments
+  - flinkdeployments/status
+  - flinksessionjobs
+  - flinksessionjobs/status
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - apps
+  resourceNames:
+  - granulate-maestro
+  resources:
+  - deployments
+  verbs:
+  - '*'
+- apiGroups:
+  - ''
+  resourceNames:
+  - granulate-service-account
+  resources:
+  - serviceaccounts
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - rbac.authorization.k8s.io
+  resourceNames:
+  - granulate-cluster-role
+  resources:
+  - clusterroles
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - rbac.authorization.k8s.io
+  resourceNames:
+  - granulate-cluster-role-binding
+  resources:
+  - clusterrolebindings
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - ''
+  resourceNames:
+  - grafana-config
+  - argocd-cm
+  resources:
+  - configmaps
+  verbs:
+  - '*'
+- apiGroups:
+  - apps
+  resourceNames:
+  - granulate-maestro-admission-controller-service
+  resources:
+  - services
+  verbs:
+  - '*'
+- apiGroups:
+  - admissionregistration.k8s.io
+  resourceNames:
+  - granulate-maestro-admission-controller.granulate.io
+  resources:
+  - mutatingwebhookconfigurations
+  - validatingwebhookconfigurations
+  - imagepolicywebhook
+  verbs:
+  - '*'

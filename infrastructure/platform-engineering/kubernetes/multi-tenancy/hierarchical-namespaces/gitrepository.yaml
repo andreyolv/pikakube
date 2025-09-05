@@ -1,0 +1,15 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: GitRepository
+metadata:
+  name: hierarchical-namespaces
+  namespace: flux-system
+spec:
+  interval: 24h
+  ref:
+    branch: master
+  url: https://github.com/kubernetes-sigs/hierarchical-namespaces.git
+  ignore: |
+    # exclude all
+    /*
+    # include deploy dir
+    !/charts/hnc

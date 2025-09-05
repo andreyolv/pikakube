@@ -1,0 +1,17 @@
+dataset: d_month
+
+columns:
+
+- name: month_id
+  data_type: integer
+  checks:
+  - type: duplicate_count
+
+- name: action_month
+  data_type: integer
+  checks:
+  - type: invalid_count
+    must_be_greater_than_or_equal: 0
+
+checks:
+  - type: row_count

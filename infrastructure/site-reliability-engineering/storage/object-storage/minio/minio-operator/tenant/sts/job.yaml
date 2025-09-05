@@ -1,0 +1,30 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: setup-bucket
+  namespace: minio-tenant
+spec:
+  backoffLimit: 5
+  template:
+    spec:
+      serviceAccountName: mc-job-sa
+      restartPolicy: OnFailure
+      volumes:
+        - name: start-config
+          configMap:
+            name: start-config-script
+            defaultMode: 0744
+      containers:
+        - name: mc
+          image: minio/mc
+          command: [ "/start-config/setup.sh" ]
+          volumeMounts:
+            - name: start-config
+              mountPath: /start-config/
+          env:
+            - name: MC_HOST_myminio
+              value: https://console:console123@minio.minio-tenant.svc.cluster.local
+            - name: MC_STS_ENDPOINT_myminio
+              value: https://sts.minio-operator.svc.cluster.local:4223/sts/minio-tenant
+            - name: MC_WEB_IDENTITY_TOKEN_FILE_myminio
+              value: /var/run/secrets/kubernetes.io/serviceaccount/token

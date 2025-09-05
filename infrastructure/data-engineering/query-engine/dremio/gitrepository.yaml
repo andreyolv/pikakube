@@ -1,0 +1,11 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: GitRepository
+metadata:
+  name: dremio
+  namespace: flux-system
+spec:
+  interval: 24h
+  url: https://github.com/dremio/dremio-cloud-tools.git
+  ref:
+    branch: master
+    

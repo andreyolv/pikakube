@@ -1,0 +1,62 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: metastore-cfg
+  namespace: hive-metastore
+  labels:
+    app: metastore
+data:
+  core-site.xml: |-
+    <configuration>
+        <property>
+            <name>fs.azure.account.auth.type</name>
+            <value>OAuth</value>
+        </property>
+        <property>
+            <name>fs.azure.account.oauth.provider.type</name>
+            <value>org.apache.hadoop.fs.azurebfs.oauth2.ClientCredsTokenProvider</value>
+        </property>
+        <property>
+            <name>fs.azure.account.oauth2.client.endpoint</name>
+            <value>https://login.microsoftonline.com/XXXXXXXXXXXXXXXXX/oauth2/token</value>
+        </property>
+        <property>
+            <name>fs.azure.account.oauth2.client.id</name>
+            <value>XXXXXXXXXXXXXXXXXXX</value>
+        </property>
+        <property>
+            <name>fs.azure.account.oauth2.client.secret</name>
+            <value>XXXXXXXXXXXXXXXXXXXX</value>
+        </property>
+    </configuration>
+  metastore-site.xml: |-
+    <configuration>
+        <property>
+            <name>metastore.task.threads.always</name>
+            <value>org.apache.hadoop.hive.metastore.events.EventCleanerTask</value>
+        </property>
+        <property>
+            <name>metastore.expression.proxy</name>
+            <value>org.apache.hadoop.hive.metastore.DefaultPartitionExpressionProxy</value>
+        </property>
+        <property>
+            <name>javax.jdo.option.ConnectionDriverName</name>
+            <value>com.mysql.jdbc.Driver</value>
+        </property>
+        <property>
+            <name>javax.jdo.option.ConnectionURL</name>
+            <value>jdbc:mysql://mysql.hive-metastore.svc:3306/metastore_db?useSSL=false</value>
+        </property>
+        <property>
+            <name>javax.jdo.option.ConnectionUserName</name>
+            <value>root</value>
+        </property>
+        <property>
+            <name>javax.jdo.option.ConnectionPassword</name>
+            <value>root</value>
+        </property>
+        <property>
+            <name>metastore.thrift.port</name>
+            <value>9083</value>
+        </property>
+    </configuration>

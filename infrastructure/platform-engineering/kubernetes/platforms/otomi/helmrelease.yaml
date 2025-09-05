@@ -1,0 +1,17 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: otomi
+  namespace: otomi
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: otomi
+      version: 
+      sourceRef:
+        kind: HelmRepository
+        name: otomi
+        namespace: flux-system
+  values:
+  # 

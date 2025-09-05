@@ -1,0 +1,84 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: velero
+  namespace: velero
+spec:
+  chart:
+    spec:
+      chart: velero
+      version: 10.0.8
+      sourceRef:
+        kind: HelmRepository
+        name: velero
+        namespace: flux-system
+  upgrade:
+    crds: CreateReplace
+  values:
+  # https://artifacthub.io/packages/helm/vmware-tanzu/velero
+  # https://github.com/vmware-tanzu/helm-charts/blob/main/charts/velero/values.yaml
+  # https://github.com/vmware-tanzu/velero-plugin-for-aws
+    initContainers:
+    - name: velero-plugin-for-aws
+      image: velero/velero-plugin-for-aws:v1.8.2
+      volumeMounts:
+      - mountPath: /target
+        name: plugins
+    configuration:
+      backupStorageLocation:
+      - name: minio-dev
+        provider: aws
+        bucket: velero
+        default: true
+        accessMode: ReadWrite
+        config:
+          region: minio
+          s3ForcePathStyle: true
+          s3Url: http://minio.minio:9000
+      volumeSnapshotLocation:
+      - name: minio-dev
+        provider: aws
+        config: 
+          region: minio
+    credentials:
+      existingSecret: minio-credentials
+    #schedules:
+    #  daily-backup:
+    #    disabled: false
+    #    schedule: "*/15 * * * *" #"0 3 * * *" # Everyday at 3am
+    #    template:
+    #      ttl: "168h" # 7 days
+    #      includedNamespaces: #excludeNamespaces
+    #      - mysql
+    #      #- def
+    #  weekly-backup:
+    #    disabled: false
+    #    schedule: "0 0 * * 0"  # Every Sunday at 12am
+    #    template:
+    #      ttl: "336h" # 14 days
+    #      includedNamespaces:
+    #      - abc
+    #      - def
+    #metrics:
+    #  enabled: true
+    #  serviceMonitor:
+    #    enabled: true
+    #  prometheusRule:
+    #    enabled: true
+    #    spec:
+    #      - alert: VeleroDailyBackupPartialFailures
+    #        annotations:
+    #          message: Velero backup {{ $labels.schedule }} has {{ $value | humanizePercentage }} partially failed backups.
+    #        expr: |-
+    #          velero_backup_partial_failure_total{schedule="velero-daily-backup"} / velero_backup_attempt_total{schedule="velero-daily-backup"} > 1
+    #        for: 15m
+    #        labels:
+    #          severity: warning
+    #      - alert: VeleroDailyBackupFailures
+    #        annotations:
+    #          message: Velero backup {{ $labels.schedule }} has {{ $value | humanizePercentage }} failed backups.
+    #        expr: |-
+    #          velero_backup_failure_total{schedule="velero-daily-backup"} / velero_backup_attempt_total{schedule="velero-daily-backup"} > 1
+    #        for: 15m
+    #        labels:
+    #          severity: warning

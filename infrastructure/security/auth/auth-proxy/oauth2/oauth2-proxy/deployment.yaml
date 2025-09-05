@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: oauth-pusher
+  name: oauth-pusher
+  namespace: mlflow
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: oauth-pusher
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: oauth-pusher
+    spec:
+      containers:
+      - image: quay.io/pusher/oauth2_proxy:v6.1.1
+        imagePullPolicy: IfNotPresent
+        name: oauth-pusher
+        env:
+        - name: OAUTH2_PROXY_PROVIDER
+          value: github
+        - name: OAUTH2_PROXY_COOKIE_SECRET
+          value: 
+        - name: OAUTH2_PROXY_CLIENT_ID
+          value: 
+        - name: OAUTH2_PROXY_CLIENT_SECRET
+          value: 
+        - name: OAUTH2_PROXY_EMAIL_DOMAINS
+          value: '*'
+        - name: OAUTH2_PROXY_GITHUB_ORG
+          value: andreyolv
+        - name: OAUTH2_PROXY_GITHUB_TEAM
+          value: 'mlflow'
+        - name: OAUTH2_PROXY_UPSTREAMS
+          value: http://mlflow-server:5000
+        - name: OAUTH2_PROXY_HTTP_ADDRESS
+          value: :4180
+        - name: OAUTH2_PROXY_REDIRECT_URL
+          value: https://<ingressurl>/oauth2/callback
+        ports:
+        - containerPort: 4180
+          protocol: TCP
+        resources:
+          requests:
+            memory: 50Mi

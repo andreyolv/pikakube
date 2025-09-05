@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: namenode
+  namespace: hdfs
+  labels:
+    app: namenode
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: namenode
+  template:
+    metadata:
+      labels:
+        app: namenode
+    spec:
+      containers:
+      - image: bde2020/hadoop-namenode
+        imagePullPolicy: IfNotPresent
+        name: namenode
+        env:
+        - name: CLUSTER_NAME
+          value: hdfs-k8s
+        ports:
+        - containerPort: 8020
+          name: nn-rpc
+        - containerPort: 50070
+          name: nn-web
+        volumeMounts:
+        - name: hdfs-namenode
+          mountPath: /hadoop/dfs/name 
+      volumes:
+      - name: hdfs-namenode
+        persistentVolumeClaim: 
+          claimName: hdfs-namenode

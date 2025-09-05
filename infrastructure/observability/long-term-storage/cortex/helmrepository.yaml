@@ -1,0 +1,8 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: HelmRepository
+metadata:
+  name: cortex-helm
+  namespace: flux-system
+spec:
+  interval: 24h
+  url: https://cortexproject.github.io/cortex-helm-chart

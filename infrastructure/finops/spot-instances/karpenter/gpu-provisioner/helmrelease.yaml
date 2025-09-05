@@ -1,0 +1,16 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: gpu-provisioner
+  namespace: kube-system
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: charts/gpu-provisioner
+      sourceRef:
+        kind: GitRepository
+        name: gpu-provisioner
+        namespace: flux-system
+  values:
+  # https://github.com/Azure/gpu-provisioner/blob/main/charts/gpu-provisioner/values.yaml

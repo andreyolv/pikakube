@@ -1,0 +1,18 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: unleash
+  namespace: unleash
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: unleash
+      version: 5.3.4
+      sourceRef:
+        kind: HelmRepository
+        name: unleash
+        namespace: flux-system
+  values:
+  # https://artifacthub.io/packages/helm/unleash/unleash
+  # https://github.com/Unleash/helm-charts/blob/main/charts/unleash/values.yaml

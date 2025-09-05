@@ -1,0 +1,19 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: mimir
+  namespace: mimir
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: mimir-distributed
+      version: 5.4.0
+      sourceRef:
+        kind: HelmRepository
+        name: grafana
+        namespace: flux-system
+  values:
+  # https://artifacthub.io/packages/helm/grafana/mimir-distributed
+  # https://github.com/grafana/mimir/tree/main/operations/helm/charts/mimir-distributed
+ 

@@ -1,0 +1,16 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: hop
+  namespace: hop
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: helm/hop
+      sourceRef:
+        kind: GitRepository
+        name: hop
+        namespace: flux-system
+  values:
+  # https://github.com/apache/hop/blob/main/helm/hop/values.yaml

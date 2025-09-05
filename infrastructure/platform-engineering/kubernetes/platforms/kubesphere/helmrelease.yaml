@@ -1,0 +1,16 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: kubesphere
+  namespace: kubesphere
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: kubesphere
+      version: 2.7.0
+      sourceRef:
+        kind: HelmRepository
+        name: kubesphere
+        namespace: flux-system
+  values:

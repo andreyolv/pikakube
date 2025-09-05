@@ -1,0 +1,17 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: volcano
+  namespace: volcano
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: volcano 
+      #version: zuado demais errado
+      sourceRef:
+        kind: HelmRepository
+        name: volcano-sh
+        namespace: flux-system
+  values:
+  # https://github.com/volcano-sh/volcano/blob/master/installer/helm/chart/volcano/values.yaml

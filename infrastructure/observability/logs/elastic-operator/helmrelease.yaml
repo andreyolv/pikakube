@@ -1,0 +1,21 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: elastic-operator
+  namespace: elastic-system
+spec:
+  chart:
+    spec:
+      version: 3.0.0    
+      chart: eck-operator
+      sourceRef:
+        kind: HelmRepository
+        name: elastic
+        namespace: flux-system
+  interval: 5m
+  values:
+  # https://artifacthub.io/packages/helm/elastic/eck-operator
+  # https://github.com/elastic/cloud-on-k8s/blob/main/deploy/eck-operator/values.yaml
+  # Kibana login
+  # user: elastic
+  # password: secret elasticsearch-es-elastic-user

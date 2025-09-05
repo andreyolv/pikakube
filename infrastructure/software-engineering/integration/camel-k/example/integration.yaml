@@ -1,0 +1,12 @@
+apiVersion: camel.apache.org/v1
+kind: Integration
+metadata:
+  name: helloworld
+spec:
+  flows:
+  - from:
+      steps:
+      - setBody:
+          simple: Hello Camel from ${routeId}
+      - log: ${body}
+      uri: timer:yaml

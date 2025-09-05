@@ -1,0 +1,17 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: anteon
+  namespace: anteon
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: anteon 
+      version: 1.7.5
+      sourceRef:
+        kind: HelmRepository
+        name: anteon
+        namespace: flux-system
+  values:
+  # https://github.com/getanteon/anteon-helm-charts/blob/master/charts/anteon/values.yaml

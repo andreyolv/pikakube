@@ -1,0 +1,24 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: argo-rollouts
+  namespace: argo-rollouts
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: argo-rollouts
+      version: 2.38.2
+      sourceRef:
+        kind: HelmRepository
+        name: argo
+        namespace: flux-system
+  values:
+  # https://artifacthub.io/packages/helm/argo/argo-rollouts
+  # https://github.com/argoproj/argo-helm/blob/main/charts/argo-rollouts/values.yaml
+    keepCRDs: false
+    controller:
+      replicas: 1
+    dashboard:
+      enabled: true
+      readonly: true

@@ -1,0 +1,818 @@
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: litmus
+  namespace: connaisseur
+
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: litmus-namespace-scope
+  namespace: connaisseur
+  labels:
+    app.kubernetes.io/name: litmus
+    # provide unique instance-id if applicable
+    # app.kubernetes.io/instance: litmus-abcxzy
+    app.kubernetes.io/version: v2.0.0
+    app.kubernetes.io/component: operator-serviceaccount
+    app.kubernetes.io/part-of: litmus
+    app.kubernetes.io/managed-by: kubectl
+    name: litmus-namespace-scope
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: litmus-namespace-scope
+  namespace: connaisseur
+  labels:
+    app.kubernetes.io/name: litmus
+    # provide unique instance-id if applicable
+    # app.kubernetes.io/instance: litmus-abcxzy
+    app.kubernetes.io/version: v2.0.0
+    app.kubernetes.io/component: operator-role
+    app.kubernetes.io/part-of: litmus
+    app.kubernetes.io/managed-by: kubectl
+    name: litmus-namespace-scope
+rules:
+  - apiGroups: [""]
+    resources: ["replicationcontrollers", "secrets"]
+    verbs: ["get", "list"]
+  - apiGroups: ["apps.openshift.io"]
+    resources: ["deploymentconfigs"]
+    verbs: ["get", "list"]
+  - apiGroups: ["apps"]
+    resources: ["deployments", "daemonsets", "replicasets", "statefulsets"]
+    verbs: ["get", "list", "update"]
+  - apiGroups: ["batch"]
+    resources: ["jobs"]
+    verbs: ["get", "list", "create", "deletecollection"]
+  - apiGroups: ["argoproj.io"]
+    resources: ["rollouts"]
+    verbs: ["get", "list"]
+  - apiGroups: [""]
+    resources: ["pods", "pods/exec"]
+    verbs:
+      [
+        "get",
+        "create",
+        "update",
+        "patch",
+        "delete",
+        "list",
+        "watch",
+        "deletecollection",
+      ]
+  - apiGroups: [""]
+    resources: ["configmaps", "events", "services"]
+    verbs:
+      [
+        "get",
+        "create",
+        "update",
+        "patch",
+        "list",
+        "watch",
+      ]
+  - apiGroups: ["litmuschaos.io"]
+    resources: ["chaosengines", "chaosexperiments", "chaosresults"]
+    verbs:
+      [
+        "get",
+        "create",
+        "update",
+        "patch",
+        "delete",
+        "list",
+        "watch",
+        "deletecollection",
+      ]
+  - apiGroups: ["litmuschaos.io"]
+    resources: ["chaosengines/finalizers"]
+    verbs: ["update"]
+  - apiGroups: ["coordination.k8s.io"]
+    resources: ["leases"]
+    verbs: ["get","create","list","update","delete"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: litmus-namespace-scope
+  namespace: connaisseur
+  labels:
+    app.kubernetes.io/name: litmus
+    # provide unique instance-id if applicable
+    # app.kubernetes.io/instance: litmus-abcxzy
+    app.kubernetes.io/version: v2.0.0
+    app.kubernetes.io/component: operator-rolebinding
+    app.kubernetes.io/part-of: litmus
+    app.kubernetes.io/managed-by: kubectl
+    name: litmus-namespace-scope
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: litmus-namespace-scope
+subjects:
+  - kind: ServiceAccount
+    name: litmus-namespace-scope
+    namespace: connaisseur
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app.kubernetes.io/name: litmus
+    # provide unique instance-id if applicable
+    # app.kubernetes.io/instance: litmus-abcxzy
+    app.kubernetes.io/version: v2.0.0
+    app.kubernetes.io/component: operator
+    app.kubernetes.io/part-of: litmus
+    app.kubernetes.io/managed-by: kubectl
+  name: chaos-operator-ce
+  namespace: connaisseur
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: chaos-operator
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: litmus
+        # provide unique instance-id if applicable
+        # app.kubernetes.io/instance: litmus-abcxzy
+        app.kubernetes.io/version: latest
+        app.kubernetes.io/component: operator
+        app.kubernetes.io/part-of: litmus
+        app.kubernetes.io/managed-by: kubectl
+        name: chaos-operator
+    spec:
+      serviceAccountName: litmus-namespace-scope
+      
+      #{NODE_SELECTOR}
+      containers:
+        - name: chaos-operator
+          image: litmuschaos/chaos-operator:3.0.0
+          securityContext:
+            runAsUser: 2000
+            allowPrivilegeEscalation: false
+          command:
+            - chaos-operator
+          args:
+            - -leader-elect=true
+          imagePullPolicy: Always
+          env:
+            - name: CHAOS_RUNNER_IMAGE
+              value: litmuschaos/chaos-runner:3.0.0
+            - name: WATCH_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+            - name: POD_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: OPERATOR_NAME
+              value: 'chaos-operator'
+            - name: POD_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+          resources:
+            requests:
+              memory: "300Mi"
+              cpu: "125m"
+              ephemeral-storage: "500Mi"
+            limits:
+              memory: "500Mi"
+              cpu: "225m"
+              ephemeral-storage: "1Gi"
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: chaos-exporter
+    release: prometheus-stack
+  name: chaos-exporter
+  namespace: connaisseur
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: chaos-exporter
+  template:
+    metadata:
+      labels:
+        app: chaos-exporter
+        release: prometheus-stack
+    spec:
+      
+      #{NODE_SELECTOR}
+      containers:
+        - image: litmuschaos/chaos-exporter:3.0.0
+          imagePullPolicy: Always
+          name: chaos-exporter
+          securityContext:
+            runAsUser: 2000
+            allowPrivilegeEscalation: false
+          ports:
+            - containerPort: 8080
+              name: tcp
+          env:
+            - name: TSDB_SCRAPE_INTERVAL
+              value: '10'
+            - name: INJECTION_TIME_FILTER
+              value: 'disable'
+            - name: WATCH_NAMESPACE
+              value: connaisseur
+          resources:
+            requests:
+              memory: "300Mi"
+              cpu: "125m"
+              ephemeral-storage: "500Mi"
+            limits:
+              memory: "500Mi"
+              cpu: "225m"
+              ephemeral-storage: "1Gi"
+      serviceAccountName: litmus-namespace-scope
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: chaos-exporter
+  name: chaos-exporter
+  namespace: connaisseur
+spec:
+  ports:
+    - port: 8080
+      name: tcp
+      protocol: TCP
+      targetPort: 8080
+  selector:
+    app: chaos-exporter
+  type: ClusterIP
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: argo
+  namespace: connaisseur
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: argo-role
+  namespace: connaisseur
+rules:
+  - apiGroups: [""]
+    resources: ["pods", "pods/exec"]
+    verbs: ["create", "get", "list", "watch", "update", "patch", "delete"]
+  - apiGroups: [""]
+    resources: ["configmaps"]
+    verbs: ["get", "watch", "list"]
+  - apiGroups: [""]
+    resources: ["persistentvolumeclaims"]
+    verbs: ["create", "delete"]
+  - apiGroups: ["argoproj.io"]
+    resources: ["workflows", "workflows/finalizers"]
+    verbs: ["get", "list", "watch", "update", "patch", "delete", "create"]
+  - apiGroups: ["argoproj.io"]
+    resources: ["workflowtemplates", "workflowtemplates/finalizers", "workflowtasksets"]
+    verbs: ["get", "list", "watch"]
+  - apiGroups: ["argoproj.io"]
+    resources: ["workflowtaskresults"]
+    verbs: ["list", "watch", "deletecollection"]
+  - apiGroups: [""]
+    resources: ["serviceaccounts"]
+    verbs: ["get", "list"]
+  - apiGroups: [""]
+    resources: ["secrets"]
+    verbs: ["get"]
+  - apiGroups: ["argoproj.io"]
+    resources: ["cronworkflows", "cronworkflows/finalizers"]
+    verbs: ["get", "list", "watch", "update", "patch", "delete"]
+  - apiGroups: [""]
+    resources: ["events"]
+    verbs: ["create", "patch"]
+  - apiGroups: ["policy"]
+    resources: ["poddisruptionbudgets"]
+    verbs: ["create", "get", "delete"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: argo-binding
+  namespace: connaisseur
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: argo-role
+subjects:
+  - kind: ServiceAccount
+    name: argo
+    namespace: connaisseur
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: workflow-controller-configmap
+  namespace: connaisseur
+data:
+  containerRuntimeExecutor: k8sapi
+  executor: |
+    imagePullPolicy: IfNotPresent
+    resources:
+      limits:
+        cpu: 0.15
+        memory: 512Mi
+  instanceID: 4cd14d21-3f87-4ca3-9330-86c6834e7ac2
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: workflow-controller-metrics
+  namespace: connaisseur
+spec:
+  ports:
+    - name: metrics
+      port: 9090
+      protocol: TCP
+      targetPort: 9090
+  selector:
+    app: workflow-controller
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: workflow-controller
+  namespace: connaisseur
+spec:
+  selector:
+    matchLabels:
+      app: workflow-controller
+  template:
+    metadata:
+      labels:
+        app: workflow-controller
+    spec:
+      
+      #{NODE_SELECTOR}
+      containers:
+        - args:
+            - --configmap
+            - workflow-controller-configmap
+            - --executor-image
+            -  litmuschaos/argoexec:v3.3.1
+            - --namespaced
+            - --container-runtime-executor
+            -  k8sapi
+          command:
+            - workflow-controller
+          image: litmuschaos/workflow-controller:v3.3.1
+          name: workflow-controller
+          securityContext:
+            runAsUser: 2000
+            allowPrivilegeEscalation: false
+          env:
+            - name: LEADER_ELECTION_DISABLE
+              value: "true"
+          resources:
+            requests:
+              memory: "300Mi"
+              cpu: "125m"
+              ephemeral-storage: "500Mi"
+            limits:
+              memory: "500Mi"
+              cpu: "225m"
+              ephemeral-storage: "1Gi"
+      serviceAccountName: argo
+
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: subscriber-config
+  namespace: connaisseur
+data:
+  SERVER_ADDR: http://10.96.51.15:9002/query
+  INFRA_SCOPE: namespace
+  VERSION: 3.0.0
+  START_TIME: "1705260574844"
+  SKIP_SSL_VERIFY: "false"
+  CUSTOM_TLS_CERT: ""
+  IS_INFRA_CONFIRMED: "false"
+  COMPONENTS: |
+    DEPLOYMENTS: ["app=chaos-exporter", "name=chaos-operator", "app=event-tracker", "app=workflow-controller"]
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: subscriber-secret
+  namespace: connaisseur
+stringData:
+  INFRA_ID: 4cd14d21-3f87-4ca3-9330-86c6834e7ac2
+  ACCESS_KEY: qYPvvC7WmbzhwJxUi0t59wYm3ZOYYgVl
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: subscriber
+  namespace: connaisseur
+  labels:
+    app: subscriber
+spec:
+  selector:
+    matchLabels:
+      app: subscriber
+  template:
+    metadata:
+      labels:
+        app: subscriber
+    spec:
+      
+      #{NODE_SELECTOR}
+      serviceAccountName: litmus
+      containers:
+        - name: subscriber
+          image: litmuschaos/litmusportal-subscriber:3.0.0
+          imagePullPolicy: Always
+          securityContext:
+            runAsUser: 2000
+            allowPrivilegeEscalation: false
+          envFrom:
+            - configMapRef:
+                name: subscriber-config
+            - secretRef:
+                name: subscriber-secret
+          env:
+            - name: INFRA_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+          resources:
+            requests:
+              memory: "300Mi"
+              cpu: "125m"
+              ephemeral-storage: "500Mi"
+            limits:
+              memory: "500Mi"
+              cpu: "225m"
+              ephemeral-storage: "1Gi"
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: event-tracker
+  name: event-tracker
+  namespace: connaisseur
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: event-tracker
+  template:
+    metadata:
+      labels:
+        app: event-tracker
+    spec:
+      
+      #{NODE_SELECTOR}
+      serviceAccountName: event-tracker-sa
+      containers:
+        - image: litmuschaos/litmusportal-event-tracker:3.0.0
+          imagePullPolicy: Always
+          securityContext:
+            runAsUser: 2000
+            allowPrivilegeEscalation: false
+          name: litmus-event-tracker
+          envFrom:
+            - configMapRef:
+                name: subscriber-config
+            - secretRef:
+                name: subscriber-secret
+          env:
+            - name: INFRA_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+          resources:
+            requests:
+              memory: "300Mi"
+              cpu: "125m"
+              ephemeral-storage: "500Mi"
+            limits:
+              memory: "500Mi"
+              cpu: "225m"
+              ephemeral-storage: "1Gi"
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: subscriber-role
+  namespace: connaisseur
+  labels:
+    name: subscriber-role
+rules:
+  - apiGroups: [""]
+    resources: ["configmaps", "secrets"]
+    verbs: ["get", "create", "delete", "update"]
+
+  - apiGroups: [""]
+    resources: ["pods/log"]
+    verbs: ["get", "list", "watch"]
+
+  - apiGroups: [""]
+    resources: ["pods", "services"]
+    verbs: ["get", "list", "watch"]
+
+  - apiGroups: ["litmuschaos.io"]
+    resources: ["chaosengines", "chaosschedules", "chaosresults"]
+    verbs: ["get", "list", "create", "delete", "update", "watch", "patch"]
+
+  - apiGroups: ["apps.openshift.io"]
+    resources: ["deploymentconfigs"]
+    verbs: ["get", "list"]
+
+  - apiGroups: ["apps"]
+    resources: ["deployments"]
+    verbs: ["delete"]
+  - apiGroups: ["apps"]
+    resources: ["deployments", "daemonsets", "replicasets", "statefulsets"]
+    verbs: ["get", "list"]
+  - apiGroups: ["argoproj.io"]
+    resources:
+      [
+        "workflows",
+        "workflows/finalizers",
+        "workflowtemplates",
+        "workflowtemplates/finalizers",
+        "cronworkflows",
+        "cronworkflows/finalizers",
+        "rollouts",
+      ]
+    verbs: ["get", "list", "create", "delete", "update", "watch", "patch"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: subscriber-role-binding
+  namespace: connaisseur
+subjects:
+  - kind: ServiceAccount
+    name: litmus
+    namespace: connaisseur
+roleRef:
+  kind: Role
+  name: subscriber-role
+  apiGroup: rbac.authorization.k8s.io
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: litmus-admin
+  namespace: connaisseur
+  labels:
+    name: litmus-admin
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: litmus-admin
+  namespace: connaisseur
+  labels:
+    name: litmus-admin
+rules:
+  # ***************************************************************************************
+  # Permissions needed for preparing and monitor the chaos resources by chaos-runner
+  # ***************************************************************************************
+
+  # The chaos operator watches the chaosengine resource and orchestartes the chaos experiment..
+  ## .. by creating the chaos-runner
+
+  # for creating and monitoring the chaos-runner pods
+  - apiGroups: [""]
+    resources: ["pods"]
+    verbs:
+      ["create", "delete", "get", "list", "patch", "update", "deletecollection"]
+  - apiGroups: [""]
+    resources: ["events"]
+    verbs:
+      ["create", "get", "list", "patch", "update"]
+
+
+    # for fetching configmaps and secrets to inject into chaos-runner pod (if specified)
+  - apiGroups: [""]
+    resources: ["secrets", "configmaps"]
+    verbs: ["get", "list"]
+
+    # for tracking & getting logs of the pods created by chaos-runner to implement individual steps in the runner
+  - apiGroups: [""]
+    resources: ["pods/log"]
+    verbs: ["get", "list", "watch"]
+
+    # for configuring and monitor the experiment job by chaos-runner pod
+  - apiGroups: ["batch"]
+    resources: ["jobs"]
+    verbs: ["create", "list", "get", "delete", "deletecollection"]
+
+    # ********************************************************************
+    # Permissions needed for creation and discovery of chaos experiments
+    # ********************************************************************
+
+    # The helper pods are created by experiment to perform the actual chaos injection ...
+    # ... for a period of chaos duration
+
+
+
+
+    # for creating and managing to execute comands inside target container
+  - apiGroups: [""]
+    resources: ["pods/exec", "pods/eviction", "replicationcontrollers"]
+    verbs: ["get", "list", "create"]
+
+    # for tracking & getting logs of the pods created by experiment pod to implement individual steps in the experiment
+  - apiGroups: [""]
+    resources: ["pods/log"]
+    verbs: ["get", "list", "watch"]
+
+    # for creating and monitoring liveness services or monitoring target app services during chaos injection
+  - apiGroups: [""]
+    resources: ["services"]
+    verbs: ["create", "get", "list"]
+
+    # for checking the app parent resources as deployments or sts and are eligible chaos candidates
+  - apiGroups: ["apps"]
+    resources: ["deployments", "statefulsets"]
+    verbs: ["list", "get", "patch", "update"]
+
+    # for checking the app parent resources as replicasets and are eligible chaos candidates
+  - apiGroups: ["apps"]
+    resources: ["replicasets"]
+    verbs: ["list", "get"]
+
+    # for checking the app parent resources as deamonsets and are eligible chaos candidates
+  - apiGroups: ["apps"]
+    resources: ["daemonsets"]
+    verbs: ["list", "get"]
+
+    # for checking (openshift) app parent resources if they are eligible chaos candidates
+  - apiGroups: ["apps.openshift.io"]
+    resources: ["deploymentconfigs"]
+    verbs: ["list", "get"]
+
+    # for checking (argo) app parent resources if they are eligible chaos candidates
+  - apiGroups: ["argoproj.io"]
+    resources: ["rollouts"]
+    verbs: ["list", "get"]
+
+  # performs CRUD operations on the network policies
+  - apiGroups: ["networking.k8s.io"]
+    resources: ["networkpolicies"]
+    verbs: ["create","delete","list","get"]
+
+    # for creation, status polling and deletion of litmus chaos resources used within a chaos workflow
+  - apiGroups: ["litmuschaos.io"]
+    resources: ["chaosengines", "chaosexperiments", "chaosresults"]
+    verbs: ["create", "list", "get", "patch", "update", "delete"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: litmus-admin
+  namespace: connaisseur
+  labels:
+    name: litmus-admin
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: litmus-admin
+subjects:
+  - kind: ServiceAccount
+    name: litmus-admin
+    namespace: connaisseur
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: argo-chaos
+  namespace: connaisseur
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: chaos-role
+  namespace: connaisseur
+rules:
+  # for managing the pods created by workflow controller to implement individual steps in the workflow
+  - apiGroups: [""]
+    resources: ["pods", "services"]
+    verbs: ["create", "get", "watch", "patch", "delete", "list"]
+
+  # for tracking & getting logs of the pods created by workflow controller to implement individual steps in the workflow
+  - apiGroups: ['']
+    resources: ['pods/log']
+    verbs: ['get', 'watch', 'create', 'delete', 'patch']
+  - apiGroups: ['']
+    resources: ['secrets', 'configmaps']
+    verbs: ['get', 'watch', 'create', 'patch']
+
+  # for creation & deletion of application in predefined workflows
+  - apiGroups: ['apps']
+    resources: ['deployments']
+    verbs: ['delete']
+  - apiGroups: ['apps']
+    resources: ['deployments', 'statefulsets']
+    verbs: ['get', 'watch', 'patch' , 'create']
+
+  # for creation, status polling and deletion of litmus chaos resources used within a chaos workflow
+  - apiGroups: ["litmuschaos.io"]
+    resources:
+      ["chaosengines", "chaosexperiments", "chaosresults", "chaosschedules"]
+    verbs: ["create", "list", "get", "patch", "delete", "watch"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: chaos-role-binding
+  namespace: connaisseur
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: chaos-role
+subjects:
+  - kind: ServiceAccount
+    name: argo-chaos
+    namespace: connaisseur
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: event-tracker-sa
+  namespace: connaisseur
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: event-tracker-role
+  namespace: connaisseur
+rules:
+  - apiGroups:
+      - eventtracker.litmuschaos.io
+    resources:
+      - eventtrackerpolicies
+    verbs:
+      - create
+      - delete
+      - get
+      - list
+      - patch
+      - update
+      - watch
+  - apiGroups:
+      - eventtracker.litmuschaos.io
+    resources:
+      - eventtrackerpolicies/status
+    verbs:
+      - get
+      - patch
+      - update
+  - apiGroups:
+      - ""
+    resources:
+      - pods
+      - configmaps
+      - secrets
+    verbs:
+      - get
+      - list
+      - watch
+  - apiGroups:
+      - extensions
+      - apps
+    resources:
+      - deployments
+      - daemonsets
+      - statefulsets
+    verbs:
+      - get
+      - list
+      - watch
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: event-tracker-role-binding
+  namespace: connaisseur
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: event-tracker-role
+subjects:
+  - kind: ServiceAccount
+    name: event-tracker-sa
+    namespace: connaisseur

@@ -1,0 +1,17 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: kubemonkey
+  namespace: kubemonkey
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: kubemonkey
+      version: 1.5.2
+      sourceRef:
+        kind: HelmRepository
+        name: kubemonkey
+        namespace: flux-system
+  values:
+  # https://github.com/asobti/kube-monkey/blob/master/helm/kubemonkey/values.yaml

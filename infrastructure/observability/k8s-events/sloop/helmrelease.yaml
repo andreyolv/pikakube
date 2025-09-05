@@ -1,0 +1,16 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: sloop
+  namespace: sloop
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: ./helm/sloop
+      sourceRef:
+        kind: GitRepository
+        name: sloop
+        namespace: flux-system
+  values:
+  # https://github.com/salesforce/sloop/blob/master/helm/sloop/values.yaml

@@ -1,0 +1,18 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: kanister 
+  namespace: kanister 
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: kanister-operator 
+      version: 0.109.0
+      sourceRef:
+        kind: HelmRepository
+        name: kanister 
+        namespace: flux-system
+  values:
+  # https://artifacthub.io/packages/helm/kanister/kanister-operator
+  # https://github.com/kanisterio/kanister/blob/master/helm/kanister-operator/values.yaml

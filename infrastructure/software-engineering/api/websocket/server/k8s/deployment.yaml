@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: websockets
+  namespace: websockets
+spec:
+  selector:
+    matchLabels:
+      app: websockets
+  template:
+    metadata:
+      labels:
+        app: websockets
+    spec:
+      containers:
+      - name: websockets
+        image: andreyolv/websockets:1.1
+        livenessProbe:
+          httpGet:
+            path: /healthz
+            port: 8080
+          periodSeconds: 1
+        ports:
+        - containerPort: 8080

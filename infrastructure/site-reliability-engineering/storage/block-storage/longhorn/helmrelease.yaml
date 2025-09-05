@@ -1,0 +1,20 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: longhorn
+  namespace: longhorn
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: longhorn
+      version: 1.7.2
+      sourceRef:
+        kind: HelmRepository
+        name: longhorn
+        namespace: flux-system
+  values:
+  # https://artifacthub.io/packages/helm/longhorn/longhorn
+  # https://github.com/longhorn/longhorn/blob/master/chart/values.yaml
+   # enablePSP: true
+    

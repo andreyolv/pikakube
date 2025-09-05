@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: promlens
+  namespace: promlens
+spec:
+  selector:
+    app: promlens
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
+  type: ClusterIP

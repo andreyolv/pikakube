@@ -1,0 +1,30 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: localstack
+  namespace: localstack
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: localstack
+      version: 0.6.20
+      sourceRef:
+        kind: HelmRepository
+        name: localstack
+        namespace: flux-system
+  values:
+  # https://artifacthub.io/packages/helm/localstack/localstack
+  # https://github.com/localstack/helm-charts/blob/main/charts/localstack/values.yaml
+    startServices: ecr,s3,iam
+    service:
+      type: ClusterIP
+    ingress:
+      enabled: true
+      annotations: {}
+      hosts:
+      - host: chart-example.local
+        paths:
+          - path: /
+            pathType: ImplementationSpecific
+      tls: []

@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deployment-recreate
+  namespace: teste
+spec:
+  replicas: 5
+  strategy: 
+    type: Recreate
+  selector:
+    matchLabels:
+      app: deployment-recreate
+  template:
+    metadata:
+      labels:
+        app: deployment-recreate
+    spec:
+      containers:
+      - name: deployment-recreate
+        image: argoproj/rollouts-demo:red # blue yellow red
+        ports:
+        - containerPort: 8080

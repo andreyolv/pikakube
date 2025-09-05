@@ -1,0 +1,22 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: helm-dashboard
+  namespace: helm-dashboard
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: helm-dashboard
+      version: 2.0.3
+      sourceRef:
+        kind: HelmRepository
+        name: helm-dashboard
+        namespace: flux-system
+  values:
+  # https://artifacthub.io/packages/helm-plugin/helm-dashboard/dashboard
+  # https://github.com/komodorio/helm-dashboard/blob/main/charts/helm-dashboard/values.yaml
+    dashboard:
+      namespace: helm-dashboard
+      persistence:
+        enabled: false

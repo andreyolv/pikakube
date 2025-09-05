@@ -1,0 +1,21 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: connaisseur
+  namespace: connaisseur
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: connaisseur
+      version: 2.3.2
+      sourceRef:
+        kind: HelmRepository
+        name: connaisseur
+        namespace: flux-system
+  values:
+  # https://artifacthub.io/packages/helm/connaisseur/connaisseur
+  # https://github.com/sse-secure-systems/connaisseur/blob/master/helm/values.yaml
+    kubernetes:
+      deployment:
+        replicasCount: 1

@@ -1,0 +1,70 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: supabase
+  namespace: supabase
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: charts/supabase
+      sourceRef:
+        kind: GitRepository
+        name: supabase
+        namespace: flux-system
+  values:
+  # https://github.com/supabase-community/supabase-kubernetes/blob/main/charts/supabase/values.yaml
+    secret:
+      jwt:
+        anonKey: xxxxxxxxxxxxxxxxx
+        serviceKey: xxxxxxxxxxxx
+        secret: your-super-secret-jwt-token-with-at-least-32-characters-long
+      smtp:
+        username: your-mail@example.com
+        password: example123456
+      dashboard:
+        username: supabase
+        password: this_password_is_insecure_and_should_be_updated
+      db:
+        username: postgres
+        password: example123456
+        database: postgres
+      analytics:
+        apiKey: your-super-secret-and-long-logflare-key
+    db:
+      persistence:
+        size: 1Gi
+    studio:
+      image:
+        tag: 20240326-5e5586d
+      environment:
+        STUDIO_DEFAULT_ORGANIZATION: "My Organization"
+        STUDIO_DEFAULT_PROJECT: "My Project"
+        SUPABASE_PUBLIC_URL: http://example.com/
+        NEXT_PUBLIC_ENABLE_LOGS: "true"
+    auth:
+      image:
+        tag: v2.143.0
+      environment:
+        API_EXTERNAL_URL: http://example.com
+        GOTRUE_SITE_URL: http://example.com
+        GOTRUE_EXTERNAL_EMAIL_ENABLED: "true"
+        GOTRUE_MAILER_AUTOCONFIRM: "true"
+        GOTRUE_SMTP_ADMIN_EMAIL: "your-mail@example.com"
+        GOTRUE_SMTP_HOST: "smtp.example.com"
+        GOTRUE_SMTP_PORT: "587"
+        GOTRUE_SMTP_SENDER_NAME: "your-mail@example.com"
+    storage:
+      persistence:
+        size: 1Gi
+    imgproxy:
+      persistence:
+        size: 1Gi
+    vector:
+      volumeMounts:
+      - name: pod-logs
+        mountPath: /var/log/pods
+      volumes:
+      - name: pod-logs
+        hostPath:
+          path: /var/log/pods

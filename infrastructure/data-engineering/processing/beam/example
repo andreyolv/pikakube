@@ -1,0 +1,69 @@
+# Tabela retornando o produto, estado e valor venda total
+
+ufs = [
+'AC',
+'AL',
+'AM',
+'AP',
+'BA',
+'CE',
+'DF',
+'ES',
+'GO',
+'MA',
+'MG',
+'MS',
+'MT',
+'PA',
+'PB',
+'PE',
+'PI',
+'PR',
+'RJ',
+'RN',
+'RO',
+'RR',
+'RS',
+'SC',
+'SE',
+'SP',
+'TO'
+]
+produtos = [
+         'Etanol Hidratado',
+         'GLP',
+         'Gasolina C',
+         'Gasolina de Aviação',
+         'Querosene Iluminante',
+         'Querosene de Aviação',
+         'Óleo Combustível',
+         'Óleo Diesel',
+]
+
+for j in range(len(ufs)):
+ for i in range(len(produtos)):
+   pij = beam.Pipeline()
+   pipe1 = (
+           pij
+           |f'Extrair do CSV{i}{j}'>> beam.io.ReadFromText('/content/dataset_final_derivados.csv',skip_header_lines = 0)
+           |f'Separador do CSV{i}{j}'>> beam.Map(lambda record: record.split(','))
+           |f'Filtrar derivado{i}{j}'>> beam.Filter(lambda record: (record[2] == produtos[i] and (record[1])==ufs[j]))
+           |f'Agregar as Colunas{i}{j}'>> beam.Map(lambda record: (record[1],round(float(record[4]))))
+           |f'Construir uma nova tabela{i}{j}'>> beam.CombinePerKey(sum)
+           |f'1Construir uma nova tabela de derivados de petróleo{i}{j}'>> beam.Distinct()
+       )
+   pipe2 = (
+           pij
+           |f'{i}{j}Extrair do CSV'>> beam.io.ReadFromText('/content/dataset_final_derivados.csv',skip_header_lines = 0)
+           |f'{i}{j}Separador do CSV'>> beam.Map(lambda record: record.split(','))
+           |f'{i}{j}Filtrar derivados petrol'>> beam.Filter(lambda record: (record[2] == produtos[i] and (record[1])==ufs[j]))
+           |f'{i}{j}Agregar as Colunas'>> beam.Map(lambda record: (record[1],record[2]))
+           |f'{i}{j}Construir uma nova tabela de derivados petrol'>> beam.Distinct()
+       )
+   tabela = (
+       {'Produto':pipe2, 'Total de venda em m3':pipe1 }
+       |f'{i}{j}Agrupar as pernas' >> beam.CoGroupByKey()
+       |f'{i}{j}Resultado'>> beam.Map(print)
+   )
+
+   pij.run()

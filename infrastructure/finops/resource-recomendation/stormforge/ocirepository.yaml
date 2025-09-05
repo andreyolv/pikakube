@@ -1,0 +1,10 @@
+apiVersion: source.toolkit.fluxcd.io/v1beta2
+kind: OCIRepository
+metadata:
+  name: stormforge-agent
+  namespace: flux-system
+spec:
+  interval: 24h
+  url: oci://registry.stormforge.io/library/stormforge-agent
+  ref:
+    tag: 2.3.0

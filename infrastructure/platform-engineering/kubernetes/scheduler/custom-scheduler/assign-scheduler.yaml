@@ -1,0 +1,20 @@
+apiVersion: mutations.gatekeeper.sh/v1
+kind: Assign
+metadata:
+  name: assign-custom-scheduler
+spec:
+  applyTo:
+  - groups: [""]
+    kinds: ["Pod"]
+    versions: ["v1"]
+  match:
+    scope: Namespaced
+    kinds:
+    - apiGroups: ["*"]
+      kinds: ["Pod"]
+    excludedNamespaces: ["kube-system"]
+    #namespaces: ["*"]
+  location: "spec.schedulerName"
+  parameters:
+    assign:
+      value: most-allocated-scheduler

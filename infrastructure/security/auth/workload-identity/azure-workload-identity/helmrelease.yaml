@@ -1,0 +1,26 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: workload-identity-webhook
+  namespace: azure-workload-identity
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: workload-identity-webhook
+      version: 1.4.1
+      sourceRef:
+        kind: HelmRepository
+        name: azure-workload-identity
+        namespace: flux-system
+  values:
+  # https://artifacthub.io/packages/helm/azure-workload-identity/workload-identity-webhook
+  # https://github.com/Azure/azure-workload-identity/blob/main/charts/workload-identity-webhook/values.yaml
+    nodeSelector:
+      agentpool: sysephem
+    tolerations:
+    - effect: NoSchedule
+      key: CriticalAddonsOnly
+      operator: Equal
+      value: "true"
+    azureTenantID: xxxxxxxxxxxx

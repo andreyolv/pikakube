@@ -1,0 +1,16 @@
+apiVersion: velero.io/v1
+kind: Schedule
+metadata:
+  name: cluster-dev
+  namespace: velero
+spec:
+  schedule: "0 0 * * *"
+  template:
+    includedNamespaces:
+    - '*'
+    includedResources:
+    - '*'
+    storageLocation: minio-dev
+    volumeSnapshotLocations: 
+    - minio-dev
+    ttl: 168h0m0s # 7 days

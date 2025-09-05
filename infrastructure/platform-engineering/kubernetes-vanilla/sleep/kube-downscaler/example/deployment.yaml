@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: random-deployment
+	annotations:
+		downscaler/downtimePeriod: "Mon-Fri 00:00-07:00 Europe/Berlin"
+		downscaler/minReplicas: 1
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: random
+  template:
+    metadata:
+      labels:
+        app: random
+    spec:
+      containers:
+      - name: random-container
+        image: random-image

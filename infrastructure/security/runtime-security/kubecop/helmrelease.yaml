@@ -1,0 +1,25 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: kubecop
+  namespace: kubecop
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: kubecop
+      version: 0.0.40
+      sourceRef:
+        kind: HelmRepository
+        name: kubecop
+        namespace: flux-system
+  values:
+  # https://github.com/armosec/kubecop/blob/main/chart/kubecop/values.yaml
+    kubecop:
+      alertmanager:
+        enabled: false
+        endpoints: localhost:9093
+      csv:
+        enabled: true
+      prometheusExporter:
+        enabled: true

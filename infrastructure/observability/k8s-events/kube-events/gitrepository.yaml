@@ -1,0 +1,15 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: GitRepository
+metadata:
+  name: kube-events
+  namespace: flux-system
+spec:
+  interval: 24h
+  ref:
+    tag: v0.8.0
+  url: https://github.com/kubesphere/kube-events.git
+  ignore: |
+    # exclude all
+    /*
+    # include deploy dir
+    !/helm

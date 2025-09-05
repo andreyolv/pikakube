@@ -1,0 +1,15 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: kueue
+  namespace: kueue
+spec:
+  interval: 5m
+  chartRef:
+    kind: OCIRepository
+    name: kueue
+    namespace: flux-system
+  values:
+  # https://github.com/kubernetes-sigs/kueue/blob/main/charts/kueue/values.yaml
+    metrics:
+      prometheusNamespace: prometheus

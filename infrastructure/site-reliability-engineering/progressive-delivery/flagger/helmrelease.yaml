@@ -1,0 +1,23 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: flagger
+  namespace: flagger
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: flagger
+      version: 1.39.0
+      sourceRef:
+        kind: HelmRepository
+        name: flagger
+        namespace: flux-system
+  upgrade:
+    crds: CreateReplace
+  values:
+  # https://artifacthub.io/packages/helm/flagger/flagger
+  # https://github.com/fluxcd/flagger/blob/main/charts/flagger/values.yaml
+    meshProvider: nginx
+    prometheus:
+      install: true

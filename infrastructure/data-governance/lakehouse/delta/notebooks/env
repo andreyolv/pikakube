@@ -1,0 +1,4 @@
+ACCESS_KEY_ID=xxxxxxxxx
+SECRET_ACCESS_KEY=xxxxxxxxxxxxxx
+MINIO_ENDPOINT_URL=minio.minio.svc.cluster.local:9000
+AWS_ENDPOINT_URL=http://minio.minio.svc.cluster.local:9000
