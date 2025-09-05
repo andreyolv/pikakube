@@ -1,7 +1,7 @@
 apiVersion: fluxcd.controlplane.io/v1
 kind: FluxInstance
 metadata:
-  name: pikakube
+  name: flux
   namespace: flux-system
   annotations:
     fluxcd.controlplane.io/reconcileEvery: "1h"

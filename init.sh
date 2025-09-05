@@ -31,7 +31,7 @@ echo "Basics manifests installed!"
 
 kubens flux-system
 
-kubectl wait fluxinstance pikakube --for=condition=Ready --timeout=5m
+kubectl wait fluxinstance flux --for=condition=Ready --timeout=5m
 
 kubectl wait kustomization flux-system --for=condition=Ready --timeout=5m
 
