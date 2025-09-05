@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: github-repository-ssh-team1
+  namespace: flux-system
+type: Opaque
+data:
+  identity: eHh4eHh4eHh4eHh4
+  known_hosts: eHh4eHh4eHh4eHh4

@@ -1,0 +1,19 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: GitRepository
+metadata:
+  name: team1
+  namespace: flux-system
+spec:
+  interval: 1m
+  url: ssh://git@github.com/andreyolv/team1
+  ref:
+    branch: main
+  secretRef:
+    name: github-repository-ssh-team1
+  ignore: |
+    # exclude all
+    /*
+    # include only specific files
+    !/kubernetes2/base/
+    !/kubernetes2/prd/
+# se especificas só arquivos q deseja, o kustomize dá erro ao tentar procurar arquivos no resources q não existem

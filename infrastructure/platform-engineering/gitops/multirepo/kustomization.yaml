@@ -1,0 +1,16 @@
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: team1
+  namespace: flux-system
+spec:
+  serviceAccountName: multi-tenancy-gitrepositories
+  interval: 1m
+  targetNamespace: team1
+  sourceRef:
+    kind: GitRepository
+    name: team1
+    namespace: flux-system
+  path: kubernetes/dev
+  prune: true
+

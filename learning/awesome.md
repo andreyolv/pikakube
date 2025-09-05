@@ -1,0 +1,14 @@
+https://github.com/pracdata/awesome-open-source-data-engineering
+https://github.com/gunnarmorling/awesome-opensource-data-engineering
+https://github.com/igorbarinov/awesome-data-engineering
+https://github.com/oxnr/awesome-bigdata
+https://github.com/mgramin/awesome-db-tools
+https://github.com/wmariuss/awesome-devops
+https://github.com/seifrajhi/awesome-platform-engineering-tools
+https://github.com/shospodarets/awesome-platform-engineering
+https://github.com/SquadcastHub/awesome-sre-tools
+https://github.com/dastergon/awesome-sre
+https://github.com/devsecops/awesome-devsecops
+https://github.com/ksoclabs/awesome-kubernetes-security
+https://github.com/rootsongjc/awesome-cloud-native
+https://github.com/f/awesome-chatgpt-prompts
