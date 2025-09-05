@@ -1,0 +1,8 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: HelmRepository
+metadata:
+  name: spark
+  namespace: flux-system
+spec:
+  interval: 24h
+  url: https://apache.github.io/spark-kubernetes-operator

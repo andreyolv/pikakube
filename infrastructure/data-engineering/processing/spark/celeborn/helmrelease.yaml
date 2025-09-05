@@ -1,0 +1,23 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: celeborn
+  namespace: celeborn
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: charts/celeborn
+      sourceRef:
+        kind: GitRepository
+        name: celeborn
+        namespace: flux-system
+  values:
+  # https://github.com/apache/celeborn/blob/main/charts/celeborn/values.yaml
+    # -- Specifies the number of Celeborn master replicas to deploy, master replicas should not less than 3
+    masterReplicas: 3
+    # -- Specifies the number of Celeborn worker replicas to deploy, should less than node number
+    workerReplicas: 2
+    podMonitor:
+      enable: false
+   

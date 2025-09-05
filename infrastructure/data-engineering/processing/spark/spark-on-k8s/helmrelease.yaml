@@ -1,0 +1,16 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: spark-on-k8s
+  namespace: spark-on-k8s
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: chart/
+      sourceRef:
+        kind: GitRepository
+        name: spark-on-k8s
+        namespace: flux-system
+  values:
+  # https://github.com/hussein-awala/spark-on-k8s/blob/main/chart/values.yaml
