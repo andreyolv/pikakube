@@ -1,0 +1,67 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: pinot
+  namespace: pinot
+spec:
+  releaseName: pinot
+  chart:
+    spec:
+      chart: pinot
+      sourceRef:
+        kind: HelmRepository
+        name: pinot
+        namespace: flux-system
+  interval: 5m
+  install:
+    timeout: 10m
+  values:
+  # https://github.com/apache/pinot/blob/master/kubernetes/helm/pinot/values.yaml
+    cluster:
+      name: pinot
+    controller:
+      replicaCount: 2
+      jvmOpts: "-javaagent:/opt/pinot/etc/jmx_prometheus_javaagent/jmx_prometheus_javaagent.jar=8008:/opt/pinot/etc/jmx_prometheus_javaagent/configs/pinot.yml -XX:ActiveProcessorCount=2 -Xms256M -Xmx1G -XX:+UseG1GC -XX:MaxGCPauseMillis=200 -Xlog:gc*:file=/opt/pinot/gc-pinot-controller.log"
+      service:
+        annotations:
+          "prometheus.io/scrape": "true"
+          "prometheus.io/port": "8008"
+      external:
+        enabled: false
+      podAnnotations:
+        "prometheus.io/scrape": "true"
+        "prometheus.io/port": "8008"
+    broker:
+      jvmOpts: "-javaagent:/opt/pinot/etc/jmx_prometheus_javaagent/jmx_prometheus_javaagent.jar=8008:/opt/pinot/etc/jmx_prometheus_javaagent/configs/pinot.yml -XX:ActiveProcessorCount=2 -Xms256M -Xmx1G -XX:+UseG1GC -XX:MaxGCPauseMillis=200 -Xlog:gc*:file=/opt/pinot/gc-pinot-controller.log"
+      service:
+        annotations:
+          "prometheus.io/scrape": "true"
+          "prometheus.io/port": "8008"
+      external:
+        enabled: false
+      podAnnotations:
+        "prometheus.io/scrape": "true"
+        "prometheus.io/port": "8008"
+    server: 
+      jvmOpts: "-javaagent:/opt/pinot/etc/jmx_prometheus_javaagent/jmx_prometheus_javaagent.jar=8008:/opt/pinot/etc/jmx_prometheus_javaagent/configs/pinot.yml -XX:ActiveProcessorCount=2 -Xms256M -Xmx1G -XX:+UseG1GC -XX:MaxGCPauseMillis=200 -Xlog:gc*:file=/opt/pinot/gc-pinot-controller.log"
+      service:
+        annotations:
+          "prometheus.io/scrape": "true"
+          "prometheus.io/port": "8008"
+      podAnnotations:
+        "prometheus.io/scrape": "true"
+        "prometheus.io/port": "8008"
+    minion:
+      jvmOpts: "-javaagent:/opt/pinot/etc/jmx_prometheus_javaagent/jmx_prometheus_javaagent.jar=8008:/opt/pinot/etc/jmx_prometheus_javaagent/configs/pinot.yml -XX:ActiveProcessorCount=2 -Xms256M -Xmx1G -XX:+UseG1GC -XX:MaxGCPauseMillis=200 -Xlog:gc*:file=/opt/pinot/gc-pinot-controller.log"
+      service:
+        annotations:
+          "prometheus.io/scrape": "true"
+          "prometheus.io/port": "8008"
+      podAnnotations:
+        "prometheus.io/scrape": "true"
+        "prometheus.io/port": "8008"
+    minionStateless:
+      jvmOpts: "-javaagent:/opt/pinot/etc/jmx_prometheus_javaagent/jmx_prometheus_javaagent.jar=8008:/opt/pinot/etc/jmx_prometheus_javaagent/configs/pinot.yml -XX:ActiveProcessorCount=2 -Xms256M -Xmx1G -XX:+UseG1GC -XX:MaxGCPauseMillis=200 -Xlog:gc*:file=/opt/pinot/gc-pinot-controller.log"
+      podAnnotations:
+        "prometheus.io/scrape": "true"
+        "prometheus.io/port": "8008"

@@ -21,3 +21,7 @@ https://github.com/jupyterlite/jupyterlite
 https://github.com/jupyter/docker-stacks
 https://github.com/jupyter/docker-stacks/tree/main/images
 https://jupyter-docker-stacks.readthedocs.io/en/latest/
+
+install local
+sudo apt install python3-pip -y
+sudo pip install ipykernel --break-system-packages

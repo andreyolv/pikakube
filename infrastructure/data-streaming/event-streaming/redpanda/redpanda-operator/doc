@@ -1,0 +1,28 @@
+Apply CRDs
+apply -> kubectl kustomize https://github.com/redpanda-data/redpanda//src/go/k8s/config/crd | kubectl apply -f -
+onde estão -> https://github.com/redpanda-data/redpanda/tree/v23.2.12/src/go/k8s/config/crd/bases
+
+Install Helm
+
+https://docs.redpanda.com/current/deploy/deployment-option/self-hosted/kubernetes/local-guide/
+https://docs.redpanda.com/current/manage/kubernetes/
+
+
+alias rpk-topic="kubectl --namespace redpanda exec -i -t redpanda-0 -c redpanda -- rpk topic -X brokers=redpanda-0.redpanda.redpanda.svc.cluster.local.:9093,redpanda-1.redpanda.redpanda.svc.cluster.local.:9093,redpanda-2.redpanda.redpanda.svc.cluster.local.:9093 -X tls.ca=/etc/tls/certs/default/ca.crt -X tls.enabled=true"
+
+Github:
+https://github.com/rafaribe/home-ops/blob/main/.deprecated/apps/development/redpanda/helm-release.yaml
+https://github.com/oscaromeu/home-ops/blob/main/kubernetes/apps/dev/redpanda/app/helmrelease.yaml
+https://github.com/lucas-dclrcq/homelabitty/blob/main/kubernetes/apps/infrastructure/redpanda/app/helmrelease.yaml
+
+Exemplos:
+https://github.com/redpanda-data/redpanda/tree/v23.2.12/src/go/k8s/config/samples
+
+Observability:
+https://github.com/redpanda-data/observability
+
+k exec -it redpanda-0 -c redpanda -- rpk cluster info
+k exec -it redpanda-0 -c redpanda -- rpk topic create chat-room
+
+connectors
+https://docs.redpanda.com/redpanda-connect/about/

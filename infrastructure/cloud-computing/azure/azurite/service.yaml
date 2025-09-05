@@ -1,0 +1,21 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: azurite
+  namespace: azurite
+spec:
+  selector:
+    component: azurite
+  ports:
+    - name: blob
+      protocol: TCP
+      port: 10000
+      targetPort: 10000
+    - name: queue
+      protocol: TCP
+      port: 10001
+      targetPort: 10001
+    - name: table
+      protocol: TCP
+      port: 10002
+      targetPort: 10002

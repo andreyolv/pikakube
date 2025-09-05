@@ -1,0 +1,58 @@
+Inside FE container
+mysql -h 127.0.0.1 -P 9030 -uroot --prompt="StarRocks > "
+
+SHOW DATABASES;
+
+CREATE DATABASE IF NOT EXISTS minio;
+
+SHOW DATABASES;
+
+USE minio;
+
+SHOW TABLES;
+
+CREATE TABLE `table11`
+   (
+       `id` int(11) COMMENT "user ID",
+       `name` varchar(50) COMMENT "user name",
+       `score` int(11) COMMENT "user score"
+   )
+       ENGINE=OLAP
+       PRIMARY KEY(`id`)
+       DISTRIBUTED BY HASH(`id`)
+       PROPERTIES (
+            "replication_num" = "1"
+    );
+
+SHOW TABLES;
+
+SELECT * FROM table1;
+
+LOAD LABEL table11
+(
+    DATA INFILE("s3a://lakehouse/abc/file1.csv")
+    INTO TABLE table11
+    COLUMNS TERMINATED BY ";"
+    FORMAT AS "CSV"
+    (
+        skip_header = 1
+        trim_space = TRUE
+    )
+    (id, name, score)
+)
+WITH BROKER
+(
+    "aws.s3.enable_ssl" = "false",
+    "aws.s3.enable_path_style_access" = "true",
+    "aws.s3.endpoint" = "minio.minio.svc.cluster.local:9000",
+    "aws.s3.access_key" = "pikakube",
+    "aws.s3.secret_key" = "pikakube"
+)
+PROPERTIES
+(
+    "timeout" = "3600"
+);
+
+SELECT * FROM information_schema.loads WHERE LABEL = 'table11';
+
+SELECT * FROM table11;

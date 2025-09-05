@@ -1,0 +1,76 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ksqldb-server
+  namespace: kafka
+  labels:
+    app: ksqldb-server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ksqldb-server
+  template:
+    metadata:
+      labels:
+        app: ksqldb-server
+    spec:
+      containers:
+      - name: ksqldb-server
+        image: confluentinc/ksqldb-server:0.22.0
+        ports:
+        - containerPort: 8088
+        env:
+        # https://docs.ksqldb.io/en/latest/operate-and-deploy/installation/install-ksqldb-with-docker/#connect-ksqldb-server-to-a-secure-kafka-cluster-like-confluent-cloud
+        - name: KSQL_BOOTSTRAP_SERVERS
+          value: SASL_SSL://my-cluster-kafka-bootstrap.kafka.svc.cluster.local:9093
+        - name: KSQL_KSQL_SCHEMA_REGISTRY_URL
+          value: 'http://schema-registry-cp-schema-registry.kafka.svc.cluster.local:8081'
+        - name: KSQL_LISTENERS
+          value: http://0.0.0.0:8088
+        - name: KSQL_KSQL_LOGGING_PROCESSING_STREAM_AUTO_CREATE
+          value: "true"
+        - name: KSQL_KSQL_LOGGING_PROCESSING_TOPIC_AUTO_CREATE
+          value: "true"
+        - name: KSQL_KSQL_INTERNAL_TOPIC_REPLICAS
+          value: "3"
+        - name: KSQL_KSQL_STREAMS_REPLICATION_FACTOR
+          value: "3"
+        - name: KSQL_KSQL_LOGGING_PROCESSING_TOPIC_REPLICATION_FACTOR
+          value: "3"
+        - name: KSQL_KSQL_SINK_REPLICAS
+          value: "2"
+        - name: KSQL_KSQL_CONNECT_URL
+          value: 'https://my-connect-connect-api.kafka.svc.cluster.local:8083'
+        - name: KSQL_CONNECT_KEY_CONVERTER
+          value: 'io.confluent.connect.avro.AvroConverter'
+        - name: KSQL_CONNECT_VALUE_CONVERTER
+          value: 'io.confluent.connect.avro.AvroConverter'
+        - name: KSQL_CONNECT_KEY_CONVERTER_SCHEMA_REGISTRY_URL
+          value: 'http://schema-registry-cp-schema-registry:8081'
+        - name: KSQL_CONNECT_VALUE_CONVERTER_SCHEMA_REGISTRY_URL
+          value: 'http://schema-registry-cp-schema-registry:8081'
+        - name: KSQL_SECURITY_PROTOCOL
+          value: SASL_SSL
+        - name: KSQL_SASL_MECHANISM
+          value: SCRAM-SHA-512
+        - name: KSQL_SASL_JAAS_CONFIG
+          value: org.apache.kafka.common.security.scram.ScramLoginModule required username="user-admin" password="ZmaDr35t96YkB56FLqUWB3GVhAHM9clP";
+        - name: KSQL_SSL_TRUSTSTORE_LOCATION
+          value: /ssl/truststore.jks
+        - name: KSQL_SSL_TRUSTSTORE_PASSWORD
+          value: DDSmNUrnSmc6
+        resources:
+          requests:
+            cpu: 500m
+            memory: 1500Mi
+          limits:
+            cpu: 1000m
+            memory: 3000Mi
+        volumeMounts:
+        - name: jks-files
+          mountPath: /ssl
+      volumes:
+       - name: jks-files
+         configMap:
+           name: kafka-jks-file

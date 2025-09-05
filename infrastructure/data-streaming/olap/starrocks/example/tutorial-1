@@ -1,0 +1,67 @@
+Inside FE container
+mysql -h 127.0.0.1 -P 9030 -uroot --prompt="StarRocks > "
+
+SHOW DATABASES;
+
+CREATE DATABASE IF NOT EXISTS sr_hub;
+
+SHOW DATABASES;
+
+USE sr_hub;
+
+SHOW TABLES;
+
+CREATE TABLE IF NOT EXISTS sr_member (
+    sr_id            INT,
+    name             STRING,
+    city_code        INT,
+    reg_date         DATE,
+    verified         BOOLEAN
+)
+PARTITION BY RANGE(reg_date)
+(
+    PARTITION p1 VALUES [('2022-03-13'), ('2022-03-14')),
+    PARTITION p2 VALUES [('2022-03-14'), ('2022-03-15')),
+    PARTITION p3 VALUES [('2022-03-15'), ('2022-03-16')),
+    PARTITION p4 VALUES [('2022-03-16'), ('2022-03-17')),
+    PARTITION p5 VALUES [('2022-03-17'), ('2022-03-18'))
+)
+DISTRIBUTED BY HASH(city_code);
+
+CREATE TABLE IF NOT EXISTS sr_member (
+    sr_id            INT,
+    name             STRING,
+    city_code        INT,
+    reg_date         DATE,
+    verified         BOOLEAN
+)
+PARTITION BY RANGE(reg_date)
+(
+    PARTITION p1 VALUES [('2022-03-13'), ('2022-03-14')),
+    PARTITION p2 VALUES [('2022-03-14'), ('2022-03-15')),
+    PARTITION p3 VALUES [('2022-03-15'), ('2022-03-16')),
+    PARTITION p4 VALUES [('2022-03-16'), ('2022-03-17')),
+    PARTITION p5 VALUES [('2022-03-17'), ('2022-03-18'))
+)
+DISTRIBUTED BY HASH(city_code)
+PROPERTIES (
+    "replication_num" = "1"
+);
+
+SHOW TABLES;
+
+SELECT * FROM information_schema.tables WHERE TABLE_NAME like 'sr_member'\G
+
+SELECT * FROM sr_member;
+
+INSERT INTO sr_member
+WITH LABEL insertDemo
+VALUES
+    (001,"tom",100000,"2022-03-13",true),
+    (002,"johndoe",210000,"2022-03-14",false),
+    (003,"maruko",200000,"2022-03-14",true),
+    (004,"ronaldo",100000,"2022-03-15",false),
+    (005,"pavlov",210000,"2022-03-16",false),
+    (006,"mohammed",300000,"2022-03-17",true);
+
+SELECT * FROM sr_member;

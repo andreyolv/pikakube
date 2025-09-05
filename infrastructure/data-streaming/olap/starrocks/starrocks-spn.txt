@@ -1,0 +1,187 @@
+mysql -h 127.0.0.1 -P 9030 -uroot --prompt="StarRocks > "
+
+SHOW DATABASES;
+
+CREATE DATABASE IF NOT EXISTS adls;
+
+SHOW DATABASES;
+
+USE adls;
+
+SHOW TABLES;
+
+CREATE TABLE table1
+   (
+       a int(11) COMMENT "user ID",
+       b int(11) COMMENT "user name",
+       c int(11) COMMENT "user score"
+   )
+       ENGINE=OLAP
+       PRIMARY KEY(a)
+       DISTRIBUTED BY HASH(a);
+
+SHOW TABLES;
+
+SELECT * FROM table1;
+
+LOAD LABEL table1
+(
+    DATA INFILE("abfss://xxxxxxx@rxxxxxxxx.dfs.core.windows.net/trino/teste.csv")
+    INTO TABLE table1
+    COLUMNS TERMINATED BY ";"
+    FORMAT AS "CSV"
+    (
+        skip_header = 1
+        trim_space = TRUE
+    )
+    (a, b, c)
+)
+WITH BROKER
+(
+    "azure.adls2.oauth2_client_id" = "xxxxxxxxxxx",
+    "azure.adls2.oauth2_client_secret" = "xxxxxxxxxxx",
+    "azure.adls2.oauth2_client_endpoint" = "https://login.microsoftonline.com/xxxxxxxxxxxx/oauth2/token"
+)
+PROPERTIES
+(
+    "timeout" = "3600"
+);
+
+SELECT * FROM information_schema.loads WHERE LABEL = 'table1'\G
+
+SELECT * FROM table1;
+
+--- PARQUET
+
+CREATE TABLE table2
+   (
+       Id int(11) COMMENT "user ID",
+       BaseId int(11) COMMENT "user name"
+   )
+       ENGINE=OLAP
+       PRIMARY KEY(Id)
+       DISTRIBUTED BY HASH(Id);
+
+LOAD LABEL table2
+(
+    DATA INFILE("abfss://xxxxxxx@xxxxxxx.dfs.core.windows.net/gac-producao/baseFeature/*.parquet")
+    INTO TABLE table2
+    FORMAT AS "PARQUET"
+    (Id, BaseId)
+)
+WITH BROKER
+(
+    "azure.adls2.oauth2_client_id" = "xxxxxxxxx",
+    "azure.adls2.oauth2_client_secret" = "xxxxxxxx",
+    "azure.adls2.oauth2_client_endpoint" = "https://login.microsoftonline.com/xxxxxxxxx/oauth2/token"
+)
+PROPERTIES
+(
+    "timeout" = "3600"
+);
+
+SELECT * FROM information_schema.loads WHERE LABEL = 'table2'\G
+
+SELECT * FROM table2 ORDER BY Id LIMIT 20;
+
+--- DELTA
+
+CREATE EXTERNAL CATALOG deltalake_catalog_hms
+PROPERTIES
+(
+    "type" = "deltalake",
+    "hive.metastore.type" = "hive",
+    "hive.metastore.uris" = "thrift://metastore.trino:9083",
+    "azure.adls2.oauth2_client_id" = "xxxxxxx",
+    "azure.adls2.oauth2_client_secret" = "xxxxxxxxx",
+    "azure.adls2.oauth2_client_endpoint" = "https://login.microsoftonline.com/xxxxxxxxxxx/oauth2/token"
+);
+
+SHOW CATALOGS;
+
+SET CATALOG deltalake_catalog_hms;
+
+SHOW DATABASES;
+
+USE poc;
+
+SHOW TABLES;
+
+CREATE EXTERNAL TABLE tableparquet
+   (
+       Id int(11) COMMENT "user ID",
+       BaseId int(11) COMMENT "user name"
+   )
+ENGINE=DELTALAKE
+PROPERTIES
+(
+    "path" = "abfss://xxxxxxx@xxxxxxxx.dfs.core.windows.net/gac-producao/baseFeature/*.parquet",
+    "format" = "PARQUET",
+    "azure.adls2.oauth2_client_id" = "xxxxxxxxxxxx",
+    "azure.adls2.oauth2_client_secret" = "xxxxxxxxxx",
+    "azure.adls2.oauth2_client_endpoint" = "https://login.microsoftonline.com/xxxxxxxx/oauth2/token"
+);
+
+LOAD LABEL table3
+(
+    DATA INFILE("abfss://xxxxxxx@xxxxxx.dfs.core.windows.net/gac-producao/baseFeature/*.parquet")
+    INTO TABLE table3
+    FORMAT AS "PARQUET"
+    (Id, BaseId)
+)
+WITH BROKER
+(
+    "azure.adls2.oauth2_client_id" = "xxxxxxxxx",
+    "azure.adls2.oauth2_client_secret" = "xxxxxxxxxx",
+    "azure.adls2.oauth2_client_endpoint" = "https://login.microsoftonline.com/xxxxxxx/oauth2/token"
+)
+PROPERTIES
+(
+    "timeout" = "3600"
+);
+
+--- TESTE DELTA
+
+CREATE TABLE deltak 
+(
+    Id int(11),
+    BaseId int(11),
+    SatBayIdId int(11),
+    PlatformTypeId int(11)
+)
+    ENGINE=OLAP
+    PRIMARY KEY(Id)
+    DISTRIBUTED BY HASH(Id);
+
+---
+SHOW CATALOGS;
+
+SET CATALOG default_catalog;
+
+SHOW CREATE CATALOG deltalake_catalog_hms;
+
+DESCRIBE deltalake_catalog_hms.poc.testedelta2;
+
+SHOW CREATE TABLE deltalake_catalog_hms.poc.testedelta2;
+
+DROP CATALOG deltalake_catalog_hms;
+
+SHOW DATABASES FROM default_catalog;
+
+SHOW DATABASES FROM deltalake_catalog_hms;
+
+USE default_catalog.adls;
+
+SHOW TABLES;
+
+USE deltalake_catalog_hms.poc;
+
+SHOW TABLES;
+
+CREATE DATABASE IF NOT EXISTS olap_db;
+
+USE default_catalog.olap_db;
+
+INSERT INTO default_catalog.olap_db.deltak SELECT * FROM deltalake_catalog_hms.poc.testedelta2;
+
+SELECT * FROM information_schema.loads\G

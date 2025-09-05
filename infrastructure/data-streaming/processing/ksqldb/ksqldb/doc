@@ -1,0 +1,20 @@
+Login CLI
+/bin/ksql http://localhost:8088
+
+SHOW TOPICS;
+SHOW ALL TOPICS;
+DEFINE <name> = <value>;
+SHOW VARIABLES;
+
+CREATE OR REPLACE STREAM poetry WITH (KAFKA_TOPIC='connect-cluster-scheduling-test-configs', VALUE_FORMAT='AVRO');
+SHOW STREAMS;
+DESCRIBE ksqldb_log;
+SELECT * FROM ksqldb_log EMIT CHANGES;
+DROP STREAM IF EXISTS ksqldb_log;
+
+
+CREATE OR REPLACE STREAM ksqldb_log_2 WITH (KAFKA_TOPIC='gac.dbo.log.ksqldb', VALUE_FORMAT='AVRO')
+AS
+SELECT ID, BASEID
+FROM ksqldb_log
+EMIT CHANGES;

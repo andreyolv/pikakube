@@ -1,0 +1,10 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: GitRepository
+metadata:
+  name: fluvio
+  namespace: flux-system
+spec:
+  interval: 24h
+  ref:
+    tag: v0.11.11
+  url: https://github.com/infinyon/fluvio.git

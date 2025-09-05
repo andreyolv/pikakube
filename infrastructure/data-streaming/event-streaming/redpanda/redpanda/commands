@@ -1,0 +1,13 @@
+rpk version
+ 
+rpk topic create my-topic --replicas 3 
+rpk topic list
+
+rpk topic describe my-topic
+rpk topic info my-topic
+rpk topic delete my-topic
+
+echo '{"name": "Red", "website": "vectorized.io"}' | rpk topic produce my-topic --key record-key -H header-key:header-value
+
+rpk topic consume my-topic
+

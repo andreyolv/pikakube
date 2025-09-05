@@ -1,0 +1,12 @@
+waxctl df deploy simple.py --name simples -n bytewax
+
+waxctl df list
+
+waxctl df rm --name simples --yes
+
+waxctl df deploy ./my-script.py \
+--name df-private \
+--image-repository registry.gitlab.com/someuser/somerepo \
+--image-tag bytewax-example \
+--image-pull-secret gitlab-credentials \
+--namespace private

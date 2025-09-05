@@ -1,0 +1,15 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: GitRepository
+metadata:
+  name: streampark
+  namespace: flux-system
+spec:
+  interval: 24h
+  ref:
+    tag: v2.1.5
+  url: https://github.com/apache/incubator-streampark.git
+  ignore: |
+    # exclude all
+    /*
+    # include deploy dir
+    !/helm/streampark

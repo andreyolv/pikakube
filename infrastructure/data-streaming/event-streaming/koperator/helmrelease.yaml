@@ -1,0 +1,16 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: kafka-operator
+  namespace: koperator
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: kafka-operator
+      sourceRef:
+        kind: HelmRepository
+        name: banzaicloud-stable
+        namespace: flux-system
+  values:
+  # https://github.com/banzaicloud/koperator/blob/master/charts/kafka-operator/values.yaml

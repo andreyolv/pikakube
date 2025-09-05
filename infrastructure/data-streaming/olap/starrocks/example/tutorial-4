@@ -1,0 +1,19 @@
+from pyspark.sql import SparkSession
+from pyspark.sql.types import *
+from pyspark.sql import functions as F
+from pyspark.sql import Window
+
+spark = (SparkSession.builder
+            .appName('StarRocks')
+            .config("spark.jars.packages", "starrocks-spark-connector-3.4_2.12-1.1.0")
+            .getOrCreate()
+        )
+
+df = (spark.read.format("starrocks")
+           .option("starrocks.table.identifier", "information_schema.be_configs")
+           .option("starrocks.fe.http.url", "starrockscluster-sample-fe-search.starrocks.svc.cluster.local:9030")
+           .option("starrocks.fe.jdbc.url", "jdbc:mysql://starrockscluster-sample-fe-search.starrocks.svc.cluster.local:9030")
+           .option("starrocks.user", "root")
+           .option("starrocks.password", "")
+           .load()
+     )

@@ -1,0 +1,28 @@
+apiVersion: doris.selectdb.com/v1
+kind: DorisCluster
+metadata:
+  name: doriscluster-sample
+  namespace: doris
+  labels:
+    app.kubernetes.io/name: doriscluster
+    app.kubernetes.io/instance: doriscluster-sample
+    app.kubernetes.io/part-of: doris-operator
+spec:
+  feSpec:
+    replicas: 3
+    limits:
+      cpu: 6
+      memory: 12Gi
+    requests:
+      cpu: 6
+      memory: 12Gi
+    image: selectdb/doris.fe-ubuntu:2.1.1
+  beSpec:
+    replicas: 3
+    limits:
+      cpu: 8
+      memory: 16Gi
+    requests:
+      cpu: 8
+      memory: 16Gi
+    image: selectdb/doris.be-ubuntu:2.1.1

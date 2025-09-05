@@ -1,0 +1,22 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: flink
+  namespace: flink
+spec:
+  dependsOn:
+  - name: cert-manager
+    namespace: cert-manager
+  interval: 5m
+  chart:
+    spec:
+      chart: flink-kubernetes-operator
+      sourceRef:
+        kind: HelmRepository
+        name: flink-operator-repo
+        namespace: flux-system
+  values:
+  # https://github.com/apache/flink-kubernetes-operator/blob/main/helm/flink-kubernetes-operator/values.yaml
+  # k port-forward pod-rest 8081
+
+    # watchNamespaces: 

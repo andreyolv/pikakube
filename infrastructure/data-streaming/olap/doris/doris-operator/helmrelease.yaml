@@ -1,0 +1,19 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: doris
+  namespace: doris
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: doris-operator
+      version: 1.5.1
+      sourceRef:
+        kind: HelmRepository
+        name: selectdb
+        namespace: flux-system
+  values:
+  # https://artifacthub.io/packages/helm/doris/doris-operator
+  # https://github.com/apache/doris-operator/blob/master/helm-charts/doris-operator/values.yaml
+    

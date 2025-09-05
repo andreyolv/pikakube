@@ -1,0 +1,23 @@
+apiVersion: cluster.redpanda.com/v1alpha1
+kind: Redpanda
+metadata:
+  name: redpanda
+  namespace: redpanda
+spec:
+  chartRef:
+    chartName: redpanda
+    chartVersion: 5.6.60
+    helmRepositoryName: redpanda
+  clusterSpec:
+    auth:
+      sasl:
+        enabled: true
+        mechanism: "SCRAM-SHA-512"
+        secretRef: "sasl-password-secret"
+        users:
+        - name: pikakube
+          password: pikakube
+          mechanism: SCRAM-SHA-512
+        - name: zezinho
+          password: zezinho
+          mechanism: SCRAM-SHA-512

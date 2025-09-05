@@ -1,0 +1,29 @@
+import json
+from bytewax.datafrom import Dataflow
+from bytewax.connectors.kafka import KafkaInput, KafkaOutput
+
+KAFKA_BROKER = "my-cluster-kafka-bootstrap.kafka:9092"
+REDPANDA_BROKER = 
+KAFKA_TOPIC_IN = "my-topic"
+KAFKA_TOPIC_OUT = "my-topic-out"
+
+flow = Dataflow()
+
+flow.input(
+    bytewax_inputs_input: "kafka_orders",
+    KafkaInput(brokers=KAFKA_BROKER, topics=[KAFKA_TOPIC])
+)
+
+def print_topic(msg):
+    return msg.upper()
+
+flow.map(print_topic)
+
+flow.output(
+    bytewax_outputs_Output: "kafka_out",
+    KafkaOutput(brokers=KAFKA_BROKER, topics=[KAFKA_TOPIC_OUT])
+)
+
+# security
+# https://bytewax.io/apidocs/bytewax.connectors/kafka
+# https://github.com/confluentinc/librdkafka/blob/master/CONFIGURATION.md

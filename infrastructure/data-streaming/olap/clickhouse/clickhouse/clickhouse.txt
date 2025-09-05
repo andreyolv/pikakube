@@ -1,0 +1,54 @@
+SELECT COUNT(*) FROM  s3(
+       'http://minio.minio.svc.cluster.local:9000',
+       'pikakube',
+       'pikakube',
+       'CSV'
+    )
+
+CREATE TABLE teste5(a String, b String, c String)
+ENGINE = S3(
+       'http://minio.minio.svc.cluster.local:9000/mlflow/subfolder/*.csv',
+       'pikakube',
+       'pikakube',
+       'CSV'
+)
+SETTINGS format_csv_delimiter=';',
+input_format_csv_skip_first_lines=1
+
+
+SELECT * FROM s3('minio.minio.svc.cluster.local:9000/mlflow/teste.csv', 'pikakube', 'pikakube', 'CSV')
+
+CREATE TABLE test_replicas (id UInt32, name String, age UInt32, money UInt32) ENGINE = MySQL(`http://mysql.trino.svc.cluster.local::3306`, 'mysql', 'db', 'root', 'root');
+
+SELECT * FROM mysql('mysql.trino.svc.cluster.local::3306', 'metastore_db', 'COLUMNS_V2', 'root', 'root');
+
+KAFKA
+CREATE TABLE kafka6(
+    kafka_key String,
+    kafka_message String
+) ENGINE = Kafka
+SETTINGS
+    kafka_broker_list = 'kafka-kafka-bootstrap.kafka:9092',
+    kafka_topic_list = 'teste',
+    kafka_group_name = 'clickhouse_consumer_group',
+    kafka_num_consumers = '1',
+    kafka_format = 'JSONEachRow';
+   
+CREATE MATERIALIZED VIEW kafka6_view
+ENGINE = Memory
+AS
+SELECT * FROM kafka6
+SETTINGS
+stream_like_engine_allow_direct_select = 1;
+
+SELECT * FROM kafka6_view;
+
+Code: 620. DB::Exception: Received from localhost:9000. DB::Exception: Direct select is not allowed. To enable use setting `stream_like_engine_allow_direct_select`. (QUERY_NOT_ALLOWED)
+Documentação super merda pra variar, como seta essa bosta?
+
+Alternativas ao Synapse
+Clickhouse
+Limitação com acesso apenas com account name e account key e não com SPN.
+Autenticação apenas LDAP.
+Testei query de CSV num MinIO(S3);
+Não testei com Azure, não testei parquet nem delta.

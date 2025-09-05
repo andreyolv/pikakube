@@ -1,0 +1,21 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: streampark
+  namespace: streampark
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: helm/streampark
+      sourceRef:
+        kind: GitRepository
+        name: streampark
+        namespace: flux-system
+  values:
+  # https://github.com/apache/incubator-streampark/blob/dev/helm/streampark/values.yaml
+    ingress:
+      enabled: false
+    service:
+      type: ClusterIP
+      name: streampark

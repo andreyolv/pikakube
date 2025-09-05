@@ -1,0 +1,90 @@
+# apiVersion: apps/v1
+# kind: Deployment
+# metadata:
+#   name: ksqldb-server
+#   namespace: kafka-strimzi
+#   labels:
+#     app: ksqldb-server
+#   annotations:
+#     reloader.stakater.com/auto: "true"
+# spec:
+#   replicas: 1
+#   selector:
+#     matchLabels:
+#       app: ksqldb-server
+#   template:
+#     metadata:
+#       labels:
+#         app: ksqldb-server
+#     spec:
+#       containers:
+#       - name: ksqldb-server
+#         image: confluentinc/ksqldb-server:0.22.0
+#         ports:
+#         - containerPort: 8088
+#         env:
+#         - name: KSQL_BOOTSTRAP_SERVERS
+#           value: SSL://kafka-mtolv-kafka-bootstrap.kafka-strimzi.svc.cluster.local:9093
+#         - name: KSQL_LISTENERS
+#           value: http://0.0.0.0:8088
+#         - name: KSQL_KSQL_LOGGING_PROCESSING_STREAM_AUTO_CREATE
+#           value: "true"
+#         - name: KSQL_KSQL_LOGGING_PROCESSING_TOPIC_AUTO_CREATE
+#           value: "true"
+#         - name: KSQL_KSQL_INTERNAL_TOPIC_REPLICAS
+#           value: "3"
+#         - name: KSQL_KSQL_SINK_REPLICAS
+#           value: "2"
+#         - name: KSQL_KSQL_STREAMS_REPLICATION_FACTOR
+#           value: "3"
+#         - name: KSQL_KSQL_LOGGING_PROCESSING_TOPIC_REPLICATION_FACTOR
+#           value: "3"
+#         - name: KSQL_KSQL_CONNECT_URL
+#           value: 'http://connect-cluster-gac-connect-api.kafka-strimzi.svc.cluster.local:8083'
+#         # Schema Registry
+#         - name: KSQL_KSQL_SCHEMA_REGISTRY_URL
+#           value: 'http://schema-registry-cp-schema-registry.kafka-strimzi.svc.cluster.local:8081'
+#         - name: KSQL_CONNECT_KEY_CONVERTER
+#           value: 'io.confluent.connect.avro.AvroConverter'
+#         - name: KSQL_CONNECT_VALUE_CONVERTER
+#           value: 'io.confluent.connect.avro.AvroConverter'
+#         - name: KSQL_CONNECT_KEY_CONVERTER_SCHEMA_REGISTRY_URL
+#           value: 'http://schema-registry-cp-schema-registry:8081'
+#         - name: KSQL_CONNECT_VALUE_CONVERTER_SCHEMA_REGISTRY_URL
+#           value: 'http://schema-registry-cp-schema-registry:8081'
+#         # SSL
+#         - name: KSQL_SECURITY_PROTOCOL
+#           value: SSL
+#         - name: KSQL_SSL_TRUSTSTORE_LOCATION
+#           value: /ssl/truststore.jks
+#         - name: KSQL_SSL_TRUSTSTORE_PASSWORD
+#           valueFrom:
+#            secretKeyRef:
+#              name: user-admin-jks-passwords
+#              key: TRUSTSTORE_PASSWORD
+#         - name: KSQL_SSL_KEYSTORE_LOCATION
+#           value: /ssl/user-admin-keystore.jks
+#         - name: KSQL_SSL_KEYSTORE_PASSWORD
+#           valueFrom:
+#            secretKeyRef:
+#              name: user-admin-jks-passwords
+#              key: KEYSTORE_PASSWORD 
+#         - name: KSQL_SSL_KEY_PASSWORD
+#           valueFrom:
+#            secretKeyRef:
+#              name: user-admin-jks-passwords
+#              key: KEYSTORE_PASSWORD
+#         resources:
+#           requests:
+#             cpu: "0.1"
+#             memory: 100Mi
+#           limits:
+#             cpu: "0.2"
+#             memory: 200Mi
+#         volumeMounts:
+#         - name: jks-files
+#           mountPath: /ssl
+#       volumes:
+#        - name: jks-files
+#          configMap:
+#            name: user-admin-jks-files

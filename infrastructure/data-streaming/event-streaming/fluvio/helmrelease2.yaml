@@ -1,0 +1,16 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: fluvio-app
+  namespace: fluvio
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: k8-util/helm/fluvio-app
+      sourceRef:
+        kind: GitRepository
+        name: fluvio
+        namespace: flux-system
+  values:
+  # https://github.com/infinyon/fluvio/blob/master/k8-util/helm/fluvio-sys/values.yaml

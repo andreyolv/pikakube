@@ -1,0 +1,24 @@
+apiVersion: cluster.redpanda.com/v1alpha1
+kind: Redpanda
+metadata:
+  name: redpanda
+  namespace: redpanda
+spec:
+  chartRef:
+    chartName: redpanda
+    chartVersion: 5.6.60
+    helmRepositoryName: redpanda
+  clusterSpec:
+    console:
+      # see the [Redpanda Console documentation](https://docs.redpanda.com/docs/reference/console/config/).
+      config:
+        kafka:
+          brokers:
+            - redpanda-0.redpanda.redpanda.svc.cluster.local.:9093
+          sasl:
+            enabled: false
+            username: datahub-user
+            mechanism: SCRAM-SHA-512
+          tls:
+            enabled: true
+            insecureSkipTlsVerify: true
