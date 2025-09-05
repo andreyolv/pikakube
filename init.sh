@@ -30,3 +30,21 @@ kubectl apply -f infrastructure/security/certificates/mkcert/mkcert-tls-secret.y
 echo "Basics manifests installed!"
 
 kubens flux-system
+
+kubectl wait fluxinstance pikakube --for=condition=Ready --timeout=5m
+
+kubectl wait kustomization flux-system --for=condition=Ready --timeout=5m
+
+kubectl wait kustomization nginx --for=condition=Ready --timeout=5m
+
+kubectl wait kustomization kyverno --for=condition=Ready --timeout=5m
+
+kubectl wait kustomization pikakube --for=condition=Ready --timeout=5m
+
+kubectl wait kustomization vault --for=condition=Ready --timeout=5m
+
+kubectl wait kustomization external-secrets --for=condition=Ready --timeout=5m
+
+kubectl wait kustomization prometheus --for=condition=Ready --timeout=5m
+
+kubectl wait kustomization grafana --for=condition=Ready --timeout=5m
