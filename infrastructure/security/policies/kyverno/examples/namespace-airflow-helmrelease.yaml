@@ -1,0 +1,33 @@
+apiVersion: kyverno.io/v1
+kind: ClusterPolicy
+metadata:
+  name: enforce-airflow-namespace-helmrelease
+spec:
+  rules:
+    - name: create-helmrelease-for-airflow-namespace
+      match:
+        any:
+          - resources:
+              kinds:
+                - Namespace
+      preconditions:
+        all:
+          - key: "{{request.object.metadata.labels.airflow}}"
+            operator: Equals
+            value: "true"
+      generate:
+        apiVersion: helm.toolkit.fluxcd.io/v2beta1
+        kind: HelmRelease
+        namespace: "{{request.object.metadata.name}}"
+        name: airflow-namespace-deps
+        synchronize: true
+        data:
+          spec:
+            interval: 5m
+            chart:
+              spec:
+                chart: './'
+                sourceRef:
+                  kind: GitRepository
+                  name: airflow-namespace-chart
+                  namespace: airflow

@@ -25,14 +25,4 @@ kubectl apply -f infrastructure/security/secrets/vault/vault-dev/configmap-real.
 kubectl create ns ingress-nginx
 kubectl apply -f infrastructure/security/certificates/mkcert/mkcert-tls-secret.yaml
 
-#echo "Installing Flux..."
-#flux bootstrap github \
-#  --token-auth \
-#  --owner=$GITHUB_USER \
-#  --repository=$GITHUB_REPOSITORY \
-#  --branch=main \
-#  --path=clusters/dev \
-#  --components-extra=image-reflector-controller,image-automation-controller \
-#  --read-write-key=true
-
 echo "Flux installed!"

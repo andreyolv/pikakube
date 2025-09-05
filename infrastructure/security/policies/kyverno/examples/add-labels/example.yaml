@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: teste
+  namespace: teste
+data:
+  DATABASE_URL: "jdbc:mysql://example.com:3306/mydatabase"
+  API_KEY: "your_api_key_here"
+  LOG_LEVEL: "info"

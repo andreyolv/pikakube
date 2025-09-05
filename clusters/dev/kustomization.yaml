@@ -7,8 +7,8 @@ resources:
   #- kustomization/cert-manager.yaml
   - kustomization/nginx.yaml
   - kustomization/pikakube.yaml
-  #- kustomization/vault.yaml
-  #- kustomization/external-secrets.yaml
+  - kustomization/vault.yaml
+  - kustomization/external-secrets.yaml
   #- kustomization/kyverno.yaml
   #- kustomization/prometheus.yaml
   #- kustomization/grafana.yaml

@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: kyverno
+  namespace: kyverno
+data:
+  # resource types to be skipped by Kyverno
+  resourceFilters: '[*/*,kyverno,*] [Event,*,*] [*/*,kube-system,*] [*/*,kube-public,*]
+    [*/*,kube-node-lease,*] [Node,*,*] [Node/*,*,*] <snip>'

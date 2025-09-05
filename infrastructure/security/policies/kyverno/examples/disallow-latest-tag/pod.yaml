@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: ubuntu-pod
+  namespace: teste
+spec:
+  containers:
+  - name: ubuntu-container
+    image: ubuntu:latest
+    command: ["sleep", "3600"]

@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: foo
+  namespace: foobar
+  labels:
+    cleanup.kyverno.io/ttl: 2m
+spec:
+  containers:
+  - name: foo
+    image: busybox:1.35
+    args:
+    - sleep
+    - 1d
