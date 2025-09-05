@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: schema-registry-ui
+spec:
+  selector:
+    matchLabels:
+      app: schema-registry-ui 
+  template:
+    metadata:
+      labels:
+        app: schema-registry-ui
+    spec:
+      containers:
+      - image: landoop/schema-registry-ui
+        imagePullPolicy: Always
+        name: schema-registry-ui
+        ports:
+        - containerPort: 8000
+          name: ui
+        env:
+        # the url for the schema registry service
+        - name: SCHEMAREGISTRY_URL
+          value: "http://schema-registry-url:port"

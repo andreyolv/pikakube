@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: schema-registry-ui
+  labels:
+    app: schema-registry-ui
+spec:
+  type: ClusterIP
+  selector:
+    app: schema-registry-ui
+  ports:
+  - protocol: TCP
+    port: 8000
+    targetPort: 8000

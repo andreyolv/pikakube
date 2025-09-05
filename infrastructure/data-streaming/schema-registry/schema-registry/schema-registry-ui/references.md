@@ -1,0 +1,1 @@
+https://github.com/lensesio/schema-registry-ui

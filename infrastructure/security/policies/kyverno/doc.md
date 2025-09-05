@@ -4,7 +4,7 @@ https://github.com/kyverno/policies
 https://kyverno.io/policies/other/require-base-image/require-base-image/
 https://kyverno.io/docs/writing-policies/mutate/
 https://kyverno.io/docs/writing-policies/validate/#global-anchor
-spot igual raizen
+spot igual 
 +(cluster-autoscaler.kubernetes.io/safe-to-evict): true
 
 allowed repositories

@@ -1,0 +1,42 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: kubewarden
+  namespace: kubewarden
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: kubewarden-crds
+      version: 1.4.4
+      sourceRef:
+        kind: HelmRepository
+        name: kubewarden
+        namespace: flux-system
+  upgrade:
+    crds: CreateReplace
+  values:
+  # https://artifacthub.io/packages/helm/kubewarden/kubewarden-crds
+  # https://github.com/kubewarden/helm-charts/blob/main/charts/kubewarden-crds/values.yaml
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: kubewarden
+  namespace: kubewarden
+spec:
+  dependsOn:
+  - name: kubewarden-crds
+    namespace: kubewarden
+  interval: 5m
+  chart:
+    spec:
+      chart: kubewarden-controller
+      version: 2.0.5
+      sourceRef:
+        kind: HelmRepository
+        name: kubewarden
+        namespace: flux-system
+  values:
+  # https://artifacthub.io/packages/helm/kubewarden/kubewarden-controller
+  # https://github.com/kubewarden/helm-charts/blob/main/charts/kubewarden-controller/values.yaml

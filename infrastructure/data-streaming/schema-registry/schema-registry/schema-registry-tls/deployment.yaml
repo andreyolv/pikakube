@@ -1,0 +1,139 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: schema-registry-cp-schema-registry2
+  namespace: kafka-strimzi
+  annotations:
+    reloader.stakater.com/auto: "true"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: schema-registry-cp-schema-registry2
+  template:
+    metadata:
+      labels:
+        app: schema-registry-cp-schema-registry2
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "5556"
+        cluster-autoscaler.kubernetes.io/safe-to-evict: "true"
+    spec:
+      imagePullSecrets:
+      - name: acr-secret
+      containers:
+      - name: schema-registry-cp-schema-registry2
+        image: mtolv.azurecr.io/dataops/cp-schema-registry:7.2.1
+        ports:
+        - name: schema-registry
+          containerPort: 8081
+          protocol: TCP
+        - name: jmx
+          containerPort: 5555
+        env:
+        # Kafka TLS
+        - name: SCHEMA_REGISTRY_KAFKASTORE_BOOTSTRAP_SERVERS
+          value: SSL://kafka-mtolv-kafka-bootstrap:9093
+        - name: SCHEMA_REGISTRY_KAFKASTORE_SECURITY_PROTOCOL
+          value: SSL
+        - name: SCHEMA_REGISTRY_KAFKASTORE_SSL_TRUSTSTORE_LOCATION
+          value: /ssl/truststore.jks
+        - name: SCHEMA_REGISTRY_KAFKASTORE_SSL_TRUSTSTORE_PASSWORD
+          valueFrom:
+           secretKeyRef:
+             name: user-schema-registry-jks-passwords
+             key: TRUSTSTORE_PASSWORD
+        - name: SCHEMA_REGISTRY_KAFKASTORE_SSL_KEYSTORE_LOCATION
+          value: /ssl/user-schema-registry-keystore.jks
+        - name: SCHEMA_REGISTRY_KAFKASTORE_SSL_KEYSTORE_PASSWORD
+          valueFrom:
+           secretKeyRef:
+             name: user-schema-registry-jks-passwords
+             key: KEYSTORE_PASSWORD
+        - name: SCHEMA_REGISTRY_KAFKASTORE_SSL_KEY_PASSWORD
+          valueFrom:
+           secretKeyRef:
+             name: user-schema-registry-jks-passwords
+             key: KEYSTORE_PASSWORD
+        - name: SCHEMA_REGISTRY_HOST_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: status.podIP
+        - name: SCHEMA_REGISTRY_LISTENERS
+          value: http://0.0.0.0:8081
+
+        # Schema Registry TLS  
+        #- name: SCHEMA_REGISTRY_INTER_INSTANCE_PROTOCOL
+        #  value: https
+        #- name: SCHEMA_REGISTRY_LISTENERS
+        #  value: https://0.0.0.0:8081
+        #- name: SCHEMA_REGISTRY_SSL_TRUSTSTORE_LOCATION
+        #  value: /ssl/truststore.jks
+        #- name: SCHEMA_REGISTRY_SSL_TRUSTSTORE_PASSWORD
+        #  valueFrom:
+        #   secretKeyRef:
+        #     name: user-schema-registry-jks-passwords
+        #     key: TRUSTSTORE_PASSWORD
+        #- name: SCHEMA_REGISTRY_SSL_KEYSTORE_LOCATION
+        #  value: /ssl/user-schema-registry-keystore.jks
+        #- name: SCHEMA_REGISTRY_SSL_KEYSTORE_PASSWORD
+        #  valueFrom:
+        #   secretKeyRef:
+        #     name: user-schema-registry-jks-passwords
+        #     key: KEYSTORE_PASSWORD
+        #- name: SCHEMA_REGISTRY_SSL_KEY_PASSWORD
+        #  valueFrom:
+        #   secretKeyRef:
+        #     name: user-schema-registry-jks-passwords
+        #     key: KEYSTORE_PASSWORD
+
+        # Others configs
+        - name: SCHEMA_REGISTRY_LOG4J_ROOT_LOGLEVEL
+          value: INFO
+        - name: SCHEMA_REGISTRY_KAFKASTORE_TOPIC
+          value: _schemas2
+        - name: SCHEMA_REGISTRY_HEAP_OPTS
+          value: "-Xms512M -Xmx512M"
+        - name: JMX_PORT
+          value: "5555"
+        resources:
+          requests:
+            cpu: "0.1"
+            memory: 300Mi
+          limits:
+            cpu: "0.5"
+            memory: 1000Mi
+        volumeMounts:
+        - name: jks-files
+          mountPath: /ssl
+      - name: prometheus-jmx-exporter
+        image: mtolv.azurecr.io/dataops/kafka-prometheus-jmx-exporter
+        command:
+        - java
+        - -XX:+UnlockExperimentalVMOptions
+        - -XX:+UseContainerSupport
+        - -XX:MaxRAMFraction=1
+        - -XshowSettings:vm
+        - -jar
+        - jmx_prometheus_httpserver.jar
+        - "5556"
+        - /etc/jmx-schema-registry/jmx-schema-registry-prometheus.yml
+        ports:
+        - containerPort: 5556
+        resources:
+          requests:
+            cpu: "0.1"
+            memory: 300Mi
+          limits:
+            cpu: "0.5"
+            memory: 1000Mi
+        volumeMounts:
+        - name: jmx-config
+          mountPath: /etc/jmx-schema-registry
+      volumes:
+      - name: jks-files
+        configMap:
+          name: user-schema-registry-jks-files
+      - name: jmx-config
+        configMap:
+          name: schema-registry-jmx-configmap2

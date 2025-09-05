@@ -1,0 +1,19 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: conduktor
+  namespace: conduktor
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: console
+      version: 1.13.0
+      sourceRef:
+        kind: HelmRepository
+        name: conduktor
+        namespace: flux-system
+  values:
+  # https://github.com/conduktor/conduktor-public-charts/blob/main/charts/console/values.yaml
+
+  https://docs.conduktor.io/platform/get-started/installation/get-started/kubernetes/

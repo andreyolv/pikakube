@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: schema-registry-cp-schema-registry
+  namespace: kafka-strimzi
+spec:
+  selector:
+    app: schema-registry-cp-schema-registry
+  ports:
+  - name: https
+    protocol: TCP
+    port: 8081

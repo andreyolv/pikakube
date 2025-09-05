@@ -1,0 +1,10 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: GitRepository
+metadata:
+  name: confluent
+  namespace: flux-system
+spec:
+  interval: 24h
+  ref:
+    branch: master
+  url: https://github.com/confluentinc/cp-helm-charts.git

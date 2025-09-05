@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: flask-flux
+  namespace: gatekeeper
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: flask-flux
+  template:
+    metadata:
+      labels:
+        app: flask-flux
+    spec:
+      containers:
+      - name: flask-flux
+        image: andreyolv/flask-kaniko-git
+        # andreyolv/flask-flux:main-fa9248372d39ffc46637091398b4808136f56709-2023-07-30T01-50-21Z # {"$imagepolicy": "flux-system:flask-flux"}
+        resources:
+          requests:
+            cpu: "100m"
+            memory: "256Mi"
+          limits:
+            cpu: "100m"
+            memory: "256Mi"
+        imagePullPolicy: Always

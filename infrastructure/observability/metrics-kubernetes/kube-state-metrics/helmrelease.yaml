@@ -18,7 +18,7 @@ spec:
   # https://github.com/prometheus-community/helm-charts/blob/main/charts/kube-state-metrics/values.yaml
     rbac: 
       extraRules:
-      - apiGroups: [ "raizen.com" ]
+      - apiGroups: [ "pikakube.com" ]
         resources: [ "*" ]
         verbs: ["list","watch"]
     customResourceState:
@@ -28,7 +28,7 @@ spec:
         spec:
           resources:
           - groupVersionKind:
-              group: raizen.com
+              group: pikakube.com
               version: "v1alpha1"
               kind: "*"
             metricNamePrefix: crossplane_compositeresources

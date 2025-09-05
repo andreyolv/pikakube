@@ -1,0 +1,17 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: memphis
+  namespace: memphis
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: memphis
+      version: 1.4.3
+      sourceRef:
+        kind: HelmRepository
+        name: memphis
+        namespace: flux-system
+  values:
+  # https://artifacthub.io/packages/helm/memphis/memphis

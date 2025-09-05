@@ -1,0 +1,27 @@
+# apiVersion: platform.confluent.io/v1beta1
+# metadata:
+#   name: andrey-connector
+#   namespace: confluent-platform
+# kind: Connector
+# spec:
+#   name: andrey-connector
+#   taskMax: 1
+#   class: io.debezium.connector.sqlserver.SqlServerConnector
+#   configs:
+#     topic.prefix: "sqlserver"
+#     topic.creation.enable : "true"
+#     database.names: "GAC"
+#     database.hostname: "${file:/mnt/secrets/andrey-secrets/host}"
+#     database.port: "${file:/mnt/secrets/andrey-secrets/port}"
+#     database.user: "${file:/mnt/secrets/andrey-secrets/user}"
+#     database.password: "${file:/mnt/secrets/andrey-secrets/password}"
+#     database.encrypt: "false"
+#     topic.creation.default.partitions: "3"
+#     schema.history.internal.kafka.bootstrap.servers: "kafka:9092"
+#     schema.history.internal.kafka.topic: "sqlserver-history"
+#     topic.creation.default.replication.factor: "1"
+#   restartPolicy:
+#     type: OnFailure
+#     maxRetry: 10
+#   connectClusterRef:
+#     name: connect
