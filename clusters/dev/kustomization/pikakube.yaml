@@ -4,6 +4,8 @@ metadata:
   name: pikakube
   namespace: flux-system
 spec:
+  dependsOn:
+  - name: nginx
   interval: 5m
   path: ./infrastructure/platform-engineering/kubernetes/dashboard-ingress/forecastle
   prune: false

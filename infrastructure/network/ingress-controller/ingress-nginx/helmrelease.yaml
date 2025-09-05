@@ -35,9 +35,9 @@ spec:
         #annotations:
         #  metallb.universe.tf/loadBalancerIPs: 172.18.0.2
         type: NodePort
-        #nodePorts:
-        #  http: 30080
-        #  https: 30443
+        nodePorts:
+          http: 30080
+          https: 30443
       watchIngressWithoutClass: true
       nodeSelector:
         agentpool: system
