@@ -40,7 +40,7 @@ spec:
         #  https: 30443
       watchIngressWithoutClass: true
       nodeSelector:
-        agentpool: sysephem
+        agentpool: system
       tolerations:
       - effect: "NoSchedule"
         key: "agentpool"
