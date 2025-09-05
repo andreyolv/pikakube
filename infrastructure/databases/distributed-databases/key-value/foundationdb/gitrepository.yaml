@@ -1,0 +1,15 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: GitRepository
+metadata:
+  name: foundationdb
+  namespace: flux-system
+spec:
+  interval: 24h
+  ref:
+    tag: v1.52.0
+  url: https://github.com/FoundationDB/fdb-kubernetes-operator.git
+  ignore: |
+    # exclude all
+    /*
+    # include deploy dir
+    !/charts/fdb-operator

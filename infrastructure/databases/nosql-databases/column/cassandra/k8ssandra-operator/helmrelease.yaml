@@ -1,0 +1,18 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: k8ssandra-operator
+  namespace: k8ssandra-operator
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: k8ssandra-operator
+      version: 1.14.0
+      sourceRef:
+        kind: HelmRepository
+        name: k8ssandra
+        namespace: flux-system
+  values:
+  # https://artifacthub.io/packages/helm/k8ssandra/k8ssandra-operator
+  # https://github.com/k8ssandra/k8ssandra-operator/blob/main/charts/k8ssandra-operator/values.yaml

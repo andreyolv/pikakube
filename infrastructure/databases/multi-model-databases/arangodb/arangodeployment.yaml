@@ -1,0 +1,8 @@
+apiVersion: database.arangodb.com/v1
+kind: ArangoDeployment
+metadata:
+  name: example-simple-single
+  namespace: arangodb
+spec:
+  mode: Single
+  image: arangodb/arangodb:3.10.8

@@ -1,0 +1,39 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: neo4j
+  namespace: neo4j
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: neo4j
+      version: 5.7.0
+      sourceRef:
+        kind: HelmRepository
+        name: neo4j
+        namespace: flux-system
+  values:
+  # https://artifacthub.io/packages/helm/neo4j-helm-charts/neo4j
+  # https://github.com/neo4j/helm-charts/blob/dev/neo4j/values.yaml
+  # user: neo4j
+    neo4j:
+      name: kind-platform-k8s
+      password: andreyolv
+    volumes:
+      data:
+        mode: defaultStorageClass
+    services:
+      neo4j:
+        spec:
+          type: ClusterIP
+    # https://medium.com/@akashjoffical08/unlocking-the-power-of-graph-databases-a-guide-to-exposing-neo4j-on-browsers-c71dae6b8d15
+    # precisa criar certificado para não dar erro na login na UI
+    ssl:
+      bolt:
+        privateKey:
+          secretName: neo4j-tls
+          subPath: tls.key
+        publicCertificate:
+          secretName: neo4j-tls
+          subPath: tls.crt

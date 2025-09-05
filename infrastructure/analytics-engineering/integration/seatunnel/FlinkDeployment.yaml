@@ -1,0 +1,41 @@
+apiVersion: flink.apache.org/v1beta1
+kind: FlinkDeployment
+metadata:
+  name: seatunnel-flink-streaming-example
+  namespace: seatunnel
+spec:
+  image: seatunnel:2.3.0-flink-1.13
+  flinkVersion: v1_13
+  flinkConfiguration:
+    taskmanager.numberOfTaskSlots: "2"
+  serviceAccount: flink
+  jobManager:
+    replicas: 1
+    resource:
+      memory: "1024m"
+      cpu: 1
+  taskManager:
+    resource:
+      memory: "1024m"
+      cpu: 1
+  podTemplate:
+    spec:
+      containers:
+        - name: flink-main-container
+          volumeMounts:
+            - name: seatunnel-config
+              mountPath: /data/seatunnel.streaming.conf
+              subPath: seatunnel.streaming.conf
+      volumes:
+        - name: seatunnel-config
+          configMap:
+            name: seatunnel-config
+            items:
+            - key: seatunnel.streaming.conf
+              path: seatunnel.streaming.conf
+  job:
+    jarURI: local:///opt/seatunnel/starter/seatunnel-flink-starter.jar
+    entryClass: org.apache.seatunnel.core.starter.flink.SeatunnelFlink
+    args: ["--config", "/data/seatunnel.streaming.conf"]
+    parallelism: 2
+    upgradeMode: stateless

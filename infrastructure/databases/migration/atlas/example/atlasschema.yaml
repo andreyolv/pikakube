@@ -1,0 +1,16 @@
+apiVersion: db.atlasgo.io/v1alpha1
+kind: AtlasSchema
+metadata:
+  name: atlasschema-pg
+  namespace: atlas
+spec:
+  urlFrom:
+    secretKeyRef:
+      key: url
+      name: postgres-credentials
+  schema:
+    sql: |
+      create table t1 (
+        id int,
+        name text -- new column we're adding
+      );

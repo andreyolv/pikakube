@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jupyter-notebook
+  namespace: jupyter
+  labels:
+    app: jupyter-spark
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: jupyter-spark
+  template:
+    metadata:
+      labels:
+        app: jupyter-spark
+    spec:
+      containers:
+      - name: jupyter-spark
+        image: jupyter/all-spark-notebook:spark-3.3.0
+        ports:
+        - containerPort: 8888
+        # volumeMounts:
+        # - name: jupyter-notebooks
+        #   mountPath: /home/jovyan/notebooks
+        #   readOnly: false
+        resources:
+          requests:
+            cpu: 1000m
+            memory: 2000Mi
+          limits:
+            cpu: 2000m
+            memory: 4000Mi
+      # - name: jupyter-go
+      #   image: yunabe/lgo
+      #   ports:
+      #   - containerPort: 8889
+      #   resources:
+      #     requests:
+      #       cpu: 500m
+      #       memory: 1500Mi
+      #     limits:
+      #       cpu: 1000m
+      #       memory: 3000Mi
+      # volumes:
+      # - name: jupyter-notebooks
+      #   hostPath:
+      #     path: /notebooks

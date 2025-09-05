@@ -1,0 +1,15 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: cloudbeaver
+  namespace: cloudbeaver
+  labels:
+    app: cloudbeaver
+spec:
+  ports:
+    - name: web
+      protocol: TCP
+      port: 80
+      targetPort: web
+  selector:
+    app: cloudbeaver

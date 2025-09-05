@@ -1,0 +1,69 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: jupyterhub
+  namespace: jupyterhub
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: jupyterhub
+      version: 4.0.0
+      sourceRef:
+        kind: HelmRepository
+        name: jupyterhub
+        namespace: flux-system
+  values:
+  # https://artifacthub.io/packages/helm/jupyterhub/jupyterhub
+  # https://github.com/jupyterhub/zero-to-jupyterhub-k8s/blob/main/jupyterhub/values.yaml
+    hub:
+      readinessProbe:
+        initialDelaySeconds: 60
+      config:
+        Authenticator:
+          admin_users:
+            - admin1
+            - admin2
+          allowed_users:
+            - user1
+            - user2
+        DummyAuthenticator:
+          password: pikakube
+        #GitHubOAuthenticator:
+        #  client_id: your-client-id
+        #  client_secret: your-client-secret
+        #  oauth_callback_url: https://your-jupyterhub-domain/hub/oauth_callback
+        #  allowed_organizations:
+        #  - my-github-organization:my-team
+        JupyterHub:
+          authenticator_class: dummy
+    proxy:
+      service:
+        type: ClusterIP
+    singleuser:
+      cloudMetadata:
+        blockWithIptables: false
+      storage: 
+        capacity: 1Gi
+      # Defines the default image
+      image:
+        name: jupyter/minimal-notebook
+        tag: 2343e33dec46
+      profileList:
+        - display_name: "Minimal environment"
+          description: "To avoid too much bells and whistles: Python."
+          default: true
+        - display_name: "Datascience environment"
+          description: "If you want the additional bells and whistles: Python, R, and Julia."
+          kubespawner_override:
+            image: jupyter/datascience-notebook:2343e33dec46
+        - display_name: "Spark environment"
+          description: "The Jupyter Stacks spark image!"
+          kubespawner_override:
+            image: jupyter/all-spark-notebook:2343e33dec46
+      cpu:
+        limit: 8
+        guarantee: 1
+      memory:
+        limit: 32Gi
+        guarantee: 1Gi

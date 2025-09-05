@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mongo
+  namespace: mongo
+spec:
+  selector:
+    matchLabels:
+      name: mongo
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        name: mongo
+    spec:
+      containers:
+        - name: mongo
+          image: mongo:latest
+          args:
+            - --bind_ip
+            - 0.0.0.0
+          resources:
+            requests:
+              cpu: 100m
+              memory: 100Mi
+          volumeMounts:
+          - name: mongo-disk
+            mountPath: /data/db
+          ports:
+            - containerPort: 27017
+      volumes:
+        - name: mongo-disk
+          persistentVolumeClaim:
+            claimName: mongo-disk

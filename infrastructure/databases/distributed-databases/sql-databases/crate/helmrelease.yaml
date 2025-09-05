@@ -1,0 +1,20 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: crate-operator
+  namespace: crate
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: crate-operator
+      version: 2.42.0
+      sourceRef:
+        kind: HelmRepository
+        name: crate-operator
+        namespace: flux-system
+  values:
+  # https://github.com/crate/crate-operator/blob/master/deploy/charts/crate-operator/values.yaml
+    env:
+      CRATEDB_OPERATOR_DEBUG_VOLUME_SIZE: 2GiB
+      CRATEDB_OPERATOR_DEBUG_VOLUME_STORAGE_CLASS: standard

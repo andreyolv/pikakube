@@ -1,0 +1,22 @@
+{
+    "name": "TESTE ANDREY",
+
+    //"image": "mcr.microsoft.com/devcontainers/typescript-node:0-18"
+
+    //"build": { "dockerfile": "flask/Dockerfile" },
+
+    "dockerComposeFile": "docker-compose.yaml",
+    "service": "flask-app",
+    "workspaceFolder": "/app",
+
+    "customizations": {
+      "vscode": {
+        "extensions": ["dbaeumer.vscode-eslint"]
+      }
+    },
+  
+    "forwardPorts": [5000],
+
+    "postCreateCommand": "bin/sh sleep 100000"
+
+  }

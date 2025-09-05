@@ -1,0 +1,19 @@
+apiVersion: skaffold/v4beta5
+kind: Config
+metadata:
+  name: skaffold
+build:
+  artifacts:
+  - image: andreyolv/flask-skaffold
+    context: docker
+    docker:
+      dockerfile: Dockerfile
+manifests:
+  rawYaml:
+    - kubernetes/*.yaml
+portForward:
+- resourceType: service
+  resourceName: flask-skaffold
+  namespace: flask
+  port: 5000
+  localPort: 8090

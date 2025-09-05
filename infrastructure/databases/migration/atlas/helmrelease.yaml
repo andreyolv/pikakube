@@ -1,0 +1,13 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: atlas-operator
+  namespace: atlas
+spec:
+  interval: 5m
+  chartRef:
+    kind: OCIRepository
+    name: atlas-operator
+    namespace: flux-system
+  values:
+  # https://github.com/ariga/atlas-operator/blob/master/charts/atlas-operator/values.yaml

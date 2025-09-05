@@ -1,0 +1,18 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: mongo-express
+  namespace: mongodb
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: mongo-express
+      version: 6.5.2
+      sourceRef:
+        kind: HelmRepository
+        name: cowboysysop
+        namespace: flux-system
+  values:
+  # https://artifacthub.io/packages/helm/cowboysysop/mongo-express
+  # https://github.com/cowboysysop/charts/blob/master/charts/mongo-express/values.yaml

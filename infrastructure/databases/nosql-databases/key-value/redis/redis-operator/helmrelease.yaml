@@ -1,0 +1,20 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: redis-operator
+  namespace: redis
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: redis-operator
+      version: 0.20.0
+      sourceRef:
+        kind: HelmRepository
+        name: ot-helm
+        namespace: flux-system
+  values:
+  # https://artifacthub.io/packages/helm/ot-container-kit/redis-operator
+  # https://github.com/OT-CONTAINER-KIT/redis-operator/blob/main/charts/redis-operator/values.yaml
+
+    

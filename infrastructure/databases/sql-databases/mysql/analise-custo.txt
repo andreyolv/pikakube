@@ -1,0 +1,142 @@
+# Relatório de Análise de Custos e Dimensionamento - RDS MySQL
+
+## 1. Objetivo
+O objetivo deste relatório é avaliar a utilização e os custos associados ao RDS MySQL em execução, identificando oportunidades de otimização de recursos e redução de custos, sem comprometer a disponibilidade e a performance do ambiente.
+
+---
+
+## 2. Análise Genérica Inicial
+Antes de analisar o ambiente específico, estes são os principais pontos que devem ser avaliados em qualquer auditoria de RDS MySQL:
+
+### 2.1 Dimensionamento da instância
+- Verificar CPU, memória e conexões ativas em relação à classe de instância.
+- Identificar sobreprovisionamento (CPU <20%, memória livre constante).
+- Avaliar possibilidade de migrar para instâncias Graviton (melhor custo/benefício).
+
+### 2.2 Armazenamento
+- Comparar tamanho provisionado vs. utilizado.
+- Validar tipo de storage (gp2, gp3, io1/io2) e custos.
+- Considerar migração para gp3 em busca de economia.
+
+### 2.3 Multi-AZ
+- Multi-AZ dobra custo da instância.
+- Confirmar necessidade real de alta disponibilidade cross-AZ.
+- Se não crítico → considerar Single-AZ.
+
+### 2.4 Backups e snapshots
+- Checar período de retenção dos backups automáticos.
+- Deletar snapshots manuais antigos ou esquecidos.
+
+### 2.5 Read Replicas
+- Validar se existem réplicas de leitura em uso.
+- Cada réplica representa outro custo integral.
+
+### 2.6 Uso do banco
+- Confirmar se o banco é utilizado 24x7.
+- Se não:
+  - Avaliar Aurora Serverless v2 (auto-scaling).  
+  - Considerar agendamento para desligar/ligar via Systems Manager.
+
+### 2.7 Versão do MySQL
+- Atualizações podem permitir instâncias menores, storage gp3 e otimizações.
+
+---
+
+## 3. Análise do Ambiente Específico
+Com base nas informações coletadas no Billing e nas métricas do CloudWatch:
+
+### 3.1 Dimensionamento da instância
+- Tipo atual: db.m5.2xlarge (8 vCPUs, 32 GiB RAM, ~2600 conexões suportadas).
+- Métricas:
+  - CPU Utilization: média baixa (<10%), com picos momentâneos de ~30%.
+  - Memória livre: consistente em ~4 GiB disponíveis.
+  - Database connections: ~70–100 conexões ativas, bem abaixo do limite.
+  - Swap usage: quase constante em ~250 MB (indica leve pressão de memória, mas não crítica).
+
+### 3.2 Armazenamento
+- Provisionado: ~1,8 TB.
+- Livre: ~1,2 TB (subutilização evidente).
+- IOPS: picos de até ~2.500 (curtos), mas na maior parte do tempo baixo.
+- Latência média: <1 ms, dentro do esperado.
+
+### 3.3 Replicação e disponibilidade
+- Multi-AZ habilitado, duplicando custos de storage e instância.
+
+### 3.4 Backups e snapshots
+- Identificada grande quantidade de snapshots antigos, contribuindo para custos elevados de backup storage excedente.
+
+### 3.5 Read Replicas
+- Não identificada read replicas.
+
+### 3.6 Padrão de uso
+- Métricas indicam picos concentrados em horários específicos, com longos períodos de subutilização.
+
+### 3.7 Versão do MySQL
+- O ambiente está em versão desatualizada do MySQL.
+- Atualizações de versão podem trazer melhorias de performance, estabilidade e compatibilidade com tipos de instâncias mais modernas e baratas (ex: Graviton).
+
+---
+
+## 4. Recomendações
+Com base na análise acima, seguem recomendações práticas com estimativa de impacto em custos:
+
+### 4.1 Redimensionamento da instância
+- Ação: Considerar reduzir para uma instância menor da mesma família (db.m5.xlarge ou db.m5.large) ou migrar para Graviton (db.m6g.x.large/2xlarge)
+- Risco / Impacto: Possível impacto em performance se workloads aumentarem inesperadamente; downtime mínimo durante troca de instância (~1–2 minutos)
+- Janela de manutenção: Recomendado agendar durante período de menor uso, para garantir que a troca não afete operações críticas
+- Potencial de economia: 25–40% do custo total mensal
+
+janela manutenção
+cdc log quando muda ->
+
+### Connections 
+
+### 4.2 Otimização de armazenamento
+- Ação: Reduzir volume provisionado (ex: 600 GB) e avaliar GP3 sem provisionamento excessivo
+- Risco / Impacto: Redução de armazenamento pode falhar se houver crescimento inesperado; possível impacto em I/O se reduzir demasiado
+- Janela de manutenção: Pode ser realizada online, mas é recomendado validar snapshot antes de reduzir volume
+- Potencial de economia: 10–15% do custo total mensal
+
+janela manutenção 
+mudar disco via dump e migração apenas
+
+### 4.3 Revisão de backups e snapshots
+- Ação: Apagar snapshots antigos; estabelecer política de retenção de 30 dias
+- Risco / Impacto: Perda de dados históricos se snapshots críticos forem apagados inadvertidamente
+- Janela de manutenção: Não necessária, mas recomenda-se comunicação com time responsável
+- Potencial de economia: 10–20% do custo total mensal
+
+### 4.4 Multi-AZ
+- Ação: Avaliar operar em Single-AZ caso alta disponibilidade não seja crítica
+- Risco / Impacto: Perda de tolerância a falhas de AZ; downtime em caso de falha de hardware/infraestrutura
+- Janela de manutenção: Necessária para aplicar alteração de Multi-AZ
+- Potencial de economia: 30–50% do custo total mensal
+
+sem certeza de boot e janela
+
+### 4.5 Read Replicas
+- Ação: N/A
+- Risco / Impacto: N/A
+- Janela de manutenção: N/A
+- Potencial de economia: N/A
+
+### 4.6 Padrão de uso
+- Ação: Avaliar Aurora Serverless v2 ou automação para parar/startar instância via AWS Systems Manager
+- Risco / Impacto: Possível indisponibilidade durante horários inesperados; ajustes de escalabilidade devem ser testados
+- Janela de manutenção: Recomendado teste inicial em janela controlada; operação automática depois não requer janela
+- Potencial de economia: 20–40% do custo total mensal
+
+### 4.7 Upgrade de versão
+- Ação: Migrar para versão mais recente do MySQL
+- Risco / Impacto: Incompatibilidade de queries, triggers ou procedimentos armazenados; downtime pode ser necessário para upgrade
+- Janela de manutenção: Sim, agendar período de menor impacto para usuários
+- Potencial de economia: indireta (performance e manutenção reduzida)
+
+---
+
+## 5. Conclusão
+O ambiente atual apresenta superdimensionamento claro em instância e storage, além de custos elevados com backups e Multi-AZ.  
+Implementando as recomendações acima, estima-se uma redução de 40–60% no custo mensal, mantendo a confiabilidade necessária para a aplicação.
+
+custo rede
+reserva de instancia

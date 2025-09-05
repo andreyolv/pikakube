@@ -1,0 +1,17 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: arangodb
+  namespace: arangodb
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: kube-arangodb
+      version: 1.2.40
+      sourceRef:
+        kind: HelmRepository
+        name: arangodb
+        namespace: flux-system
+  values:
+  # https://github.com/arangodb/kube-arangodb/tree/master/chart/kube-arangodb

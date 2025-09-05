@@ -1,0 +1,8 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: HelmRepository
+metadata:
+  name: neo4j
+  namespace: flux-system
+spec:
+  interval: 24h
+  url: https://helm.neo4j.com/neo4j

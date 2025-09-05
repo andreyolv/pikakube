@@ -1,0 +1,24 @@
+apiVersion: cloud.crate.io/v1
+kind: CrateDB
+metadata:
+  name: pikakube
+  namespace: crate
+spec:
+  cluster:
+    imageRegistry: crate
+    name: pikakube
+    version: 5.7.3
+    service:
+  nodes:
+    data:
+    - name: hot
+      replicas: 3
+      resources:
+        limits:
+          cpu: 1
+          memory: 1Gi
+        disk:
+          count: 1
+          size: 4GiB
+          storageClass: standard
+        heapRatio: 0.5

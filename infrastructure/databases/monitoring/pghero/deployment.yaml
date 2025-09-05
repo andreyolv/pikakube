@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pghero
+  namespace: pghero
+  labels:
+    app: pghero
+spec:
+  selector:
+    matchLabels:
+      app: pghero
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: pghero
+    spec:
+      containers:
+      - name: pghero
+        image: ankane/pghero
+        env:
+        - name: DATABASE_URL
+          valueFrom:
+            secretKeyRef:
+              name: airflow-db
+              key: connection
+              namespace: postgresql
+        resources:
+          requests:
+            cpu: "1"
+            memory: 2Gi
+          limits:
+            cpu: "2"
+            memory: 4Gi

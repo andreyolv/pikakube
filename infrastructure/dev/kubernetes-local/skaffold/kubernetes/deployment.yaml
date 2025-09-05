@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: flask-skaffold
+  namespace: flask
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: flask-skaffold
+  template:
+    metadata:
+      labels:
+        app: flask-skaffold
+    spec:
+      containers:
+      - name: flask-skaffold
+        image: andreyolv/flask-skaffold
+        resources:
+          requests:
+            cpu: "100m"
+            memory: "256Mi"
+          limits:
+            cpu: "100m"
+            memory: "256Mi"
+        # imagePullPolicy: Always # NUNCA DEIXE ALWAYS

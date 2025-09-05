@@ -1,0 +1,6 @@
+version: '3'
+services:
+  flask-app:
+    build:
+      context: flask
+      dockerfile: Dockerfile

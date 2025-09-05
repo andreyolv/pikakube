@@ -1,0 +1,18 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: timescaledb
+  namespace: timescaledb
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: timescaledb-single
+      version: 0.33.6
+      sourceRef:
+        kind: HelmRepository
+        name: timescaledb
+        namespace: flux-system
+  values:
+  # https://artifacthub.io/packages/helm/fairwinds-incubator/timescaledb-single
+  # https://github.com/timescale/helm-charts/blob/main/charts/timescaledb-single/values.yaml

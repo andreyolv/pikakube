@@ -1,0 +1,38 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: pmm
+  namespace: pmm
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: pmm
+      version: 1.4.3
+      sourceRef:
+        kind: HelmRepository
+        name: percona
+        namespace: flux-system
+  values:
+  # https://artifacthub.io/packages/helm/percona/pmm
+  # https://github.com/percona/percona-helm-charts/blob/main/charts/pmm/values.yaml
+    secret:
+      pmm_password: pikakube # username admin
+    ingress:
+      enabled: true
+      annotations:
+        forecastle.stakater.com/expose: "true"
+        forecastle.stakater.com/icon: "https://images.g2crowd.com/uploads/product/image/large_detail/large_detail_a0339ffba80cae5bc6f9a31e7bf2f265/percona-monitoring-and-management-pmm.png"
+        forecastle.stakater.com/appName: "PMM"
+        forecastle.stakater.com/group: "Observability"
+      hosts:
+        - host: pmm.127.0.0.1.nip.io
+          paths:
+          - /
+      pathType: Prefix
+      tls:
+      - secretName: mkcert-tls-secret
+        hosts:
+          - pmm.127.0.0.1.nip.io
+    storage:
+      size: 2Gi

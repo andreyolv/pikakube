@@ -1,0 +1,16 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: kyuubi
+  namespace: kyuubi
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: charts/kyuubi
+      sourceRef:
+        kind: GitRepository
+        name: kyuubi
+        namespace: flux-system
+  values:
+  # https://github.com/apache/kyuubi/blob/master/charts/kyuubi/values.yaml

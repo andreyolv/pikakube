@@ -1,0 +1,19 @@
+version: 2
+sources:
+  - name: mysql_raw
+    database: postgres  
+    schema: transactional
+    tables:
+      - name: accounts
+      - name: city
+      - name: country
+      - name: customers
+      - name: d_month
+      - name: d_time
+      - name: d_week
+      - name: d_weekday
+      - name: d_year
+      - name: pix_movements
+      - name: state
+      - name: transfer_ins
+      - name: transfer_outs

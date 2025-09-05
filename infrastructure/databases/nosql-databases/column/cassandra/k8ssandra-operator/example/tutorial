@@ -1,0 +1,11 @@
+# Extract Database credentials from secret
+CASS_USERNAME=$(kubectl get secret demo-superuser -n k8ssandra-operator -o=jsonpath='{.data.username}' | base64 --decode)
+CASS_PASSWORD=$(kubectl get secret demo-superuser -n k8ssandra-operator -o=jsonpath='{.data.password}' | base64 --decode)
+
+echo $CASS_USERNAME
+echo $CASS_PASSWORD
+
+# Verify cluster status
+kubectl exec -it demo-dc1-default-sts-0 -n k8ssandra-operator -c cassandra -- nodetool -u $CASS_USERNAME -pw $CASS_PASSWORD status
+
+# https://docs.k8ssandra.io/install/local/single-cluster-helm/#verify-cluster-status

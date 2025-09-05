@@ -1,0 +1,21 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: nifi
+  namespace: nifi
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: nifi
+      version: 1.2.1
+      sourceRef:
+        kind: HelmRepository
+        name: cetic
+        namespace: flux-system
+  values:
+  # https://artifacthub.io/packages/helm/cetic/nifi
+  # https://github.com/cetic/helm-nifi/blob/master/values.yaml
+    registry:
+      enabled: true
+      port: 80

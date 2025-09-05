@@ -1,0 +1,54 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgres
+  namespace: postgresql
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: postgres
+  template:
+    metadata:
+      labels:
+        app: postgres
+    spec:
+      containers:
+      - name: postgres
+        image: postgres:16.3
+        env:
+        - name: PGDATA
+          value: /var/lib/postgresql/data/pgdata
+        - name: POSTGRES_DB
+          value: teste
+        - name: POSTGRES_USER
+          valueFrom:
+            secretKeyRef:
+              name: postgres-secrets
+              key: username
+        - name: POSTGRES_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: postgres-secrets
+              key: password
+        ports:
+        - containerPort: 5432
+        resources:
+          requests:
+            memory: 500Mi
+            cpu: '1'
+          limits:
+            memory: 1Gi
+            cpu: '2'
+        volumeMounts:
+        - mountPath: /var/lib/postgresql/data/pgdata
+          name: postgres-disk
+          subPath: postgres
+      volumes:
+      - name: postgres-disk
+        persistentVolumeClaim:
+          claimName: postgres-disk
+      #- name: postgres-disk
+      #  emptyDir: {}

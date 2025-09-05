@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redis
+  namespace: superset
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: redis
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: redis
+    spec:
+      containers:
+      - name: redis
+        image: redis/redis-stack-server:7.4.0-v2
+        ports:
+        - containerPort: 6379
+        env:
+        - name: REDIS_ARGS
+          value: "--requirepass pikakube"
+        resources: 
+          requests:
+            memory: 1Gi
+            cpu: "100m"

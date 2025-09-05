@@ -1,0 +1,18 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: hue
+  namespace: hue
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: hue
+      version: 1.0.3
+      sourceRef:
+        kind: HelmRepository
+        name: gethue
+        namespace: flux-system
+  values:
+  # https://artifacthub.io/packages/helm/hue/hue
+  # https://github.com/cloudera/hue/blob/master/tools/kubernetes/helm/hue/values.yaml

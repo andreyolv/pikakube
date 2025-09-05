@@ -1,0 +1,22 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: cassandra
+  namespace: cassandra
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: cassandra
+      version: 12.0.4
+      sourceRef:
+        kind: HelmRepository
+        name: bitnami
+        namespace: flux-system
+  values:
+  # https://artifacthub.io/packages/helm/bitnami/cassandra
+  # https://github.com/bitnami/charts/blob/main/bitnami/cassandra/values.yaml
+    dbuser:
+      user: andreyolv
+      password: andreyolv
+      # Login, enter inside container> cqlsh -u andreyolv -p andreyolv

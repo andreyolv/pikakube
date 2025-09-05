@@ -1,0 +1,14 @@
+version: 2
+exposures:
+  - name: painel_contas
+    label: painel de contas
+    type: dashboard
+    maturity: high
+    url: https://bi.tool/dashboards/1
+    description: "{{ doc('descricao') }}"
+    depends_on:
+      - ref('stg_accounts')
+      - source('mysql_raw', 'customers')
+    owner:
+      name: Andrey
+      email: andrey@gmail.com

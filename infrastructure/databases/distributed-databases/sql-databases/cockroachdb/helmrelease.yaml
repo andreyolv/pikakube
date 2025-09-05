@@ -1,0 +1,18 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: cockroachdb
+  namespace: cockroachdb
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: cockroachdb
+      version: 12.0.2
+      sourceRef:
+        kind: HelmRepository
+        name: cockroachdb
+        namespace: flux-system
+  values:
+  # https://artifacthub.io/packages/helm/cockroachdb/cockroachdb
+  # https://github.com/cockroachdb/helm-charts/blob/master/cockroachdb/values.yaml

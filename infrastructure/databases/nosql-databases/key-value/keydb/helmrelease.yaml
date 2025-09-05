@@ -1,0 +1,14 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: keydb
+  namespace: keydb
+spec:
+  interval: 5m
+  chartRef:
+    kind: OCIRepository
+    name: keydb
+    namespace: flux-system
+  values:
+  # https://artifacthub.io/packages/helm/bitnami/keydb
+  # https://github.com/bitnami/charts/blob/main/bitnami/keydb/values.yaml

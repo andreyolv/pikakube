@@ -1,0 +1,8 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: HelmRepository
+metadata:
+  name: stackgres-charts
+  namespace: flux-system
+spec:
+  interval: 24h
+  url: https://stackgres.io/downloads/stackgres-k8s/stackgres/helm/

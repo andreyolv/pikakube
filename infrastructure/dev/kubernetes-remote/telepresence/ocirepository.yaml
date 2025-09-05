@@ -1,0 +1,10 @@
+apiVersion: source.toolkit.fluxcd.io/v1beta2
+kind: OCIRepository
+metadata:
+  name: telepresence
+  namespace: flux-system
+spec:
+  interval: 24h
+  url: oci://ghcr.io/telepresenceio/telepresence-oss
+  ref:
+    tag: v2.20.3

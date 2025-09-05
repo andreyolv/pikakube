@@ -1,0 +1,14 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: valkey
+  namespace: valkey
+spec:
+  interval: 5m
+  chartRef:
+    kind: OCIRepository
+    name: valkey
+    namespace: flux-system
+  values:
+  # https://artifacthub.io/packages/helm/bitnami/valkey
+  # https://github.com/bitnami/charts/blob/main/bitnami/valkey/values.yaml

@@ -1,0 +1,18 @@
+version: 2
+models:
+  - name: stg_accounts
+    description: modelo contendo os dados limpos da tabela accounts
+    columns: 
+      - name: account_id
+        description: chave primária da tabela
+        tests:
+          - unique
+          - not_null
+      - name: customer_id
+        description: chave estrangeira para a tablea de customers
+        tests:
+          - unique
+          - not_null
+          - relationships:
+              to: ref('stg_customers')
+              field: customer_id

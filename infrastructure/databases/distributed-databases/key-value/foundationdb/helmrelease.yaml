@@ -1,0 +1,16 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: foundationdb
+  namespace: foundationdb
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: charts/fdb-operator
+      sourceRef:
+        kind: GitRepository
+        name: foundationdb
+        namespace: flux-system
+  values:
+  # https://github.com/FoundationDB/fdb-kubernetes-operator/blob/main/charts/fdb-operator/values.yaml

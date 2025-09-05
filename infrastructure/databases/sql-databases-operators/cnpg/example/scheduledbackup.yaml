@@ -1,0 +1,10 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: ScheduledBackup
+metadata:
+  name: backup-example
+spec:
+  schedule: "0 0 0 * * *"  # At midnight every day
+  backupOwnerReference: self
+  cluster:
+    name: pg-backup
+    method: volumeSnapshot #plugin, volumeSnapshot, or barmanObjectStore (default)

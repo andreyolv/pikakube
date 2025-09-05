@@ -1,0 +1,45 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: databend-query
+  namespace: databend
+spec:
+  dependsOn:
+  - name: databend-meta
+    namespace: databend
+  interval: 5m
+  chart:
+    spec:
+      chart: databend-query
+      version: 0.11.0
+      sourceRef:
+        kind: HelmRepository
+        name: databend
+        namespace: flux-system
+  values:
+  # https://artifacthub.io/packages/helm/kubesphere-stable/databend-query
+  # https://github.com/datafuselabs/helm-charts/blob/main/charts/databend-query/Chart.yaml
+    replicaCount: 3
+    config:
+      query:
+        clusterId: pikakube
+        users:
+        - name: databend
+          # available type: sha256_password, double_sha1_password, no_password, jwt
+          authType: double_sha1_password
+          # echo -n "databend" | sha1sum | cut -d' ' -f1 | xxd -r -p | sha1sum
+          authString: 3081f32caef285c232d066033c89a78d88a6d8a5
+      meta:
+        namespace: databend
+        endpoints:
+        - databend-meta-0.databend-meta.databend.svc:9191
+        - databend-meta-1.databend-meta.databend.svc:9191
+        - databend-meta-2.databend-meta.databend.svc:9191
+      storage:
+        type: s3
+        s3:
+          bucket: "<bucket>"
+          region: "<region>"
+          access_key_id: "<key>"
+          secret_access_key: "<secret>"
+          root: ""

@@ -1,0 +1,10 @@
+apiVersion: source.toolkit.fluxcd.io/v1beta2
+kind: OCIRepository
+metadata:
+  name: dragonflydb
+  namespace: flux-system
+spec:
+  interval: 24h
+  url: oci://ghcr.io/dragonflydb/dragonfly/helm/dragonfly
+  ref:
+    tag: v1.28.1

@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysql
+  namespace: mysql
+  labels:
+    app: mysql
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mysql
+  template:
+    metadata:
+      labels:
+        app: mysql
+    spec:
+      containers:
+      - name: mysql
+        image: mysql:5.7
+        ports:
+        - containerPort: 3306
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          value: root
+        resources:
+          requests:
+            memory: 500Mi
+            cpu: '1'
+          limits:
+            memory: 1Gi
+            cpu: '2'
+        volumeMounts:
+        - name: mysql-disk
+          mountPath: "/var/lib/mysql"
+          subPath: "mysql"
+      volumes:
+      # - name: mysql-disk
+      #   persistentVolumeClaim:
+      #     claimName: mysql-pvc
+      - name: mysql-disk
+        emptyDir: {}

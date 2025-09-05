@@ -1,0 +1,23 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: bytebase
+  namespace: bytebase
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: bytebase
+      version: 1.1.1
+      sourceRef:
+        kind: HelmRepository
+        name: bytebase-repo
+        namespace: flux-system
+  values:
+  # https://artifacthub.io/packages/helm/bytebase/bytebase
+  # https://github.com/bytebase/bytebase/blob/main/helm-charts/bytebase/values.yaml
+    bytebase:
+      option:
+        externalPg:
+          existingPgURLSecret: postgres
+          existingPgURLSecretKey: connection

@@ -1,0 +1,79 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: cluster-example
+  namespace: cnpg
+spec:
+  instances: 3
+  imageName: ghcr.io/cloudnative-pg/postgresql:17.4
+  bootstrap:
+    initdb:
+      database: app
+      owner: app
+      postInitSQL:
+        - CREATE DATABASE airflow
+      postInitApplicationSQLRefs:
+        configMapRefs:
+        - name: post-init-sql-configmap
+          key: configmap.sql
+  postgresql:
+    parameters:
+      shared_buffers: "256MB" # https://www.postgresql.org/docs/current/runtime-config-resource.html#GUC-SHARED-BUFFERS
+      # https://github.com/pgaudit/pgaudit/blob/main/README.md#settings
+      pgaudit.log: "all, -misc"
+      pgaudit.log_catalog: "off"
+      pgaudit.log_parameter: "on"
+      pgaudit.log_relation: "on"
+  resources:
+    requests:
+      memory: "1024Mi"
+      cpu: 1
+    limits:
+      memory: "1024Mi"
+      cpu: 1
+  storage:
+    size: 4Gi
+  monitoring:
+    enablePodMonitor: true
+  affinity:
+  podAntiAffinity:
+    preferredDuringSchedulingIgnoredDuringExecution:
+      - podAffinityTerm:
+          labelSelector:
+            matchExpressions:
+              - key: cnpg.io/cluster
+                operator: In
+                values:
+                  - cluster-example
+              - key: cnpg.io/podRole
+                operator: In
+                values:
+                  - instance
+          topologyKey: kubernetes.io/hostname
+        weight: 100
+    nodeSelector:
+      node-role.kubernetes.io/postgres: ""
+    tolerations:
+    - key: node-role.kubernetes.io/postgres
+      operator: Exists
+      effect: NoSchedule
+  backup:
+    volumeSnapshot:
+       className: csi-hostpath-snapclass
+    barmanObjectStore:
+      destinationPath: s3://backups/
+      endpointURL: http://minio:9000
+      s3Credentials:
+        accessKeyId:
+          name: minio
+          key: ACCESS_KEY_ID
+        secretAccessKey:
+          name: minio
+          key: ACCESS_SECRET_KEY
+      wal:
+        compression: gzip
+      data:
+        additionalCommandArgs:
+          - "--min-chunk-size=5MB"
+          - "--read-timeout=60"
+          - "-vv"

@@ -1,0 +1,15 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: GitRepository
+metadata:
+  name: kyuubi
+  namespace: flux-system
+spec:
+  interval: 24h
+  ref:
+    tag: v1.10.0
+  url: https://github.com/apache/kyuubi.git
+  ignore: |
+    # exclude all
+    /*
+    # include deploy dir
+    !/charts/kyuubi
