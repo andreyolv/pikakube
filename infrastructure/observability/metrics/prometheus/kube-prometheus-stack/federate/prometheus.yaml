@@ -1,0 +1,23 @@
+apiVersion: monitoring.coreos.com/v1
+kind: Prometheus
+metadata:
+  name: federated-prometheus
+  namespace: prometheus
+spec:
+  replicas: 1
+  version: v3.2.1
+  image: quay.io/prometheus/prometheus:v3.2.1
+  retention: 7d
+  serviceAccountName: prometheus-kube-prometheus-prometheus
+  walCompression: true
+  scrapeInterval: 30s
+  enableAdminAPI: false
+  scrapeConfigSelector:
+    matchLabels:
+      federated-prometheus: "true"
+  storage:
+    volumeClaimTemplate:
+      spec:
+        resources:
+          requests:
+            storage: 2Gi

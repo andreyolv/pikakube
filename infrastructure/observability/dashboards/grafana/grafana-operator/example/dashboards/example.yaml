@@ -1,0 +1,50 @@
+apiVersion: grafana.integreatly.org/v1beta1
+kind: GrafanaDashboard
+metadata:
+  name: example-dashboard
+spec:
+  instanceSelector:
+    matchLabels:
+      dashboards: "grafana"
+  folderRef: airflow
+  json: >
+    {
+      "annotations": {},
+      "editable": true,
+      "fiscalYearStartMonth": 0,
+      "graphTooltip": 0,
+      "id": 222,
+      "links": [],
+      "panels": [
+        {
+          "gridPos": {
+            "h": 3,
+            "w": 8,
+            "x": 8,
+            "y": 0
+          },
+          "id": 1,
+          "options": {
+            "code": {
+              "language": "plaintext",
+              "showLineNumbers": false,
+              "showMiniMap": false
+            },
+            "content": "# Greetings from the Grafana Operator!",
+            "mode": "markdown"
+          },
+          "type": "text"
+        }
+      ],
+      "schemaVersion": 39,
+      "tags": [],
+      "time": {
+        "from": "now-6h",
+        "to": "now"
+      },
+      "timeRangeUpdatedDuringEditOrView": false,
+      "timepicker": {},
+      "timezone": "browser",
+      "title": "Example Dashboard",
+      "weekStart": ""
+    }

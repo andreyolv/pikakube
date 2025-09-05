@@ -1,0 +1,20 @@
+apiVersion: monitoring.coreos.com/v1alpha1
+kind: ScrapeConfig
+metadata:
+  name: federated-prometheus
+  namespace: prometheus
+  labels:
+    federated-prometheus: "true"
+spec:
+  jobName: federate-kube-pod-container
+  metricsPath: /federate
+  honorLabels: true
+  scrapeInterval: 1m
+  staticConfigs:
+    - targets:
+        - prometheus-kube-prometheus-prometheus.prometheus.svc:9090
+      labels:
+        environment: production
+  params:
+    match[]:
+      - '{__name__="kube_pod_container_resource_requests"}'

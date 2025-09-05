@@ -9,6 +9,6 @@ resources:
   - kustomization/pikakube.yaml
   - kustomization/vault.yaml
   - kustomization/external-secrets.yaml
-  #- kustomization/kyverno.yaml
-  #- kustomization/prometheus.yaml
-  #- kustomization/grafana.yaml
+  - kustomization/kyverno.yaml
+  - kustomization/prometheus.yaml
+  - kustomization/grafana.yaml

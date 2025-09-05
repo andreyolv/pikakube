@@ -1,0 +1,10 @@
+apiVersion: grafana.integreatly.org/v1beta1
+kind: GrafanaFolder
+metadata:
+  name: airflow
+  namespace: grafana
+spec:
+  title: Airflow
+  instanceSelector:
+    matchLabels:
+      dashboards: grafana

@@ -1,0 +1,14 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: grafana-operator
+  namespace: grafana
+spec:
+  interval: 5m
+  chartRef:
+    kind: OCIRepository
+    name: grafana-operator
+    namespace: flux-system
+  values:
+  # https://artifacthub.io/packages/olm/community-operators/grafana-operator
+  # https://github.com/grafana/grafana-operator/blob/master/deploy/helm/grafana-operator/values.yaml

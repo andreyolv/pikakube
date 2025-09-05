@@ -1,0 +1,64 @@
+kind: Secret
+apiVersion: v1
+metadata:
+  name: credentials
+  namespace: grafana
+stringData:
+  GF_SECURITY_ADMIN_USER: root
+  GF_SECURITY_ADMIN_PASSWORD: secret
+type: Opaque
+---
+apiVersion: grafana.integreatly.org/v1beta1
+kind: Grafana
+metadata:
+  name: grafana
+  namespace: grafana
+  labels:
+    dashboards: "grafana"
+spec:
+  persistentVolumeClaim:
+    spec:
+      accessModes:
+        - ReadWriteOnce
+      resources:
+        requests:
+          storage: 10Gi
+  deployment:
+    spec:
+      template:
+        spec:
+          containers:
+            - name: grafana
+              env:
+                - name: GF_SECURITY_ADMIN_USER
+                  valueFrom:
+                    secretKeyRef:
+                      key: GF_SECURITY_ADMIN_USER
+                      name: credentials
+                - name: GF_SECURITY_ADMIN_PASSWORD
+                  valueFrom:
+                    secretKeyRef:
+                      key: GF_SECURITY_ADMIN_PASSWORD
+                      name: credentials
+  config:
+    log:
+      mode: "console"
+    auth:
+      disable_login_form: "false"
+  ingress:
+    spec:
+      rules:
+      - host: grafana.127.0.0.1.nip.io
+        http:
+          paths:
+          - backend:
+              service:
+                name: grafana-service
+                port:
+                  number: 3000
+            path: /
+            pathType: Prefix
+      tls:
+      - secretName: mkcert-tls-secret
+        hosts:
+        - grafana.127.0.0.1.nip.io

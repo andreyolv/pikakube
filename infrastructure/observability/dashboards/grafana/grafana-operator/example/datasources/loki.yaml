@@ -1,0 +1,18 @@
+apiVersion: grafana.integreatly.org/v1beta1
+kind: GrafanaDatasource
+metadata:
+  name: loki
+  namespace: grafana
+spec:
+  instanceSelector:
+    matchLabels:
+      dashboards: grafana
+  datasource:
+    name: Loki
+    type: loki
+    access: proxy
+    url: http://loki-gateway.loki.svc.cluster.local:80
+    isDefault: true
+    jsonData:
+      'tlsSkipVerify': true
+      'timeInterval': "5s"

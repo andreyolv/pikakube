@@ -1,0 +1,59 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: prometheus
+  namespace: prometheus
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: kube-prometheus-stack
+      version: 70.4.1
+      sourceRef:
+        kind: HelmRepository
+        name: prometheus-community
+        namespace: flux-system
+  values:
+  # https://artifacthub.io/packages/helm/prometheus-community/kube-prometheus-stack
+  # https://github.com/prometheus-community/helm-charts/blob/main/charts/kube-prometheus-stack/values.yaml
+  # k port-forward svc/kube-prometheus-stack-prometheus 9090
+    grafana:
+      enabled: false
+    prometheus:
+      prometheusSpec:
+        ruleSelectorNilUsesHelmValues: false
+        serviceMonitorSelectorNilUsesHelmValues: false
+        podMonitorSelectorNilUsesHelmValues: false
+        probeSelectorNilUsesHelmValues: false
+        scrapeConfigSelectorNilUsesHelmValues: false
+        retention: 2d
+        storageSpec:
+          volumeClaimTemplate:
+            spec:
+              accessModes: ["ReadWriteOnce"]
+              resources:
+                requests:
+                  storage: 8Gi
+        thanos:
+          image: quay.io/thanos/thanos:v0.38.0
+          objectStorageConfig:
+            existingSecret:
+              name: thanos-objstore
+              key: objstore.yml
+      thanosService:
+        enabled: true
+      thanosServiceMonitor:
+        enabled: true
+      ingress:
+        enabled: true
+        annotations:
+          forecastle.stakater.com/expose: "true"
+          forecastle.stakater.com/icon: "https://raw.githubusercontent.com/cncf/artwork/refs/heads/main/projects/prometheus/icon/color/prometheus-icon-color.svg"
+          forecastle.stakater.com/appName: "Prometheus"
+          forecastle.stakater.com/group: "Observability"
+        hosts:
+        - prometheus.127.0.0.1.nip.io
+        tls:
+        - secretName: mkcert-tls-secret
+          hosts:
+          - prometheus.127.0.0.1.nip.io
