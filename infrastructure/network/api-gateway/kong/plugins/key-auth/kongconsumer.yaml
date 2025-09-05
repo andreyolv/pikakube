@@ -1,0 +1,8 @@
+kind: KongConsumer
+metadata:
+  name: key-andrey
+  annotations:
+    kubernetes.io/ingress.class: kong
+username: key-andrey
+credentials:
+- key-andrey

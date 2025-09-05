@@ -1,0 +1,10 @@
+apiVersion: configuration.konghq.com/v1
+kind: KongPlugin
+metadata:
+  name: response-ratelimiting-example
+plugin: response-ratelimiting
+config:
+  limits:
+    limit_name:
+      minute: 10
+  policy: local

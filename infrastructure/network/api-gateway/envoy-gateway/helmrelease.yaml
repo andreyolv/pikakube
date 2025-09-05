@@ -1,0 +1,14 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: envoy-gateway
+  namespace: envoy-gateway
+spec:
+  interval: 5m
+  chartRef:
+    kind: OCIRepository
+    name: envoy-gateway
+    namespace: flux-system
+  values:
+  # https://artifacthub.io/packages/helm/envoy-gateway/gateway-helm
+  # https://github.com/envoyproxy/gateway/blob/main/charts/gateway-helm/values.tmpl.yaml

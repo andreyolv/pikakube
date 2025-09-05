@@ -1,0 +1,17 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: gloo
+  namespace: gloo
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: gloo
+      # version: 
+      sourceRef:
+        kind: HelmRepository
+        name: gloo
+        namespace: flux-system
+  values:
+  # https://github.com/solo-io/gloo/blob/main/install/helm/gloo/values-template.yaml

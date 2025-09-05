@@ -1,0 +1,10 @@
+apiVersion: source.toolkit.fluxcd.io/v1beta2
+kind: OCIRepository
+metadata:
+  name: nginx-ingress
+  namespace: flux-system
+spec:
+  interval: 24h
+  url: oci://ghcr.io/nginx/charts/nginx-ingress
+  ref:
+    tag: 2.0.0

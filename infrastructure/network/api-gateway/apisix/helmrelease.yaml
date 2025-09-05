@@ -1,0 +1,26 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: apisix
+  namespace: apisix
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: apisix
+      version: 2.10.0
+      sourceRef:
+        kind: HelmRepository
+        name: apisix
+        namespace: flux-system
+  values:
+  # https://artifacthub.io/packages/helm/apisix/apisix
+  # https://github.com/apache/apisix-helm-chart/blob/master/charts/apisix/values.yaml
+    dashboard:
+      enabled: true
+    #ingress-controller:
+    #  enabled: true
+    #  config:
+    #    apisix:
+    #      serviceNamespace: apisix
+    #      adminAPIVersion: "v3"

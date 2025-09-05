@@ -1,0 +1,21 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: foo
+  namespace: ingress-nginx
+spec:
+  tls:
+  - hosts:
+    - "*.127.0.0.1.nip.io"
+    secretName: mkcert-tls-secret
+  rules:
+  - host: foo.127.0.0.1.nip.io
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: foo-service
+            port:
+              number: 5678

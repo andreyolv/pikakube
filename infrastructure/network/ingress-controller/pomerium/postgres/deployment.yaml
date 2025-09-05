@@ -1,0 +1,56 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgres-pomerium
+  namespace: pomerium
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: postgres-pomerium
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: postgres-pomerium
+    spec:
+      containers:
+      - image: postgres:17.2
+        name: postgres
+        # command:
+        # - sleep
+        # - '900'
+        args:
+          - postgres
+          - -c
+          - max_connections=1000
+          - -c
+          - shared_buffers=100MB
+        env:
+        - name: PGDATA
+          value: /var/lib/postgresql/data/pgdata
+        - name: POSTGRES_DB
+          value: pomerium
+        - name: POSTGRES_USER
+          value: pomerium
+        - name: POSTGRES_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: postgres-pomerium
+              key: password
+        ports:
+        - containerPort: 5432
+        resources: 
+          requests:
+            memory: 2Gi
+            cpu: 0.5
+        volumeMounts:
+        - mountPath: /var/lib/postgresql/data/pgdata
+          name: postgres-pomerium
+          subPath: postgres
+      restartPolicy: Always
+      volumes:
+      - name: postgres-pomerium
+        persistentVolumeClaim:
+          claimName: postgres-pomerium

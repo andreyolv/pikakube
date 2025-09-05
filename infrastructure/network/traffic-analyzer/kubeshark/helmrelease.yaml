@@ -1,0 +1,21 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: kubeshark
+  namespace: kubeshark
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: kubeshark
+      version: 52.3.0
+      sourceRef:
+        kind: HelmRepository
+        name: kubeshark
+        namespace: flux-system
+  values:
+  # https://artifacthub.io/packages/helm/kubeshark-helm-charts/kubeshark
+  # https://github.com/kubeshark/kubeshark/blob/master/helm-chart/values.yaml
+    tap:
+      persistentStorage: true
+      ipv6: false

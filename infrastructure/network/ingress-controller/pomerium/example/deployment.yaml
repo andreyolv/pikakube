@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: verify
+  namespace: teste
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pomerium-verify
+  template:
+    metadata:
+      labels:
+        app: pomerium-verify
+    spec:
+      containers:
+        - image: docker.io/pomerium/verify
+          imagePullPolicy: IfNotPresent
+          name: httpbin
+          ports:
+            - containerPort: 8000
+              protocol: TCP
+              name: http

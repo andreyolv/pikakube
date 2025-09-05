@@ -1,0 +1,5 @@
+https://github.com/kubernetes-sigs/gateway-api
+
+https://github.com/kubernetes-sigs/gateway-api/tree/main/config/crd/standard
+
+https://github.com/kubernetes-sigs/ingress2gateway

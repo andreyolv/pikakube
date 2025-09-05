@@ -1,0 +1,26 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: httpbin-ingress
+  namespace: kong
+  labels:
+    app: httpbin
+  annotations:
+    konghq.com/plugins: rate-limiting #, custom-plugin
+    # konghq.com/host-aliases: "example.com,example.net"
+    # konghq.com/methods: "GET,POST"
+    # konghq.com/https-redirect-status-code: "301"
+    # konghq.com/host-header: "test.example.com"
+spec:
+  ingressClassName: kong
+  rules:
+  - host: "httpbin.local.172.18.0.2.nip.io"
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: httpbin-service
+            port:
+              number: 80

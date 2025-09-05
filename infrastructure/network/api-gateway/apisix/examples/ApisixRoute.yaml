@@ -1,0 +1,16 @@
+apiVersion: apisix.apache.org/v2
+kind: ApisixRoute
+metadata:
+  name: api-route
+  namespace: apisix
+spec:
+  http:
+    - name: route
+      match:
+        hosts:
+          - local.navendu.me
+        paths:
+          - /api
+      backends:
+        - serviceName: bare-minimum-api
+          servicePort: 8080

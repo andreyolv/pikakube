@@ -1,0 +1,17 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: kubevpn
+  namespace: kubevpn
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: kubevpn
+      version: 2.2.10
+      sourceRef:
+        kind: HelmRepository
+        name: kubevpn
+        namespace: flux-system
+  values:
+  # https://github.com/kubenetworks/kubevpn/blob/master/charts/kubevpn/values.yaml

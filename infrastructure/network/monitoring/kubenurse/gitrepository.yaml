@@ -1,0 +1,15 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: GitRepository
+metadata:
+  name: kubenurse
+  namespace: flux-system
+spec:
+  interval: 24h
+  url: https://github.com/postfinance/kubenurse.git
+  ref:
+    tag: v1.14.2
+  ignore: |
+    # exclude all
+    /*
+    # include deploy dir
+    !/helm/kubenurse

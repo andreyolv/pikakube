@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: netshoot
+  namespace: tests
+  labels:
+    app: netshoot
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: netshoot
+  template:
+    metadata:
+      labels:
+        app: netshoot
+    spec:
+      containers:
+      - name: netshoot
+        image: nicolaka/netshoot
+        command:
+        - "sleep"
+        - "3600"
+        resources:
+          requests:
+            cpu: "0.1"
+            memory: 0.5Gi
+          limits:
+            cpu: "1"
+            memory: 1Gi

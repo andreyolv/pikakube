@@ -1,0 +1,25 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: linkerd-multicluster
+  namespace: linkerd-multicluster
+spec:
+  dependsOn:
+  - name: linkerd-crds
+    namespace: linkerd      
+  - name: linkerd-control-plane
+    namespace: linkerd
+  interval: 5m
+  chart:
+    spec:
+      version: 30.11.11
+      chart: linkerd-multicluster
+      sourceRef:
+        kind: HelmRepository
+        name: linkerd
+        namespace: flux-system
+  values:
+  # https://artifacthub.io/packages/helm/linkerd2/linkerd-multicluster
+  # https://github.com/linkerd/linkerd2/blob/main/multicluster/charts/linkerd-multicluster/values.yaml
+    gateway:
+      serviceType: ClusterIP

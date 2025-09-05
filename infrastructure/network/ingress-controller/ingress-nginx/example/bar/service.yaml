@@ -1,0 +1,10 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: bar-service
+  namespace: ingress-nginx
+spec:
+  selector:
+    app: bar-app
+  ports:
+  - port: 5678

@@ -1,0 +1,20 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: example
+  namespace: default
+  annotations:
+    traefik.ingress.kubernetes.io/router.middlewares: traefik-ratelimit@kubernetescrd # <middleware-namespace>-<middleware-name>@kubernetescrd
+spec:
+  ingressClassName: traefik
+  rules:
+    - host: example.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: my-service
+                port:
+                  number: 80

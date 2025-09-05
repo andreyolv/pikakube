@@ -1,0 +1,10 @@
+apiVersion: network.kubesphere.io/v1alpha2
+kind: Eip
+metadata:
+  name: eip-pool
+spec:
+  address: 172.18.0.2-172.18.0.256
+  namespaces: 
+  - project
+  interface: eth0
+  protocol: layer2

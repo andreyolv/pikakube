@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: konga
+  namespace: kong
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: konga
+  template:
+    metadata:
+      labels:
+        name: konga
+        app: konga
+    spec:
+      containers:
+      - name: konga
+        image: pantsel/konga
+        ports:
+        - containerPort: 1337
+        env:
+        - name: NO_AUTH
+          value: "false"
+        - name: DB_ADAPTER
+          value: "postgres"
+        - name: DB_URI
+          value: "postgres://kong:NoRLTnPHqy@kong-kong-postgresql.kong:5432/kong" # password secret kong-kong-postgresql password
+        resources:
+          requests:
+            cpu: 500m
+            memory: 1500Mi
+          limits:
+            cpu: 1000m
+            memory: 3000Mi

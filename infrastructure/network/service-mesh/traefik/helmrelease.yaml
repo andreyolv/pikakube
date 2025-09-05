@@ -1,0 +1,18 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: traefik-mesh
+  namespace: traefik-mesh
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: traefik-mesh
+      version: 4.1.1
+      sourceRef:
+        kind: HelmRepository
+        name: traefik
+        namespace: flux-system
+  values:
+  # https://artifacthub.io/packages/helm/traefik/traefik-mesh
+  # https://github.com/traefik/mesh-helm-chart/blob/master/mesh/values.yaml

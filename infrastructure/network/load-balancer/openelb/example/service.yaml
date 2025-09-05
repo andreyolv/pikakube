@@ -1,0 +1,17 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: nginx1
+  namespace: project-test
+  annotations:
+    lb.kubesphere.io/v1alpha1: openelb
+spec:
+  loadBalancerIP: 172.18.0.3
+  selector:
+    app: nginx
+  type: LoadBalancer
+  ports:
+    - name: http
+      port: 80
+      targetPort: 80
+  externalTrafficPolicy: Cluster

@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: demo-app
+  namespace: kuma-demo
+spec:
+  selector:
+    matchLabels:
+      app: demo-app
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: demo-app
+    spec:
+      containers:
+        - name: demo-app
+          image: "kumahq/kuma-demo"
+          env:
+            - name: REDIS_HOST
+              value: "redis.kuma-demo.svc.cluster.local"
+            - name: REDIS_PORT
+              value: "6379"
+            - name: APP_VERSION
+              value: "1.0"
+            - name: APP_COLOR
+              value: "#efefef"
+          ports:
+            - name: http
+              containerPort: 5000

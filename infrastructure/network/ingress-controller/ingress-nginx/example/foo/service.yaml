@@ -1,0 +1,11 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: foo-service
+  namespace: ingress-nginx
+spec:
+  selector:
+    app: foo-app
+  ports:
+  - port: 5678
+

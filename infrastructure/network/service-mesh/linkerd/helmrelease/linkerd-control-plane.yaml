@@ -1,0 +1,39 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: linkerd-control-plane
+  namespace: linkerd
+spec:
+  dependsOn:
+  - name: linkerd-crds
+    namespace: linkerd
+  - name: cert-manager
+    namespace: cert-manager      
+  interval: 5m
+  chart:
+    spec:
+      version: 1.16.11
+      chart: linkerd-control-plane
+      sourceRef:
+        kind: HelmRepository
+        name: linkerd
+        namespace: flux-system
+  valuesFrom:
+    - kind: Secret
+      name: linkerd-identity-issuer
+      valuesKey: ca.crt
+      targetPath: identityTrustAnchorsPEM
+    - kind: Secret
+      name: linkerd-identity-issuer
+      valuesKey: tls.crt
+      targetPath: identity.issuer.tls.crtPEM
+    - kind: Secret
+      name: linkerd-identity-issuer
+      valuesKey: tls.key
+      targetPath: identity.issuer.tls.keyPEM
+  values:
+  # https://artifacthub.io/packages/helm/linkerd2/linkerd-control-plane
+  # https://github.com/linkerd/linkerd2/blob/main/charts/linkerd-control-plane/values.yaml
+    identity:
+      issuer:
+        scheme: "kubernetes.io/tls"

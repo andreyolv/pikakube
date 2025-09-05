@@ -1,0 +1,15 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: GitRepository
+metadata:
+  name: k8gb
+  namespace: flux-system
+spec:
+  interval: 24h
+  ref:
+    tag: v0.14.0
+  url: https://github.com/k8gb-io/k8gb.git
+  ignore: |
+    # exclude all
+    /*
+    # include deploy dir
+    !/chart/k8gb

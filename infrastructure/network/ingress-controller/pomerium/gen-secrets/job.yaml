@@ -1,0 +1,36 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  labels:
+    app.kubernetes.io/name: pomerium
+  name: pomerium-gen-secrets
+  namespace: pomerium
+spec:
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: pomerium
+      name: pomerium-gen-secrets
+    spec:
+      containers:
+        - args:
+            - gen-secrets
+            - --secrets=$(POD_NAMESPACE)/bootstrap
+          env:
+            - name: POD_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+          image: pomerium/ingress-controller:v0.28.0
+          imagePullPolicy: IfNotPresent
+          name: gen-secrets
+          securityContext:
+            allowPrivilegeEscalation: false
+      nodeSelector:
+        kubernetes.io/os: linux
+      restartPolicy: OnFailure
+      securityContext:
+        fsGroup: 1000
+        runAsNonRoot: true
+        runAsUser: 1000
+      serviceAccountName: pomerium-gen-secrets

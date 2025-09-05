@@ -1,0 +1,17 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: k8gb
+  namespace: k8gb
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: chart/k8gb
+      sourceRef:
+        kind: GitRepository
+        name: k8gb
+        namespace: flux-system
+  values:
+  # https://artifacthub.io/packages/helm/k8gb/k8gb
+  # https://github.com/k8gb-io/k8gb/blob/master/chart/k8gb/values.yaml

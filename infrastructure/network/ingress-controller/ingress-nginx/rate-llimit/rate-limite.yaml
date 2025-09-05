@@ -1,0 +1,29 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: backstage
+  namespace: backstage
+  annotations:
+    nginx.ingress.kubernetes.io/configuration-snippet: |
+      limit_req zone=prog_pomerium burst=20 nodelay;
+      # limit_req zone=prog;
+      limit_req_log_level warn;
+      limit_req_status 429;
+      limit_req_dry_run on;
+spec:
+  ingressClassName: nginx
+  tls:
+  - hosts:
+      - '*xxxxxx'
+    secretName: xxxxxxxxxx
+  rules:
+  - host: xxxxxxxxxxx
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service: 
+            name: backstage
+            port:
+              number: 80

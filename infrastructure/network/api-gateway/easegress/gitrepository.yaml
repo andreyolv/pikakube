@@ -1,0 +1,15 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: GitRepository
+metadata:
+  name: easegress
+  namespace: flux-system
+spec:
+  interval: 24h
+  ref:
+    tag: v2.7.3
+  url: https://github.com/easegress-io/easegress.git
+  ignore: |
+    # exclude all
+    /*
+    # include deploy dir
+    !/helm-charts/easegress

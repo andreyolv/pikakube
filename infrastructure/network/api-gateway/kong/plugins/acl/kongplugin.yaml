@@ -1,0 +1,10 @@
+apiVersion: configuration.konghq.com/v1
+kind: KongPlugin
+metadata:
+  name: acl-example
+plugin: acl
+config:
+  allow:
+  - group1
+  - group2
+  hide_groups_header: true

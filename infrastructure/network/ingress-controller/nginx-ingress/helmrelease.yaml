@@ -1,0 +1,14 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: nginx-ingress
+  namespace: nginx-ingress
+spec:
+  interval: 5m
+  chartRef:
+    kind: OCIRepository
+    name: nginx-ingress
+    namespace: flux-system
+  values:
+  # https://artifacthub.io/packages/helm/nginx/nginx-ingress
+  # https://github.com/nginx/kubernetes-ingress/blob/main/charts/nginx-ingress/values.yaml

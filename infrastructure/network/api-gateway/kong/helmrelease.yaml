@@ -1,0 +1,36 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: kong
+  namespace: kong
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: kong
+      version: 2.45.0
+      sourceRef:
+        kind: HelmRepository
+        name: kong
+        namespace: flux-system
+  values:
+  # https://artifacthub.io/packages/helm/kong/kong
+  # https://github.com/Kong/charts/blob/main/charts/kong/values.yaml
+    # proxy:
+    #   type: ClusterIP
+    postgresql:
+      enabled: true
+      image: 
+        tag: 11 # 12+ não funciona no konga
+      auth:
+        username: kong
+        database: kong
+    admin:
+      enabled: true
+      http:
+        enabled: true
+    # KONG ADMIN URL: http://kong-kong-kong-admin:8001
+    # plugins:
+    #   configMaps:
+    #   - name: kong-plugin-myheader
+    #     pluginName: myheader

@@ -1,0 +1,8 @@
+apiVersion: configuration.konghq.com/v1
+kind: KongPlugin
+metadata:
+  name: request-size-limiting-example
+plugin: request-size-limiting
+config:
+  allowed_payload_size: 128
+  require_content_length: false
