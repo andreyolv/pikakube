@@ -4,6 +4,8 @@ metadata:
   name: kyverno
   namespace: flux-system
 spec:
+  dependsOn:
+  - name: nginx
   interval: 5m
   path: ./infrastructure/security/policies/kyverno
   prune: false

@@ -5,7 +5,7 @@ metadata:
   namespace: flux-system
 spec:
   dependsOn:
-  - name: nginx
+  - name: prometheus
   interval: 5m
   path: ./infrastructure/observability/dashboards/grafana/grafana-operator
   prune: false

@@ -4,6 +4,8 @@ metadata:
   name: vault
   namespace: flux-system
 spec:
+  dependsOn:
+  - name: kyverno-manifests
   interval: 5m
   path: ./infrastructure/security/secrets/vault/vault-dev
   prune: false

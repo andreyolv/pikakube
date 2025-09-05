@@ -5,7 +5,7 @@ metadata:
   namespace: flux-system
 spec:
   dependsOn:
-  - name: nginx
+  - name: kyverno-manifests
   interval: 5m
   path: ./infrastructure/observability/metrics/prometheus/kube-prometheus-stack
   prune: false
