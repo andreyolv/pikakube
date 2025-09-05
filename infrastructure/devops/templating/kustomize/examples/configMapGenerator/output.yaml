@@ -1,0 +1,62 @@
+apiVersion: v1
+data:
+  application.properties: andrey=devops
+kind: ConfigMap
+metadata:
+  labels:
+    fruit: apple
+  name: andrey-t5842k5g6m
+---
+apiVersion: v1
+data:
+  MY_ENV: dev
+kind: ConfigMap
+metadata:
+  labels:
+    fruit: apple
+  name: my-config-map
+---
+apiVersion: v1
+data:
+  MY_ENV: dev
+kind: ConfigMap
+metadata:
+  labels:
+    fruit: apple
+  name: my-config-map2-76c6bgb58t
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    app: ubuntu
+  labels:
+    app: ubuntu
+  name: ubuntu
+  namespace: kafka-strimzi
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ubuntu
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: ubuntu
+    spec:
+      containers:
+      - command:
+        - sleep
+        - "3600"
+        image: ubuntu
+        imagePullPolicy: Always
+        name: ubuntu
+        resources:
+          limits:
+            cpu: "2"
+            memory: 4Gi
+          requests:
+            cpu: "1"
+            memory: 2Gi

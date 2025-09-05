@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ubuntu2
+  namespace: kafka-strimzi
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: ubuntu2
+  template:
+    metadata:
+      labels:
+        app: ubuntu2
+    spec:
+      containers:
+      - name: ubuntu2
+        image: ubuntu2
+        resources:
+          requests:
+            cpu: "1"
+            memory: 2Gi
+          limits:
+            cpu: "2"
+            memory: 4Gi
+        command:
+        - "sleep"
+        - "3600"
+        imagePullPolicy: Always

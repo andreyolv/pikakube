@@ -1,0 +1,18 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - ../../base
+secretGenerator:
+  - name: my-secret2
+    behavior: create
+    literals:
+      - username=YW5kcmV5
+      - password=YW5kcmV5
+generatorOptions:
+  labels:
+    kustomize.generated.resources: secret-label
+  annotations:
+    kustomize.generated.resource: secret-annotation
+  disableNameSuffixHash: true
+  immutable: true
+# kustomize build overlays/dev -o output.yaml

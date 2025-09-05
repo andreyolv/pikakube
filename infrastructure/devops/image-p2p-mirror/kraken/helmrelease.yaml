@@ -1,0 +1,25 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: kraken
+  namespace: kraken
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: helm
+      sourceRef:
+        kind: GitRepository
+        name: kraken
+        namespace: flux-system
+  values:
+  # https://github.com/uber/kraken/blob/master/helm/values.yaml
+    tracker:
+      replicas: 1
+    build_index:
+      replicas: 1
+    origin:
+      replicas: 1
+    testfs:
+      enabled: false
+    

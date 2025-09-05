@@ -1,0 +1,18 @@
+failure-threshold: warning # (error | warning | info | style | ignore | none)
+format: tty
+ignored:
+- DL3026
+override:
+  error:
+  - DL3015
+  warning:
+  - DL3015
+  info:
+  - DL3008
+  style:
+  - DL3015
+trustedRegistries:
+#- docker.io
+- techiescamp.com:5000
+- "*.gcr.io"
+- quay.io

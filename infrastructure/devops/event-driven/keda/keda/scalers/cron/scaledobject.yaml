@@ -1,0 +1,21 @@
+apiVersion: keda.sh/v1alpha1
+kind: ScaledObject
+metadata:
+  name: scaler-cron
+  namespace: keda
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: ubuntu
+  pollingInterval: 10
+  cooldownPeriod: 30  
+  minReplicaCount: 0
+  maxReplicaCount: 1
+  triggers:
+  - type: cron
+    metadata:
+      timezone: America/Sao_Paulo
+      start: 22 * * * *                 # 0 8 * * 1-5
+      end: 25 * * * *                   # 0 18 * * 1-5
+      desiredReplicas: "1"

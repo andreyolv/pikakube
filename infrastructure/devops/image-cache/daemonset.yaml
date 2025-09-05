@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: image-prepull
+spec:
+  selector:
+    matchLabels:
+      app: prepull
+  template:
+    metadata:
+      labels:
+        app: prepull
+    spec:
+      nodeSelector:
+        spot: "true"
+      containers:
+        - name: prepull
+          image: ubuntu:20.04
+          command: ["sleep", "3600"]
+      tolerations:
+        - operator: "Exists"
+      restartPolicy: Always

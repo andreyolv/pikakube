@@ -1,0 +1,27 @@
+# https://keda.sh/docs/2.9/scalers/postgresql/
+apiVersion: keda.sh/v1alpha1
+kind: ScaledObject
+metadata:
+  name: keda-airflow-scheduler
+  namespace: keda
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: airflow-scheduler
+  pollingInterval: 10
+  cooldownPeriod: 30  
+  minReplicaCount: 1
+  maxReplicaCount: 10
+  triggers:
+  - type: postgresql
+    metadata:
+      userName: "kedaUser"
+      passwordFromEnv: PG_PASSWORD
+      host: postgres-svc.namespace.cluster.local
+      port: "5432"
+      dbName: test_db_name
+      sslmode: disable
+      query: "SELECT ceil(COUNT(*)::decimal / 16) FROM task_instance WHERE state='running' OR state='queued'"
+      targetQueryValue: "2.2"
+      metricName: backlog_process_count

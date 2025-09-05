@@ -1,0 +1,14 @@
+apiVersion: image.toolkit.fluxcd.io/v1beta1
+kind: ImagePolicy
+metadata:
+  name: flask-flux
+  namespace: flux-system
+spec:
+  imageRepositoryRef:
+    name: flask-flux
+  filterTags:
+    pattern: '^main-[a-f0-9]+-(?P<ts>[0-9-T]+)'
+    extract: '$ts'
+  policy:
+    alphabetical:
+      order: asc

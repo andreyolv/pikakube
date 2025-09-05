@@ -1,0 +1,22 @@
+apiVersion: keda.sh/v1alpha1
+kind: ScaledObject
+metadata:
+  name: scaler-rabbitmq
+  namespace: rabbitmq
+spec:
+  scaleTargetRef:
+    apiVersion: "apps/v1"
+    kind: "Deployment"
+    name: "perf-test"
+  pollingInterval: 10
+  cooldownPeriod: 30
+  minReplicaCount: 0
+  maxReplicaCount: 1
+  triggers:
+  - type: rabbitmq
+    metadata:
+      host: http://user:ws4DI0LPOPoPl3lF@rabbitmq.rabbitmq.svc.cluster.local:15672
+      mode: QueueLength
+      value: "5"
+      activationValue: "5"
+      queueName: testqueue

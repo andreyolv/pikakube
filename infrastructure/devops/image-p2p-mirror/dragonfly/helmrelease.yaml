@@ -1,0 +1,18 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: dragonfly
+  namespace: dragonfly
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: dragonfly
+      version: 1.3.17
+      sourceRef:
+        kind: HelmRepository
+        name: dragonfly
+        namespace: flux-system
+  values:
+  # https://artifacthub.io/packages/helm/dragonfly/dragonfly
+  # https://github.com/dragonflyoss/helm-charts/blob/main/charts/dragonfly/values.yaml

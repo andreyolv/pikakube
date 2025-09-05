@@ -1,0 +1,9 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - ../../base
+commonAnnotations:
+  app.example.com/version: v1.0.0
+  app.example.com/env: dev
+    
+# kustomize build overlays/dev -o output.yaml

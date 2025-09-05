@@ -1,0 +1,71 @@
+apiVersion: v1
+data:
+  andrey: ZGV2b3Bz
+kind: Secret
+metadata:
+  annotations:
+    app_config: "true"
+  labels:
+    app.kubernetes.io/name: app2
+    fruit: apple
+  name: env_file_secret-fmch68t8kb
+  namespace: apps
+type: Opaque
+---
+apiVersion: v1
+data:
+  password: WVc1a2NtVjU=
+  username: WVc1a2NtVjU=
+kind: Secret
+metadata:
+  labels:
+    fruit: apple
+  name: my-secret
+type: Opaque
+---
+apiVersion: v1
+data:
+  password: WVc1a2NtVjU=
+  username: WVc1a2NtVjU=
+kind: Secret
+metadata:
+  labels:
+    fruit: apple
+  name: my-secret2-h4c726c75b
+type: Opaque
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    app: ubuntu
+  labels:
+    app: ubuntu
+  name: ubuntu
+  namespace: kafka-strimzi
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ubuntu
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: ubuntu
+    spec:
+      containers:
+      - command:
+        - sleep
+        - "3600"
+        image: ubuntu
+        imagePullPolicy: Always
+        name: ubuntu
+        resources:
+          limits:
+            cpu: "2"
+            memory: 4Gi
+          requests:
+            cpu: "1"
+            memory: 2Gi

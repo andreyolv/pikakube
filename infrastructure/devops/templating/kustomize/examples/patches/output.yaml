@@ -1,0 +1,73 @@
+apiVersion: v1
+data:
+  password: c2VjcmV0cGFzc3dvcmQ=
+  username: YWRtaW4=
+kind: Secret
+metadata:
+  name: my-secret
+type: Opaque
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  label: env=dev
+  name: ubuntu
+  namespace: kafka-strimzi
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ubuntu
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: ubuntu
+    spec:
+      containers:
+      - command:
+        - sleep
+        - "3600"
+        image: ubuntu
+        imagePullPolicy: Always
+        name: ubuntu
+        resources:
+          limits:
+            cpu: "2"
+            memory: 4Gi
+          requests:
+            cpu: "1"
+            memory: 2Gi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ubuntu2
+  namespace: kafka-strimzi
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ubuntu2
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: ubuntu2
+    spec:
+      containers:
+      - command:
+        - sleep
+        - "3600"
+        image: ubuntu2
+        imagePullPolicy: Always
+        name: ubuntu2
+        resources:
+          limits:
+            cpu: "2"
+            memory: 4Gi
+          requests:
+            cpu: "1"
+            memory: 2Gi

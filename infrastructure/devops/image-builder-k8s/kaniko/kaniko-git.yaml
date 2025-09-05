@@ -1,0 +1,41 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: kaniko-git
+  namespace: kaniko
+spec:
+  containers:
+  - name: kaniko
+    image: gcr.io/kaniko-project/executor:latest
+    args:
+    - "--dockerfile=Dockerfile"
+    - "--context=git://github.com/andreyolv/plumbers.git"
+    - "--context-sub-path=docker/flask"
+    - "--destination=andreyolv/flask-kaniko-git:latest"
+    env:
+    - name: GIT_TOKEN
+    # https://github.com/settings/tokens
+      valueFrom:
+        secretKeyRef:
+          name: git-token
+          key: GIT_TOKEN
+    volumeMounts:
+    - name: kaniko-secret
+      mountPath: /kaniko/.docker
+    resources:
+      requests:
+        cpu: "100m"
+        memory: "256Mi"
+      limits:
+        cpu: "100m"
+        memory: "256Mi"
+  restartPolicy: Never
+  volumes:
+  - name: kaniko-secret
+    secret:
+      # https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/#create-a-secret-by-providing-credentials-on-the-command-line
+      # kubectl create secret docker-registry regcred --docker-server=<your-registry-server> --docker-username=<your-name> --docker-password=<your-pword> --docker-email=<your-email>
+      secretName: dockerhub
+      items:
+      - key: .dockerconfigjson
+        path: config.json

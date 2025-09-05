@@ -1,0 +1,17 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: gitlab
+  namespace: gitlab
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: gitlab-operator
+      version: 1.3.1
+      sourceRef:
+        kind: HelmRepository
+        name: gitlab
+        namespace: flux-system
+  values:
+  # https://artifacthub.io/packages/helm/gitlab/gitlab-operator

@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: bar
+  labels:
+    name: bar
+    acr-secret: "yes"

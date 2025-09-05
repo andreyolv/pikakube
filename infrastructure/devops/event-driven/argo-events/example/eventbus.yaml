@@ -1,0 +1,34 @@
+apiVersion: argoproj.io/v1alpha1
+kind: EventBus
+metadata:
+  name: default
+  namespace: argo-events
+spec:
+  nats:
+    native:
+      replicas: 3
+      auth: token
+      persistence:
+        storageClassName: standard
+        accessMode: ReadWriteOnce
+        volumeSize: 2Gi
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchLabels:
+                  controller: eventbus-controller
+                  eventbus-name: default
+              topologyKey: kubernetes.io/hostname
+---
+apiVersion: policy/v1beta1
+kind: PodDisruptionBudget
+metadata:
+  name: eventbus-default-pdb
+  namespace: argo-events
+spec:
+  maxUnavailable: 1
+  selector:
+    matchLabels:
+      controller: eventbus-controller
+      eventbus-name: default

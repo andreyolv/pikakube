@@ -1,0 +1,13 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: lws
+  namespace: lws
+spec:
+  interval: 5m
+  chartRef:
+    kind: OCIRepository
+    name: lws
+    namespace: flux-system
+  values:
+  # https://github.com/kubernetes-sigs/lws/blob/main/charts/lws/values.yaml

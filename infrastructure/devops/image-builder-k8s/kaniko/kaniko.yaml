@@ -1,0 +1,38 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: kaniko
+  namespace: kaniko
+spec:
+  containers:
+  - name: kaniko
+    image: gcr.io/kaniko-project/executor:latest
+    args:
+    - "--dockerfile=Dockerfile"
+    - "--context=/workspace"
+    - "--destination=andreyolv/flask-kaniko:latest"
+    - "--cache=true"
+    - "--cache-repo=andreyolv/kaniko-cache"
+    volumeMounts:
+    - name: kaniko-context
+      mountPath: /workspace
+    - name: kaniko-secret
+      mountPath: /kaniko/.docker
+    resources:
+      requests:
+        cpu: "100m"
+        memory: "256Mi"
+      limits:
+        cpu: "100m"
+        memory: "256Mi"
+  restartPolicy: Never
+  volumes:
+  - name: kaniko-context
+    persistentVolumeClaim:
+      claimName: kaniko-context-claim
+  - name: kaniko-secret
+    secret:
+      secretName: dockerhub
+      items:
+      - key: .dockerconfigjson
+        path: config.json

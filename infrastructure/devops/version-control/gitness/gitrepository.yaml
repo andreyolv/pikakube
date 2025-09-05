@@ -1,0 +1,10 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: GitRepository
+metadata:
+  name: gitness
+  namespace: flux-system
+spec:
+  interval: 24h
+  ref:
+    tag: v2.24.0
+  url: https://github.com/harness/gitness.git

@@ -1,0 +1,54 @@
+apiVersion: v1
+data:
+  password: c2VjcmV0cGFzc3dvcmQ=
+  username: YWRtaW4=
+kind: Secret
+metadata:
+  labels:
+    app: bingo
+    owner: alice
+    someName: someValue
+  name: my-secret
+type: Opaque
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    app: ubuntu
+  labels:
+    app: bingo
+    owner: alice
+    someName: someValue
+  name: ubuntu
+  namespace: kafka-strimzi
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: bingo
+      owner: alice
+      someName: someValue
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: bingo
+        owner: alice
+        someName: someValue
+    spec:
+      containers:
+      - command:
+        - sleep
+        - "3600"
+        image: ubuntu
+        imagePullPolicy: Always
+        name: ubuntu
+        resources:
+          limits:
+            cpu: "2"
+            memory: 4Gi
+          requests:
+            cpu: "1"
+            memory: 2Gi

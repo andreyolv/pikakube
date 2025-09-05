@@ -1,0 +1,31 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - ../../base
+secretGenerator:
+  - name: my-secret
+    behavior: merge
+    literals:
+      - username=YW5kcmV5
+      - password=YW5kcmV5
+  - name: my-secret2
+    behavior: create
+    literals:
+      - username=YW5kcmV5
+      - password=YW5kcmV5
+  - name: env_file_secret
+    namespace: apps
+    envs:
+    - env.txt
+    type: Opaque
+    options:
+      annotations:
+        app_config: "true"
+      labels:
+        app.kubernetes.io/name: "app2"
+# These labels are added to all configmaps and secrets.
+generatorOptions:
+  labels:
+    fruit: apple
+    
+# kustomize build overlays/dev -o output.yaml
