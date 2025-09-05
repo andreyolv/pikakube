@@ -1,0 +1,17 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: keep
+  namespace: keep
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: keep
+      version: 0.0.6
+      sourceRef:
+        kind: HelmRepository
+        name: keephq
+        namespace: flux-system
+  values:
+  # https://github.com/keephq/helm-charts/blob/main/charts/keep/values.yaml

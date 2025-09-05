@@ -1,0 +1,49 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: datahub
+  namespace: datahub
+spec:
+  dependsOn:
+  - name: prerequisites
+  interval: 5m
+  chart:
+    spec:
+      chart: datahub
+      version: 0.4.9
+      sourceRef:
+        kind: HelmRepository
+        name: datahub
+        namespace: flux-system
+  install:
+    crds: CreateReplace
+    timeout: 120m
+  upgrade:
+    crds: CreateReplace
+    timeout: 120m
+  values:
+  # https://artifacthub.io/packages/helm/datahub/datahub
+  # https://github.com/acryldata/datahub-helm/blob/master/charts/datahub/values.yaml
+    datahub-gms: 
+      service:
+        type: ClusterIP    
+    datahub-frontend:
+      defaultUserCredentials:
+        manualValues: |
+          admin:admin
+          pikakube:pikakube
+      service:
+        type: ClusterIP
+    #datahub-ingestion-cron:
+    #  enabled: true
+    #  crons:
+    #    mysql:
+    #      schedule: "0 * * * *"
+    #      recipe:
+    #        configmapName: recipe-config
+    #        fileName: mysql_recipe.yml
+    kafka:
+      schemaregistry:
+        type: KAFKA
+        # url: http://prerequisites-cp-schema-registry:8081
+        url: "http://datahub-datahub-gms:8080/schema-registry/api/"

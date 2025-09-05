@@ -1,0 +1,35 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: openmetadata-dependencies
+  namespace: openmetadata
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: openmetadata-dependencies
+      version: 1.6.7
+      sourceRef:
+        kind: HelmRepository
+        name: open-metadata
+        namespace: flux-system
+  values:
+  # https://github.com/open-metadata/openmetadata-helm-charts/blob/main/charts/deps/values.yaml
+  # change pvc accessmode to run local # failed to provision volume with StorageClass "standard": Only support ReadWriteOnce access mode
+  # mas se troca dá merda ainda, burrice: Helm upgrade failed: execution error at (openmetadata-dependencies/charts/airflow/templates/_helpers/validate-values.tpl:105:5): The `logs.persistence.accessMode` must be `ReadWriteMany`!
+  # rancher local-path não suporta ReadWriteMany então dá rola com persistence true
+  # usa chart não oficial do airflow, razão não sei, já achei zuado, melhor subir componentes separados pra ambiente produtivo
+    mysql:
+      primary:
+        persistence:
+          size: 1Gi
+    opensearch:
+      persistence: 
+        size: 1Gi
+    airflow:
+      dags:
+        persistence:
+          enabled: false
+      logs:
+        persistence:
+          enabled: false

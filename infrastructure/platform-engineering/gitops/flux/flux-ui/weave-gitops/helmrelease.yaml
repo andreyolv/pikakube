@@ -1,0 +1,21 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: weave-gitops
+  namespace: flux-system
+spec:
+  interval: 5m
+  chartRef:
+    kind: OCIRepository
+    name: weave-gitops
+    namespace: flux-system
+  values:
+  # https://github.com/weaveworks/weave-gitops/blob/main/charts/gitops-server/values.yaml
+    adminUser:
+      create: true
+      username: admin
+      # Change password by generating a new hash on https://bcrypt.online
+      # bcrypt hash for password "pikakube"
+      passwordHash: "$2y$10$iayIao/7JBdwGbyClt022uXQS2EvF5tkATd817z80Wdrs1zPw4dSC"
+    metrics:
+      enabled: true

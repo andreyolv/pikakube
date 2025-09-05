@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: recipe-config
+  namespace: datahub
+data:
+  mysql_recipe.yml: |-
+    source:
+      type: demo-data
+      config: {}
+    

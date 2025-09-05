@@ -1,0 +1,40 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: fleet-crd
+  namespace: fleet
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: fleet-crd
+      version: 0.9.3
+      sourceRef:
+        kind: HelmRepository
+        name: fleet
+        namespace: flux-system
+  values:
+  # https://artifacthub.io/packages/helm/fleet/fleet-crd
+  # https://github.com/rancher/fleet/blob/main/charts/fleet-crd/values.yaml
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: fleet
+  namespace: fleet
+spec:
+  dependsOn:
+  - name: fleet-crd
+    namespace: fleet
+  interval: 5m
+  chart:
+    spec:
+      chart: fleet
+      version: 0.9.3
+      sourceRef:
+        kind: HelmRepository
+        name: fleet
+        namespace: flux-system
+  values:
+  # https://artifacthub.io/packages/helm/fleet/fleet
+  # https://github.com/rancher/fleet/blob/main/charts/fleet/values.yaml

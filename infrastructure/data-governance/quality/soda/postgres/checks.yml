@@ -1,0 +1,9 @@
+checks for d_month:
+- schema:
+    fail:
+      when required column missing:
+        - month_id
+        - action_month
+- missing_count(action_month) = 0:
+    name: All products have a key
+- duplicate_count(action_month) = 0

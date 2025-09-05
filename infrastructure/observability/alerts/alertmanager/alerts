@@ -1,0 +1,60 @@
+AirflowFileshareLogs
+max((kubelet_volume_stats_used_bytes{persistentvolumeclaim="airflow-logs", namespace="airflow"}/1024/1024/1024))/max((kubelet_volume_stats_capacity_bytes{persistentvolumeclaim="airflow-logs", namespace="airflow"}/1024/1024/1024))*100
+> 80
+Volume airflow-logs está com 80% da capacidade utilizada
+
+AirflowFileshareDags
+max((kubelet_volume_stats_used_bytes{persistentvolumeclaim="airflow-dags", namespace="airflow"}/1024/1024/1024))/max((kubelet_volume_stats_capacity_bytes{persistentvolumeclaim="airflow-dags", namespace="airflow"}/1024/1024/1024))*100
+> 80
+Volume airflow-dags está com 80% da capacidade utilizada
+
+AirflowImportError
+delta(airflow_dag_processing_import_errors[60m])
+> 20
+
+AirflowSchedulerHeartbeat
+delta(airflow_scheduler_heartbeat[5m])
+< 75
+
+
+DATABASE CDC SQLSERVER
+SELECT COUNT(*)
+      ---CAST(tb.is_tracked_by_cdc AS INT) AS CDC_Enabled,
+      ---CONCAT(s.name, '.', tb.name) AS Complete_Name
+FROM sys.tables tb
+INNER JOIN sys.schemas s on s.schema_id = tb.schema_id
+WHERE CONCAT(s.name, '.', tb.name) IN ('dbo.xyz', 'dbo.abc')
+Some CDC Table from GAC was disabled
+
+Flux
+gotk_reconcile_condition{kind="Kustomization",name="flux-system",namespace="flux-system", status="False",type="Ready"} > 0
+
+Check-up DAG Heartbeats
+sum(increase(airflow_ti_finish_airflow_checkup_DTO_airflow_checkup_success[30m])) < 1
+
+ConnectorStatus
+sum(kafka_connect_worker_connector_paused_task_count{strimzi_io_kind=~"KafkaConnect.*"})
+sum(kafka_connect_worker_connector_failed_task_count{strimzi_io_kind=~"KafkaConnect.*"})
+sum(kafka_connect_worker_connector_unassigned_task_count{strimzi_io_kind=~"KafkaConnect.*"})
+sum(kafka_connect_worker_connector_destroyed_task_count{strimzi_io_kind=~"KafkaConnect.*"})
+soma dos acima > 0
+Connector status is not Running
+
+KafkaConsumer
+kafka_consumergroup_members{job='kafka-exporter', consumergroup!~"(^__.*)|(^connect.*)|(schema-registry)|(.*history$)"} == 0
+
+
+pv-full
+avg(kubelet_volume_stats_used_bytes/kubelet_volume_stats_capacity_bytes * 100) by (persistentvolumeclaim,namespace) > 85
+
+VeleroBackupSensitiveError
+round(sum(increase(velero_backup_partial_failure_total[1h]))) > 0
+sum(avg_over_time(velero_backup_items_errors[1h])) > 0
+round(sum(increase(velero_volume_snapshot_failure_total[1h]))) > 0
+
+BackupDeletionFailure
+sum(increase(velero_backup_deletion_failure_total[1h])) > 1
+Backups is not deleting, please verify
+
+
+

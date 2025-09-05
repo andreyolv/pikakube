@@ -1,7 +1,7 @@
 apiVersion: starrocks.com/v1
 kind: StarRocksCluster
 metadata:
-  name: raizen
+  name: pikakube
   namespace: starrocks
 spec:
   starRocksFeSpec:

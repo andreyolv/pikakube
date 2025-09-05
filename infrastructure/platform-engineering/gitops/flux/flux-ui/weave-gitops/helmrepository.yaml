@@ -1,0 +1,10 @@
+apiVersion: source.toolkit.fluxcd.io/v1beta2
+kind: OCIRepository
+metadata:
+  name: weave-gitops
+  namespace: flux-system
+spec:
+  interval: 24h
+  url: oci://ghcr.io/weaveworks/charts/weave-gitops
+  ref:
+    tag: 4.0.36

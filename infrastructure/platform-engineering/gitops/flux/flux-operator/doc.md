@@ -4,8 +4,8 @@ https://github.com/controlplaneio-fluxcd/charts
 # Create Github App with Permissions
 https://fluxcd.io/flux/installation/bootstrap/github/#github-organization
 
-echo 'export PIKAKUBE_FLUX_OPERATOR_APP_ID=1633681' >> ~/.bashrc
-echo 'export PIKAKUBE_FLUX_OPERATOR_INSTALLATION_ID=76665228' >> ~/.bashrc
+echo 'export PIKAKUBE_FLUX_OPERATOR_APP_ID=xxxxxx' >> ~/.bashrc
+echo 'export PIKAKUBE_FLUX_OPERATOR_INSTALLATION_ID=xxxxxxxxxx' >> ~/.bashrc
 source ~/.bashrc
 
 kubectl get fluxreport/flux -n flux-system -o yaml

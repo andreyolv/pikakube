@@ -1,0 +1,18 @@
+https://github.com/sodadata/soda-core/tree/main/docs
+https://docs.soda.io/soda/connect-spark.html
+
+python3 -m venv venv
+source venv/bin/activate
+
+pip install pyspark
+pip install soda-core
+# pip install soda-spark -> deprecated essa merda
+pip install soda-core-spark-df
+
+deactivate
+
+soda scan -c configuration.yml -d srcdb checks.yml
+
+https://www.confessionsofadataguy.com/soda-core-data-quality-at-scale/
+
+https://lopesdiego12.medium.com/data-quality-na-americanas-com-soda-io-7153e5ce2035
