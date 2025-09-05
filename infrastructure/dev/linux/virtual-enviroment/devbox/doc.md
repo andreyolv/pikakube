@@ -22,8 +22,9 @@ devbox update
 # Update devbox version
 devbox version update
 
-# Automatically init devbox shell in terminal
-echo 'devbox shell --config /home/andrey/projects/pikakube' >> ~/.bashrc
+# Automatically init devbox shell only in vscode terminal
+echo 'if [ "$TERM_PROGRAM" = "vscode" ]; then devbox shell --config /home/andrey/projects/pikakube; fi' >> ~/.bashrc
+
 source ~/.bashrc
 
 # Devbox packages are installed at /nix/store

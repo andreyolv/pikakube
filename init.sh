@@ -16,13 +16,17 @@ echo "Flux-operator installed!"
 flux create secret githubapp flux-system \
   --app-id=$PIKAKUBE_FLUX_OPERATOR_APP_ID \
   --app-installation-id=$PIKAKUBE_FLUX_OPERATOR_INSTALLATION_ID \
-  --app-private-key=/home/andrey/projects/mount-of-olives-platform/infrastructure/platform-engineering/gitops/flux/flux-operator/pikakube-flux-operator-private-key.pem
+  --app-private-key=infrastructure/platform-engineering/gitops/flux/flux-operator/pikakube-flux-operator.private-key.pem
 
-kubectl apply -f infrastructure/platform-engineering/gitops/flux-operator/fluxinstance.yaml
+kubectl apply -f infrastructure/platform-engineering/gitops/flux/flux-operator/fluxinstance.yaml
+
+echo "Flux installed!"
 
 kubectl create ns vault
 kubectl apply -f infrastructure/security/secrets/vault/vault-dev/configmap-real.yaml
 kubectl create ns ingress-nginx
 kubectl apply -f infrastructure/security/certificates/mkcert/mkcert-tls-secret.yaml
 
-echo "Flux installed!"
+echo "Basics manifests installed!"
+
+kubens flux-system
