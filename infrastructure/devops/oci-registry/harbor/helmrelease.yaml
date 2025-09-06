@@ -8,7 +8,7 @@ spec:
   chart:
     spec:
       chart: harbor
-      version: 1.16.0
+      version: 1.17.2
       sourceRef:
         kind: HelmRepository
         name: harbor
@@ -17,9 +17,14 @@ spec:
   # https://artifacthub.io/packages/helm/harbor/harbor
   # https://github.com/goharbor/harbor-helm/blob/master/values.yaml
     expose:
-      tls:
-        enabled: false
+      secret:
+        secretName: mkcert-tls-secret
       ingress:
         hosts:
           core: harbor.127.0.0.1.nip.io
+        annotations:
+          forecastle.stakater.com/expose: "true"
+          forecastle.stakater.com/icon: "https://raw.githubusercontent.com/cncf/artwork/refs/heads/main/projects/harbor/icon/color/harbor-icon-color.svg"
+          forecastle.stakater.com/appName: "Harbor"
+          forecastle.stakater.com/group: "DevOps"
     externalURL: http://harbor.127.0.0.1.nip.io
