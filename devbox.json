@@ -16,7 +16,8 @@
     "git@latest",
     "trivy@latest",
     "uv@latest",
-    "velero@latest"
+    "velero@latest",
+    "graphviz@latest"
   ],
   "shell": {
     "init_hook": [

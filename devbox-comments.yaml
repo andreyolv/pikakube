@@ -26,7 +26,8 @@
     "vault@latest",
     "cilium-cli@latest",
     "podman@latest",
-    "act@latest"
+    "act@latest",
+    "graphviz@latest"
   ],
   "shell": {
     "init_hook": [

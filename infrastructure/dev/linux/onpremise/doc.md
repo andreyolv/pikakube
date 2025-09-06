@@ -23,6 +23,7 @@ https://github.com/pi-hole/pi-hole
 tailscale
 https://www.wireguard.com/
 https://github.com/NginxProxyManager/nginx-proxy-manager
+https://github.com/netbox-community/netbox
 
 # Security
 cloudflare
