@@ -1,0 +1,5 @@
+prometheus-client == 0.17.1
+pyodbc == 4.0.39
+toml == 0.10.2
+azure-identity == 1.14.0
+azure-cli == 2.51.0

@@ -1,0 +1,10 @@
+[QA]
+server = 'tcp:xxxxxxxxxxxxx-ondemand.sql.azuresynapse.net,1433'
+database = 'TRUSTED'
+query = 'SELECT TOP 10 * FROM [PLAN].[DIM_CLIENT]'
+
+[TRADING]
+server = 'tcp:xxxxxxxxxxxx-ondemand.sql.azuresynapse.net,1433'
+database = 'TRUSTED'
+query = 'SELECT TOP 10 * FROM [TRD_PLAN].[DIM_CLIENT]'
+

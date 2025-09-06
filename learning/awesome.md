@@ -12,3 +12,5 @@ https://github.com/devsecops/awesome-devsecops
 https://github.com/ksoclabs/awesome-kubernetes-security
 https://github.com/rootsongjc/awesome-cloud-native
 https://github.com/f/awesome-chatgpt-prompts
+
+https://github.com/viraptor/reverse-interview

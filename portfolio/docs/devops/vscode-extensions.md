@@ -1,0 +1,1 @@
+/home/andrey/projects/pikakube/portfolio/../.vscode/p-doc.md

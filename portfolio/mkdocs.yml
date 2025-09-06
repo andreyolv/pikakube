@@ -1,0 +1,59 @@
+site_name: Pikakube
+site_description: This repo is a declarative implementation of a Kubernetes cluster using GitOps.
+site_author: Andrey Oliveira
+site_url: https://andreyolv.github.io/pikakube/
+
+repo_name: andreyolv/pikakube
+repo_url: https://github.com/andreyolv/pikakube
+
+nav:
+  - DevOps:
+    - Devbox: devops/devbox.md
+    - VSCode Extensions: devops/vscode-extensions.md
+  - Network:
+    - Netshoot: network/netshoot.md
+  - Security:
+    - Kubernetes Audit Logs: security/kubernetes-audit-logs.md
+    - Policies: 
+      - security/policies/index.md
+      - ADR 001: security/policies/adr-001.md
+      - Execution Plan: security/policies/execution-plan.md
+      - Project: security/policies/project.md
+
+theme:
+  name: material
+  palette:
+  - scheme: default
+    primary: yellow
+    accent: blue
+    toggle:
+      icon: material/weather-night
+      name: Modo escuro
+  - scheme: slate
+    primary: yellow
+    accent: blue
+    toggle:
+      icon: material/weather-sunny
+      name: Modo claro
+
+extra:
+  # https://squidfunk.github.io/mkdocs-material/setup/setting-up-the-footer/#social-links
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/andreyolv
+    - icon: fontawesome/brands/linkedin
+      link: https://www.linkedin.com/in/andreyolv/
+    #- icon: fontawesome/brands/medium
+    #  link: 
+# https://squidfunk.github.io/mkdocs-material/setup/setting-up-the-footer/#remove-generator
+  generator: false
+
+# https://squidfunk.github.io/mkdocs-material/setup/setting-up-the-footer/#copyright-notice
+copyright: Copyright &copy; 2025 - Andrey Oliveira
+
+#extra_css:
+#  - custom.css
+
+plugins:
+  - search
+  - section-index

@@ -1,0 +1,43 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: spark-hs-config
+  namespace: spark
+data:
+  spark-defaults.conf: |-
+    spark.history.provider: org.apache.spark.deploy.history.FsHistoryProvider
+    spark.eventLog.dir: hdfs://namenode.spark.svc.cluster.local:8020/spark-history
+    spark.history.fs.logDirectory: hdfs://namenode.spark.svc.cluster.local:8020/spark-history
+    spark.history.fs.update.interval: 5s
+    spark.history.retainedApplications: 100
+    spark.history.ui.port: 18080
+    spark.history.store.maxDiskUsage: 10g
+    spark.history.custom.executor.log.url.applyIncompleteApplication: true
+
+#    spark.hadoop.fs.s3a.aws.credentials.provider=com.amazonaws.auth.WebIdentityTokenCredentialsProvider
+#    spark.history.fs.eventLog.rolling.maxFilesToRetain=5
+#    spark.history.fs.logDirectory=s3a://spark-logs
+# spark.hadoop.fs.s3a.impl=org.apache.hadoop.fs.s3a.S3AFileSystem
+# spark.eventLog.enabled=true
+# spark.history.ui.port=18080
+
+# spark.hadoop.fs.s3a.access.key=$AWS_ACCESS_KEY_ID
+# spark.hadoop.fs.s3a.secret.key=$AWS_SECRET_ACCESS_KEY
+
+# spark.hadoop.fs.azure.account.key.$storageAccount.blob.core.windows.net=$accessKey
+#--conf spark.eventLog.enabled=true \
+#--conf spark.eventLog.dir=wasbs://$container@$storageAccount.blob.core.windows.net/spark-hs
+
+
+# secret:
+#AWS_ACCESS_KEY_ID:
+#AWS_SECRET_ACCESS_KEY:
+#ENDPOINT:
+#
+#storageAccount:
+#accessKey:
+
+# https://github.com/cloudnativeapp/charts/blob/master/curated/spark-history-server/templates/deployment.yaml
+# https://medium.com/@carlosescura/run-spark-history-server-on-kubernetes-using-helm-7b03bfed20f6
+# https://spark.apache.org/docs/latest/monitoring.html#spark-history-server-configuration-options
+# https://github.com/datatok/helm-charts/blob/main/charts/spark-history/templates/deployment.yaml

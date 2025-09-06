@@ -1,0 +1,58 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: spark-history-server
+  namespace: spark
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: spark-history-server
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: spark-history-server
+    spec:
+      containers:
+      - name: spark-history-server
+        image: apache/spark
+        # ghcr.io/hivemindtechnologies/spark-history-server 
+        # varabonthu/spark-web-ui
+        command: ["/opt/spark/sbin/start-history-server.sh"]
+        env:
+        - name: SPARK_NO_DAEMONIZE
+          value: "false" # true
+        - name: SPARK_HISTORY_OPTS
+          value: >-
+            -Dspark.history.fs.cleaner.enabled=true
+            -Dspark.history.fs.cleaner.interval=1d
+            -Dspark.history.fs.cleaner.maxAge=7d  
+          # -Dspark.history.fs.logDirectory=s3a://spark-logs
+        - name: SPARK_CONF_DIR
+          value: /opt/spark/conf
+        ports:
+        - containerPort: 18080
+        volumeMounts:
+        - name: spark-hs-config
+          mountPath: /opt/spark/conf/spark-defaults.conf
+          subPath: spark-defaults.conf
+        #- name: secret-volume
+        #  mountPath: /opt/spark/conf/secret/api_key
+        #  subPath: api_key
+        resources:
+          requests:
+            cpu: 500m
+            memory: 1500Mi
+          limits:
+            cpu: 1000m
+            memory: 3000Mi
+      volumes:
+      - name: spark-hs-config
+        configMap:
+          name: spark-hs-config
+      #- name: secret-volume
+      #  secret:
+      #    secretName: secret
+

@@ -1,0 +1,17 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: spark-history-server
+  namespace: spark
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: .
+      sourceRef:
+        kind: GitRepository
+        name: spark-history-server
+        namespace: flux-system
+  values:
+  # https://github.com/carlosescura/spark-history-server-helm/blob/master/values.yaml
+    S3logPath: 'spark-logs'

@@ -1,0 +1,1 @@
+/home/andrey/projects/pikakube/portfolio/../infrastructure/dev/linux/virtual-enviroment/devbox/p-doc.md

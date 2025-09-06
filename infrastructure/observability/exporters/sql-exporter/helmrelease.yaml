@@ -1,0 +1,38 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: sql-exporter
+  namespace: prometheus
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: sql-exporter
+      version: 0.11.1
+      sourceRef:
+        kind: HelmRepository
+        name: sql-exporter
+        namespace: flux-system
+  valuesFrom:
+  - kind: Secret
+    name: sql-exporter
+    valuesKey: database-uri
+    targetPath: config.target.data_source_name
+  values:
+  # https://artifacthub.io/packages/helm/sql-exporter/sql-exporter
+  # https://github.com/burningalchemist/sql_exporter/blob/master/helm/values.yaml
+    serviceMonitor:
+      enabled: true
+    config:
+      target: 
+        name: postgres_database
+        collectors: [employee_count]
+      collectors:
+      - collector_name: employee_count
+        metrics:
+        - metric_name: total_employees
+          type: gauge
+          help: Total number of employees
+          values: [total_employees]
+          query: |
+            SELECT COUNT(*) AS total_employees FROM myschema.employees;

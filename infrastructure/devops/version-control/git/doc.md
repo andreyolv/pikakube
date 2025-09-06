@@ -49,3 +49,5 @@ https://github.com/commitizen-tools/commitizen
 https://github.com/twisted/towncrier
 
 https://github.com/actions/labeler
+
+https://github.com/gitbutlerapp/gitbutler

@@ -1,0 +1,1 @@
+/home/andrey/projects/pikakube/portfolio/../infrastructure/security/kubernetes-core/audit-logs/p-doc.md

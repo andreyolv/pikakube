@@ -1,0 +1,10 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: spark-history-server
+  namespace: spark
+spec:
+  selector:
+    app: spark-history-server
+  ports:
+  - port: 18080

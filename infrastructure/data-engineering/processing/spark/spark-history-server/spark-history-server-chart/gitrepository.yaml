@@ -1,0 +1,10 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: GitRepository
+metadata:
+  name: spark-history-server
+  namespace: flux-system
+spec:
+  interval: 24h
+  ref:
+    branch: master
+  url: https://github.com/carlosescura/spark-history-server-helm.git
