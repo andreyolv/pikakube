@@ -31,3 +31,8 @@ https://github.com/kubernetes-sigs/aws-load-balancer-controller
 
 https://github.com/amazonlinux/amazon-linux-2023
 https://github.com/awslabs/amazon-eks-ami
+
+https://github.com/aws/eks-charts
+
+https://github.com/aws/eks-pod-identity-agent/tree/main
+
