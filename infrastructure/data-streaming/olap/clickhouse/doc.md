@@ -6,3 +6,5 @@ DONE
 - Integrar com Kafka.
 
 https://github.com/ClickHouse/ClickHouse/issues/53218
+
+https://github.com/chdb-io/chdb

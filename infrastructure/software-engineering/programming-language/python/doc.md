@@ -20,3 +20,5 @@ https://github.com/RefactoringGuru/design-patterns-python
 https://12factor.net/
 
 https://github.com/encode/uvicorn
+
+https://github.com/asottile/pyupgrade

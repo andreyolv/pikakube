@@ -44,7 +44,7 @@ rm -f tempfile.json
 
 kubectl get pods --field-selector status.phase=Running
 
-kubectl drain aks-d64z1-39255961-vmss00000k --ignore-daemonsets --delete-local-data
+kubectl drain aks-d64z1-39255961-vmss00000k --ignore-daemonsets --delete-emptydir-data
 se drain não funciona e fica travado infinito deletar todos os pods mesmo
 '''
 kubectl get pods -A --field-selector spec.nodeName=aks-spot-9d8s2 \
