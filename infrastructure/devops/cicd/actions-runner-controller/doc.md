@@ -10,3 +10,5 @@ Grafana dashboard:
 https://github.com/actions/actions-runner-controller/tree/master/docs/gha-runner-scale-set-controller/samples/grafana-dashboard
 
 https://github.com/orgs/community/discussions/160697
+
+https://github.com/actions/actions-runner-controller/discussions/4213
