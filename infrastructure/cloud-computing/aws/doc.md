@@ -36,3 +36,9 @@ https://github.com/aws/eks-charts
 
 https://github.com/aws/eks-pod-identity-agent/tree/main
 
+https://health.aws.amazon.com/health/status
+
+EKS tagging 
+https://github.com/aws/containers-roadmap/issues/608
+https://github.com/aws/containers-roadmap/issues/374
+

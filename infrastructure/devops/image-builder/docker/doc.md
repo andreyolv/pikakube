@@ -9,6 +9,7 @@ https://github.com/docker/compose
 https://github.com/kubernetes/kompose
 
 https://medium.com/@faruk13/alpine-slim-bullseye-bookworm-noble-differences-in-docker-images-explained-d9aa6efa23ec
+https://wiki.debian.org/DebianReleases
 
 https://github.com/wagoodman/dive
 

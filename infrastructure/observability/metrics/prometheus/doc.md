@@ -26,3 +26,5 @@ https://github.com/prometheus-community/postgres_exporter/pull/911
 https://github.com/prometheus/node_exporter/issues/2607
 
 https://github.com/prometheus-operator/prometheus-operator/issues/1547
+https://github.com/prometheus-operator/prometheus-operator/issues/2398
+https://github.com/prometheus-operator/prometheus-operator/issues/5452

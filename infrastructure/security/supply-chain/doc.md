@@ -15,3 +15,5 @@ https://github.com/kubernetes-sigs/bom
 https://github.com/actions/dependency-review-action
 
 https://github.com/ossf/s2c2f
+
+https://github.com/aquasecurity/chain-bench

@@ -2,10 +2,13 @@ https://github.com/dbt-labs/dbt-core
 https://github.com/dbt-labs/jaffle-shop-classic
 https://github.com/elementary-data/elementary
 https://github.com/dbt-labs/metricflow
-
+https://github.com/dbt-labs/dbt-adapters
+https://github.com/dbt-labs/dbt-utils
+https://github.com/dbt-labs/dbt-fusion
 
 https://github.com/duckdb/dbt-duckdb
 https://github.com/getindata/dbt-flink-adapter
+https://github.com/starburstdata/dbt-trino
 
 TO DO
 - Integrar com Cosmos no Airflow.

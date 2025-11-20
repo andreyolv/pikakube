@@ -1,12 +1,16 @@
 https://kubesearch.dev/
 https://github.com/topics/k8s-at-home
 https://github.com/cncf/landscape/blob/master/landscape.yml
+
 https://github.com/ossf/ossf-landscape/blob/main/landscape.yml
 https://artifacthub.io/packages/search?sort=relevance&page=1
-https://www.youtube.com/@RawkodeAcademy
+
 awesone github lists
 https://www.linkedin.com/company/learnk8s
 procurar 'alternatives open source to xxx'
+
+Medium Free
+https://freedium.cfd/
 
 How download playlists youtube
 https://github.com/yt-dlp/yt-dlp

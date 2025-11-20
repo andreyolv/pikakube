@@ -5,3 +5,5 @@ https://github.com/open-telemetry/opentelemetry-operator
 
 
 https://github.com/yuriolisa/pes-2023-opentelemetry
+
+https://github.com/google/sqlcommenter

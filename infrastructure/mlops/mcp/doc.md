@@ -5,4 +5,6 @@ https://github.com/modelcontextprotocol/python-sdk
 
 https://glama.ai/mcp/servers
 
-mcp server para webscraping
+https://github.com/jlowin/fastmcp
+
+https://github.com/googleapis/genai-toolbox

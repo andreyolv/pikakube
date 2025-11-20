@@ -34,3 +34,6 @@ https://github.com/vmware-tanzu/velero/discussions/8794
 https://github.com/vmware-tanzu/velero/issues/3151
 
 https://github.com/vmware-tanzu/velero/issues/7139
+
+https://github.com/vmware-tanzu/velero/issues/2957
+https://github.com/vmware-tanzu/velero/discussions/9050

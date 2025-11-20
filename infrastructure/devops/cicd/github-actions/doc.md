@@ -5,8 +5,11 @@ https://www.youtube.com/watch?v=8xYz_oCQQsg
 
 https://github.com/orgs/community/discussions/9050
 
+https://github.com/actions/runner-images
 
 https://github.com/actions/cache
+
+https://github.com/actions/github-script
 
 https://github.com/aws-actions/configure-aws-credentials
 https://github.com/aws-actions/amazon-ecr-login
