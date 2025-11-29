@@ -24,6 +24,8 @@ https://github.com/kubernetes-sigs/aws-iam-authenticator
 
 https://github.com/aws/secrets-store-csi-driver-provider-aws
 
+https://github.com/aws/aws-application-networking-k8s
+
 EMR:
 https://awslabs.github.io/data-on-eks/docs/resources/binpacking-custom-scheduler-eks
 

@@ -1,0 +1,14 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: nginx-gateway-fabric
+  namespace: nginx-gateway-fabric
+spec:
+  interval: 5m
+  chartRef:
+    kind: OCIRepository
+    name: nginx-gateway-fabric
+    namespace: flux-system
+  values:
+  # https://artifacthub.io/packages/helm/nginx-gateway-fabric/nginx-gateway-fabric
+  # https://github.com/nginx/nginx-gateway-fabric/blob/main/charts/nginx-gateway-fabric/values.yaml

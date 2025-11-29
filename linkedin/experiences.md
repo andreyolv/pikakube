@@ -3,6 +3,16 @@ Clickbbus
 Full-time · Current
 Remote
 
+- Lead the company’s Data Platform strategy, ensuring stability, scalability, reliability, security, observability, and cost efficiency across AWS and Kubernetes.
+- Provide technical leadership for DataOps, Data Platform, and Data Reliability, defining engineering standards, modernizing architectures, and driving the adoption of event-driven and real-time data pipelines.
+- Own FinOps initiatives and architectural decisions to ensure cost-efficient, high-performance cloud operations.
+- Modernize the legacy ecosystem into a cloud-native platform on Kubernetes using Airflow, Spark, OpenMetadata, Trino, and dbt.
+- Establish and enforce security, data quality, and governance standards to ensure consistency, compliance, and reliability across the data platform.
+- Lead data platform technical planning, architectural reviews, documentation practices, and Agile prioritization, balancing innovation with technical debt management.
+- Align platform strategy with company-wide objectives through executive-level presentations and cross-team collaboration with MLOps, SRE and Security.
+- Provide ongoing knowledge transfer, mentorship, and hands-on support to elevate the technical maturity of engineering teams.
+- Continuously improve engineering processes, operational workflows, and platform standards to enhance team productivity.
+
 ---------------
 Raízen
 Full-time · 3 yrs 3 mos

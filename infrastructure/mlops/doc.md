@@ -25,10 +25,6 @@ https://github.com/iterative/dvc
 
 https://github.com/evidentlyai/evidently
 
-https://github.com/langflow-ai/langflow
-
-https://github.com/langfuse/langfuse
-
 https://github.com/modelpack/model-spec
 
 https://github.com/NVIDIA/k8s-device-plugin

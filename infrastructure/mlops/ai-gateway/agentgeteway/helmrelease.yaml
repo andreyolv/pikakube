@@ -5,13 +5,10 @@ metadata:
   namespace: kgateway
 spec:
   interval: 5m
-  chart:
-    spec:
-      chart: install/helm/kgateway-crds
-      sourceRef:
-        kind: GitRepository
-        name: kgateway
-        namespace: flux-system
+  chartRef:
+    kind: OCIRepository
+    name: kgateway-crds
+    namespace: flux-system
   values:
   # https://github.com/kgateway-dev/kgateway/blob/main/install/helm/kgateway-crds/values.yaml
 ---
@@ -21,15 +18,10 @@ metadata:
   name: kgateway
   namespace: kgateway
 spec:
-  dependsOn:
-  - name: kgateway-crds
   interval: 5m
-  chart:
-    spec:
-      chart: install/helm/kgateway
-      sourceRef:
-        kind: GitRepository
-        name: kgateway
-        namespace: flux-system
+  chartRef:
+    kind: OCIRepository
+    name: kgateway
+    namespace: flux-system
   values:
   # https://github.com/kgateway-dev/kgateway/blob/main/install/helm/kgateway/values.yaml

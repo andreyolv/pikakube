@@ -1,0 +1,35 @@
+name: Build and Publish App Image Test 1
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  build:
+    # https://docs.github.com/en/actions/sharing-automations/reusing-workflows#supported-keywords-for-jobs-that-call-a-reusable-workflow
+    uses: andreyolv/pikakube/.github/workflows/reusable-docker-build-push.yaml@main
+    with:
+      dockerfile_context: infrastructure/software-engineering/api/rest/flask
+      repository: reusable-workflows-test1
+    secrets: inherit
+
+    #steps:  # ❌ ERRO: Não pode ter steps dentro de um job que usa `uses:` uses roda isoladamente
+    #- run: echo "Tentando roubar secrets: ${{ secrets.REGISTRY_PASSWORD }}"
+
+# https://docs.github.com/en/actions/writing-workflows/choosing-what-your-workflow-does/workflow-commands-for-github-actions#example-masking-and-passing-a-secret-between-jobs-or-workflows
+# github outputs não podem ser secrets, mas podem ser usados para passar informações entre jobs
+  # ❌ ERRO: Não pode ter outputs dentro de um job que usa `uses já que não pode ter steps também pra refenciar outputs
+
+  malicious:
+    needs: build
+    runs-on: ubuntu-latest
+    outputs:
+      attack_output: ${{ steps.attack-step.outputs.result }}
+    steps:
+      - id: attack-step
+        run: echo "result=I am a harmless output" >> $GITHUB_OUTPUT
+      - run: echo "Try Print Secret"
+      - run: echo ${{ secrets.DOCKERHUB_USERNAME }} # ❌ ERRO: secrets não são acessíveis do job anterior por serem jobs isolados
+
+# como envirorment é criado por repositório, o repositório do projeto não consegue acessar o environment do repositório do reusable-workflows
