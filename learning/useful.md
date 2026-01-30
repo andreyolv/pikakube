@@ -11,6 +11,8 @@ procurar 'alternatives open source to xxx'
 How download playlists youtube
 https://github.com/yt-dlp/yt-dlp
 
+sudo curl -L https://github.com/yt-dlp/yt-dlp/releases/latest/download/yt-dlp -o /usr/local/bin/yt-dlp && sudo chmod a+rx /usr/local/bin/yt-dlp
+
 essa merda baixa video e audio separados e precisa fazer o merge depois, pra isso precisa instalar essa merda
 sudo apt install ffmpeg -y
 

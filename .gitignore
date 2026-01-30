@@ -1,4 +1,5 @@
 # Custom to Pikakube
+devbox.lock
 infrastructure/platform-engineering/iac/terraform/terraform/.terraform
 infrastructure/security/secrets/vault/vault-dev/configmap-real.yaml
 infrastructure/platform-engineering/gitops/flux/flux-operator/pikakube-flux-operator.private-key.pem
