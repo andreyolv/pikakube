@@ -1,0 +1,18 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: polaris
+  namespace: polaris
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: polaris
+      version: 1.2.0-incubating-SNAPSHOT
+      sourceRef:
+        kind: HelmRepository
+        name: polaris
+        namespace: flux-system
+  values:
+  # https://github.com/apache/polaris/blob/main/helm/polaris/values.yaml
+  

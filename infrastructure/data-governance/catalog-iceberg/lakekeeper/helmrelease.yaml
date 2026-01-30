@@ -8,7 +8,7 @@ spec:
   chart:
     spec:
       chart: lakekeeper
-      version: 0.3.2
+      version: 0.8.1
       sourceRef:
         kind: HelmRepository
         name: lakekeeper

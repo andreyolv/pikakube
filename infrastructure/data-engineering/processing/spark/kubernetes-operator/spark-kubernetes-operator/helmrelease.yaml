@@ -8,10 +8,11 @@ spec:
   chart:
     spec:
       chart: spark-kubernetes-operator
-      version: 1.2.0
+      version: 1.4.0
       sourceRef:
         kind: HelmRepository
         name: spark
         namespace: flux-system
   # https://artifacthub.io/packages/helm/spark-kubernetes-operator/spark-kubernetes-operator
   # https://github.com/apache/spark-kubernetes-operator/blob/main/build-tools/helm/spark-kubernetes-operator/values.yaml
+  

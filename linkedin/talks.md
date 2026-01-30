@@ -1,4 +1,5 @@
 - Public Talks
+2025-10 (PT-BR) - Minha Jornada como um "Kubestronauta" - Cloud Native Community Group Curitiba
 2023-06 (PT-BR) - Interacting with the MinIO DataLake - https://www.youtube.com/watch?v=6-5l6BgF5oE&t=1s
 
 - Private Talks - The Plumbers (Data Engineering Brazilian Community) - https://theplumbers.com.br/

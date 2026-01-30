@@ -19,6 +19,7 @@ https://github.com/mrkeyongenesis/LFCS-Study-Guide
 https://github.com/zorski/lfcs-course-notes
 https://github.com/vsingh55/Linux-for-LFCS
 https://github.com/elliotholden/lfcs-practice-exam/blob/master/practice-exam-questions.pdf
+
 https://github.com/CFCIfe/LFCS-Practice-Questions-Solutions
 https://github.com/oscar-franzen/lfcs
 https://github.com/karakays/lfcs
@@ -28,3 +29,14 @@ https://github.com/teleivo/lfcstraining
 https://github.com/craig91/LFCS-Notes
 https://github.com/oguzhalit/lfcs-workshops
 https://github.com/jjberrow/LFCS_Study_Guide
+
+outros
+https://github.com/vsingh55/Linux-for-LFCS
+https://github.com/loyality7/lfcs-practice-tool
+https://github.com/Haydenbuilds/lfcs-practice
+https://github.com/chanchiwai-ray/lfcs-practice-questions
+https://github.com/StenlyTU/LFCS-official
+https://github.com/mymborrini/lfcs-notes
+https://github.com/Ghada-Atef/LFCS-Lab-Scripts
+https://github.com/gabrielemorini/lfcs
+https://github.com/dvbrennanjv/PUB-LFCS-Notes

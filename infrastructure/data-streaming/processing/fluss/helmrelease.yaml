@@ -1,17 +1,17 @@
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: numaflow
-  namespace: numaflow
+  name: fluss
+  namespace: fluss
 spec:
   interval: 5m
   chart:
     spec:
-      chart: numaflow
-      version: 0.4.0
+      chart: fluss
+      version: 0.9.0-incubating
       sourceRef:
         kind: HelmRepository
-        name: numaflow
+        name: fluss
         namespace: flux-system
   values:
-  # https://github.com/numaproj/helm-charts/blob/main/charts/numaflow/values.yaml
+  # https://github.com/apache/fluss/blob/main/helm/values.yaml

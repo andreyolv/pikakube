@@ -7,6 +7,10 @@ https://github.com/argoproj/argo-helm/issues/1823
 no limiting clusterResourceWhitelist to specific resource names
 https://github.com/argoproj/argo-cd/issues/12208
 
+ridiculo demais
+https://github.com/argoproj/argo-cd/issues/5202
+https://github.com/argoproj/argo-cd/issues/7437
+
 kubectl port-forward svc/argocd-server -n argocd 8080:443
 
 username: admin

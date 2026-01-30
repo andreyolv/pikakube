@@ -12,3 +12,6 @@ https://github.com/actions/actions-runner-controller/tree/master/docs/gha-runner
 https://github.com/orgs/community/discussions/160697
 
 https://github.com/actions/actions-runner-controller/discussions/4213
+
+precisa criar podmonitor manualmente
+https://github.com/actions/actions-runner-controller/discussions/3024

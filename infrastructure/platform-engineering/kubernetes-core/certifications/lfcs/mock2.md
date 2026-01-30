@@ -83,8 +83,9 @@ iptables -t nat -L -n
 3. Make sure that after you add the rules you make them persistent (so that when the machine is rebooted these changes are not lost).
 
 apt install iptables-persistent
-netfilter-persistent save
-iptables-save > /etc/iptables/rules.v4
+netfilter-persistent save ou
+  iptables-persistent save ou
+  iptables-save > /etc/iptables/rules.v4
 
 ==================================================================================
 Question 6:
@@ -211,10 +212,10 @@ apt install -y libncursesw5-dev autotools-dev autoconf automake build-essential
 
 4. Install the newly built htop application. By default, the application should be installed in /usr/local, in the bin subdirectory
 
-./autogen.sh
-./configure
-make
-make install
+  ./autogen.sh
+  ./configure
+  make
+  make install
 
 ==================================================================================
 Question 14:
@@ -228,6 +229,8 @@ Create a virtual machine with the following parameters on caleston-lp10:
 6. At the end of your command, you can add the parameter --noautoconsole to avoid waiting for this virtual machine to boot up, and not get stuck in the virtual console after it initializes.
 
 After you create this virtual machine, run a separate command to make mockexam2 automatically start up every time the system boots up.
+
+sudo qemu-img create -f qcow2 /var/lib/libvirt/images/ubuntu.img 10G
 
 virt-install \
 --name mockexam2 \

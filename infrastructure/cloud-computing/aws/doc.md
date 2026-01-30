@@ -9,6 +9,10 @@ https://github.com/awslabs/eks-node-viewer
 
 https://github.com/aws/aws-cli
 
+https://github.com/aws/efs-utils
+
+https://github.com/awslabs/iam-policy-autopilot
+
 https://docs.aws.amazon.com/
 
 https://github.com/alexcasalboni/aws-lambda-power-tuning

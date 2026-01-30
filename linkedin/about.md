@@ -1,17 +1,15 @@
-DataOps, Data Platform & Data Reliability Tech Lead with deep expertise in Kubernetes-centric data platforms, leading the design, scaling, reliability, governance, observability, security, and cost-efficiency of complex data ecosystems. I drive technical direction, architect end-to-end data infrastructure, and ensure engineering excellence, platform consistency, and operational maturity.
+Specialist in Cloud Native Data Engineering Platform & Infrastructure on Kubernetes.
 
-I specialize in distributed processing, orchestration, cloud-native automation, and FinOps, combining tools such as Airflow (+1000 DAGs), Spark, Kafka, dbt, Kubernetes, FluxCD, Crossplane/Terraform, Azure cloud services, and strong Python/Go engineering to build robust, automated, self-service data platforms.
+Hands-on experience architecting, developing, optimizing, troubleshooting, and sustaining high-maturity, resilient, scalable, and cost-efficient end-to-end data platforms on Kubernetes.
 
-I lead large-scale platform initiatives across Data Engineering, DataOps, Cloud, Network, Security, Observability, SRE and Governance, orchestrating cross-functional collaboration with data engineers, scientists, architects, and infra teams. My work accelerates development velocity, enforces best practices, reduces operational overhead, and significantly enhances security, compliance, reliability, and cost efficiency.
+Bridges best practices across Data Engineering, DevOps, Platform Engineering, Site Reliability Engineering (SRE), Observability, Security, Cloud Computing, and FinOps.
 
-I’ve built platform-wide automation, including GitOps ecosystems, custom Kubernetes operators, self-service portals, secret-injection frameworks, topic governance platforms, and full observability stacks. I design and enforce SLOs/SLIs, incident response processes, CI/CD standards, supply chain security, and organizational policies that elevate engineering quality at scale.
+Experience in open-source data tools such as Airflow, Spark, Kafka, Trino, dbt, OpenMetadata, Postgres, Iceberg, and MLflow — integrated with cloud-native tools like GitHub Actions, Terraform, Flux, Crossplane, Backstage, Karpenter, KEDA, NGINX Ingress, Prometheus, Grafana, External Secrets, Kyverno, and Velero.
 
-My leadership is hands-on, pragmatic, and focused on creating highly reliable, scalable, secure, cost-optimized, and developer-friendly data platforms that empower teams and accelerate business value.
+Problem-solver capable of tackling complex challenges and delivering effective, high-impact solutions, with a pragmatic mindset focused on real business value.
 
----
+Check out my portfolio with 100+ projects — link coming soon.
 
-Experience in architecting, developing, optimizing, troubleshooting and sustaining a high-maturity, resilient and scalable Data Platform on Kubernetes, trying to incorporate the best Data Engineering, DevOps, Platform Engineering, Site Reliability Engineering (SRE), Observability, Security, Cloud Computing and FinOps practices, in one of the largest companies in Brazil.
+Always learning and staying up to date with new technologies and innovations in the Kubernetes ecosystem. Currently building the world’s best cloud-native homelab repository on GitHub (based on my own very biased opinion 😄), featuring 450+ tools mapped to 1,400+ GitHub repositories, explored and organized into categories → https://github.com/andreyolv/pikakube
 
-Problem Solver with a ability to tackle complex challenges and deliver effective solutions, no matter the complexity.
-
-Constantly learning, testing and looking for state-of-the-art in the field, with a pragmatic mindset focused on delivering business results.
+Golden Kubestronaut — achieved all 14 CNCF Kubernetes certifications, with 35+ total certifications.

@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: jupyter-debug
+  namespace: test
+spec:
+  containers:
+  - name: jupyter
+    image: quay.io/jupyter/base-notebook:python-3.13
+    ports:
+      - containerPort: 8888
+    command:
+      - start-notebook.sh
+    args:
+      - --IdentityProvider.token=
+      

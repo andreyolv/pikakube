@@ -28,3 +28,17 @@ https://github.com/apache/airflow/issues/41641
 
 astronomer-cosmos
 https://github.com/astronomer/astronomer-cosmos/issues/2029
+
+scheduler race condition
+https://github.com/apache/airflow/issues/57470
+https://github.com/apache/airflow/issues/59349
+
+ti_finish metrics disapers
+https://github.com/apache/airflow/issues/46805
+https://github.com/apache/airflow/issues/41822
+https://github.com/apache/airflow/issues/47992
+https://github.com/apache/airflow/issues/60276
+
+custom ui
+https://github.com/apache/airflow/pull/58411
+https://github.com/apache/airflow/issues/52251
