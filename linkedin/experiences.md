@@ -3,6 +3,17 @@ Clickbbus
 Full-time · Current
 Remote
 
+- Lead the Data Platform infrastructure architecture, ensuring scalability, reliability, security, observability, modernization and cost efficiency on Kubernetes and Cloud.
+- Drive FinOps practices and monitoring to ensure cost-efficient and well-governed cloud operations; optimize budgets, resources, and processes to maximize cloud and platform efficiency and financial performance.
+- Drive platform evolution and sustainability through technical planning and standards documentation, defining and documenting processes and operational activities, using architecture decision records, reference architectures, service catalog, projects, continuous operations and process documentation.
+- Modernize legacy data infrastructure into a cloud-native, Kubernetes-based platform using tools such as Airflow, Spark, OpenMetadata, Trino, and dbt.
+- Evolve platform engineering with automation, standardization, and engineers experience — enabling teams to self-serve infrastructure and operate with autonomy and productivity at scale.
+- Defines, monitors, and enforces SLOs for mission-critical data infrastructure and services; designs and documents disaster recovery plans and processes to ensure platform resilience; and drives observability strategies that enable deep visibility, proactive detection, and rapid incident response.
+- Drive security best practices and frameworks — such as Zero Trust, CIS, MITRE ATT&CK, and ISO/IEC — while enforcing comprehensive security scans across cloud, clusters, containers, and code, and strengthening the platform with permissions, policies, SSO, workload identity, secrets, certificates, SAST, supply-chain controls, and restricted network access through private endpoints and VPN.
+- Collaborate with cross-functional partners — including MLOps, SRE, Security, and FinOps — aligning platform strategy with broader organizational objectives.
+- Mentor and upskill engineering teams, providing hands-on support, technical coaching, and knowledge transfer to elevate engineering maturity and empower autonomous delivery.
+
+
 ---------------
 Raízen
 Full-time · 3 yrs 3 mos

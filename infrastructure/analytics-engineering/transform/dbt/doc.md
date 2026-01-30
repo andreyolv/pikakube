@@ -1,34 +1,27 @@
 https://github.com/dbt-labs/dbt-core
 https://github.com/dbt-labs/jaffle-shop-classic
 https://github.com/elementary-data/elementary
+https://github.com/elementary-data/run-elementary-action
+
 https://github.com/dbt-labs/metricflow
+https://github.com/dbt-labs/dbt-adapters
+https://github.com/dbt-labs/dbt-utils
+https://github.com/dbt-labs/dbt-fusion
 
+https://github.com/dbt-checkpoint/dbt-checkpoint
 
-https://github.com/duckdb/dbt-duckdb
-https://github.com/getindata/dbt-flink-adapter
+https://github.com/starburstdata/dbt-trino
 
-TO DO
-- Integrar com Cosmos no Airflow.
-- Integrar com DuckDB.
-- Integrar com Flink.
+https://github.com/dbt-labs/dbt-fusion/issues/31
+https://github.com/dbt-labs/dbt-fusion/issues/38
+https://github.com/dbt-labs/dbt-fusion/issues/39
+https://github.com/dbt-labs/dbt-fusion/issues/829
 
 python3 -m venv venv
 source venv/bin/activate
 deactivate
 
 pip install dbt-core # python3 -m pip install --upgrade dbt-core
-
-# Trusted Adapters https://docs.getdbt.com/docs/trusted-adapters
-pip install dbt-spark
-pip install dbt-postgres
-pip install dbt-trino
-
-# Community Adapters https://docs.getdbt.com/docs/community-adapters
-pip install dbt-clickhouse
-pip install dbt-duckdb
-pip install dbt-starrocks
-pip install dbt-risingwave
-pip install dbt-flink-adapter
 
 dbt --version
 
@@ -66,12 +59,3 @@ dbt docs serve
 dbt run
 
 dbt test
-
---- DBT FLINK
-https://github.com/getindata/dbt-flink-adapter
-https://medium.com/@aminesnoussi7/introducing-the-dbt-flink-adapter-execute-real-time-analytics-on-apache-flink-with-dbt-run-a892bbdacbfb
-https://risingwave.com/blog/streaming-dbt-the-right-way-to-unlock-stream-processing-with-risingwave/
-https://getindata.com/blog/dbt-run-real-time-analytics-on-apache-flink-announcing-the-dbt-flink-adapter/
-https://github.com/gliter/dbt-flink-adapter-example
-
-https://www.getdbt.com/assets/uploads/dbt_certificate_study_guide.pdf

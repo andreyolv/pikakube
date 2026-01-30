@@ -46,11 +46,3 @@ SELECT schema_name FROM information_schema.schemata;
 SELECT * FROM myschema.employees;
 
 https://www.postgresql.org/docs/current/logical-replication-subscription.html
-
-
---dba
-rezising banco aws
-upgrade db
-migration
-backup restore db
-iam auth

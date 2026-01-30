@@ -1,0 +1,8 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: HelmRepository
+metadata:
+  name: fluss
+  namespace: flux-system
+spec:
+  interval: 24h
+  url: https://downloads.apache.org/incubator/fluss/helm-chart

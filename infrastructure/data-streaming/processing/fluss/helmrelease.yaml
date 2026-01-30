@@ -1,0 +1,17 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: fluss
+  namespace: fluss
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: fluss
+      version: 0.9.0-incubating
+      sourceRef:
+        kind: HelmRepository
+        name: fluss
+        namespace: flux-system
+  values:
+  # https://github.com/apache/fluss/blob/main/helm/values.yaml

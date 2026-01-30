@@ -1,3 +1,7 @@
+Pedir para Armando, Bruno, Gabriel
+
+---
+
 Pedro Adamo
 Data Engineering Coordinator, Lead of analytics engineering chapter, data problem solver
 June 3, 2025, Pedro managed Andrey directly

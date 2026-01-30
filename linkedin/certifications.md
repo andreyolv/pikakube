@@ -1,32 +1,11 @@
-AWS Certified Solutions Architect - Professional
-
-
-AWS Certified DevOps Engineer - Professional
-
-
-AWS Certified Machine Learning Engineer - Associate
-
-
-AWS Certified Data Engineer - Associate
-
-
-AWS Certified SysOps Administrator - Associate
-
-
-AWS Certified Developer - Associate
-September 25
-
-AWS Certified AI Practitioner
-
-
-AWS Certified Cloud Practitioner
-
-
-CNPA: Certified Cloud Native Platform Engineering Associate
-
+Golden Kubestronaut
+https://www.credly.com/badges/7684d596-ff47-4c82-97f2-749ddc021212
 
 LFCS: Linux Foundation Certified Systems Administrator
-October 23
+https://www.credly.com/badges/91c5c575-9e1c-410d-b529-5e80cb77f28c
+
+CNPA: Certified Cloud Native Platform Engineering Associate
+https://www.credly.com/badges/20618704-2b70-4d3c-bff4-286eb7b79365
 
 Data Streaming Engineer
 https://certificates.confluent.io/89d45be2-4a70-4c78-9ac9-3618724f6640
@@ -38,7 +17,7 @@ CBA: Certified Backstage Associate
 https://www.credly.com/badges/41a59889-df50-44bc-9c5c-24bd5c3caf04
 
 CGOA: Certified GitOps Associate
-https://www.credly.com/badge/a74769bc-4e36-4ab7-a18b-c11d49163e60
+https://www.credly.com/badges/a74769bc-4e36-4ab7-a18b-c11d49163e60
 
 ICA: Istio Certified Associate
 https://www.credly.com/badges/4b517aab-8499-466e-9744-948645fe463d

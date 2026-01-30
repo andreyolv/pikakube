@@ -67,6 +67,8 @@ jane soft fsize 1024
 grep '^john:' /etc/passwd -> nologin so we can not change user with command su - john to test with ulimit -a
 sudo -u john bash -c "ulimit -a | grep processes"
 sudo -u jane bash -c "ulimit -a | grep 'file size'"
+ou 
+su - john -c "ulimit -a"
 
 ==================================================================================
 Question 4:
@@ -79,7 +81,8 @@ Make sure she can execute sudo commands by adding her to the secondary group cal
 At this point Mary's primary group is mary. And her secondary group is sudo. Change her primary group to developers. Without affecting her secondary group.
 
 useradd -m -s /bin/dash mary
-echo "mary:1234" | sudo chpasswd 
+echo "mary:1234" | sudo chpasswd
+
 usermod -aG sudo mary
 usermod -g developers mary
 id mary

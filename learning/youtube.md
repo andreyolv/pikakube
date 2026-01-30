@@ -83,6 +83,7 @@
 - [Luca's Data Engineering](https://www.youtube.com/@LucaDataEngineering)
 - [Meetup Engenharia de Dados](https://www.youtube.com/@MeetupEngenhariaDeDados)
 - [Netflix Data](https://www.youtube.com/@netflixdata8262)
+- [OLake](https://www.youtube.com/@olakeio)
 - [OnehouseHQ](https://www.youtube.com/@onehouseHQ)
 - [OSACon](https://www.youtube.com/@OpenSourceAnalyticsConference)
 - [Prefect](https://www.youtube.com/@PrefectIO)

@@ -12,3 +12,8 @@ disallow tags
 https only
 
 https://kyverno.io/policies/best-practices/add-safe-to-evict/add-safe-to-evict/
+
+https://kyverno.io/policies/other/allowed-base-images/allowed-base-images/
+https://kyverno.io/policies/other/allowed-image-repos/allowed-image-repos/
+
+https://github.com/kyverno/kyverno/discussions/14373

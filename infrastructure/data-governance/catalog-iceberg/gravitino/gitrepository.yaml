@@ -1,0 +1,15 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: GitRepository
+metadata:
+  name: gravitino
+  namespace: flux-system
+spec:
+  interval: 24h
+  ref:
+    tag: v0.3.0
+  url: https://github.com/apache/gravitino.git
+  ignore: |
+    # exclude all
+    /*
+    # include deploy dir
+    !/dev/charts/gravitino

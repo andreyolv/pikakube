@@ -8,3 +8,5 @@ admin admin
 
 https://github.com/open-metadata/openmetadata-helm-charts/issues/236
 
+admin@open-metadata.org
+admin

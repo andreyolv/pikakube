@@ -1,0 +1,16 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: gravitino
+  namespace: gravitino
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: dev/charts/gravitino
+      sourceRef:
+        kind: GitRepository
+        name: gravitino
+        namespace: flux-system
+  values:
+  # https://github.com/apache/gravitino/blob/main/dev/charts/gravitino/values.yaml

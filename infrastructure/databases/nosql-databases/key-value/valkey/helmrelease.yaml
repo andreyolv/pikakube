@@ -5,10 +5,16 @@ metadata:
   namespace: valkey
 spec:
   interval: 5m
-  chartRef:
-    kind: OCIRepository
-    name: valkey
-    namespace: flux-system
+  chart:
+    spec:
+      chart: valkey
+      version: 0.8.1
+      sourceRef:
+        kind: HelmRepository
+        name: valkey
+        namespace: flux-system
   values:
-  # https://artifacthub.io/packages/helm/bitnami/valkey
-  # https://github.com/bitnami/charts/blob/main/bitnami/valkey/values.yaml
+  # https://artifacthub.io/packages/helm/ot-container-kit/redis-operator
+  # https://github.com/OT-CONTAINER-KIT/redis-operator/blob/main/charts/redis-operator/values.yaml
+
+    

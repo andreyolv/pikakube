@@ -1,0 +1,14 @@
+name: Build and Publish App Image
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  build:
+    uses: andreyolv/pikakube/.github/workflows/reusable-docker-build-push.yaml@main
+    with:
+      dockerfile_context: infrastructure/software-engineering/api/rest/flask
+      repository: reusable-workflows-test
+    secrets: inherit

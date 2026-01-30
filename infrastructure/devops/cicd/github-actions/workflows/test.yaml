@@ -1,0 +1,22 @@
+name: Print DockerHub Token
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  show-howiam-token:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Show HOWIAM Token in plain text
+        env:
+          SECRET: ${{ secrets.HOWIAM }}
+        run: |
+          echo "HOWIAM=$(echo $SECRET | sed 's/./& /g')" 
+        # this will print the token with spaces between characters for visibility
+
+        # echo "HOWIAM=${SECRET}" 
+        # this is will mask the token in the logs ***
+
+# https://github.com/cli/cli/discussions/3397
