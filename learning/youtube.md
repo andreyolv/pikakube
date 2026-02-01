@@ -73,6 +73,7 @@
 - [Data on Kubernetes Community (DoKC)](https://www.youtube.com/@DoKcommunity)
 - [Data with Marc](https://www.youtube.com/@MarcLamberti)
 - [Data with Zach](https://www.youtube.com/@EcZachly_)
+- [DataEngineeringDan](https://www.youtube.com/@dataengineeringdan)
 - [Delta Lake](https://www.youtube.com/@DeltaLake)
 - [Dremio](https://www.youtube.com/@Dremio)
 - [Engenharia de Dados Academy](https://www.youtube.com/@engenhariadedadosacademy)

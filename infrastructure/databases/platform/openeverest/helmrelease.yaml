@@ -1,0 +1,17 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: openeverest
+  namespace: openeverest
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: everest
+      #version: 0.0.0
+      sourceRef:
+        kind: HelmRepository
+        name: percona
+        namespace: flux-system
+  values:
+  # https://github.com/percona/percona-helm-charts/blob/main/charts/everest/values.yaml
