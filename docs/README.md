@@ -1,4 +1,4 @@
-# Data Platform Portifolio
+# Data Platform Portfolio
 
 This repository organizes my projects and professional experiences into four categories, based on their current applicability, maturity, and strategic relevance.
 
