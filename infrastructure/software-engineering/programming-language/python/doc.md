@@ -22,3 +22,5 @@ https://12factor.net/
 https://github.com/encode/uvicorn
 
 https://github.com/asottile/pyupgrade
+
+https://github.com/pypa/build

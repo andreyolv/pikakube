@@ -1,4 +1,41 @@
-Pedir para Armando, Bruno, Gabriel
+Eaii {name} blz???? Tu foi uma pessoa muito massa com quem eu trabalhei(e ainda trabalho haha) que pôde ver minha capacidade profissional. Ficaria muito feliz e agradecido se pudesse falar um parágrafo simples e curto de recomendação aqui no linkedin para ficar registrado, algo mais focado em soft skill e comportamento, mas pode falar de coisa técnica também se preferir.
+
+Tu foi uma pessoa muito massa com quem eu trabalhei(e ainda trabalho haha) que pôde ver minha capacidade profissional. Ficaria muito feliz e agradecido se pudesse escrever uma recomendação aqui no linkedin para ficar registrado, algo mais focado em soft skill e comportamento, mas pode falar de coisa técnica também se preferir. Obrigadão!
+
+
+---
+
+Bruno Renzi Marques 
+Developer & Data Engineer | Python | SQL | Pyspark | Airflow | Machine Learning
+March 3, 2026, Bruno worked with Andrey on the same team
+
+Trabalhei em conjunto com o Andrey em duas empresas diferentes. Estando na mesma equipe ou não, ele sempre foi/é muito prestativo, nos auxiliando muito com DataOps. Exemplo de excelência técnica, não cansa de pesquisar novas tecnologias e tirar certificações. Recomendo o Andrey por ser um funcionário que além altamente competente tecnicamente, sempre ser muito solicito e ter um bom espírito de equipe.
+
+---
+
+Érico Tiago Meireles 
+Data Driven Solutions | Aeronautical Engineer | Young Executive Program | Suzano
+February 14, 2026, Érico worked with Andrey but on different teams
+
+Trabalhar com o Andrey, na Raízen, foi uma experiência excelente. Além de ser um Engenheiro DevOps tecnicamente impecável — as várias certificações em Kubernetes não deixam mentir —, a sua postura também se destaca. Sempre foi muito parceiro, acessível e paciente para compartilhar conhecimento e apoiar a equipe no que fosse preciso. Um profissional que eleva o nível técnico e humano do time.
+
+---
+
+Fabio Oliani
+Senior Analytics Engineer at Nubank | ETL/ELT, Python, SQL, Apache Spark, Apache Airflow, Big Data | Cloud Computing | PhD in Theoretical Physics
+February 9, 2026, Fabio worked with Andrey on the same team
+
+Tive a oportunidade de trabalhar com o Andrey durante nosso período na Raízen e posso dizer que ele é um profissional realmente diferenciado. Possui um conhecimento técnico profundo sobre temas extremamente complexos, além de uma capacidade impressionante de transformar esse conhecimento em soluções práticas e eficientes.
+
+Andrey é extremamente proativo, colaborativo e comprometido com a excelência. Não mede esforços para encontrar a melhor solução possível para os desafios que enfrenta, sempre contribuindo de forma positiva para o time e para os resultados do projeto.
+
+---
+
+Armando Barbosa 
+Sr. Data Engineer | Spark | Python | Data Quality | AWS
+February 7, 2026, Armando worked with Andrey on the same team
+
+Parceiro de trabalho e agora amigo pessoal. O Andrey é um profissional excepcional, mas além de ressaltar suas habilidades técnicas gostaria de destacar sua próatividade e foco na resolução de problemas.
 
 ---
 

@@ -11,3 +11,5 @@ https://github.com/cloudnative-pg/grafana-dashboards
 https://grafana.com/grafana/dashboards/20417-cloudnativepg/
 
 https://github.com/EnterpriseDB/barman
+
+https://github.com/cloudnative-pg/cloudnative-pg/issues/6111

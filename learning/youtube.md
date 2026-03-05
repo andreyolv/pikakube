@@ -326,6 +326,7 @@
 - [Umar Jamil](https://www.youtube.com/@umarjamilai)
 - [Venelin Valkov](https://www.youtube.com/@venelin_valkov)
 - [Vijay Gadhave](https://www.youtube.com/@Vijay_Gadhave_007)
+- [Vini - AI Coders Academy](https://www.youtube.com/@aicodersacademy)
 - [Weights & Biases](https://www.youtube.com/@WeightsBiases)
 - [Yannic Kilcher](https://www.youtube.com/@YannicKilcher)
 

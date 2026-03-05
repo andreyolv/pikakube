@@ -15,6 +15,7 @@
         "shd101wyy.markdown-preview-enhanced",
         "github.copilot",
         "github.copilot-chat",
-        "mutantdino.resourcemonitor"
+        "mutantdino.resourcemonitor",
+        "mermaidchart.vscode-mermaid-chart"
     ]
 }

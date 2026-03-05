@@ -27,6 +27,7 @@ https://github.com/semantic-release/semantic-release
 https://github.com/PyGithub/PyGithub
 
 https://github.com/git/git
+https://github.com/cli/cli
 https://github.com/github/docs
 
 # define tag pattern semver with github ruleset
@@ -51,3 +52,6 @@ https://github.com/twisted/towncrier
 https://github.com/actions/labeler
 
 https://github.com/gitbutlerapp/gitbutler
+
+https://github.com/github/gitignore
+https://www.toptal.com/developers/gitignore/

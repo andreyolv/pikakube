@@ -1,0 +1,207 @@
+graph LR
+    Root((PikaKube Data Platform))
+
+    %% --- CLOUD ---
+    Root --> CL[Cloud & Network]
+    subgraph Cloud [Cloud & Network]
+        C1[Cloud Infrastructure as Code Provisioning with Terraform]
+        C2[Cloud Resource Tag Standardization and Governance]
+        subgraph Azure
+            A1[Azure Cost Optimization and Performance Improvement with Azure Advisor]
+            A2[Azure Security Visibility and Response with Microsoft Defender for Cloud]
+            A3[Cloud Governance in Azure]
+            A4[Cloud Infrastructure Provisioning]
+            A5[Provisioning Azure Databricks with Security Best Practices]
+            A6[Azure Event Hubs for Data Lake Access Auditing]
+            A7[Network Security and Private Connectivity with Private Endpoints]
+        end
+        subgraph AWS
+            W1[Athena Cost Auditing via CloudTrail]
+            W2[Shared Storage for Airflow & OpenMetadata via Amazon EFS]
+            W3[Kubernetes Cluster Provisioning in Cloud Environments]
+            W4[EMR on EKS]
+            W5[Scalable Event-Driven Architecture]
+            W6[AWS IAM Governance: ABAC]
+            W7[AWS Credential Governance]
+            W8[Cloud Network Architecture for Kubernetes]
+            W9[VPC Peering Cross-Account]
+            W10[Provisioning Amazon Redshift Serverless]
+            W11[S3 Inventory: Data Lake Audit]
+            W12[Secure S3 Bucket Data Sharing]
+        end
+    end
+
+    %% --- DATA ENGINEERING ---
+    Root --> DE[Data Engineering]
+    subgraph DataEng [Data Engineering]
+        DE1[Data Ingestion with Airbyte]
+        DE2[Data Batch Workflow Orchestration with Apache Airflow]
+        DE3[Airflow DAG Migration & Pipeline Modernization]
+        DE4[Airflow DAGs Quality and Governance Policies]
+        DE5[Real-Time Data Streaming with Confluent Cloud]
+        DE6[Orchestrated dbt Transformations]
+        DE7[Lightweight Data Processing with DuckDB]
+        DE8[Data Visualization with Metabase]
+        DE9[Small Files Monitoring and Optimization]
+        DE10[Big Data Processing with Apache Spark]
+        DE11[Centralized Query Routing with Trino Gateway]
+        DE12[Distributed Analytics Query Engine with Trino]
+    end
+
+    %% --- DATA GOVERNANCE ---
+    Root --> DG[Data Governance]
+    subgraph DataGov [Data Governance]
+        G1[Column-Level Security]
+        G2[Data Catalog GitHub Abstraction Layer]
+        G3[Data Catalog & Data Governance with OpenMetadata]
+        G4[Data Contracts]
+        G5[Data Lake Governance Standardization]
+        G6[Data Lineage]
+        G7[Standardization of Data Products]
+        G8[Data Quality Management]
+        G9[Standardization of Apache Iceberg]
+        G10[DataLake Access Auditing]
+        G11[Data Lake Ownership Framework]
+        G12[Data Lake Policy Lifecycle Management]
+        G13[REST Iceberg Metadata Catalog with Lakekeeper]
+        G14[Unified Metadata Management]
+    end
+
+    %% --- DATA STREAMING ---
+    Root --> DS[Data Streaming]
+    subgraph DataStream [Data Streaming]
+        S1[Real-Time SQL Server CDC with Debezium]
+        S2[Kafka to Delta Lakehouse with PySpark]
+        S3[Kafka into Iceberg with Kafka Connect]
+        S4[Streaming Processing with Apache Flink]
+        S5[Event Streaming with Apache Kafka and Strimzi]
+        S6[Spark Streaming for Lake Access Auditing]
+        S7[Direct Database CDC with OLake]
+        S8[Real-Time User-Facing Analytics with StarRocks]
+    end
+
+    %% --- DATABASES ---
+    Root --> DB[Databases]
+    subgraph DBs [Databases]
+        DB1[PostgreSQL on Kubernetes with CloudNativePG]
+        DB2[Declarative PostgreSQL with Crossplane]
+        DB3[Standardized MongoDB Deployment]
+        DB4[Standardized Neo4j Deployment]
+        DB5[Performance Dashboard for Postgres]
+        DB6[PostgreSQL Migration Process]
+        DB7[Standardized Redis Deployment]
+        DB8[SQL Exporter for Prometheus]
+    end
+
+    %% --- DEVOPS & SRE ---
+    Root --> DO[DevOps & SRE]
+    subgraph DevOps_SRE [DevOps & SRE]
+        subgraph CI_CD
+            DX1[GitHub Actions Workflow Templates]
+            DX2[Infrastructure Terraform Deployment]
+            DX3[CI/CD Pipelines for Airflow]
+            DX4[Airflow DAG Quality Assurance Action]
+            DX5[Automated Lambda Deployment]
+            DX6[GitHub Administration and Security]
+            DX7[Github Repository Governance]
+            DX8[Self-Hosted GitHub Actions]
+        end
+        subgraph SRE_Automation
+            SR1[Velero Backup and Recovery]
+            SR2[Canary Deployments with Flagger]
+            SR3[Chaos Engineering with Litmus]
+            SR4[Disaster Recovery Strategy]
+            SR5[Kubernetes Image Update with Flux]
+            SR6[Automated Pod Rollouts with Reloader]
+        end
+    end
+
+    %% --- FINOPS ---
+    Root --> FO[FinOps]
+    subgraph FinOps [FinOps]
+        F1[ARM-Based Nodes Optimization]
+        F2[Budget-Based Cost Alerting]
+        F3[SavingPlans & Instance Reservation]
+        F4[Custom Kubernetes Scheduler]
+        F5[Karpenter Autoscaling]
+        F6[KEDA for Cost Optimization]
+        F7[Kubecost Allocation]
+        F8[Scheduled Kubernetes Cluster Shutdown]
+        F9[Kubernetes Spot Instances]
+        F10[Vertical Pod Autoscaler]
+    end
+
+    %% --- PLATFORM ENGINEERING ---
+    Root --> PE[Platform Engineering]
+    subgraph PlatformEng [Platform Engineering]
+        P1[Self-Service Infrastructure with Crossplane]
+        P2[Internal Developer Portal with Backstage]
+        P3[GitOps Infrastructure Delivery with Flux]
+        P4[Virtualized Clusters with vCluster]
+        P5[IAM for Airflow via EKS Pod Identity]
+        P6[Apache YuniKorn Scheduling]
+        P7[SenhaSegura Kubernetes Operator]
+    end
+
+    %% --- SECURITY ---
+    Root --> SEC[Security]
+    subgraph Security [Security]
+        SC1[Cloud-Native Security CNAPP/SIEM]
+        SC2[Trusted Images with Cosign and Kyverno]
+        SC3[External Secrets Operator]
+        SC4[DAST with ZAP Proxy]
+        SC5[Prowler Compliance Auditing]
+        SC6[SAST and GitHub Advanced Security]
+        SC7[SBOM for Supply Chain Security]
+        SC8[Sealed Secrets for GitOps]
+        SC9[Entra ID Single Sign-On]
+        SC10[Workload Identity]
+    end
+
+    %% --- CLICKS CLOUD ---
+    click C1 "cloud/iac-terraform.md"
+    click A1 "cloud/azure/azure-advisor.md"
+    click A2 "cloud/azure/azure-defender.md"
+    click W1 "cloud/aws/athena.md"
+    click W3 "cloud/aws/eks.md"
+
+    %% --- CLICKS DATA ---
+    click DE1 "data-engineering/airbyte.md"
+    click DE2 "data-engineering/airflow.md"
+    click DE6 "data-engineering/dbt.md"
+    click G3 "data-governance/data-catalog.md"
+    click G9 "data-governance/iceberg.md"
+
+    %% --- CLICKS STREAMING ---
+    click S1 "data-streaming/cdc-debezium.md"
+    click S5 "data-streaming/kafka-k8s.md"
+    click S7 "data-streaming/olake.md"
+
+    %% --- CLICKS DEVOPS/SRE ---
+    click DX2 "devops/cicd-terraform.md"
+    click SR1 "sre/backup-k8s.md"
+    click SR3 "sre/chaos-engineering.md"
+
+    %% --- CLICKS FINOPS ---
+    click F5 "finops/karpenter.md"
+    click F7 "finops/kubecost.md"
+
+    %% --- CLICKS PLATFORM ---
+    click P1 "platform-engineering/crossplane.md"
+    click P2 "platform-engineering/idp-backstage.md"
+    click P3 "platform-engineering/gitops.md"
+
+    %% --- CLICKS SECURITY ---
+    click SC3 "security/external-secrets-vault.md"
+    click SC6 "security/sast.md"
+    click SC9 "security/sso.md"
+
+    %% ESTILIZAÇÃO
+    style Root fill:#2E3440,stroke:#5E81AC,stroke-width:4px,color:#fff
+    style Cloud fill:#3B4252,color:#fff
+    style DataEng fill:#3B4252,color:#fff
+    style DataGov fill:#3B4252,color:#fff
+    style DataStream fill:#3B4252,color:#fff
+    style FinOps fill:#434C5E,color:#fff
+    style Security fill:#4C566A,color:#fff Gemini said
+

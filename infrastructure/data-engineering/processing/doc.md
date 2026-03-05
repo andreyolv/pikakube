@@ -7,3 +7,6 @@ https://github.com/dlt-hub/dlt
 
 https://github.com/apache/auron
 https://github.com/apache/auron/issues/1472
+
+https://github.com/eakmanrq/sqlframe
+https://github.com/ibis-project/ibis

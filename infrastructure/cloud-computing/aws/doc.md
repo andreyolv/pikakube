@@ -48,3 +48,11 @@ EKS tagging
 https://github.com/aws/containers-roadmap/issues/608
 https://github.com/aws/containers-roadmap/issues/374
 
+
+https://github.com/aws-actions/aws-lambda-deploy
+https://github.com/aws-actions/aws-secretsmanager-get-secrets
+
+https://github.com/awslabs/amazon-emr-on-eks-custom-image-cli
+
+https://github.com/aws/aws-sdk-pandas
+https://github.com/pyathena-dev/PyAthena
