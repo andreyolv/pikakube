@@ -37,3 +37,6 @@ https://www.truenas.com/
 # Virtualization
 https://www.proxmox.com/en/
 VmWare
+
+# Operating System Updates
+https://github.com/bootc-dev/bootc

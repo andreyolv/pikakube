@@ -1,1 +1,1 @@
-https://github.com/netobserv/network-observability-operator
+https://github.com/netobserv/netobserv-operator

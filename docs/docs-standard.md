@@ -30,57 +30,51 @@ Aqui está o resumo de cada seção:
 
 ```mermaid
 graph LR
-    %% COLUNA 1: DEFINIÇÃO INICIAL
-    subgraph "📋 Planning (Início)"
+    subgraph Planning ["📋 Planning"]
         direction TB
-        BC[business-case.md] --> RFC[rfc.md]
-        RFC --> RD[roadmap.md]
+
+        BC[business-case] --> POC[poc]
+        POC[poc] --> RFC[rfc]
+        RFC[rfc] --> RD[roadmap]
     end
 
-    %% COLUNA 2: REGRAS DO JOGO
-    subgraph "📏 Guidelines"
-        direction TB
-        STD[standards.md]
-        REF[reference.md]
+    Planning --> Tech
+
+    subgraph Tech ["🏛️ Tech"]
+        direction LR
+
+        PJ[project] --> ADR[adr]
     end
 
-    %% COLUNA 3: O PROJETO
-    subgraph "🏛️ Tech"
-        direction TB
-        PJ[project.md] --> ADR[adr/]
+    Tech --> UserGuide
+    Tech --> Ops
+
+    subgraph UserGuide ["🛒 User Guide"]
+        direction LR
+
+        PCY[policies]
+        REF[reference]
+        CAT[catalog]
+        FAQ[faq]
     end
 
-    %% CONEXÕES PARA O PROJETO
-    RD --> PJ
-    STD --> PJ
-    REF --> PJ
-
-    %% COLUNA 4: EXECUÇÃO PARALELA
-    subgraph "🛒 User Guide"
+    subgraph Ops ["🛠️ Ops"]
         direction TB
-        CAT[catalog.md] --> FAQ[faq.md]
+
+        OBS[observability] --> PB[playbook]
+        RB[runbook]
+        UD[update]
+        PB --> REC[recovery]
     end
 
-    subgraph "🛠️ Ops"
-        direction TB
-        OBS[observability.md] --> RB[runbook.md]
-        RB --> PB[playbook.md]
-        PB --> REC[recovery.md]
-    end
-
-    %% LIGAÇÕES PARALELAS
-    PJ --> CAT
-    PJ --> OBS
-
-    %% COLUNA 5: FEEDBACK (DENTRO DE PLANNING)
-    subgraph "📋 Planning (Feedback)"
-        direction TB
-        PM[post-mortems/] --> TD[tech-debt.md]
-    end
-
-    %% FECHAMENTO DO CICLO
     PB --> PM
-    TD -.-> RD
+    REC --> PM
+
+    subgraph Planning2 ["📋 Planning (Feedback)"]
+        direction TB
+
+        PM[post-mortems] --> TD[tech-debt]
+    end
 ```
 
 Agora em mais detalhes: 

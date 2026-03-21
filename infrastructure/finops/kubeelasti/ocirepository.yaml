@@ -1,0 +1,10 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: OCIRepository
+metadata:
+  name: elasti
+  namespace: flux-system
+spec:
+  interval: 24h
+  url: oci://tfy.jfrog.io/tfy-helm/elasti
+  ref:
+    tag: 0.1.21

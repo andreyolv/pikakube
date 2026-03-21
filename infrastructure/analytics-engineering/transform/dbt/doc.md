@@ -7,6 +7,7 @@ https://github.com/dbt-labs/metricflow
 https://github.com/dbt-labs/dbt-adapters
 https://github.com/dbt-labs/dbt-utils
 https://github.com/dbt-labs/dbt-fusion
+https://github.com/dbt-labs/dbt-project-evaluator
 
 https://github.com/dbt-checkpoint/dbt-checkpoint
 
@@ -16,6 +17,8 @@ https://github.com/dbt-labs/dbt-fusion/issues/31
 https://github.com/dbt-labs/dbt-fusion/issues/38
 https://github.com/dbt-labs/dbt-fusion/issues/39
 https://github.com/dbt-labs/dbt-fusion/issues/829
+
+https://medium.com/@guilhermenoronha2001/athena-dbt-apache-iceberg-solving-the-small-files-problem-in-the-data-lake-2d9d99e80a6e
 
 python3 -m venv venv
 source venv/bin/activate
