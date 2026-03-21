@@ -1,0 +1,23 @@
+graph LR
+    subgraph Kubernetes[Kubernetes]
+        Pod1[Pod]
+        Pod2[Pod]
+        Pod3[Pod]
+
+        Kyverno[Kyverno Policy Mutation]
+
+        subgraph NodePools[Karpenter NodePools]
+            direction TB
+
+            SystemPool[NodePool: system]
+            SpotPool[NodePool: spot]
+            OnDemandPool[NodePool: on-demand]
+        end
+
+    end
+
+    Pod1 -->|namespace label: nodepool=system| Kyverno
+    Pod2 -->|namespace label: nodepool=spot| Kyverno
+    Pod3 -->|namespace label: nodepool=on-demand| Kyverno
+
+    Kyverno -->|schedule Pod| NodePools

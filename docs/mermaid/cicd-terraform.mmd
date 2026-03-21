@@ -1,0 +1,26 @@
+graph LR
+    subgraph GitHub["GitHub Repository"]
+        PR["Pull Request"]
+        
+        subgraph Actions["GitHub Actions Workflows"]
+            Plan["Terraform Plan"]
+            Apply["Terraform Apply"]
+        end
+    end
+
+    subgraph Terraform["Terraform Backend"]
+        S3Backend["S3 Backend (state)"]
+        Workspaces["Terraform Workspaces"]
+    end
+
+    subgraph IAM["Scoped IAM Roles"]
+        StateRole["State Management Role"]
+        ApplyRole["Resource Provisioning Role"]
+    end
+
+    PR --> Plan
+    Plan -->|on Merge| Apply
+    Apply -->|updates state| S3Backend
+    Apply -->|uses workspace| Workspaces
+    Apply -->|uses IAM| ApplyRole
+    S3Backend -->|managed by| StateRole

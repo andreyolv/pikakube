@@ -8,3 +8,5 @@ https://www.youtube.com/watch?v=tsdApb3cEoE&list=PL-gIUf9e9CCskP6wP-NKRU9VhofMHY
 - Integração com AWS S3 / Minio
 - Integração com Hive Metastore
 - .. Criar mini tutoriais em jupyter
+
+https://iceberg.apache.org/docs/latest/branching/#overview

@@ -1,0 +1,80 @@
+graph TD
+    %% Namespace airflow
+    subgraph AirflowNamespace[Namespace airflow]
+        DAGProcessor[DAG Processor]
+        Scheduler[Scheduler]
+        APIServer[Airflow API Server]
+        StatsD[StatsD]
+        PostgresDB[Postgres Metadata DB]
+
+        subgraph EFS[Shared EFS Volumes]
+            EFS_DAGs[EFS DAGs]
+            EFS_Logs[EFS Logs]
+        end
+
+        subgraph Configurations[Configurations]
+            ConfigMap[ConfigMap]
+            Secrets[Secrets]
+        end
+    end
+
+    Users[Airflow Users]
+
+    %% Conexões com EFS
+    APIServer --> EFS
+    Scheduler --> EFS
+    DAGProcessor --> EFS
+
+    %% Conexões StatsD
+    APIServer --> StatsD
+    Scheduler --> StatsD
+    DAGProcessor --> StatsD
+
+    %% Conexões Postgres
+    APIServer --> PostgresDB
+    Scheduler --> PostgresDB
+    DAGProcessor --> PostgresDB
+
+    %% API Server com usuários
+    APIServer --> Users
+
+    %% GitHub Repository e Actions
+    subgraph GitHub[GitHub Repository]
+        DAGRepo[Repository DAGs]
+        GitHubActions[GitHub Actions CI CD Pipeline]
+    end
+
+    GitHubActions --> EFS_DAGs
+
+    %% Namespace do projeto
+    subgraph ProjectNamespace[Namespace do Projeto]
+        Worker[Worker Pod]
+
+        subgraph ProjectEFS[Shared EFS Volumes]
+            ProjectEFS_DAGs[EFS DAGs]
+            ProjectEFS_Logs[EFS Logs]
+        end
+
+        subgraph ProjectConfigurations[Configurations]
+            ProjectConfigMap[ConfigMap]
+            ProjectSecrets[Secrets]
+        end
+    end
+
+    Worker --> Scheduler
+
+    %% AWS bloco separado com IAM Role
+    subgraph AWS[AWS]
+        IAMRole[IAM Role]
+    end
+
+    Worker --> IAMRole
+
+    %% Kyverno como node único (compacto)
+    Kyverno[Kyverno]
+
+    %% Ligações Kyverno aos blocos dos namespaces
+    EFS --> Kyverno
+    Configurations --> Kyverno
+    ProjectEFS --> Kyverno
+    ProjectConfigurations --> Kyverno

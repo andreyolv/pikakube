@@ -1,0 +1,34 @@
+graph TD
+    subgraph Kubernetes[Kubernetes]
+        Workloads[Workloads]
+
+        PVCs[PVCs]
+
+        subgraph Velero[Velero Components]
+            VeleroServer[Velero Server]
+            VeleroPlugins[AWS Backup Plugin]
+        end
+
+        subgraph VeleroCRDs[Velero CRDs]
+            BackupCRD[Backup]
+            ScheduleCRD[Schedule]
+            RestoreCRD[Restore]
+        end
+    end
+
+    subgraph AWS[AWS]
+        Snapshots[Snapshots]
+        S3[S3]
+    end
+
+    Workloads -->|Data| PVCs
+    PVCs -->|Backup| VeleroServer
+    VeleroServer --> VeleroPlugins
+    BackupCRD --> VeleroServer
+    ScheduleCRD --> VeleroServer
+
+    VeleroServer -->|VolumeSnapshotLocation| Snapshots
+    VeleroServer -->|BackupStorageLocation| S3
+
+    RestoreCRD -->|Restore Snapshot| PVCs
+    Snapshots -->|Source for Restore| RestoreCRD

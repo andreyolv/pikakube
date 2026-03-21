@@ -1,0 +1,20 @@
+graph LR
+    subgraph Kubernetes[Kubernetes Cluster]
+        Service[Service]
+        Ingress[Ingress]
+        ExternalDNS[ExternalDNS]
+    end
+
+    subgraph Route53[Amazon Route53]
+        ARecord[A Record]
+        AAAARecord[AAAA Record]
+        CNAMERecord[CNAME Record]
+        TXTRecord[TXT Record]
+    end
+
+    Service --> ExternalDNS
+    Ingress --> ExternalDNS
+    ExternalDNS --> ARecord
+    ExternalDNS --> AAAARecord
+    ExternalDNS --> CNAMERecord
+    ExternalDNS --> TXTRecord

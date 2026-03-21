@@ -1,0 +1,32 @@
+graph LR
+
+    subgraph Kubernetes[Kubernetes]
+
+        subgraph Workloads[Applications]
+            WebFrontend[Web Frontend Pods]
+            WorkerApps[Worker Pods]
+            BatchJobs[Batch Jobs]
+        end
+
+        subgraph KEDA[KEDA]
+
+            subgraph Scalers[CRDs]
+                ScaledObject[ScaledObject CRD]
+                ScaledJob[ScaledJob CRD]
+            end
+
+            CronScaler[Cron Scaler]
+            PostgresScaler[PostgreSQL Scaler]
+            RedisScaler[Redis List Scaler]
+
+        end
+    end
+
+    ScaledObject --> CronScaler
+    CronScaler -->|scale based on schedule| WebFrontend
+
+    ScaledObject --> PostgresScaler
+    PostgresScaler -->|scale on queued tasks| WorkerApps
+
+    ScaledJob --> RedisScaler
+    RedisScaler -->|scale on accumulated requests| BatchJobs

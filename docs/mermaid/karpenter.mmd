@@ -1,0 +1,26 @@
+graph LR
+    subgraph Kubernetes[Kubernetes Cluster]
+
+        subgraph Workloads[Workloads]
+            Pods[Application Pods]
+        end
+
+        subgraph Karpenter[Dynamic Node Provisioning with Karpenter]
+            
+            subgraph CRDs[Karpenter CRDs]
+                NodePool[NodePool]
+                NodeClaim[NodeClaim]
+            end
+
+            Nodes[Cluster Nodes]
+        end
+
+    end
+
+    %% Fluxo correto
+    Pods -->|request resources| NodePool
+    NodePool -->|creates| NodeClaim
+    NodeClaim -->|provisions| Nodes
+
+    %% Right-sizing / consolidation feedback
+    Nodes -->|consolidation & right-sizing| NodePool

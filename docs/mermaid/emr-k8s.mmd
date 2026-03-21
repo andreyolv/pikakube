@@ -1,0 +1,20 @@
+graph LR
+
+    %% -------- AWS / External --------
+    subgraph AWS[AWS]
+        EMRVC[EMR Virtual Cluster]
+    end
+
+    %% -------- Kubernetes Cluster --------
+    subgraph Kubernetes[Kubernetes Cluster]
+
+        subgraph Namespaces[Project Namespaces]
+            SparkJobs[Spark Jobs]
+        end
+
+        EmrOperator[Airflow EmrContainerOperator]
+    end
+
+    %% -------- Fluxo / Conexões --------
+    EmrOperator -->|submit jobs| EMRVC
+    EMRVC -->|run jobs| SparkJobs

@@ -1,0 +1,51 @@
+graph TD
+
+    subgraph ApplicationRepo[Application Repository]
+        direction TB
+        Code[Application Code]
+
+        subgraph Actions[GitHub Actions]
+            Build[Build Docker Image]
+            Push[Push to Registry]
+        end
+    end
+
+    subgraph Registry[Container Registry]
+        Images[Container Images]
+    end
+
+    subgraph Kubernetes[Kubernetes]
+
+        subgraph Flux[Flux]
+
+            subgraph CRDs[Flux CRDs]
+                IR[ImageRepository]
+                IP[ImagePolicy]
+                IA[ImageUpdateAutomation]
+            end
+
+            subgraph Controllers[Controllers]
+                Reflector[Image Reflector]
+                Automation[Image Automation]
+            end
+        end
+
+    end
+
+    subgraph DataOpsRepo[DataOps Repository]
+        Manifests[Kubernetes Manifests]
+    end
+
+    %% -------- Fluxo com labels válidos --------
+    Code -->|commit| Build
+    Build -->|artifact| Push
+    Push -->|new image| Images
+
+    Images -->|monitor| IR
+    IR -->|reflect image tags| Reflector
+    Reflector -->|evaluate policy| IP
+
+    IP -->|trigger automation| Automation
+    IA -->|automation rules| Automation
+
+    Automation -->|update image| Manifests

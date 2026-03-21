@@ -1,0 +1,47 @@
+graph LR
+
+    Repo[Infra Git Repository]
+
+    subgraph Kubernetes[Kubernetes]
+
+        subgraph Flux[Flux Operator]
+
+            subgraph Controllers[Flux Controllers]
+                SourceController[Source Controller]
+                KustomizeController[Kustomize Controller]
+                HelmController[Helm Controller]
+            end
+
+            subgraph CRDs[Flux CRDs]
+                GitRepo[GitRepository]
+                OCIRepo[OCIRepository]
+                HelmRepo[HelmRepository]
+
+                Kustom[Kustomization]
+                HelmRelease[HelmRelease]
+            end
+
+        end
+
+        Workloads[Workloads]
+    end
+
+    %% -------- Fluxo --------
+
+    %% External Git Repo → Flux GitRepository
+    Repo --> GitRepo
+
+    %% Source Controller monitora repositórios
+    GitRepo -->|tracked by| SourceController
+    OCIRepo -->|tracked by| SourceController
+    HelmRepo -->|tracked by| SourceController
+    SourceController --> HelmRelease
+    GitRepo --> Kustom
+
+    %% CRDs acionam controllers
+    Kustom --> KustomizeController
+    HelmRelease --> HelmController
+
+    %% Controllers aplicam no cluster
+    KustomizeController --> Workloads
+    HelmController --> Workloads
