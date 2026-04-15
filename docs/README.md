@@ -6,6 +6,8 @@ This documentation was drafted with the support of Generative AI and reviewed by
 It may contain minor redundancies, vague phrasing, or small inconsistencies.
 As a living portfolio, it is expected to be continuously reviewed, refined, and naturally evolved over time.
 
+For the documentation structure and writing conventions used in this repository, see [docs-standard.md](docs-standard.md).
+
 Use the links below to access detailed documentation for each category.
 
 

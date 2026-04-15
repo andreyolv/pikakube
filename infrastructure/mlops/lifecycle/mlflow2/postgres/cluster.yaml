@@ -1,0 +1,20 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: postgres
+  namespace: mlflow
+spec:
+  instances: 1
+  imageName: ghcr.io/cloudnative-pg/postgresql:17.5
+  bootstrap:
+    initdb:
+      database: mlflow
+      owner: mlflow
+  resources:
+    requests:
+      cpu: 1
+      memory: "1Gi"
+  storage:
+    size: 2Gi
+  monitoring:
+    enablePodMonitor: true

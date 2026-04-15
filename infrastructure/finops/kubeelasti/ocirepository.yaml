@@ -5,6 +5,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 24h
+  # https://tfy.jfrog.io/ui/packages?name=tfy-helm%2Felasti&type=packages
   url: oci://tfy.jfrog.io/tfy-helm/elasti
   ref:
-    tag: 0.1.21
+    tag: 0.1.19

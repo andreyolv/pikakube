@@ -11,3 +11,7 @@ https://github.com/agentskills/agentskills
 https://github.com/humanlayer/12-factor-agents
 
 https://github.com/upstash/context7
+
+
+https://github.com/rtk-ai/rtk
+https://github.com/JuliusBrussee/caveman

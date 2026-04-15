@@ -1,0 +1,11 @@
+apiVersion: grafana.integreatly.org/v1beta1
+kind: GrafanaFolder
+metadata:
+  name: trivy
+  namespace: trivy
+spec:
+  allowCrossNamespaceImport: true
+  title: Trivy
+  instanceSelector:
+    matchLabels:
+      dashboards: grafana

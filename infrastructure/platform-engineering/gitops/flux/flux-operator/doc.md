@@ -11,3 +11,5 @@ source ~/.bashrc
 kubectl get fluxreport/flux -n flux-system -o yaml
 
 #https://github.com/fluxcd/flux2-monitoring-example/tree/main/monitoring/configs/dashboards
+
+https://github.com/fluxcd/agent-skills

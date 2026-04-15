@@ -1,4 +1,5 @@
 https://github.com/doitintl/kubeip
+https://github.com/cloudnativelabs/kube-router
 
 discovery external public ip:
 curl ifconfig.me

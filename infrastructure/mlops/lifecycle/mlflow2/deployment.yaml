@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mlflow-server
+  namespace: mlflow
+  labels:
+    app: mlflow-server
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: mlflow-server
+  template:
+    metadata:
+      labels:
+        app: mlflow-server
+    spec:
+      serviceAccountName: mlflow-server
+      containers:
+      - name: mlflow-server
+        image: ghcr.io/mlflow/mlflow:v3.3.2
+        args:
+        - --host=0.0.0.0
+        - --port=5000
+        - --backend-store-uri=$(POSTGRES_CONN)
+        - --default-artifact-root=$(MLFLOW_S3_BUCKET)
+        - --expose-prometheus=/metrics
+        env:
+        - name: MLFLOW_S3_ENDPOINT_URL
+          value: http://xxxxxxxxxxxxxxxx
+        - name: MLFLOW_S3_BUCKET
+          value: s3://mlflow/
+        - name: POSTGRES_CONN
+          valueFrom:
+            secretKeyRef:
+              name: postgres-app
+              key: connection
+        ports:
+        - containerPort: 5000
+        resources:
+          requests:
+            memory: 1Gi

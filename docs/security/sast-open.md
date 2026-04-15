@@ -9,4 +9,6 @@
 - renovate
 
 alternatives to dependabot, code scanning, code canning
+https://docs.github.com/en/code-security/how-tos/secure-your-supply-chain/manage-your-dependency-security/configure-on-self-hosted-runners
+
 ## Tools:

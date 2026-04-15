@@ -1,7 +1,6 @@
 # Overview - Airflow no Kubernetes
 ## Introdução
 O Apache Airflow é uma plataforma de orquestração de fluxo de trabalho de código aberto. Ele começou como um projeto interno na Airbnb em 2014 e foi lançado como código aberto em 2016 no Apache Software Foundation.
-Aqui na Raízen utilizamos preferencialmente o Airflow para orquestração de tarefas, pois além de ser uma ferramenta poderosa, flexível e fácil de usar, ele também é altamente escalável quando executado em um ambiente Kubernetes.
 
 ## Arquitetura
 O Airflow é composto por três componentes principais:
@@ -30,7 +29,7 @@ Elas podem ser executadas em diferentes executores, como LocalExecutor, CeleryEx
 # KubernetesExecutor
 O KubernetesExecutor é um executor do Airflow que executa as tasks em pods no Kubernetes. Ele é altamente escalável e permite que as tasks sejam executadas em containers isolados, o que é ideal para ambientes de produção. Além disso, ele também suporta a execução de DAGs em namespaces diferentes, permitindo a separação de unidades de trabalho (como áreas, times, etc.).
 
-Aqui na Raízen a imagem base utilizada para as tasks é a raizenanalyticsdev.azurecr.io/airflow-base , definida no repositório airzflow, sendo todas as tasks executadas em containers com imagens derivadas dessa base (e.g., a sparkzen). É importante salientar que no DagProcessor a imagem base é utilizada para carregar as DAGS, ou seja, dentro do arquivo python da DAG não é possivel utilizar métodos que dependam de bibliotecas não presentes na imagem base, sendo assim é altamente recomendado que os callables das tasks sejam definidos em arquivos separados e importados no arquivo da DAG via lazy-import ou com imports dentro da função.
+A imagem base utilizada para as tasks é a /airflow-base , definida no repositório airzflow, sendo todas as tasks executadas em containers com imagens derivadas dessa base (e.g., a sparkzen). É importante salientar que no DagProcessor a imagem base é utilizada para carregar as DAGS, ou seja, dentro do arquivo python da DAG não é possivel utilizar métodos que dependam de bibliotecas não presentes na imagem base, sendo assim é altamente recomendado que os callables das tasks sejam definidos em arquivos separados e importados no arquivo da DAG via lazy-import ou com imports dentro da função.
 
 Na definição da executor_config do KubernetesExecutor é necessário definir também o namespace onde as tasks serão executadas e os recursos que cada pod terá disponível. É importante que esses recursos sejam configurados de acordo com as necessidades de cada task afim de evitar problemas de recursos insuficientes ou ociosos. Exemplo de configuração:
 
@@ -65,7 +64,6 @@ Nossas DAGs são armazenadas em repositórios Git e carregadas para o Airflow (p
 
 ## FAQ (Geral)
 Como faço para acessar o Airflow?
-O Airflow é acessado via navegador, através do endereço https://airflow.qa.raizen.ai/ para o ambiente de qualidade e https://airflow-prd.raizen.ai/ para o ambiente de produção. Para acessar é necessário estar conectado à VPN da Raízen e possuir um usuário cadastrado no Airflow.
 
 Como faço para criar um usuário no Airflow?
 Para criar um usuário no Airflow é necessário acionar a equipe de Data Ops solicitando a criação de um usuário no Airflow. É necessário informar o nome completo, e-mail e o ambiente (QA ou PRD) onde o usuário será criado, bem como quais DAGs o usuário terá acesso.

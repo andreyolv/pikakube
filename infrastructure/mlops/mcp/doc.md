@@ -8,3 +8,5 @@ https://glama.ai/mcp/servers
 https://github.com/jlowin/fastmcp
 
 https://github.com/googleapis/genai-toolbox
+
+https://github.com/modelcontextprotocol/inspector

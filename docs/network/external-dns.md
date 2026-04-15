@@ -21,3 +21,5 @@
 
 ## Tools:
 - 
+
+DNS wildcard talvez não precise dessa merda

@@ -1,0 +1,30 @@
+apiVersion: iam.aws.upbound.io/v1beta1
+kind: Role
+metadata:
+  name: trivy-operator-eks-data-dev
+  namespace: trivy
+spec:
+  forProvider:
+    description: Flux 
+    assumeRolePolicy: |
+      {
+        "Version": "2012-10-17",
+        "Statement": [
+          {
+            "Effect": "Allow",
+            "Principal": {
+              "Service": "pods.eks.amazonaws.com"
+            },
+            "Action": [
+              "sts:AssumeRole",
+              "sts:TagSession"
+            ]
+          }
+        ]
+      }
+    managedPolicyArns:
+    - arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly
+    tags:
+      team: dataops
+  providerConfigRef:
+    name: aws

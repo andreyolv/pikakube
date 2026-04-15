@@ -15,3 +15,6 @@ https://github.com/actions/actions-runner-controller/discussions/4213
 
 precisa criar podmonitor manualmente
 https://github.com/actions/actions-runner-controller/discussions/3024
+
+nao entendi pra q serve essa porra não
+https://github.com/cloudbase/garm

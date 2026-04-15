@@ -1,8 +1,8 @@
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: kubeelasti
-  namespace: kubeelasti
+  name: elasti
+  namespace: elasti
 spec:
   interval: 5m
   chartRef:
@@ -12,3 +12,6 @@ spec:
   values:
   # https://artifacthub.io/packages/helm/kubeelasti/elasti
   # https://github.com/KubeElasti/KubeElasti/blob/main/charts/elasti/values.yaml
+    global:
+      enableMonitoring: true
+    

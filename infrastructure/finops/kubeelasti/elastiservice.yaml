@@ -1,0 +1,22 @@
+apiVersion: elasti.truefoundry.com/v1alpha1
+kind: ElastiService
+metadata:
+  name: target-elastiservice
+  namespace: target
+spec:
+  cooldownPeriod: 5
+  minTargetReplicas: 1
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: deployments
+    name: target-deployment
+  service: target-deployment
+  triggers:
+    - type: prometheus
+      metadata:
+        query: round(sum(rate(envoy_http_downstream_rq_total{container="istio-proxy"}[1m])),0.001) or vector(0)
+        serverAddress: http://prometheus-kube-prometheus-prometheus.prometheus.svc.cluster.local:9090
+        threshold: "0.01"
+  autoscaler:
+    name: target-scaled-object
+    type: keda

@@ -1,0 +1,16 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: garage
+  namespace: garage
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: script/helm/garage
+      sourceRef:
+        kind: GitRepository
+        name: garage
+        namespace: flux-system
+  values:
+  # https://github.com/deuxfleurs-org/garage/blob/main-v2/script/helm/garage/values.yaml

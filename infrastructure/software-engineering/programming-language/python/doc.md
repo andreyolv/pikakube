@@ -2,6 +2,7 @@ https://github.com/python/peps
 
 https://github.com/pydantic/FastUI
 https://github.com/pydantic/pydantic
+https://github.com/microsoft/pyright
 https://github.com/python/mypy
 https://github.com/python/cpython
 

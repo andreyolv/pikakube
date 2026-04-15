@@ -1,0 +1,17 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: rustfs
+  namespace: rustfs
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: helm/rustfs
+      sourceRef:
+        kind: GitRepository
+        name: rustfs
+        namespace: flux-system
+  values:
+  # https://artifacthub.io/packages/helm/rustfs/rustfs
+  # https://github.com/rustfs/rustfs/blob/main/helm/rustfs/values.yaml

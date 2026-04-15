@@ -1,0 +1,18 @@
+apiVersion: eks.aws.m.upbound.io/v1beta1
+kind: PodIdentityAssociation
+metadata:
+  name: trivy
+  namespace: trivy
+spec:
+  forProvider:
+    clusterNameRef:
+      name: eks-data-dev
+    namespace: trivy
+    region: us-east-2
+    roleArnRef:
+      name: trivy-operator-eks-data-dev
+    serviceAccount: trivy-trivy-operator
+    tags:
+      team: dataops
+  providerConfigRef:
+    name: aws

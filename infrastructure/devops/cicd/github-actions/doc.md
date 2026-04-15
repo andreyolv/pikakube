@@ -5,9 +5,13 @@ https://www.youtube.com/watch?v=8xYz_oCQQsg
 
 https://github.com/orgs/community/discussions/9050
 
+https://github.com/actions/checkout
+
 https://github.com/actions/runner-images
 
 https://github.com/actions/cache
+
+https://github.com/actions/create-github-app-token
 
 https://github.com/actions/github-script
 
