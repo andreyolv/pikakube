@@ -7,33 +7,12 @@ spec:
   interval: 5m
   chart:
     spec:
-      chart: tempo-distributed
-      version: 1.6.10
+      chart: tempo
+      version: 2.0.0
       sourceRef:
         kind: HelmRepository
-        name: grafana
+        name: grafana-community
         namespace: flux-system
   values:
-  # https://artifacthub.io/packages/helm/grafana/tempo-distributed
-  # https://github.com/grafana/helm-charts/blob/main/charts/tempo-distributed/values.yaml
-    storage:
-      trace:
-        backend: s3
-        s3:
-          access_key: xxxxxxxxxxxxx
-          secret_key: xxxxxxxxxxx
-          bucket: tempo-traces
-          endpoint: minio.minio.svc.cluster.local:9000
-          insecure: true
-    traces:
-      otlp:
-        grpc:
-          enabled: true
-        http:
-          enabled: true
-    gateway:
-      enabled: true
-    distributor:
-      config:
-        log_received_spans:
-          enabled: true
+  # https://artifacthub.io/packages/helm/grafana-community/tempo
+  # https://github.com/grafana-community/helm-charts/blob/main/charts/tempo/values.yaml

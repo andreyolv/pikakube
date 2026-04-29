@@ -10,3 +10,5 @@ curl http://kubecost.dev.xxxx.ai/model/allocation \
   -G
 
 https://github.com/kubecost/cost-analyzer-helm-chart/issues/2392
+
+https://github.com/kubecost/kubectl-cost

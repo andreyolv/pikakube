@@ -42,3 +42,7 @@ https://github.com/apache/airflow/issues/60276
 custom ui
 https://github.com/apache/airflow/pull/58411
 https://github.com/apache/airflow/issues/52251
+
+
+
+https://github.com/astronomer/agents

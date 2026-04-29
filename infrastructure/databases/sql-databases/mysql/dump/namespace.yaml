@@ -1,9 +1,9 @@
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: tempo
+  name: tests2
   labels:
-    agentpool: spot
+    name: tests
     billable: 'false'
     airflow: 'false'
-    team: dataops
+    agentpool: on-demand

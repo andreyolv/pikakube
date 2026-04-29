@@ -1,8 +1,8 @@
 apiVersion: source.toolkit.fluxcd.io/v1
 kind: HelmRepository
 metadata:
-  name: grafana
+  name: grafana-community
   namespace: flux-system
 spec:
   interval: 24h
-  url: https://grafana.github.io/helm-charts
+  url: https://grafana-community.github.io/helm-charts

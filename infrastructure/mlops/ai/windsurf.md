@@ -16,4 +16,5 @@ https://github.com/open-metadata/OpenMetadata
 https://github.com/dbt-labs/dbt-mcp
 https://github.com/awslabs/mcp
 https://github.com/hashicorp/terraform-mcp-server
+https://github.com/grafana/mcp-grafana
 mermaid (procurar github)

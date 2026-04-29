@@ -461,6 +461,7 @@
 - [Laboratório HiPES](https://www.youtube.com/@HiPESLab)
 - [Lucas Souza Dev](https://www.youtube.com/@LucasSouzaDev)
 - [Lucas Vegi](https://www.youtube.com/@lucasvegi)
+- [Matheus Battisti - Hora de Codar](https://www.youtube.com/@MatheusBattisti)
 - [Microsoft Developer](https://www.youtube.com/@MicrosoftDeveloper)
 - [Microsoft Events](https://www.youtube.com/@events_msft)
 - [Microsoft Reactor](https://www.youtube.com/@MicrosoftReactor)
