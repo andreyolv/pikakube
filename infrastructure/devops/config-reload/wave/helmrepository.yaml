@@ -1,0 +1,8 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: HelmRepository
+metadata:
+  name: wave-k8s
+  namespace: flux-system
+spec:
+  interval: 24h
+  url: https://wave-k8s.github.io/wave

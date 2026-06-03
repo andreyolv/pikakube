@@ -1,0 +1,18 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: dgraph
+  namespace: dgraph
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: dgraph
+      version: 24.1.4
+      sourceRef:
+        kind: HelmRepository
+        name: dgraph
+        namespace: flux-system
+  values:
+  # https://artifacthub.io/packages/helm/dgraph/dgraph
+  # https://github.com/dgraph-io/charts/blob/main/charts/dgraph/values.yaml

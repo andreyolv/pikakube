@@ -1,0 +1,18 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: wave
+  namespace: wave
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: wave-k8s
+      version: 4.5.0
+      sourceRef:
+        kind: HelmRepository
+        name: wave
+        namespace: flux-system
+  values:
+  # https://github.com/wave-k8s/wave/blob/master/charts/wave/values.yaml
+  

@@ -34,3 +34,13 @@ elementary
 https://docs.getdbt.com/guides/building-packages?step=1
 
 Discovery macros, doc para estrutura descentralizada de repositório
+
+---
+to learn
+dbt doc decentralizes
+dbt custom packages
+dbt elementary
+dbt cicd openmetadata
+dbt tests automatizados
+dbt iceberg optimize
+dbt algo mais?

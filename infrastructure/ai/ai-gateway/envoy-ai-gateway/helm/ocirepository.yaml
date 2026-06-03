@@ -1,0 +1,21 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: OCIRepository
+metadata:
+  name: aieg-crd
+  namespace: flux-system
+spec:
+  interval: 24h
+  url: oci://docker.io/envoyproxy/ai-gateway-crds-helm
+  ref:
+    tag: v0.0.0-latest
+---
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: OCIRepository
+metadata:
+  name: aieg
+  namespace: flux-system
+spec:
+  interval: 24h
+  url: oci://docker.io/envoyproxy/ai-gateway-helm
+  ref:
+    tag: v0.0.0-latest

@@ -14,15 +14,6 @@ kubectl scale deploy/strimzi-cluster-operator --replicas=0
 
 https://github.com/seriohub/velero-ui/blob/main/tmp/helm/seriohub-velero/values.yaml
 
-
-DONE
-- Integrar com MinIO (S3 Bucket da AWS).
-- Integrar com Blob Storage da Azure.
-- Backups, restores e schedules aplicados atráves dos yamls CRD's do Velero para sincronia com GitOps e manter histórico no Github.
-
-TODO
-- File System Backup com Kopia
-
 https://github.com/vmware-tanzu/velero/tree/main/design/Implemented
 
 https://github.com/vmware-tanzu/velero/discussions/7196

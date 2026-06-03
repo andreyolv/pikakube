@@ -1,1 +1,1 @@
-https://github.com/Nahuel990/ministack
+https://github.com/ministackorg/ministack
