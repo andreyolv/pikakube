@@ -1,15 +1,13 @@
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
-  name: aieg
+  name: aieg-crd
   namespace: envoy-gateway
 spec:
-  dependsOn:
-  - name: aieg-crd
   interval: 5m
   chartRef:
     kind: OCIRepository
-    name: aieg
+    name: aieg-crd
     namespace: flux-system
   values:
-  # https://github.com/envoyproxy/ai-gateway/blob/main/manifests/charts/ai-gateway-helm/values.yaml
+  # https://github.com/envoyproxy/ai-gateway/blob/main/manifests/charts/ai-gateway-crds-helm/values.yaml
