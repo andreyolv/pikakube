@@ -15,3 +15,11 @@ spec:
   values:
   # https://artifacthub.io/packages/helm/rustfs/rustfs
   # https://github.com/rustfs/rustfs/blob/main/helm/rustfs/values.yaml
+    replicaCount: 1
+    mode:
+      standalone:
+        enabled: true
+      distributed:
+        enabled: false
+    ingress:
+      enabled: false

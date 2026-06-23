@@ -100,6 +100,7 @@
 - [VeloxCon](https://www.youtube.com/@VeloxCon)
 
 # Data Governance
+- [Collate](https://www.youtube.com/@CollateData)
 - [DataGovHub](https://www.youtube.com/@DataGovHub)
 - [DATAVERSITY](https://www.youtube.com/@DataversityNetEDU)
 - [Data Management Summit](https://www.youtube.com/@datamanagementsummit)
@@ -428,6 +429,7 @@
 - [Aulas do Coelho](https://www.youtube.com/@aulacoelho)
 - [Bonieky Lacerda](https://www.youtube.com/@bonieky)
 - [Canal DevPro](https://www.youtube.com/@canaldevpro)
+- [Craft & Code Club](https://www.youtube.com/@CraftCodeClub)
 - [CSharp TV](https://www.youtube.com/@CSharpDotTV)
 - [Cod3r Cursos](https://www.youtube.com/@cod3r)
 - [Code Sync](https://www.youtube.com/@CodeSync)

@@ -13,7 +13,7 @@ https://airflow.apache.org/docs/apache-airflow/stable/administration-and-deploym
 
 - Garantir que todas as Tasks sejam alocadas no namespace específico do projeto, para que o custo do Cluster Kubernetes seja vinculado corretamente ao projeto;
 
-- Através da Padronização as DAGs , Melhorar performance da Ferramenta, Dar visibilidade na utilização de recursos por projeto e com isso ratear corretamente os custos do Cluster Kubernetes.
+- Através da Padronização as DAGs , Melhorar performance da Ferramenta, Dar visibilidade na utilização de recursos por projeto e com isso ratear corretamente os custos do Cluster Kubernetes através do padrão de IAM Roles.
 
 ## Políticas
 
