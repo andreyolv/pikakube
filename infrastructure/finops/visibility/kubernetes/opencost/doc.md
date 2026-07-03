@@ -1,5 +1,6 @@
 https://github.com/opencost/opencost
 https://github.com/opencost/opencost-helm-chart
+https://github.com/opencost/opencost-parquet-exporter
 
 https://github.com/opencost/opencost/issues/2442
 https://github.com/opencost/opencost/issues/1726

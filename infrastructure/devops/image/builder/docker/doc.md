@@ -37,3 +37,5 @@ https://dl.dod.cyber.mil/wp-content/uploads/devsecops/pdf/DevSecOps_Enterprise_C
 
 usar essa merda de comando q não tá na porra da documentação depois de instalar o docker
 sudo usermod -aG docker $USER
+
+https://github.com/tonistiigi/binfmt
