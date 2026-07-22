@@ -5,3 +5,6 @@ https://github.com/kubernetes/autoscaler/issues/2747#issuecomment-616037197
 
 not ready for production use
 https://github.com/kubernetes/autoscaler/tree/master/vertical-pod-autoscaler/charts/vertical-pod-autoscaler
+
+not support oci repository
+https://github.com/FairwindsOps/charts/issues/1817

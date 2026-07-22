@@ -10,3 +10,7 @@ https://github.com/open-metadata/openmetadata-helm-charts/issues/236
 
 admin@open-metadata.org
 admin
+
+not suport por oci
+https://github.com/open-metadata/openmetadata-helm-charts/issues/344
+https://github.com/open-metadata/openmetadata-helm-charts/pull/478

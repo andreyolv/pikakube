@@ -34,3 +34,6 @@ flux get all
 k port-forward svc/source-controller 8080:80 -n flux-system
 
 https://github.com/fluxcd/flux2/discussions/1599
+
+Upgrade Procedure for Flux v2.7+
+https://github.com/fluxcd/flux2/discussions/5572

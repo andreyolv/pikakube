@@ -62,3 +62,7 @@ dbt docs serve
 dbt run
 
 dbt test
+
+https://docs.getdbt.com/docs/build/packages#private-packages
+recomendam a primeira, mas a doc não deixa claro, mas parece q só funciona no cloud
+ai sobra a segunda e terceira, ssh ou token

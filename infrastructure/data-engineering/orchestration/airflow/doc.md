@@ -49,3 +49,6 @@ https://github.com/astronomer/agents
 
 
 airflow db clean --clean-before-timestamp '2026-02-02' --dry-run --skip-archive --verbose
+
+not support oci repository
+https://github.com/apache/airflow/issues/67837

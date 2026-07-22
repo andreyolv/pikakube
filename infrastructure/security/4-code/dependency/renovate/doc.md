@@ -11,3 +11,7 @@ https://github.com/brettinternet/homelab/blob/main/.github/workflows/schedule-re
 
 https://artifacthub.io/packages/helm/renovate/renovate
 https://github.com/renovatebot/helm-charts
+
+https://github.com/mogenius/renovate-operator
+
+https://github.com/renovatebot/github-action

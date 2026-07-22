@@ -1,0 +1,18 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: permify
+  namespace: permify
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: permify
+      version: 0.5.0
+      sourceRef:
+        kind: HelmRepository
+        name: permify
+        namespace: flux-system
+  values:
+  # https://github.com/Permify/helm-charts/blob/main/charts/permify/values.yaml
+    

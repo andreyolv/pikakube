@@ -7,3 +7,6 @@ o descheduler não funciona pra status de pod pending quando o pod está como un
 https://github.com/kubernetes-sigs/descheduler/issues/1046
 
 https://github.com/kubernetes-sigs/descheduler/issues/651
+
+not support oci repository
+https://github.com/kubernetes-sigs/descheduler/issues/1470

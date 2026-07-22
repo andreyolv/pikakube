@@ -17,6 +17,10 @@ spec:
   # https://artifacthub.io/packages/helm/openfga/openfga
   # https://github.com/openfga/helm-charts/blob/main/charts/openfga/values.yaml
     replicaCount: 1
+    telemetry:
+      metrics:
+        serviceMonitor:
+          enabled: true
     datastore:
       engine: postgres
       uri: postgres://postgres:password@openfga-postgresql.openfga.svc.cluster.local:5432/postgres?sslmode=disable

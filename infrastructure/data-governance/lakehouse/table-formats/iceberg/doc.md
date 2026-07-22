@@ -5,8 +5,6 @@ https://atwong.medium.com/how-to-register-apache-iceberg-files-into-apache-hive-
 
 https://www.youtube.com/watch?v=tsdApb3cEoE&list=PL-gIUf9e9CCskP6wP-NKRU9VhofMHYjcd&index=14
 
-- Integração com AWS S3 / Minio
-- Integração com Hive Metastore
-- .. Criar mini tutoriais em jupyter
-
 https://iceberg.apache.org/docs/latest/branching/#overview
+
+iceberg cdc

@@ -1,0 +1,20 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: renovate-operator
+  namespace: renovate
+spec:
+  interval: 5m
+  chartRef:
+    kind: OCIRepository
+    name: renovate-operator
+    namespace: flux-system
+  upgrade:
+    crds: CreateReplace
+  values:
+  # https://artifacthub.io/packages/helm/mogenius/renovate-operator
+  # https://github.com/mogenius/renovate-operator/blob/main/charts/renovate-operator/values.yaml
+    metrics:
+      enabled: true
+      serviceMonitor:
+        enabled: true

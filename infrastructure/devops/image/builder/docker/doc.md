@@ -39,3 +39,5 @@ usar essa merda de comando q não tá na porra da documentação depois de insta
 sudo usermod -aG docker $USER
 
 https://github.com/tonistiigi/binfmt
+
+https://github.com/docker/buildkit-syft-scanner

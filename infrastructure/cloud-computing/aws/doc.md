@@ -56,3 +56,7 @@ https://github.com/awslabs/amazon-emr-on-eks-custom-image-cli
 
 https://github.com/aws/aws-sdk-pandas
 https://github.com/pyathena-dev/PyAthena
+
+EFS é a maior piada da aws que já vi na vida
+https://github.com/kubernetes-sigs/aws-efs-csi-driver/issues/1566
+https://github.com/kubernetes-sigs/aws-efs-csi-driver/issues/310
