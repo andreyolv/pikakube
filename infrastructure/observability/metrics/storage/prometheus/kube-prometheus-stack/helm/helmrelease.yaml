@@ -1,0 +1,141 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: prometheus
+  namespace: prometheus
+spec:
+  interval: 5m
+  chartRef:
+    kind: OCIRepository
+    name: kube-prometheus-stack
+  values:
+  # https://artifacthub.io/packages/helm/prometheus-community/kube-prometheus-stack
+  # https://github.com/prometheus-community/helm-charts/blob/main/charts/kube-prometheus-stack/values.yaml
+    grafana:
+      enabled: false
+    prometheusOperator:
+      nodeSelector:
+        agentpool: system
+      tolerations:
+        - key: agentpool
+          operator: Equal
+          value: system
+          effect: NoSchedule
+      resources:
+        requests:
+          cpu: 32m
+          memory: 64Mi
+      admissionWebhooks:
+        patch:
+          nodeSelector:
+            agentpool: system
+          tolerations:
+            - key: agentpool
+              operator: Equal
+              value: system
+              effect: NoSchedule
+    prometheus:
+      prometheusSpec:
+        nodeSelector:
+          agentpool: system
+        tolerations:
+          - key: agentpool
+            operator: Equal
+            value: system
+            effect: NoSchedule
+        ruleSelectorNilUsesHelmValues: false
+        serviceMonitorSelectorNilUsesHelmValues: false
+        podMonitorSelectorNilUsesHelmValues: false
+        probeSelectorNilUsesHelmValues: false
+        scrapeConfigSelectorNilUsesHelmValues: false
+        retention: 14d
+        resources:
+          requests:
+            cpu: 512m
+            memory: 2Gi
+        storageSpec:
+          volumeClaimTemplate:
+            spec:
+              resources:
+                requests:
+                  storage: 64Gi
+    # https://github.com/prometheus-community/helm-charts/blob/main/charts/alertmanager/values.yaml
+    alertmanager:
+      alertmanagerSpec:
+        nodeSelector:
+          agentpool: system
+        tolerations:
+          - key: agentpool
+            operator: Equal
+            value: system
+            effect: NoSchedule
+        resources:
+          requests:
+            cpu: 32m
+            memory: 128Mi
+        volumes:
+          - name: slack-webhook
+            secret:
+              secretName: alertmanager-slack-webhook
+        volumeMounts:
+          - name: slack-webhook
+            mountPath: /etc/slack-webhook
+            readOnly: true
+      config:
+        route:
+          receiver: 'slack-notifications'
+          routes:
+          - receiver: 'slack-notifications'
+            matchers:
+              - business_hours_only="true"
+            active_time_intervals:
+              - business-hours-brt
+          #- receiver: 'slack-notifications'
+          #  matchers:
+          #    - alertname =~ "InfoInhibitor|Watchdog"
+        time_intervals:
+          - name: business-hours-brt
+            time_intervals:
+              - times:
+                  - start_time: '07:00'
+                    end_time: '20:00'
+                weekdays: ['monday:friday']
+                location: 'America/Sao_Paulo'
+        receivers:
+        - name: 'slack-notifications'
+          slack_configs:
+          - api_url_file: /etc/slack-webhook/url
+            channel: dataops-dev-alerts
+            send_resolved: true
+            title: '{{ template "slack.default.title" . }}'
+            text: "summary: {{ .CommonAnnotations.summary }}\ndescription: {{ .CommonAnnotations.description }}"
+    # https://github.com/prometheus-community/helm-charts/blob/main/charts/kube-state-metrics/values.yaml
+    kube-state-metrics:
+      metricLabelsAllowlist:
+      - namespaces=[agentpool,team]
+      - nodes=[karpenter.sh/nodepool,karpenter.sh/capacity-type]
+      customResourceState:
+        enabled: true
+        create: false
+      rbac: 
+        extraRules:
+        - apiGroups: ["gateway.networking.k8s.io"]
+          resources: [ "*" ]
+          verbs: ["list","watch"]
+      podAnnotations: 
+        reloader.stakater.com/auto: "true"
+      resources:
+        requests:
+          cpu: 32m
+          memory: 128Mi
+      nodeSelector:
+        agentpool: system
+      tolerations:
+        - key: agentpool
+          operator: Equal
+          value: system
+          effect: NoSchedule
+    # https://github.com/prometheus-community/helm-charts/blob/main/charts/prometheus-node-exporter/values.yaml
+    prometheus-node-exporter:
+      tolerations:
+        - operator: "Exists"
