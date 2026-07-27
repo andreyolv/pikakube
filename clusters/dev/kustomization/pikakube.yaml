@@ -7,7 +7,7 @@ spec:
   dependsOn:
   - name: kyverno-manifests
   interval: 5m
-  path: ./infrastructure/platform-engineering/kubernetes/dashboard-ingress/forecastle
+  path: ./infrastructure/platform-engineering/kubernetes/managed/dashboard-ingress/forecastle
   prune: false
   sourceRef:
     kind: GitRepository

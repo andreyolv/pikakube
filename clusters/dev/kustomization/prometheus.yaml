@@ -7,7 +7,7 @@ spec:
   dependsOn:
   - name: kyverno-manifests
   interval: 5m
-  path: ./infrastructure/observability/metrics/prometheus/kube-prometheus-stack
+  path: ./infrastructure/observability/metrics/storage/prometheus/kube-prometheus-stack
   prune: false
   sourceRef:
     kind: GitRepository
