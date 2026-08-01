@@ -1,0 +1,11 @@
+apiVersion: grafana.integreatly.org/v1beta1
+kind: GrafanaFolder
+metadata:
+  name: kubeelasti
+  namespace: kubeelasti
+spec:
+  allowCrossNamespaceImport: true
+  title: KubeElasti
+  instanceSelector:
+    matchLabels:
+      dashboards: grafana

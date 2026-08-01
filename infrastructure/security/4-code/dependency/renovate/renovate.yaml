@@ -1,0 +1,28 @@
+name: Renovate
+
+on:
+  schedule:
+    - cron: '0 6 1 * *'
+
+permissions:
+  contents: read
+
+jobs:
+  renovate:
+    runs-on: dataops-actions-runner
+    steps:
+      - name: Generate GitHub App token
+        id: app-token
+        # https://docs.renovatebot.com/modules/platform/github/#running-as-a-github-app
+        uses: actions/create-github-app-token@bcd2ba49218906704ab6c1aa796996da409d3eb1 # v3.2.0
+        with:
+          app-id: ${{ secrets.RENOVATE_APP_ID }}
+          private-key: ${{ secrets.RENOVATE_APP_PRIVATE_KEY }}
+
+      - name: Checkout
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+
+      - name: Renovate
+        uses: renovatebot/github-action@dd5302ec17783b2fc721b19ae7209b57b1587765 # v46.1.17
+        with:
+          token: ${{ steps.app-token.outputs.token }}

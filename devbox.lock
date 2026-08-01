@@ -310,8 +310,8 @@
       }
     },
     "github:NixOS/nixpkgs/nixpkgs-unstable": {
-      "last_modified": "2026-07-27T08:35:34Z",
-      "resolved": "github:NixOS/nixpkgs/38a4887411571457d700c51c64a6e49ead2ed5ab?lastModified=1785141334&narHash=sha256-kh35kIx7el4Jk8Ki3BH9%2FPn1eZYSYLJ6LMALos0zOy0%3D"
+      "last_modified": "2026-07-29T04:59:45Z",
+      "resolved": "github:NixOS/nixpkgs/9bc02893134c733dd85de46ee4fb2fac696b5529?lastModified=1785301185&narHash=sha256-eoS3KQTO0aPWXZvIaRbRAzSSHW3l5wdMFXtT1ISfoKA%3D"
     },
     "graphviz@latest": {
       "last_modified": "2026-07-23T05:10:05Z",
@@ -693,6 +693,82 @@
             }
           ],
           "store_path": "/nix/store/n1rbyfp9sn0r0gzx4z9lniisiad9h5yq-kubernetes-helm-4.2.3"
+        }
+      }
+    },
+    "ollama@latest": {
+      "last_modified": "2026-07-23T05:10:05Z",
+      "resolved": "github:NixOS/nixpkgs/7525d999cd850b9a488817abc89c75dc733acf17#ollama",
+      "source": "devbox-search",
+      "version": "0.32.1",
+      "systems": {
+        "aarch64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/25p8jpxxna8x84czzbc58v6qqxmiw766-ollama-0.32.1",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/25p8jpxxna8x84czzbc58v6qqxmiw766-ollama-0.32.1"
+        },
+        "aarch64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/nryi4kzrrdfrggb8pfs889ij5aacnzcp-ollama-0.32.1",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/nryi4kzrrdfrggb8pfs889ij5aacnzcp-ollama-0.32.1"
+        },
+        "x86_64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/iady6cjy7bbf3zgz7rbji85b0fvz4bkm-ollama-0.32.1",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/iady6cjy7bbf3zgz7rbji85b0fvz4bkm-ollama-0.32.1"
+        }
+      }
+    },
+    "opencode@latest": {
+      "last_modified": "2026-07-23T05:10:05Z",
+      "resolved": "github:NixOS/nixpkgs/7525d999cd850b9a488817abc89c75dc733acf17#opencode",
+      "source": "devbox-search",
+      "version": "1.18.3",
+      "systems": {
+        "aarch64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/yc17arf8hlq42h66n6ywfkb5lzwpv44f-opencode-1.18.3",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/yc17arf8hlq42h66n6ywfkb5lzwpv44f-opencode-1.18.3"
+        },
+        "aarch64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/wvlpqjrhijvp7b0mg4dznx57d1fzh2fx-opencode-1.18.3",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/wvlpqjrhijvp7b0mg4dznx57d1fzh2fx-opencode-1.18.3"
+        },
+        "x86_64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/g8n4rzm8iii1c9yz9gj5mldgfh2sac60-opencode-1.18.3",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/g8n4rzm8iii1c9yz9gj5mldgfh2sac60-opencode-1.18.3"
         }
       }
     },

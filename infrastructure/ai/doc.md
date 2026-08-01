@@ -27,3 +27,5 @@ https://github.com/karpathy/autoresearch
 https://github.com/gsd-build/get-shit-done
 https://github.com/forrestchang/andrej-karpathy-skills
 https://github.com/mattpocock/skills
+
+https://github.com/comet-ml/opik

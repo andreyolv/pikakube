@@ -46,6 +46,12 @@ spec:
     auth:
       disable_login_form: "false"
   ingress:
+    metadata:
+      annotations:
+        forecastle.stakater.com/expose: "true"
+        #forecastle.stakater.com/icon: "https://icon.icepanel.io/Technology/svg/HashiCorp-Vault.svg"
+        forecastle.stakater.com/appName: "Grafana"
+        forecastle.stakater.com/group: "Observability"
     spec:
       rules:
       - host: grafana.127.0.0.1.nip.io

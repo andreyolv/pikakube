@@ -58,7 +58,22 @@ spec:
             spec:
               resources:
                 requests:
-                  storage: 64Gi
+                  storage: 8Gi
+      ingress:
+        enabled: true
+        annotations:
+          forecastle.stakater.com/expose: "true"
+          #forecastle.stakater.com/icon: "https://icon.icepanel.io/Technology/svg/HashiCorp-Vault.svg"
+          forecastle.stakater.com/appName: "Prometheus"
+          forecastle.stakater.com/group: "Observability"
+        hosts:
+        - prometheus.127.0.0.1.nip.io
+        paths: 
+        - /
+        tls:
+        - secretName: mkcert-tls-secret
+          hosts:
+          - prometheus.127.0.0.1.nip.io
     # https://github.com/prometheus-community/helm-charts/blob/main/charts/alertmanager/values.yaml
     alertmanager:
       alertmanagerSpec:
@@ -109,6 +124,21 @@ spec:
             send_resolved: true
             title: '{{ template "slack.default.title" . }}'
             text: "summary: {{ .CommonAnnotations.summary }}\ndescription: {{ .CommonAnnotations.description }}"
+      ingress:
+        enabled: true
+        annotations:
+          forecastle.stakater.com/expose: "true"
+          #forecastle.stakater.com/icon: "https://icon.icepanel.io/Technology/svg/HashiCorp-Vault.svg"
+          forecastle.stakater.com/appName: "Alertmanager"
+          forecastle.stakater.com/group: "Observability"
+        hosts:
+        - alertmanager.127.0.0.1.nip.io
+        paths: 
+        - /
+        tls:
+        - secretName: mkcert-tls-secret
+          hosts:
+          - alertmanager.127.0.0.1.nip.io
     # https://github.com/prometheus-community/helm-charts/blob/main/charts/kube-state-metrics/values.yaml
     kube-state-metrics:
       metricLabelsAllowlist:

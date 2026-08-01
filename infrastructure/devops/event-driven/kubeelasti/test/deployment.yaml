@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: target-deployment
+  namespace: target
+  annotations:
+    kustomize.toolkit.fluxcd.io/reconcile: disabled
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: target-deployment
+  template:
+    metadata:
+      labels:
+        app: target-deployment
+    spec:
+      containers:
+        - name: target-deployment
+          image: kennethreitz/httpbin
+          ports:
+            - containerPort: 80
