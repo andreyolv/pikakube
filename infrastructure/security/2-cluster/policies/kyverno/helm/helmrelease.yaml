@@ -73,10 +73,10 @@ spec:
           memory: 128Mi
       serviceMonitor:
         enabled: true
-    grafana: 
-      enabled: true
-      grafanaDashboard:
-        create: true
+    #grafana: 
+    #  enabled: true
+    #  grafanaDashboard:
+    #    create: true
     features:
       backgroundScan:
         backgroundScanInterval: 24h
