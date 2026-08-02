@@ -16,10 +16,13 @@ https://github.com/humanlayer/12-factor-agents
 https://github.com/lmcache/lmcache
 https://github.com/guardrails-ai/guardrails
 
+# Coding Agent
 https://github.com/anomalyco/opencode
 https://github.com/earendil-works/pi
 https://github.com/odysseus-dev/odysseus
 https://github.com/Kilo-Org/kilocode
+https://github.com/cline/cline
+https://github.com/aider-ai/aider
 
 https://github.com/rtk-ai/rtk
 https://github.com/JuliusBrussee/caveman
@@ -51,3 +54,6 @@ https://github.com/promptfoo/promptfoo
 https://github.com/confident-ai/deepeval
 
 https://github.com/comet-ml/opik
+
+https://github.com/code-yeongyu/oh-my-openagent
+https://github.com/alvinunreal/oh-my-opencode-slim
