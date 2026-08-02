@@ -1,0 +1,15 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: OCIRepository
+metadata:
+  name: gravitino
+  namespace: gravitino
+spec:
+  interval: 24h
+  layerSelector:
+    mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
+    operation: copy
+  ref:
+    tag: 1.3.11
+    digest: 
+  url: oci://registry-1.docker.io/apache/gravitino-helm
+  # https://hub.docker.com/r/apache/gravitino-helm/tags

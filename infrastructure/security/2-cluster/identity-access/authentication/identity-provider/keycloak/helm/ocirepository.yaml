@@ -1,0 +1,15 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: OCIRepository
+metadata:
+  name: keycloak
+  namespace: keycloak
+spec:
+  interval: 24h
+  layerSelector:
+    mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
+    operation: copy
+  ref:
+    tag: 7.2.2
+    digest: sha256:ada9f1083b0fc00486658d71e08d8e511ee345ef25e6411f9656fddcbeedcb3a
+  url: oci://ghcr.io/codecentric/helm-charts/keycloakx
+  # https://github.com/codecentric/helm-charts/pkgs/container/helm-charts%2Fkeycloakx

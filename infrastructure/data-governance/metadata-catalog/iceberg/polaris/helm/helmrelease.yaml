@@ -8,11 +8,12 @@ spec:
   chart:
     spec:
       chart: polaris
-      version: 1.2.0-incubating-SNAPSHOT
+      version: 1.6.0
       sourceRef:
         kind: HelmRepository
         name: polaris
         namespace: flux-system
   values:
+  # https://artifacthub.io/packages/helm/apache-polaris/polaris
   # https://github.com/apache/polaris/blob/main/helm/polaris/values.yaml
   

@@ -1,0 +1,13 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: gravitino
+  namespace: gravitino
+spec:
+  interval: 5m
+  chartRef:
+    kind: OCIRepository
+    name: gravitino
+  values:
+  # https://artifacthub.io/packages/helm/gravitino/gravitino-helm
+  # https://github.com/apache/gravitino/blob/main/dev/charts/gravitino/values.yaml 

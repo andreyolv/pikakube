@@ -1,8 +1,8 @@
 apiVersion: source.toolkit.fluxcd.io/v1
 kind: HelmRepository
 metadata:
-  name: keycloak
+  name: polaris
   namespace: flux-system
 spec:
   interval: 24h
-  url: https://codecentric.github.io/helm-charts
+  url: https://downloads.apache.org/polaris/helm-chart

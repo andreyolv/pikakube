@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: gravitino
+  name: keycloak
   labels:
-    agentpool: data-platform
+    agentpool: system
     team: dataops
