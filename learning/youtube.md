@@ -17,7 +17,13 @@
 - [AI ProgBrl](https://www.youtube.com/@AIProgBr)
 - [Alessandro Varela](https://www.youtube.com/@alessandrovarela)
 - [Breno Vieira LionLab ](https://www.youtube.com/@LionlabvideosIA)
+- [Codacus](https://www.youtube.com/@Codacus)
+- [Limite Semanal](https://www.youtube.com/@limite_semanal)
+- [Matheus Battisti - Hora de Codar](https://www.youtube.com/@MatheusBattisti)
+- [Rafael Quintanilha – QuantBrasil](https://www.youtube.com/@QuantBrasil)
 - [Ronnald Hawk](https://www.youtube.com/@ronnaldhawk)
+- [ViktorKav](https://www.youtube.com/@VKav)
+- [Vini Lana](https://www.youtube.com/@aicodersacademy)
 
 # Cloud
 - [A Guide To Cloud](https://www.youtube.com/@AGuideToCloud)
@@ -333,7 +339,6 @@
 - [Umar Jamil](https://www.youtube.com/@umarjamilai)
 - [Venelin Valkov](https://www.youtube.com/@venelin_valkov)
 - [Vijay Gadhave](https://www.youtube.com/@Vijay_Gadhave_007)
-- [Vini - AI Coders Academy](https://www.youtube.com/@aicodersacademy)
 - [Weights & Biases](https://www.youtube.com/@WeightsBiases)
 - [Yannic Kilcher](https://www.youtube.com/@YannicKilcher)
 
@@ -469,7 +474,6 @@
 - [Laboratório HiPES](https://www.youtube.com/@HiPESLab)
 - [Lucas Souza Dev](https://www.youtube.com/@LucasSouzaDev)
 - [Lucas Vegi](https://www.youtube.com/@lucasvegi)
-- [Matheus Battisti - Hora de Codar](https://www.youtube.com/@MatheusBattisti)
 - [Microsoft Developer](https://www.youtube.com/@MicrosoftDeveloper)
 - [Microsoft Events](https://www.youtube.com/@events_msft)
 - [Microsoft Reactor](https://www.youtube.com/@MicrosoftReactor)
