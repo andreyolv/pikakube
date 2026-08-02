@@ -13,6 +13,12 @@
 - [Sidney Cirqueira](https://www.youtube.com/@SidneyCirqueira)
 - [Tobiko Data](https://www.youtube.com/@TobikoData)
 
+# AI
+- [AI ProgBrl](https://www.youtube.com/@AIProgBr)
+- [Alessandro Varela](https://www.youtube.com/@alessandrovarela)
+- [Breno Vieira LionLab ](https://www.youtube.com/@LionlabvideosIA)
+- [Ronnald Hawk](https://www.youtube.com/@ronnaldhawk)
+
 # Cloud
 - [A Guide To Cloud](https://www.youtube.com/@AGuideToCloud)
 - [Adam Marczak - Azure for Everyone](https://www.youtube.com/@AdamMarczakYT)

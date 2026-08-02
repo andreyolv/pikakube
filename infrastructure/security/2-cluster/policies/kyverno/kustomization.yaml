@@ -1,5 +1,5 @@
 resources:
   - namespace.yaml
-  - helmrepository.yaml
-  - helmrelease.yaml
+  - helm/ocirepository.yaml
+  - helm/helmrelease.yaml
   - rbac.yaml

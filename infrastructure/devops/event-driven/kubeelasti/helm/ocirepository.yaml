@@ -1,0 +1,15 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: OCIRepository
+metadata:
+  name: elasti
+  namespace: kubeelasti
+spec:
+  interval: 24h
+  layerSelector:
+    mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
+    operation: copy
+  ref:
+    tag: 0.1.30
+    digest: sha256:cbd10b35e067b28ed94de2923179f8f3891aaf699fb006a0d68956985813934a
+  url: oci://ghcr.io/kubeelasti/charts/elasti
+  # https://github.com/KubeElasti/KubeElasti/pkgs/container/charts%2Felasti

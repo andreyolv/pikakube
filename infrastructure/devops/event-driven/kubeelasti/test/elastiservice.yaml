@@ -1,0 +1,21 @@
+apiVersion: elasti.truefoundry.com/v1alpha1
+kind: ElastiService
+metadata:
+  name: target
+  namespace: target
+  annotations:
+    kustomize.toolkit.fluxcd.io/reconcile: disabled
+spec:
+  service: target-deployment
+  minTargetReplicas: 1
+  cooldownPeriod: 5
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: deployments
+    name: target-deployment
+  triggers:
+    - type: prometheus
+      metadata:
+        query: sum(rate(nginx_ingress_controller_requests{namespace="target", ingress="httpbin-ingress"}[1m])) or vector(0)
+        serverAddress: http://prometheus-kube-prometheus-prometheus.prometheus.svc.cluster.local:9090
+        threshold: "0.1"

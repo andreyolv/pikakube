@@ -50,3 +50,4 @@ llm evaluation
 https://github.com/promptfoo/promptfoo
 https://github.com/confident-ai/deepeval
 
+https://github.com/comet-ml/opik
