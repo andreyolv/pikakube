@@ -1,0 +1,29 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: authentik
+  namespace: authentik
+spec:
+  interval: 5m
+  chartRef:
+    kind: OCIRepository
+    name: authelia
+  values:
+  # https://artifacthub.io/packages/helm/goauthentik/authentik
+  # https://github.com/goauthentik/helm/blob/main/charts/authentik/values.yaml
+    authentik:
+      secret_key: "PleaseGenerateASecureKey"
+      error_reporting:
+        enabled: true
+      postgresql:
+        password: "ThisIsNotASecurePassword"
+    server:
+      ingress:
+        ingressClassName: nginx | traefik | kong
+        enabled: true
+        hosts:
+          - authentik.domain.tld
+    postgresql:
+      enabled: true
+      auth:
+        password: "ThisIsNotASecurePassword"

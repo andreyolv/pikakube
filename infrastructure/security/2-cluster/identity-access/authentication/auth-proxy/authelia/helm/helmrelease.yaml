@@ -5,16 +5,14 @@ metadata:
   namespace: authelia
 spec:
   interval: 5m
-  chart:
-    spec:
-      chart: authelia
-      version: 0.9.14
-      sourceRef:
-        kind: HelmRepository
-        name: authelia
-        namespace: flux-system
+  chartRef:
+    kind: OCIRepository
+    name: authelia
   values:
+  # https://artifacthub.io/packages/helm/authelia/authelia
   # https://github.com/authelia/chartrepo/blob/master/charts/authelia/values.yaml
+    ingress:
+      enabled: true #... completar com o restante
     pod:
       kind: Deployment
     configMap:
@@ -31,3 +29,8 @@ spec:
       notifier:
         filesystem:
           enabled: true
+      telemetry:
+        metrics:
+          enabled: true
+          serviceMonitor:
+            enabled: true

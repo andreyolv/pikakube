@@ -1,25 +1,66 @@
+// Where nix packages are located | Nix Package Registry
+// https://www.nixhub.io/
+
+// Devbox packages are installed at /nix/store
+// sudo du -sh /nix/store
+
+// How to clear unused packages storage at /nix/store
+// devbox run -- nix store gc --extra-experimental-features nix-command
 {
   "$schema": "https://raw.githubusercontent.com/jetify-com/devbox/0.15.0/.schema/devbox.schema.json",
   "packages": [
+    // Kubernetes
     "kubectl@latest",
     "kubectx@latest",
     "kind@latest",
-    "docker@latest",
-    "docker-compose@latest",
     "kubernetes-helm@latest",
     "fluxcd@latest",
-    "jq@latest",
-    "yq@latest",
-    "jp@latest",
-    "python@latest",
-    "dnsutils@latest",
-    "git@latest",
-    "trivy@latest",
+    //"kubectl-cnpg@latest",
+    //"cilium-cli@latest",
+    //"velero@latest",
+
+    // Containers
+    "docker@latest",
+    "docker-compose@latest",
+    //"podman@latest",
+
+    // Infrastructure as Code
+    //"terraform@latest",
+    //"crossplane-cli@latest",
+
+    // Cloud
+    //"awscli2@latest",
+    //"azure-cli@latest",
+
+    // Security
+    //"trivy@latest",
+    //"vault@latest",
+
+    // Programming Languages
+    //"python@latest",
+    //"go@latest",
+
+    // Python Tooling
     "uv@latest",
-    "velero@latest",
-    "graphviz@latest",
+    //"poetry@latest",
+
+    // Networking
+    "dnsutils@latest",
+    "telnet@latest",
+
+    // Development Tools
+    "git@latest",
+    //"act@latest",
+
+    // CLI Utilities
+    //"jq@latest", // https://github.com/jqlang/jq
+    //"yq@latest", // https://github.com/mikefarah/yq
+    //"jp@latest", // https://github.com/jmespath/jp
+
+    // AI
     "opencode@latest",
-    "ollama@latest"
+    //"ollama@latest",
+    //"llama-cpp@latest",
   ],
   "shell": {
     "init_hook": [

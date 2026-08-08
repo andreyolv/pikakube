@@ -1,0 +1,15 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: OCIRepository
+metadata:
+  name: authelia 
+  namespace: authelia 
+spec:
+  interval: 24h
+  layerSelector:
+    mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
+    operation: copy
+  ref:
+    tag: 0.11.6
+    digest: sha256:c32f8bc44cac1cfd512f3973ec00b36a3103a444f492a48aa6cee530f29bc375
+  url: oci://ghcr.io/authelia/chartrepo/authelia
+  # https://github.com/authelia/chartrepo/pkgs/container/chartrepo%2Fauthelia
