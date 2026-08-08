@@ -16,6 +16,9 @@
         "github.copilot",
         "github.copilot-chat",
         "mutantdino.resourcemonitor",
-        "mermaidchart.vscode-mermaid-chart"
+        "mermaidchart.vscode-mermaid-chart",
+        "hashicorp.terraform",
+        "ms-vscode.vscode-speech",
+        "anthropic.claude-code"
     ]
 }

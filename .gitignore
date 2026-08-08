@@ -1,4 +1,5 @@
 # Custom to Pikakube
+.claude
 devbox.lock
 infrastructure/platform-engineering/iac/terraform/terraform/.terraform
 infrastructure/security/secrets/vault/vault-dev/configmap-real.yaml
