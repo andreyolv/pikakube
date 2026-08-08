@@ -1,0 +1,31 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: OCIRepository
+metadata:
+  name: kagent-crds
+  namespace: kagent
+spec:
+  interval: 24h
+  layerSelector:
+    mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
+    operation: copy
+  ref:
+    tag: 0.10.0-rc1
+    digest: sha256:cbcea510d592498767aca71e5ea2a5791e55120782ce68bf35cbd24d2cc3ccee
+  url: oci://ghcr.io/kagent-dev/kagent/helm/kagent-crds
+  # https://github.com/kagent-dev/kagent/pkgs/container/kagent%2Fhelm%2Fkagent-crds
+---
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: OCIRepository
+metadata:
+  name: kagent
+  namespace: kagent
+spec:
+  interval: 24h
+  layerSelector:
+    mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
+    operation: copy
+  ref:
+    tag: 0.10.0-rc1
+    digest: sha256:a708e98aba8f4f4f279dd480396362c43ef3f5692c804027aa0d03b9c0f240cf
+  url: oci://ghcr.io/kagent-dev/kagent/helm/kagent
+  # https://github.com/kagent-dev/kagent/pkgs/container/kagent%2Fhelm%2Fkagent

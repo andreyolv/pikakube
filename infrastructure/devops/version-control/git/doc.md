@@ -46,6 +46,7 @@ change log
 https://common-changelog.org/
 https://github.com/olivierlacan/keep-a-changelog
 https://github.com/orhun/git-cliff
+https://github.com/release-drafter/release-drafter
 https://github.com/commitizen-tools/commitizen
 https://github.com/twisted/towncrier
 

@@ -55,6 +55,8 @@
 - [GitHub Repository Templating for Automated Project Setup](devops/repositories-templates.md)
 - [Self-Hosted GitHub Actions on Kubernetes for Secure CI/CD](devops/self-hosted-actions.md)
 - [Github Repository Governance and Compliance with GitHub Rulesets](devops/github-rulesets.md)
+- [Static Validation of GitHub Actions Workflows with actionlint](devops/actionlint.md)
+- [Progressive Validation Gates for Kubernetes Manifests in CI](devops/k8s-manifest-validation.md)
 
 ---
 
@@ -105,6 +107,7 @@
 - [Centralizing Authentication Across Data and DevOps Tools with Entra ID Single Sign-On (SSO)](security/sso.md)
 - [Cloud Security & Compliance Auditing with Prowler](security/prowler.md)
 - [Code Security with SAST Open Source Tools](security/sast-open.md)
+- [Static Application Security Testing for GitHub Actions Workflows with zizmor](security/zizmor.md)
 
 ---
 

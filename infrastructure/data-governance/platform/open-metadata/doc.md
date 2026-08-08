@@ -14,3 +14,6 @@ admin
 not suport por oci
 https://github.com/open-metadata/openmetadata-helm-charts/issues/344
 https://github.com/open-metadata/openmetadata-helm-charts/pull/478
+
+Bug: /api/v1/system/config/auth serves a frozen/stale
+https://github.com/open-metadata/OpenMetadata/issues/29597

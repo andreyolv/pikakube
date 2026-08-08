@@ -1,0 +1,48 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: kagent-crds
+  namespace: kagent
+spec:
+  interval: 5m
+  chartRef:
+    kind: OCIRepository
+    name: kagent-crds
+    namespace: kagent
+  upgrade:
+    crds: CreateReplace
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: kagent
+  namespace: kagent
+spec:
+  interval: 5m
+  dependsOn:
+  - name: kagent-crds
+  chartRef:
+    kind: OCIRepository
+    name: kagent
+    namespace: kagent
+  valuesFrom:
+  - kind: Secret
+    name: postgres-app
+    valuesKey: uri
+    targetPath: database.postgres.url
+  values:
+  # https://github.com/kagent-dev/kagent/blob/main/helm/kagent/values.yaml
+    database:
+      postgres:
+        bundled:
+          enabled: false
+    controller:
+      metrics:
+        enabled: true
+    providers:
+      default: ollama
+      ollama:
+        provider: Ollama
+        model: llama3.2
+        config:
+          host: http://ollama.ollama.svc.cluster.local:11434

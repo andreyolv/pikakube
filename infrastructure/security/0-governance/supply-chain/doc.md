@@ -1,6 +1,5 @@
 https://github.com/cisagov/CSAF
 
-https://github.com/ossf/scorecard
 https://github.com/google/osv.dev
 https://github.com/google/deps.dev
 
