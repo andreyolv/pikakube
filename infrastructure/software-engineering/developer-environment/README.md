@@ -7,10 +7,12 @@ Making "works on my machine" a statement about a machine anyone can recreate.
 Tools covered: [`devcontainer`](devcontainer/README.md) · [`code-server`](code-server/README.md) ·
 [`devpod`](devpod/README.md) · [`vscodium`](vscodium/README.md)
 
+Sub-capability: [`toolchain/`](toolchain/README.md) — mise, devenv, flox, spack
+
 ## Contents
 
 1. [The problem](#1-the-problem)
-2. [Two axes: where it runs, what edits it](#2-two-axes-where-it-runs-what-edits-it)
+2. [Three axes: where it runs, what edits it, what is in it](#2-three-axes-where-it-runs-what-edits-it-what-is-in-it)
 3. [The devcontainer specification is the portable part](#3-the-devcontainer-specification-is-the-portable-part)
 4. [What a remote environment actually buys](#4-what-a-remote-environment-actually-buys)
 5. [What it costs](#5-what-it-costs)
@@ -38,7 +40,7 @@ The fix is the same one applied everywhere else in this repository: **declare it
 file in the repository, and let a tool build it.** A development environment is infrastructure, and
 it should be code for the same reasons the cluster is.
 
-## 2. Two axes: where it runs, what edits it
+## 2. Three axes: where it runs, what edits it, what is in it
 
 These four tools look overlapping until you separate the two questions they answer:
 
@@ -58,6 +60,32 @@ The distinction that matters most:
   whether the environment can reach internal services directly.
 - **What edits it** decides whether a browser is enough, which is what makes a tablet or a locked
   down machine viable.
+
+### The axis those two do not cover
+
+Both questions above are about *where you write code*. Neither says anything about **which tools,
+at which versions, exist in the environment once you are in it**. A devcontainer says "this runs
+in a Debian container with VS Code attached"; it does not say the repository is built against
+Terraform 1.7 and Node 20.11. An image tag is an approximation of that, and it drifts the moment
+the image is rebuilt.
+
+That is a third, orthogonal question, and it has its own folder:
+
+| Axis | Question | Where |
+|---|---|---|
+| Where it runs | local or remote machine | [devcontainer](devcontainer/README.md), [DevPod](devpod/README.md) |
+| What edits it | local editor or browser | [code-server](code-server/README.md), [VSCodium](vscodium/README.md) |
+| **What is in it** | which tools, at which versions | [`toolchain/`](toolchain/README.md) |
+
+The three axes **compose rather than compete**. A devcontainer can run `mise` inside it — the
+image supplies the OS, the toolchain file supplies the versions, and the same toolchain file still
+works for whoever is not using the container. Answering only the first two axes leaves the third
+undeclared, which is where "passes locally, fails in CI" usually comes from.
+
+Worth knowing before reading further: **this repository already answers the third axis**, with
+Devbox and a committed `devbox.json` at the root. That is discussed in
+[`toolchain/`](toolchain/README.md), including the observation that its documentation currently
+sits outside this capability.
 
 ## 3. The devcontainer specification is the portable part
 

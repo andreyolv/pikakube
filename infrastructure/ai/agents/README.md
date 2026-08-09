@@ -5,14 +5,15 @@
 An LLM in a loop with tools — the frameworks that structure that loop, and the platforms that
 run it.
 
-Subfolders: [`crewai/`](crewai/README.md) · [`kagent/`](kagent/README.md) ·
-[`langflow/`](langflow/README.md) · [`langfuse/`](langfuse/README.md) ·
-[`langgraph/`](langgraph/README.md) · [`n8n/`](n8n/README.md) · [`swarm/`](swarm/README.md)
+Subfolders: [`crewai/`](crewai/README.md) · [`hermes-agent/`](hermes-agent/README.md) ·
+[`kagent/`](kagent/README.md) · [`langflow/`](langflow/README.md) ·
+[`langfuse/`](langfuse/README.md) · [`langgraph/`](langgraph/README.md) ·
+[`n8n/`](n8n/README.md) · [`swarm/`](swarm/README.md)
 
 ## Contents
 
 1. [What an agent actually is](#1-what-an-agent-actually-is)
-2. [Two different things live in this folder](#2-two-different-things-live-in-this-folder)
+2. [Three different things live in this folder](#2-three-different-things-live-in-this-folder)
 3. [Why multi-agent is usually premature](#3-why-multi-agent-is-usually-premature)
 4. [The reliability problem](#4-the-reliability-problem)
 5. [Cost and latency compound](#5-cost-and-latency-compound)
@@ -53,10 +54,10 @@ The honest test: **can you write down the steps?** If yes, write them down and c
 each one. Reach for an agent only when the sequence genuinely depends on what is discovered
 along the way.
 
-## 2. Two different things live in this folder
+## 2. Three different things live in this folder
 
-This matters more than any comparison between individual tools, because only one of these two
-groups is infrastructure at all.
+This matters more than any comparison between individual tools, because only one of these groups
+is infrastructure at all.
 
 | | **Libraries you import** | **Platforms you deploy** |
 |---|---|---|
@@ -68,7 +69,14 @@ groups is infrastructure at all.
 | Upgrade | a dependency bump in one repository | a cluster-wide change |
 | Belongs in this repository because | it is worth comparing before a team picks one | it is genuinely operated here |
 
-**Only the right-hand column is infrastructure.** A team choosing CrewAI over LangGraph is
+There is a **third shape**, and it fits neither column:
+[Hermes Agent](hermes-agent/README.md) is an agent you run and talk to — reached from a terminal
+or a chat client, configured by conversation and by skills it writes for itself. It is not imported
+by an application and not operated for other teams; it belongs to a person. It is catalogued here
+because the question it raises — **what reviewed the behaviour an agent taught itself?** — applies
+well beyond that one project, and section 4 is where it lands.
+
+**Only the platforms column is infrastructure.** A team choosing CrewAI over LangGraph is
 making an application decision; it needs no cluster change and no platform involvement. A team
 adopting kagent is asking the platform to run a controller, a database and a set of CRDs.
 
