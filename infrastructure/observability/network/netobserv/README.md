@@ -23,9 +23,9 @@ shows in its maturity — it is a complete pipeline rather than an agent that em
 
 ## When not to use it
 
-- [Cilium](../../../network/cni/cilium/) is the CNI — Hubble covers this with nothing extra
+- [Cilium](../../../network/cni/cilium/README.md) is the CNI — Hubble covers this with nothing extra
 - a small cluster; the pipeline has several components and a real storage cost
-- you are not on OpenShift and want the lightest option — [Retina](../retina/) is smaller, with the caveats in its README
+- you are not on OpenShift and want the lightest option — [Retina](../retina/README.md) is smaller, with the caveats in its README
 
 ## Storage note
 

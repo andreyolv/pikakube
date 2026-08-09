@@ -28,7 +28,7 @@ cannot leave.
 
 - you want long retention and historical trends — it is oriented to recent data
 - the team will not write scripts; the interactive power is the product, and unused it is heavy
-- you want a turnkey service map with interpretation — [Coroot](../coroot/) fits that better
+- you want a turnkey service map with interpretation — [Coroot](../coroot/README.md) fits that better
 
 ## A caution worth stating
 

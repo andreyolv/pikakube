@@ -15,8 +15,8 @@ Prometheus deployment: **memory at high cardinality**, and **long retention need
 system**.
 
 It handles both. Memory use is substantially lower for the same series count, and long-term
-storage is built in rather than requiring [Thanos](../../long-term-storage/thanos/) or
-[Mimir](../../long-term-storage/mimir/) alongside it.
+storage is built in rather than requiring [Thanos](../../long-term-storage/thanos/README.md) or
+[Mimir](../../long-term-storage/mimir/README.md) alongside it.
 
 It also runs as a drop-in scrape target replacement — `vmagent` scrapes, `vmalert` evaluates
 rules, and the operator provides `VMServiceScrape` mirroring `ServiceMonitor`.

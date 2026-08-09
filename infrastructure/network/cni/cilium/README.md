@@ -33,8 +33,8 @@ Kubernetes network model, that unlocks things the classic plugins cannot do:
 ## When not to use it
 
 - the team has no appetite for eBPF, or the kernel version cannot be controlled
-- a local throwaway cluster where [kindnet](../kindnet/) is already enough
-- you specifically need BGP into an existing fabric with a long operational track record — [Calico](../calico/) is the safer pick there
+- a local throwaway cluster where [kindnet](../kindnet/README.md) is already enough
+- you specifically need BGP into an existing fabric with a long operational track record — [Calico](../calico/README.md) is the safer pick there
 
 ---
 

@@ -12,7 +12,7 @@ Context and comparison: [../README.md](../README.md)
 
 ## The problem it solves
 
-Two problems, which is the reason to pick it over [MetalLB](../metallb/):
+Two problems, which is the reason to pick it over [MetalLB](../metallb/README.md):
 
 **1. `LoadBalancer` Services need an IP** — same job as MetalLB, via L2 (ARP) or BGP.
 

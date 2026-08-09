@@ -23,8 +23,8 @@ CNCF project, deliberately focused — profiling and nothing else.
 
 ## When not to use it
 
-- Grafana is the stack — [Pyroscope](../pyroscope/) integrates with it directly
-- broad multi-language coverage from one agent is the goal — [gProfiler](../gprofiler/)
+- Grafana is the stack — [Pyroscope](../pyroscope/README.md) integrates with it directly
+- broad multi-language coverage from one agent is the goal — [gProfiler](../gprofiler/README.md)
 
 ---
 

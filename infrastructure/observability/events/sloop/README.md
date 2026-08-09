@@ -24,7 +24,7 @@ started, killed, recreated.
 
 ## When not to use it
 
-- you only need events routed to a log store — [kubernetes-event-exporter](../kubernetes-event-exporter/) is simpler
+- you only need events routed to a log store — [kubernetes-event-exporter](../kubernetes-event-exporter/README.md) is simpler
 - storage is tight; it keeps its own history
 
 ## Why it is worth knowing about

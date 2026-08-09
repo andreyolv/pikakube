@@ -25,7 +25,7 @@ correlates related alerts into a single incident, deduplicates, and applies work
 ## When not to use it
 
 - Prometheus is the only source — Alertmanager's grouping and inhibition already solve this, with far less to run
-- the problem is missing *context* rather than missing *correlation* — that is [Robusta](../robusta/)
+- the problem is missing *context* rather than missing *correlation* — that is [Robusta](../robusta/README.md)
 
 ## The honest framing
 

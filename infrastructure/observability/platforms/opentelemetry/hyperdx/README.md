@@ -24,13 +24,13 @@ they did, then follow the trace it generated".
 
 ## When not to use it
 
-- there is no frontend, which removes the main differentiator — [SigNoz](../signoz/) is more complete for backend-only
+- there is no frontend, which removes the main differentiator — [SigNoz](../signoz/README.md) is more complete for backend-only
 - metrics are the primary signal; the strength here is traces, logs and sessions
 
 ## Related
 
 Session replay pairs naturally with [`frontend/`](../../../frontend/README.md) and
-[Faro](../../../frontend/faro/) — the same problem approached from the RUM side. Worth
+[Faro](../../../frontend/faro/README.md) — the same problem approached from the RUM side. Worth
 deciding which one owns browser telemetry rather than running both.
 
 ---

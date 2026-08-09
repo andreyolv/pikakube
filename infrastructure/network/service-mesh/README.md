@@ -5,8 +5,8 @@
 Conceptual reference for the `service-mesh/` folder: moving **identity, encryption,
 retries and traffic policy out of application code** and into the platform.
 
-Tools covered: [`istio`](istio/) · [`linkerd`](linkerd/) · [`kuma`](kuma/) ·
-[`consul`](consul/) · [`traefik`](traefik/)
+Tools covered: [`istio`](istio/README.md) · [`linkerd`](linkerd/README.md) · [`kuma`](kuma/README.md) ·
+[`consul`](consul/README.md) · [`traefik`](traefik/README.md)
 
 ## Contents
 
@@ -63,7 +63,7 @@ mTLS, and an L7 proxy is added only where L7 features are actually needed.
 This matters for a specific, painful class of workload — **jobs and short-lived pods**. A
 sidecar that keeps running after the main container exits leaves a Job that never completes,
 which is why sidecar meshes need explicit exclusions for batch workloads. See
-[linkerd](linkerd/) for a concrete instance of this with Airflow.
+[linkerd](linkerd/README.md) for a concrete instance of this with Airflow.
 
 ## 3. The overlap with CNI, ingress and gateway
 
@@ -72,9 +72,9 @@ Four folders can all claim to do "traffic", so the boundaries:
 | Layer | Concern | Folder |
 |---|---|---|
 | Pod networking and L3/L4 policy | can these pods reach each other? | [`cni/`](../cni/README.md) |
-| North-south HTTP into the cluster | how do external clients reach a service? | [`ingress-controller/`](../ingress-controller/) · [`gateway-api/`](../gateway-api/) |
+| North-south HTTP into the cluster | how do external clients reach a service? | [`ingress-controller/`](../ingress-controller/README.md) · [`gateway-api/`](../gateway-api/README.md) |
 | **East-west between services** | identity, mTLS, retries, canaries | **this folder** |
-| API management, rate limiting, keys | who is allowed to call this API, and how often? | [`api-gateway/`](../api-gateway/) |
+| API management, rate limiting, keys | who is allowed to call this API, and how often? | [`api-gateway/`](../api-gateway/README.md) |
 
 Two genuine overlaps worth knowing:
 
@@ -85,14 +85,14 @@ Two genuine overlaps worth knowing:
 
 | Tool | Model | Shines when | Do not use when | Detail |
 |---|---|---|---|---|
-| **Istio** | Envoy sidecars, or **ambient** | you need the full feature set — fine-grained traffic policy, multi-cluster, extensibility — and can absorb the complexity | a small cluster where the feature list exceeds the requirement | [→](istio/) |
-| **Linkerd** | purpose-built lightweight Rust proxy | you want mTLS, retries and golden metrics with the **smallest possible operational burden** | you need Istio-level traffic manipulation or its extension ecosystem | [→](linkerd/) |
-| **Kuma** | Envoy-based, control plane built for **VMs and Kubernetes together** | the estate is not entirely Kubernetes | everything already runs in the cluster | [→](kuma/) |
-| **Consul** | HashiCorp service mesh plus service discovery and KV | already invested in Consul or the HashiCorp stack, especially with mixed VM and Kubernetes workloads | starting fresh with only Kubernetes | [→](consul/) |
-| **Traefik Mesh** | lightweight, non-invasive | historical reference — see the note in its README | new deployments | [→](traefik/) |
+| **Istio** | Envoy sidecars, or **ambient** | you need the full feature set — fine-grained traffic policy, multi-cluster, extensibility — and can absorb the complexity | a small cluster where the feature list exceeds the requirement | [→](istio/README.md) |
+| **Linkerd** | purpose-built lightweight Rust proxy | you want mTLS, retries and golden metrics with the **smallest possible operational burden** | you need Istio-level traffic manipulation or its extension ecosystem | [→](linkerd/README.md) |
+| **Kuma** | Envoy-based, control plane built for **VMs and Kubernetes together** | the estate is not entirely Kubernetes | everything already runs in the cluster | [→](kuma/README.md) |
+| **Consul** | HashiCorp service mesh plus service discovery and KV | already invested in Consul or the HashiCorp stack, especially with mixed VM and Kubernetes workloads | starting fresh with only Kubernetes | [→](consul/README.md) |
+| **Traefik Mesh** | lightweight, non-invasive | historical reference — see the note in its README | new deployments | [→](traefik/README.md) |
 
 Companion tooling: **Kiali** provides the service graph and configuration validation for
-Istio — see [`istio/kiali/`](istio/kiali/).
+Istio — see [`istio/kiali/`](istio/kiali/README.md).
 
 ## 5. Decision tree
 
@@ -135,7 +135,7 @@ policy per service pair, by hand, has stopped being possible.
 | Anti-pattern | Why it is bad | What to do instead |
 |---|---|---|
 | Adopting a mesh for two or three services | enormous operational surface for a problem TLS solves | application TLS, or CNI-level features |
-| Injecting sidecars into Jobs and CronJobs | the pod never completes, because the proxy keeps running | exclude batch workloads explicitly — see [linkerd](linkerd/) |
+| Injecting sidecars into Jobs and CronJobs | the pod never completes, because the proxy keeps running | exclude batch workloads explicitly — see [linkerd](linkerd/README.md) |
 | Running a mesh and CNI L7 policy without deciding ownership | two systems enforcing overlapping rules, and neither is authoritative | pick which layer owns mTLS and policy |
 | Expecting a mesh to fix cascading failures | retries can amplify an overload rather than absorb it | fix capacity and timeouts; use the mesh to observe |
 | Mesh-wide `PERMISSIVE` mTLS left on permanently | it accepts plaintext, so you get the complexity without the guarantee | migrate to strict, and verify |

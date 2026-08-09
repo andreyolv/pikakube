@@ -22,12 +22,12 @@ The ones that actually matter in practice:
 
 ## When to use it
 
-- any PostgreSQL that matters — including [CloudNativePG](../../../../databases/sql/postgresql/operator/cnpg/) clusters
+- any PostgreSQL that matters — including [CloudNativePG](../../../../databases/sql/postgresql/operator/cnpg/README.md) clusters
 - you want the standard set without writing queries
 
 ## When not to use it
 
-- you need metrics about the **data**, not the database — that is [sql-exporter](../sql-exporter/)
+- you need metrics about the **data**, not the database — that is [sql-exporter](../sql-exporter/README.md)
 - CloudNativePG is in use and its built-in metrics already cover it; check before adding a second exporter
 
 ---

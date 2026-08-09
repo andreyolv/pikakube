@@ -29,7 +29,7 @@ Reasons it gets chosen:
 
 ## When not to use it
 
-- no existing HAProxy background — the ecosystem around [ingress-nginx](../ingress-nginx/) and [Traefik](../traefik/) is much larger in a Kubernetes context
+- no existing HAProxy background — the ecosystem around [ingress-nginx](../ingress-nginx/README.md) and [Traefik](../traefik/README.md) is much larger in a Kubernetes context
 - you want API management or a rich CRD model
 
 ---

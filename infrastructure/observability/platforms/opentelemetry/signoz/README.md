@@ -26,13 +26,13 @@ because they share a store and identifiers rather than being joined after the fa
 ## When not to use it
 
 - **Prometheus is entrenched.** PromQL, recording rules, alerting rules and community dashboards represent a large sunk investment that does not transfer
-- you need long-term metric retention at scale — [Thanos](../../../metrics/long-term-storage/thanos/) and [Mimir](../../../metrics/long-term-storage/mimir/) are purpose-built
+- you need long-term metric retention at scale — [Thanos](../../../metrics/long-term-storage/thanos/README.md) and [Mimir](../../../metrics/long-term-storage/mimir/README.md) are purpose-built
 - Grafana's dashboard ecosystem is load-bearing
 
 ## Migration note
 
 Because ingestion is OTLP, adopting it is a **collector configuration change**, not a
-re-instrumentation. Running the [OpenTelemetry Collector](../../../tracing/collector/opentelemetry/)
+re-instrumentation. Running the [OpenTelemetry Collector](../../../tracing/collector/opentelemetry/README.md)
 in front means you can send the same telemetry to SigNoz and to an existing stack in parallel
 while evaluating — which is the cheap way to make this decision with evidence.
 

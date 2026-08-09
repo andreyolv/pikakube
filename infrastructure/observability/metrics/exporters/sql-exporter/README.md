@@ -41,7 +41,7 @@ cheapest route to freshness and completeness alerting that exists.
 
 ## When not to use it
 
-- database health metrics — [postgres-exporter](../postgres-exporter/) is purpose-built
+- database health metrics — [postgres-exporter](../postgres-exporter/README.md) is purpose-built
 - heavy analytical queries; the exporter runs them on schedule and becomes load on the database
 - full data quality management with lineage and expectations — that is
   [`data-governance/quality/`](../../../../data-governance/quality/)

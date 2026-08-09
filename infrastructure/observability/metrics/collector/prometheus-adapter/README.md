@@ -16,7 +16,7 @@ prometheus-adapter bridges that: it runs PromQL and serves the results through t
 `custom.metrics.k8s.io` and `external.metrics.k8s.io` APIs, so an HPA can scale on anything
 Prometheus knows.
 
-It can also replace [metrics-server](../metrics-server/) for the resource metrics API, serving
+It can also replace [metrics-server](../metrics-server/README.md) for the resource metrics API, serving
 CPU and memory from Prometheus instead — which removes one component when Prometheus is
 already scraping cAdvisor.
 

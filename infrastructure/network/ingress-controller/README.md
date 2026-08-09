@@ -5,10 +5,10 @@
 Conceptual reference for the `ingress-controller/` folder: **getting external HTTP traffic
 into the cluster and routing it to Services**.
 
-Tools covered: [`ingress-nginx`](ingress-nginx/) · [`nginx-ingress`](nginx-ingress/) ·
-[`traefik`](traefik/) · [`contour`](contour/) · [`haproxy`](haproxy/) ·
-[`kong-ingress`](kong-ingress/) · [`apisix-ingress`](apisix-ingress/) ·
-[`ingate`](ingate/) · [`pomerium`](pomerium/)
+Tools covered: [`ingress-nginx`](ingress-nginx/README.md) · [`nginx-ingress`](nginx-ingress/README.md) ·
+[`traefik`](traefik/README.md) · [`contour`](contour/README.md) · [`haproxy`](haproxy/README.md) ·
+[`kong-ingress`](kong-ingress/README.md) · [`apisix-ingress`](apisix-ingress/README.md) ·
+[`ingate`](ingate/README.md) · [`pomerium`](pomerium/README.md)
 
 ## Contents
 
@@ -58,15 +58,15 @@ going away, but new capability lands in the Gateway API instead.
 
 | Tool | Proxy | Shines when | Detail |
 |---|---|---|---|
-| **ingress-nginx** | NGINX | **the default** — Kubernetes community project, the most documented and most deployed | [→](ingress-nginx/) |
-| **nginx-ingress** | NGINX | you want F5/NGINX Inc's version, with commercial support and NGINX Plus features | [→](nginx-ingress/) |
-| **Traefik** | Traefik | automatic service discovery, a good dashboard, and simple defaults | [→](traefik/) |
-| **Contour** | Envoy | you want Envoy's data path with a cleaner CRD (`HTTPProxy`) than raw Envoy config | [→](contour/) |
-| **HAProxy** | HAProxy | raw L4/L7 performance, or existing HAProxy expertise | [→](haproxy/) |
-| **kong-ingress** | Kong | you already run [Kong](../api-gateway/kong/) and want it to consume Ingress objects | [→](kong-ingress/) |
-| **apisix-ingress** | APISIX | same, for [APISIX](../api-gateway/apisix/) | [→](apisix-ingress/) |
-| **ingate** | — | a Kubernetes SIG effort worth watching; still early | [→](ingate/) |
-| **Pomerium** | Envoy | **identity-aware proxy** — chosen for access control, not routing | [→](pomerium/) |
+| **ingress-nginx** | NGINX | **the default** — Kubernetes community project, the most documented and most deployed | [→](ingress-nginx/README.md) |
+| **nginx-ingress** | NGINX | you want F5/NGINX Inc's version, with commercial support and NGINX Plus features | [→](nginx-ingress/README.md) |
+| **Traefik** | Traefik | automatic service discovery, a good dashboard, and simple defaults | [→](traefik/README.md) |
+| **Contour** | Envoy | you want Envoy's data path with a cleaner CRD (`HTTPProxy`) than raw Envoy config | [→](contour/README.md) |
+| **HAProxy** | HAProxy | raw L4/L7 performance, or existing HAProxy expertise | [→](haproxy/README.md) |
+| **kong-ingress** | Kong | you already run [Kong](../api-gateway/kong/README.md) and want it to consume Ingress objects | [→](kong-ingress/README.md) |
+| **apisix-ingress** | APISIX | same, for [APISIX](../api-gateway/apisix/README.md) | [→](apisix-ingress/README.md) |
+| **ingate** | — | a Kubernetes SIG effort worth watching; still early | [→](ingate/README.md) |
+| **Pomerium** | Envoy | **identity-aware proxy** — chosen for access control, not routing | [→](pomerium/README.md) |
 
 > **`ingress-nginx` and `nginx-ingress` are different projects.** The first is the Kubernetes
 > community controller (`kubernetes/ingress-nginx`), the second is F5/NGINX Inc's
@@ -112,7 +112,7 @@ flowchart TD
 and applies the mkcert TLS Secret before Flux reconciles it, and Kind publishes ports 80 and
 443 straight to the host through `extraPortMappings`, so no load balancer is needed.
 
-Hostnames come from [nip.io](../dns/nip.io/), and the certificate is the mkcert wildcard —
+Hostnames come from [nip.io](../dns/nip.io/README.md), and the certificate is the mkcert wildcard —
 see [certificates](../../security/2-cluster/certificates/README.md#11-how-this-applies-to-pikakube).
 
 ---

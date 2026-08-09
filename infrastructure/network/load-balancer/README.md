@@ -5,8 +5,8 @@
 Conceptual reference for the `load-balancer/` folder. About one thing: **how a Service of
 type `LoadBalancer` gets an actual IP address.**
 
-Tools covered: [`metallb`](metallb/) · [`kube-vip`](kube-vip/) · [`openelb`](openelb/) ·
-[`aws-load-balancer-controller`](aws-load-balancer-controller/) · [`k8gb`](k8gb/)
+Tools covered: [`metallb`](metallb/README.md) · [`kube-vip`](kube-vip/README.md) · [`openelb`](openelb/README.md) ·
+[`aws-load-balancer-controller`](aws-load-balancer-controller/README.md) · [`k8gb`](k8gb/README.md)
 
 ## Contents
 
@@ -57,8 +57,8 @@ These get confused constantly, and they stack rather than compete:
 | Layer | What it does | Where it lives |
 |---|---|---|
 | **LoadBalancer Service** | gets an external **IP** to the cluster, L4 | this folder |
-| **Ingress controller** | routes **HTTP** by host and path, terminates TLS | [`ingress-controller/`](../ingress-controller/) |
-| **Gateway API** | the successor to Ingress, richer and role-oriented | [`gateway-api/`](../gateway-api/) |
+| **Ingress controller** | routes **HTTP** by host and path, terminates TLS | [`ingress-controller/`](../ingress-controller/README.md) |
+| **Gateway API** | the successor to Ingress, richer and role-oriented | [`gateway-api/`](../gateway-api/README.md) |
 
 The normal on-prem chain is: **MetalLB gives the ingress controller an IP → the ingress
 controller routes HTTP to Services**. One LoadBalancer IP serves every hostname in the
@@ -69,11 +69,11 @@ burns addresses and skips the layer that does routing.
 
 | Tool | Mechanism | Shines when | Do not use when | Detail |
 |---|---|---|---|---|
-| **MetalLB** | L2 (ARP) or BGP | the default answer for bare metal and on-prem — mature, widely used, both modes | you are on a cloud that already has a controller | [→](metallb/) |
-| **kube-vip** | L2 or BGP, plus **control-plane VIP** | you also need a virtual IP for the **API server** on a self-managed cluster — it does both jobs | you only need Service IPs; MetalLB is the more common choice | [→](kube-vip/) |
-| **OpenELB** | L2, BGP or VIP | you want an alternative to MetalLB, particularly in the KubeSphere ecosystem | no specific reason to differ from MetalLB | [→](openelb/) |
-| **AWS Load Balancer Controller** | provisions **real AWS** NLB/ALB | running on EKS — it turns Ingress into an ALB and LoadBalancer Services into NLBs | anywhere that is not AWS | [→](aws-load-balancer-controller/) |
-| **k8gb** | **DNS-based**, across clusters | failover and traffic steering between clusters or regions | single cluster — see below | [→](k8gb/) |
+| **MetalLB** | L2 (ARP) or BGP | the default answer for bare metal and on-prem — mature, widely used, both modes | you are on a cloud that already has a controller | [→](metallb/README.md) |
+| **kube-vip** | L2 or BGP, plus **control-plane VIP** | you also need a virtual IP for the **API server** on a self-managed cluster — it does both jobs | you only need Service IPs; MetalLB is the more common choice | [→](kube-vip/README.md) |
+| **OpenELB** | L2, BGP or VIP | you want an alternative to MetalLB, particularly in the KubeSphere ecosystem | no specific reason to differ from MetalLB | [→](openelb/README.md) |
+| **AWS Load Balancer Controller** | provisions **real AWS** NLB/ALB | running on EKS — it turns Ingress into an ALB and LoadBalancer Services into NLBs | anywhere that is not AWS | [→](aws-load-balancer-controller/README.md) |
+| **k8gb** | **DNS-based**, across clusters | failover and traffic steering between clusters or regions | single cluster — see below | [→](k8gb/README.md) |
 
 ## 5. Global load balancing is a different problem
 

@@ -5,7 +5,7 @@
 Conceptual reference for the `troubleshooting/` folder. Less a tool catalogue than a
 **method**: how to narrow down a Kubernetes network problem without guessing.
 
-Tools covered: [`netshoot`](netshoot/)
+Tools covered: [`netshoot`](netshoot/README.md)
 
 ## Contents
 
@@ -63,7 +63,7 @@ What the results mean:
 |---|---|
 | NXDOMAIN for the short name, works for the FQDN | wrong namespace, or relying on a search suffix that does not apply |
 | Resolves but slowly | the `ndots:5` search-list expansion — see [`../dns/`](../dns/README.md#the-ndots5-trap) |
-| Intermittent ~5s timeouts | the classic conntrack race on UDP — a per-node cache fixes it, see [`../dns/node-local-dns/`](../dns/node-local-dns/) |
+| Intermittent ~5s timeouts | the classic conntrack race on UDP — a per-node cache fixes it, see [`../dns/node-local-dns/`](../dns/node-local-dns/README.md) |
 | Nothing resolves at all, from any pod | CoreDNS itself — check pods in `kube-system` |
 
 ```bash
@@ -173,7 +173,7 @@ which produces the classic "works in the browser, fails in the app".
 
 ## 8. How to get a shell in the right place
 
-[**netshoot**](netshoot/) is a container image with the tools already installed — `dig`,
+[**netshoot**](netshoot/README.md) is a container image with the tools already installed — `dig`,
 `nslookup`, `tcpdump`, `ss`, `netstat`, `curl`, `nc`, `iperf`, `traceroute`. It exists so
 you never install diagnostics inside a running application container.
 

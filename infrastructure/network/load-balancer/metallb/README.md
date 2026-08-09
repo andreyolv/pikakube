@@ -30,7 +30,7 @@ Two modes:
 ## When not to use it
 
 - on EKS, AKS or GKE, where a controller already exists
-- when you also need a virtual IP for the **API server** — [kube-vip](../kube-vip/) does both jobs
+- when you also need a virtual IP for the **API server** — [kube-vip](../kube-vip/README.md) does both jobs
 
 ## Address pool on Kind
 

@@ -28,7 +28,7 @@ because it observes the kernel rather than the runtime.
 ## When not to use it
 
 - business context is the requirement — eBPF stops at the process boundary
-- you want a full platform rather than a telemetry source — [Coroot](../../../../platforms/ebpf/coroot/) or [Pixie](../../../../platforms/ebpf/pixie/)
+- you want a full platform rather than a telemetry source — [Coroot](../../../../platforms/ebpf/coroot/README.md) or [Pixie](../../../../platforms/ebpf/pixie/README.md)
 - kernel versions are old or inconsistent across the fleet
 
 ## Where it fits
@@ -37,7 +37,7 @@ It is now part of the OpenTelemetry project's auto-instrumentation effort, which
 most standards-aligned option in this folder — and the safest one to adopt without creating a
 dependency you have to unwind later.
 
-Pairs naturally with [Alloy](../../../collector/alloy/), which can run it as a component
+Pairs naturally with [Alloy](../../../collector/alloy/README.md), which can run it as a component
 rather than as a separate deployment.
 
 ---

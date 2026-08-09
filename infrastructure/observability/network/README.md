@@ -5,7 +5,7 @@
 Seeing the network layer specifically — flows, drops, and DNS — rather than the applications
 riding on it.
 
-Tools covered: [`retina`](retina/) · [`netobserv`](netobserv/)
+Tools covered: [`retina`](retina/README.md) · [`netobserv`](netobserv/README.md)
 
 ---
 
@@ -41,12 +41,12 @@ The two questions it answers that nothing else does:
 
 | Tool | Role | Shines when | Detail |
 |---|---|---|---|
-| **Retina** | Microsoft's eBPF network observability, CNI-agnostic | you want flow visibility **without adopting Cilium** — it works on any CNI | [→](retina/) |
-| **NetObserv** | the OpenShift network observability operator, based on eBPF and Flow Collector | you are in the OpenShift ecosystem, or want a mature flow pipeline with a console | [→](netobserv/) |
+| **Retina** | Microsoft's eBPF network observability, CNI-agnostic | you want flow visibility **without adopting Cilium** — it works on any CNI | [→](retina/README.md) |
+| **NetObserv** | the OpenShift network observability operator, based on eBPF and Flow Collector | you are in the OpenShift ecosystem, or want a mature flow pipeline with a console | [→](netobserv/README.md) |
 
 ### The alternative you may already have
 
-If [Cilium](../../network/cni/cilium/) is the CNI, **Hubble** provides flow visibility with
+If [Cilium](../../network/cni/cilium/README.md) is the CNI, **Hubble** provides flow visibility with
 nothing extra to install — and it is the most mature option of the three.
 
 Both tools here exist mainly for the case where Cilium is *not* the CNI. That is worth
@@ -59,7 +59,7 @@ checking before installing anything: the answer may already be running.
 | Installing a flow tool when Cilium is already the CNI | Hubble covers it, better | check first |
 | Capturing all flows with no retention plan | flow data volume is very large | sample and scope by namespace |
 | Using flow logs as a security audit trail | they show traffic, not intent or identity | [audit logs](../../security/2-cluster/audit/) and runtime security |
-| Treating it as a debugging tool | it is a continuous signal; ad-hoc debugging is [netshoot](../../network/troubleshooting/netshoot/) | use it for patterns, not for one-off checks |
+| Treating it as a debugging tool | it is a continuous signal; ad-hoc debugging is [netshoot](../../network/troubleshooting/netshoot/README.md) | use it for patterns, not for one-off checks |
 
 ## How this applies to pikakube
 

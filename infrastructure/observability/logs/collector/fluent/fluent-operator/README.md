@@ -34,7 +34,7 @@ a rebuilt cluster.
 ## When not to use it
 
 - a small static configuration that never changes — the operator is more machinery than the problem needs
-- **tenant self-service is the primary goal** — the [Logging Operator](../../logging-operator/) is built around that case specifically
+- **tenant self-service is the primary goal** — the [Logging Operator](../../logging-operator/README.md) is built around that case specifically
 
 ## Choosing between the two operators
 

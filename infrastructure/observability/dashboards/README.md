@@ -4,7 +4,7 @@
 
 How people actually look at stored signals.
 
-Tools covered: [`grafana`](grafana/) · [`perses`](perses/) · [`devlake`](devlake/)
+Tools covered: [`grafana`](grafana/README.md) · [`perses`](perses/README.md) · [`devlake`](devlake/README.md)
 
 ## Contents
 
@@ -48,15 +48,15 @@ Two ways out:
 - **CRDs** — a `GrafanaDashboard` object reconciled by an operator, which is GitOps for dashboards
 
 The second is what makes dashboards reviewable and reproducible, and it is the reason the
-[Grafana Operator](grafana/grafana-operator/) exists rather than plain Grafana.
+[Grafana Operator](grafana/grafana-operator/README.md) exists rather than plain Grafana.
 
 ## 3. The tools in this folder
 
 | Tool | Role | Shines when | Do not use when | Detail |
 |---|---|---|---|---|
-| **Grafana** | the default visualisation layer | always, effectively — datasource-agnostic, with an enormous library of community dashboards | you want a lighter, Kubernetes-native, code-first tool | [→](grafana/) |
-| **Perses** | CNCF dashboards-as-code | dashboards should be **entirely** declarative, versioned and lightweight from the start | you depend on Grafana's ecosystem and plugin library | [→](perses/) |
-| **DevLake** | software delivery metrics | you want **DORA metrics** — lead time, deploy frequency, change failure rate — from Git, CI and issue trackers | you are looking for infrastructure dashboards; this measures the engineering process, not the platform | [→](devlake/) |
+| **Grafana** | the default visualisation layer | always, effectively — datasource-agnostic, with an enormous library of community dashboards | you want a lighter, Kubernetes-native, code-first tool | [→](grafana/README.md) |
+| **Perses** | CNCF dashboards-as-code | dashboards should be **entirely** declarative, versioned and lightweight from the start | you depend on Grafana's ecosystem and plugin library | [→](perses/README.md) |
+| **DevLake** | software delivery metrics | you want **DORA metrics** — lead time, deploy frequency, change failure rate — from Git, CI and issue trackers | you are looking for infrastructure dashboards; this measures the engineering process, not the platform | [→](devlake/README.md) |
 
 > **DevLake is a different kind of thing.** It is here because it produces dashboards, but
 > what it measures is how the team delivers software, not how the cluster behaves. Worth
@@ -98,7 +98,7 @@ flowchart TD
 
 ## 6. How this applies to pikakube
 
-**Grafana via the [operator](grafana/grafana-operator/)** is what is deployed — dashboards
+**Grafana via the [operator](grafana/grafana-operator/README.md)** is what is deployed — dashboards
 and datasources as CRDs, reconciled by Flux, so they live in Git like everything else.
 
 One real limitation is recorded there: the operator **cannot install app plugins**, which

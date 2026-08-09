@@ -9,7 +9,7 @@ Context and comparison: [../README.md](../README.md)
 
 ---
 
-> **Not the same as [nginx-ingress](../nginx-ingress/).** This is the **Kubernetes community**
+> **Not the same as [nginx-ingress](../nginx-ingress/README.md).** This is the **Kubernetes community**
 > controller (`kubernetes/ingress-nginx`). The other is F5/NGINX Inc's
 > (`nginx/kubernetes-ingress`). Different codebases, different annotations — manifests do not
 > transfer.
@@ -71,7 +71,7 @@ openssl rsa -in encrypted-key.key -out tls.key
 kubectl create secret tls [secret-name] --cert=tls.crt --key=tls.key --dry-run=client -o yaml > secret-name.yaml
 ```
 
-For anything beyond a one-off, [cert-manager](../../../security/2-cluster/certificates/cert-manager/)
+For anything beyond a one-off, [cert-manager](../../../security/2-cluster/certificates/cert-manager/README.md)
 issues and renews these automatically.
 
 ### Fixing `certificate signed by unknown authority`
@@ -83,7 +83,7 @@ kubectl delete -A ValidatingWebhookConfiguration ingress-nginx-admission
 ### Guides
 
 - [OAuth external auth](https://kubernetes.github.io/ingress-nginx/examples/auth/oauth-external-auth/)
-- [Rate limiting annotations](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/#rate-limiting) — see also [`rate-llimit/`](rate-llimit/)
+- [Rate limiting annotations](https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/#rate-limiting) — see also [`rate-llimit/`](rate-llimit/README.md)
 - [Local cluster with ingress](https://blog.lepape.me/local-kubernetes-cluster-with-ingress/)
 
 ---

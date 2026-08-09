@@ -25,7 +25,7 @@ graphed, compared and alerted on alongside everything else.
 ## When not to use it
 
 - no spot instances in use
-- the interest is interruptions rather than price — that is [spot-termination-exporter](../spot-termination-exporter/)
+- the interest is interruptions rather than price — that is [spot-termination-exporter](../spot-termination-exporter/README.md)
 - Karpenter already handles selection well and nobody will act on the data
 
 ## Note on the project

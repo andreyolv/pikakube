@@ -4,8 +4,8 @@
 
 Getting the alert to a **person**, and running what happens next.
 
-Tools covered: [`oncall`](oncall/) · [`goalert`](goalert/) · [`oneuptime`](oneuptime/) ·
-[`aurora`](aurora/)
+Tools covered: [`oncall`](oncall/README.md) · [`goalert`](goalert/README.md) · [`oneuptime`](oneuptime/README.md) ·
+[`aurora`](aurora/README.md)
 
 ## Contents
 
@@ -20,7 +20,7 @@ Tools covered: [`oncall`](oncall/) · [`goalert`](goalert/) · [`oneuptime`](one
 
 ## 1. Where alerting ends and this begins
 
-[Alertmanager](../alerting/alertmanager/) routes an alert to a **destination** — a Slack
+[Alertmanager](../alerting/alertmanager/README.md) routes an alert to a **destination** — a Slack
 channel, a webhook, an email address.
 
 It has no idea who is awake, whether anyone acknowledged it, or what to do when the first
@@ -34,7 +34,7 @@ That is the gap this folder fills:
 | Should this fire at all? | [`alerting/`](../alerting/README.md) |
 | **Who is on call right now?** | here |
 | **What if they do not answer?** | here |
-| What happened, and what do we change? | post-mortems — [`site-reliability-engineering/`](../../site-reliability-engineering/) |
+| What happened, and what do we change? | post-mortems — [`site-reliability-engineering/`](../../site-reliability-engineering/README.md) |
 
 ## 2. What these tools actually provide
 
@@ -54,10 +54,10 @@ dashboard with extra steps.
 
 | Tool | Role | Shines when | Do not use when | Detail |
 |---|---|---|---|---|
-| **Grafana OnCall** | schedules, escalation, acknowledgement | Grafana is already the centre of gravity — it integrates directly with Alertmanager and Grafana alerts | you want a fully independent tool | [→](oncall/) |
-| **GoAlert** | on-call scheduling with strong notification delivery | phone and SMS escalation matters and the deployment should stay self-contained | you want an all-in-one platform | [→](goalert/) |
-| **OneUptime** | all-in-one — status page, monitoring, on-call, incidents | you want a single product covering status pages and incidents rather than assembling them | you already have monitoring and only need on-call | [→](oneuptime/) |
-| **Aurora** | AI-assisted incident response | experimenting with automated triage as a first responder | you need reliable paging — this is not the paging layer | [→](aurora/) |
+| **Grafana OnCall** | schedules, escalation, acknowledgement | Grafana is already the centre of gravity — it integrates directly with Alertmanager and Grafana alerts | you want a fully independent tool | [→](oncall/README.md) |
+| **GoAlert** | on-call scheduling with strong notification delivery | phone and SMS escalation matters and the deployment should stay self-contained | you want an all-in-one platform | [→](goalert/README.md) |
+| **OneUptime** | all-in-one — status page, monitoring, on-call, incidents | you want a single product covering status pages and incidents rather than assembling them | you already have monitoring and only need on-call | [→](oneuptime/README.md) |
+| **Aurora** | AI-assisted incident response | experimenting with automated triage as a first responder | you need reliable paging — this is not the paging layer | [→](aurora/README.md) |
 
 ## 4. Decision tree
 

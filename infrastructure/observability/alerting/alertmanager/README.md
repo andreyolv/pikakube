@@ -30,8 +30,8 @@ receivers — Slack, email, PagerDuty, webhooks.
 
 ## When not to use it
 
-- there is no Prometheus and you only want pod-failure notifications — [kwatch](../kwatch/) is far less to run
-- correlation across many *non-Prometheus* sources is the requirement — [Keep](../keep/)
+- there is no Prometheus and you only want pod-failure notifications — [kwatch](../kwatch/README.md) is far less to run
+- correlation across many *non-Prometheus* sources is the requirement — [Keep](../keep/README.md)
 
 ## The thing that confuses people
 

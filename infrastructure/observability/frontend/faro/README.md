@@ -33,8 +33,8 @@ behind it, in one timeline.
 ## Note on collection
 
 Faro data reaches the stack through a collector endpoint, so the
-[OpenTelemetry Collector](../../tracing/collector/opentelemetry/) or
-[Alloy](../../tracing/collector/alloy/) is part of the setup rather than an optional extra.
+[OpenTelemetry Collector](../../tracing/collector/opentelemetry/README.md) or
+[Alloy](../../tracing/collector/alloy/README.md) is part of the setup rather than an optional extra.
 
 ---
 

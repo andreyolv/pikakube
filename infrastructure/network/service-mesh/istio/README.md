@@ -40,13 +40,13 @@ sidecars breaking Jobs. The repo maps it separately under
 
 ## When not to use it
 
-- the requirement is "mTLS and retries" — [Linkerd](../linkerd/) delivers that with far less to operate
+- the requirement is "mTLS and retries" — [Linkerd](../linkerd/README.md) delivers that with far less to operate
 - a small cluster where the feature list exceeds anything you will configure
 - the team has no capacity to absorb a new debugging surface; a 503 can now originate in four different places
 
 ## Related
 
-- **Kiali** — service graph and configuration validation: [`kiali/`](kiali/)
+- **Kiali** — service graph and configuration validation: [`kiali/`](kiali/README.md)
 - **Kmesh** — eBPF-based sidecarless mesh, a different take on the same problem: <https://github.com/kmesh-net/kmesh>
 
 ---

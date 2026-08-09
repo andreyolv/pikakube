@@ -5,8 +5,8 @@
 Conceptual reference for the `api-gateway/` folder: treating APIs as **products with
 consumers**, not just routes.
 
-Tools covered: [`kong`](kong/) · [`tyk`](tyk/) · [`apisix`](apisix/) · [`gloo`](gloo/) ·
-[`emissary-ingress`](emissary-ingress/) · [`easegress`](easegress/)
+Tools covered: [`kong`](kong/README.md) · [`tyk`](tyk/README.md) · [`apisix`](apisix/README.md) · [`gloo`](gloo/README.md) ·
+[`emissary-ingress`](emissary-ingress/README.md) · [`easegress`](easegress/README.md)
 
 ## Contents
 
@@ -55,12 +55,12 @@ minute and the partner plan gets 10,000".
 
 | Tool | Base | Shines when | Detail |
 |---|---|---|---|
-| **Kong** | NGINX / OpenResty | the most widely adopted option, with a large plugin ecosystem and a Kubernetes controller | [→](kong/) |
-| **Tyk** | Go, own proxy | a full API management product — portal, analytics, multi-tenancy — that is genuinely open source at its core | [→](tyk/) |
-| **APISIX** | NGINX / OpenResty | dynamic configuration with no reloads, and a strong plugin set; Apache project | [→](apisix/) |
-| **Gloo** | Envoy | Envoy-based edge with enterprise features; note that the open-source line continues as [kgateway](../gateway-api/kgateway/) | [→](gloo/) |
-| **Emissary-ingress** | Envoy | CNCF project (formerly Ambassador), CRD-driven, Envoy data path | [→](emissary-ingress/) |
-| **Easegress** | Go, own proxy | a lighter, programmable traffic orchestrator; a smaller alternative to the above | [→](easegress/) |
+| **Kong** | NGINX / OpenResty | the most widely adopted option, with a large plugin ecosystem and a Kubernetes controller | [→](kong/README.md) |
+| **Tyk** | Go, own proxy | a full API management product — portal, analytics, multi-tenancy — that is genuinely open source at its core | [→](tyk/README.md) |
+| **APISIX** | NGINX / OpenResty | dynamic configuration with no reloads, and a strong plugin set; Apache project | [→](apisix/README.md) |
+| **Gloo** | Envoy | Envoy-based edge with enterprise features; note that the open-source line continues as [kgateway](../gateway-api/kgateway/README.md) | [→](gloo/README.md) |
+| **Emissary-ingress** | Envoy | CNCF project (formerly Ambassador), CRD-driven, Envoy data path | [→](emissary-ingress/README.md) |
+| **Easegress** | Go, own proxy | a lighter, programmable traffic orchestrator; a smaller alternative to the above | [→](easegress/README.md) |
 
 ## 4. Decision tree
 
@@ -99,7 +99,7 @@ flowchart TD
 ## 6. How this applies to pikakube
 
 Not in use — the cluster serves internal tools through
-[ingress-nginx](../ingress-controller/ingress-nginx/), which is the correct choice for a
+[ingress-nginx](../ingress-controller/ingress-nginx/README.md), which is the correct choice for a
 platform with no external API consumers.
 
 Mapped because the moment a data platform exposes anything outward — a metrics API, a

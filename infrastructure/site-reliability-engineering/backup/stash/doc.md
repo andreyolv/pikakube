@@ -1,1 +1,0 @@
-github.com/stashed/stash

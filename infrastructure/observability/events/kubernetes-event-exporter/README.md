@@ -24,8 +24,8 @@ filtering needed to keep volume sane.
 
 ## When not to use it
 
-- you want event *metrics* to alert on rather than the text — [event-exporter](../event-exporter/)
-- you want to browse a pod's history visually — [sloop](../sloop/)
+- you want event *metrics* to alert on rather than the text — [event-exporter](../event-exporter/README.md)
+- you want to browse a pod's history visually — [sloop](../sloop/README.md)
 
 ## Filter first
 

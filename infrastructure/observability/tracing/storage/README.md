@@ -4,8 +4,8 @@
 
 Where traces land, and how they are queried.
 
-Tools covered: [`tempo`](tempo/) · [`jaeger`](jaeger/) · [`zipkin`](zipkin/) ·
-[`skywalking`](skywalking/)
+Tools covered: [`tempo`](tempo/README.md) · [`jaeger`](jaeger/README.md) · [`zipkin`](zipkin/README.md) ·
+[`skywalking`](skywalking/README.md)
 
 ## Contents
 
@@ -48,10 +48,10 @@ Grafana stack.
 
 | Tool | Notes | Detail |
 |---|---|---|
-| **Tempo** | object storage, minimal index, TraceQL, Grafana-native | [→](tempo/) |
-| **Jaeger** | CNCF, mature, full search UI; the reference implementation for many | [→](jaeger/) |
-| **Zipkin** | the original; simple, small, still perfectly serviceable | [→](zipkin/) |
-| **SkyWalking** | APM platform rather than a trace store — traces, metrics, topology and alerting in one | [→](skywalking/) |
+| **Tempo** | object storage, minimal index, TraceQL, Grafana-native | [→](tempo/README.md) |
+| **Jaeger** | CNCF, mature, full search UI; the reference implementation for many | [→](jaeger/README.md) |
+| **Zipkin** | the original; simple, small, still perfectly serviceable | [→](zipkin/README.md) |
+| **SkyWalking** | APM platform rather than a trace store — traces, metrics, topology and alerting in one | [→](skywalking/README.md) |
 
 **SkyWalking is the odd one.** It is closer to the tools in
 [`platforms/`](../../platforms/README.md) than to a trace backend, and it is worth evaluating

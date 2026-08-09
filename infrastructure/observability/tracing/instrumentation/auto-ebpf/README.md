@@ -4,7 +4,7 @@
 
 Telemetry from applications nobody instrumented — and nobody is going to.
 
-Tools covered: [`beyla`](beyla/)
+Tools covered: [`beyla`](beyla/README.md)
 
 ---
 
@@ -32,7 +32,7 @@ cannot see which branch ran, which query plan was chosen, or which customer it w
 ## The sensible order
 
 1. **eBPF everywhere** — immediate coverage, including everything nobody will instrument
-2. **[OpenTelemetry SDKs](../opentelemetry/)** on the critical path — where business attributes and custom spans actually matter
+2. **[OpenTelemetry SDKs](../opentelemetry/README.md)** on the critical path — where business attributes and custom spans actually matter
 
 Treating eBPF as a reason never to instrument is the mistake it invites. It is a floor, not a
 ceiling.

@@ -32,7 +32,7 @@ Kube-OVN builds on **OVN/OVS** to bring cloud-VPC semantics inside the cluster:
 
 - a general-purpose cluster — you inherit an entire control plane for constructs you will not use
 - the team has no OVN/OVS experience; debugging moves from `iptables` and `tcpdump` to OVS tooling nobody knows yet
-- policy, dataplane performance and observability are the real goals — [Cilium](../../cni/cilium/) fits better
+- policy, dataplane performance and observability are the real goals — [Cilium](../../cni/cilium/README.md) fits better
 
 ## The cost, stated plainly
 

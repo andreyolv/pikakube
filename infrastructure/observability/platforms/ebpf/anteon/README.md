@@ -20,7 +20,7 @@ than correlating a load generator with a separate observability stack.
 
 ## When not to use it
 
-- you want a service map for production use — [Coroot](../coroot/) is more complete and better maintained for that
+- you want a service map for production use — [Coroot](../coroot/README.md) is more complete and better maintained for that
 - resources are tight. See below
 
 ---

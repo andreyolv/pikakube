@@ -5,8 +5,8 @@
 Conceptual reference for the `cni/` folder. Explains what a CNI plugin is responsible for,
 how the options differ, and which one to pick.
 
-Tools covered: [`calico`](calico/) · [`cilium`](cilium/) · [`flannel`](flannel/) ·
-[`kindnet`](kindnet/) · [`multus`](multus/) · [`weave`](weave/)
+Tools covered: [`calico`](calico/README.md) · [`cilium`](cilium/README.md) · [`flannel`](flannel/README.md) ·
+[`kindnet`](kindnet/README.md) · [`multus`](multus/README.md) · [`weave`](weave/README.md)
 
 The CNI specification itself: <https://github.com/containernetworking/cni>
 
@@ -121,12 +121,12 @@ default is frequently wrong.
 
 | Tool | Model | Shines when | Do not use when | Detail |
 |---|---|---|---|---|
-| **Cilium** | eBPF, overlay or native | you want the most capable dataplane — kube-proxy replacement, L7 policy, Hubble observability, Cluster Mesh, encryption | the team has no appetite for eBPF and kernel-version constraints | [→](cilium/) |
-| **Calico** | overlay (VXLAN/IPIP) **or** BGP native | mature, flexible, strong policy model including cluster-wide `GlobalNetworkPolicy`; BGP into an existing fabric | you specifically want eBPF-first observability — Cilium goes further | [→](calico/) |
-| **Flannel** | overlay only, minimal | you want the simplest thing that satisfies the network model and nothing more | **you need NetworkPolicy** — it does not enforce it | [→](flannel/) |
-| **kindnet** | minimal, Kind's default | local Kind clusters where networking is not the subject under test | any shared or production cluster | [→](kindnet/) |
-| **Multus** | **meta-plugin** | pods need more than one interface — SR-IOV, storage networks, telco workloads | you are looking for a primary CNI; it is not one | [→](multus/) |
-| **Weave Net** | overlay | historical reference only | new deployments — see below | [→](weave/) |
+| **Cilium** | eBPF, overlay or native | you want the most capable dataplane — kube-proxy replacement, L7 policy, Hubble observability, Cluster Mesh, encryption | the team has no appetite for eBPF and kernel-version constraints | [→](cilium/README.md) |
+| **Calico** | overlay (VXLAN/IPIP) **or** BGP native | mature, flexible, strong policy model including cluster-wide `GlobalNetworkPolicy`; BGP into an existing fabric | you specifically want eBPF-first observability — Cilium goes further | [→](calico/README.md) |
+| **Flannel** | overlay only, minimal | you want the simplest thing that satisfies the network model and nothing more | **you need NetworkPolicy** — it does not enforce it | [→](flannel/README.md) |
+| **kindnet** | minimal, Kind's default | local Kind clusters where networking is not the subject under test | any shared or production cluster | [→](kindnet/README.md) |
+| **Multus** | **meta-plugin** | pods need more than one interface — SR-IOV, storage networks, telco workloads | you are looking for a primary CNI; it is not one | [→](multus/README.md) |
+| **Weave Net** | overlay | historical reference only | new deployments — see below | [→](weave/README.md) |
 
 ### Multus is not a CNI, it composes them
 
@@ -208,8 +208,8 @@ historical context.
 Related capabilities that depend on this choice:
 
 - [`network-policies`](../../security/2-cluster/network-policies/) — only enforced if the CNI implements it
-- [`service-mesh`](../service-mesh/) — overlaps with Cilium at L7; decide which layer owns mTLS
-- [`traffic-analyzer`](../traffic-analyzer/) and [`troubleshooting`](../troubleshooting/) — where flow inspection actually happens
+- [`service-mesh`](../service-mesh/README.md) — overlaps with Cilium at L7; decide which layer owns mTLS
+- [`traffic-analyzer`](../traffic-analyzer/README.md) and [`troubleshooting`](../troubleshooting/README.md) — where flow inspection actually happens
 
 ---
 

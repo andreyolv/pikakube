@@ -88,15 +88,15 @@ organisations end up paying for a platform *and* operating the components it rep
 | Cluster audit logs | [`security/2-cluster/audit/`](../security/2-cluster/audit/) |
 | Network reachability probing | [`network/monitoring/`](../network/monitoring/README.md) |
 | Diagnosing a specific broken connection | [`network/troubleshooting/`](../network/troubleshooting/README.md) |
-| SLOs and error budgets | [`site-reliability-engineering/`](../site-reliability-engineering/) |
+| SLOs and error budgets | [`site-reliability-engineering/`](../site-reliability-engineering/README.md) |
 
 ## The stack in pikakube
 
 | Layer | What is used |
 |---|---|
-| Metrics | [Prometheus](metrics/storage/prometheus/) via kube-prometheus-stack |
-| Dashboards | [Grafana](dashboards/grafana/) via the operator |
-| Alerting | [Alertmanager](alerting/alertmanager/) |
+| Metrics | [Prometheus](metrics/storage/prometheus/README.md) via kube-prometheus-stack |
+| Dashboards | [Grafana](dashboards/grafana/README.md) via the operator |
+| Alerting | [Alertmanager](alerting/alertmanager/README.md) |
 | Everything else | mapped for comparison, not deployed |
 
 The rest of this folder is a catalogue of the alternatives, with the reasoning for each

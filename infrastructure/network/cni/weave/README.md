@@ -28,9 +28,9 @@ operation — see [../README.md](../README.md#5-anti-patterns).
 
 | Coming from Weave for… | Go to |
 |---|---|
-| simple overlay, no policy needed | [Flannel](../flannel/) |
-| overlay plus NetworkPolicy | [Calico](../calico/) |
-| policy, observability, kube-proxy replacement | [Cilium](../cilium/) |
+| simple overlay, no policy needed | [Flannel](../flannel/README.md) |
+| overlay plus NetworkPolicy | [Calico](../calico/README.md) |
+| policy, observability, kube-proxy replacement | [Cilium](../cilium/README.md) |
 
 ---
 

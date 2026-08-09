@@ -20,16 +20,16 @@ than routing, less than a management platform.
 ## Where the project went
 
 Solo.io donated the open-source line to the CNCF as
-[**kgateway**](../../gateway-api/kgateway/), which continues as a Gateway API implementation
+[**kgateway**](../../gateway-api/kgateway/README.md), which continues as a Gateway API implementation
 with an AI and LLM routing focus. Gloo continues as the commercial product line.
 
 For a new deployment, that redirect matters:
 
 | You want | Go to |
 |---|---|
-| Open-source Envoy gateway, Gateway API native | [kgateway](../../gateway-api/kgateway/) |
+| Open-source Envoy gateway, Gateway API native | [kgateway](../../gateway-api/kgateway/README.md) |
 | Commercial Gloo with enterprise support | Solo.io |
-| Envoy at the edge, neutral and upstream | [Envoy Gateway](../../gateway-api/envoy-gateway/) |
+| Envoy at the edge, neutral and upstream | [Envoy Gateway](../../gateway-api/envoy-gateway/README.md) |
 
 ## When to use it
 

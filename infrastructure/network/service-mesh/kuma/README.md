@@ -25,7 +25,7 @@ topologies across clusters and datacentres from the same model.
 
 ## When not to use it
 
-- everything already runs in Kubernetes — [Linkerd](../linkerd/) or [Istio](../istio/) have larger communities and more material for that case
+- everything already runs in Kubernetes — [Linkerd](../linkerd/README.md) or [Istio](../istio/README.md) have larger communities and more material for that case
 - Consul is already deployed, which covers the mixed-estate case with what you have
 
 ---

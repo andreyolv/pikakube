@@ -30,7 +30,7 @@ What people pick it for:
 
 ## When not to use it
 
-- you want the most documented option with the largest body of community answers — that is [ingress-nginx](../ingress-nginx/)
+- you want the most documented option with the largest body of community answers — that is [ingress-nginx](../ingress-nginx/README.md)
 - you need API management features
 
 > **The API gateway and API management tiers are not open source.** Traefik Proxy is; the
@@ -39,7 +39,7 @@ What people pick it for:
 
 ## Related
 
-Traefik also appears in [`service-mesh/traefik/`](../../service-mesh/traefik/) as Traefik
+Traefik also appears in [`service-mesh/traefik/`](../../service-mesh/traefik/README.md) as Traefik
 Mesh — a separate, now-discontinued product.
 
 ---

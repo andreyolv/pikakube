@@ -5,7 +5,7 @@
 Conceptual reference for the `traffic-analyzer/` folder: seeing the **actual traffic**
 flowing between pods, not metrics about it.
 
-Tools covered: [`kubeshark`](kubeshark/)
+Tools covered: [`kubeshark`](kubeshark/README.md)
 
 ## Contents
 
@@ -39,7 +39,7 @@ credentials and personal data.
 
 | Tool | What it does | Detail |
 |---|---|---|
-| **Kubeshark** | captures traffic cluster-wide and presents it as protocol-aware flows — HTTP, gRPC, DNS, Kafka, Redis — with a UI, rather than raw packets | [→](kubeshark/) |
+| **Kubeshark** | captures traffic cluster-wide and presents it as protocol-aware flows — HTTP, gRPC, DNS, Kafka, Redis — with a UI, rather than raw packets | [→](kubeshark/README.md) |
 
 ## 3. Alternatives already in the repo
 
@@ -47,10 +47,10 @@ Depending on what you actually need, something else may already be installed:
 
 | Need | Where |
 |---|---|
-| Flow-level visibility with an eBPF dataplane | **Hubble**, part of [Cilium](../cni/cilium/) |
-| Pod-level packet capture, ad hoc | `tcpdump` inside [netshoot](../troubleshooting/netshoot/) |
+| Flow-level visibility with an eBPF dataplane | **Hubble**, part of [Cilium](../cni/cilium/README.md) |
+| Pod-level packet capture, ad hoc | `tcpdump` inside [netshoot](../troubleshooting/netshoot/README.md) |
 | L7 telemetry between meshed services | [`service-mesh/`](../service-mesh/README.md), and Kiali for Istio |
-| Aggregated metrics rather than individual flows | [`observability/`](../../observability/) |
+| Aggregated metrics rather than individual flows | [`observability/`](../../observability/README.md) |
 
 If Cilium is already the CNI, Hubble covers a large part of this without adding another
 component — worth checking before installing anything here.
@@ -67,7 +67,7 @@ component — worth checking before installing anything here.
 ## 5. How this applies to pikakube
 
 Mapped rather than run. On a single-node local cluster, `tcpdump` inside
-[netshoot](../troubleshooting/netshoot/) covers the same ground with nothing to install.
+[netshoot](../troubleshooting/netshoot/README.md) covers the same ground with nothing to install.
 
 The value of a dedicated analyzer appears when the traffic is spread across many nodes and
 namespaces and you cannot guess in advance where to attach.

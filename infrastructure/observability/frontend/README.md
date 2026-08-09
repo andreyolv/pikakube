@@ -4,7 +4,7 @@
 
 What the user actually experienced — measured in their browser, not in your cluster.
 
-Tools covered: [`faro`](faro/)
+Tools covered: [`faro`](faro/README.md)
 
 ---
 
@@ -37,7 +37,7 @@ not deployed.
 
 | Tool | Role | Detail |
 |---|---|---|
-| **Grafana Faro** | web SDK for RUM — sends browser telemetry into the same Grafana stack as everything else | [→](faro/) |
+| **Grafana Faro** | web SDK for RUM — sends browser telemetry into the same Grafana stack as everything else | [→](faro/README.md) |
 
 ## Anti-patterns
 

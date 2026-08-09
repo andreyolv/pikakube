@@ -32,12 +32,12 @@ fixed sequence, not the order you wrote them.
 
 Not an alternative to Route 53, Azure DNS or Cloud DNS. Those are **authoritative servers for
 public zones**; CoreDNS is a resolver for the cluster's internal namespace. Publishing names
-to the outside world is [external-dns](../external-dns/).
+to the outside world is [external-dns](../external-dns/README.md).
 
 ## Related
 
 - resolution behaviour inside pods, including the `ndots:5` trap: [../README.md](../README.md#2-dns-inside-kubernetes)
-- per-node caching when CoreDNS is under load: [node-local-dns](../node-local-dns/)
+- per-node caching when CoreDNS is under load: [node-local-dns](../node-local-dns/README.md)
 
 ---
 

@@ -33,7 +33,7 @@ applies cleanly and does nothing because a selector matched nothing.
 
 - without Istio; it reads Istio configuration and telemetry specifically
 - as a general observability tool — it is mesh-scoped. Dashboards, long-term metrics and
-  tracing belong in [`observability/`](../../../../observability/)
+  tracing belong in [`observability/`](../../../../observability/README.md)
 
 ## Access note
 

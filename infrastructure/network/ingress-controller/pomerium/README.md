@@ -17,7 +17,7 @@
 > does this request go?"*. Pomerium also answers **"who is making it, and are they allowed?"**
 >
 > It is a controller you choose for **access control**, not for routing. If routing is the
-> requirement, [ingress-nginx](../ingress-nginx/) or [Traefik](../traefik/) do it with far
+> requirement, [ingress-nginx](../ingress-nginx/README.md) or [Traefik](../traefik/README.md) do it with far
 > less to operate.
 
 ## The problem it solves
@@ -53,7 +53,7 @@ about identity.
 |---|---|
 | SSO and identity providers | [`security/2-cluster/identity-access/`](../../../security/2-cluster/identity-access/) |
 | Certificates for the routes it serves | [`certificates/`](../../../security/2-cluster/certificates/README.md) |
-| API keys, quotas, rate limiting for APIs | [`api-gateway/`](../../api-gateway/) |
+| API keys, quotas, rate limiting for APIs | [`api-gateway/`](../../api-gateway/README.md) |
 
 ---
 

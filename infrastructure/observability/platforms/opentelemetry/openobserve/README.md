@@ -28,12 +28,12 @@ several components before ingesting anything.
 ## When not to use it
 
 - complex full-text search across huge datasets is the primary workload; index-based engines still win there
-- you want the broadest feature surface — [SigNoz](../signoz/) covers more
+- you want the broadest feature surface — [SigNoz](../signoz/README.md) covers more
 - you need Grafana's ecosystem as the front end
 
 ## Related
 
-Compare against [Loki](../../../logs/storage/loki/), which makes a similar bet — index only
+Compare against [Loki](../../../logs/storage/loki/README.md), which makes a similar bet — index only
 labels, store the rest cheaply. The difference is scope: Loki is a log store, this is a
 platform for all three signals.
 

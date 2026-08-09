@@ -22,7 +22,7 @@ Without it, `kubectl top` returns an error and CPU-based autoscaling does not wo
 **Not a monitoring system.** It stores nothing, has no query language, and cannot answer any
 question about the past. That is deliberate — it exists to serve the autoscaler, not people.
 
-**Not [kube-state-metrics](../kube-state-metrics/).** That exposes object state to Prometheus.
+**Not [kube-state-metrics](../kube-state-metrics/README.md).** That exposes object state to Prometheus.
 This exposes live resource usage to the Kubernetes API. Both are usually installed, and they
 do not overlap.
 
@@ -34,7 +34,7 @@ do not overlap.
 ## When not to use it
 
 - as a source of monitoring data. Prometheus scraping cAdvisor covers that, with history
-- if autoscaling needs **custom** metrics — that is [prometheus-adapter](../prometheus-adapter/) or [KEDA](../../../../devops/event-driven/keda/)
+- if autoscaling needs **custom** metrics — that is [prometheus-adapter](../prometheus-adapter/README.md) or [KEDA](../../../../devops/event-driven/keda/)
 
 ## Kind note
 

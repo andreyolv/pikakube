@@ -26,7 +26,7 @@ configured.
 
 ## When not to use it
 
-- cost data is what you want — that is [cloudcost-exporter](../cloudcost-exporter/), and CloudWatch is not where billing lives
+- cost data is what you want — that is [cloudcost-exporter](../cloudcost-exporter/README.md), and CloudWatch is not where billing lives
 - everything already runs in the cluster with native metrics
 
 ## The two things that bite

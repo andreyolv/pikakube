@@ -9,7 +9,7 @@
 
 ## The problem it solves
 
-The Azure equivalent of the [AWS case](../aws-exporter/): managed services — Azure Database
+The Azure equivalent of the [AWS case](../aws-exporter/README.md): managed services — Azure Database
 for PostgreSQL, Event Hubs, Storage Accounts, Synapse — publish to **Azure Monitor**, not to a
 Prometheus endpoint.
 
@@ -34,7 +34,7 @@ series prevents a category of incident that otherwise only announces itself by f
 
 - everything runs in-cluster with native metrics
 - cost analysis is the goal — Azure Cost Management is the source for that, and
-  [cloudcost-exporter](../cloudcost-exporter/) covers the Prometheus side
+  [cloudcost-exporter](../cloudcost-exporter/README.md) covers the Prometheus side
 
 ## Alternative
 

@@ -4,7 +4,7 @@
 
 Receiving telemetry, doing something useful to it, and forwarding it on.
 
-Tools covered: [`opentelemetry/`](opentelemetry/) · [`alloy/`](alloy/)
+Tools covered: [`opentelemetry/`](opentelemetry/README.md) · [`alloy/`](alloy/README.md)
 
 ## Contents
 
@@ -49,8 +49,8 @@ instance.
 
 | Tool | Notes | Detail |
 |---|---|---|
-| **OpenTelemetry Collector** | the vendor-neutral standard; receivers, processors and exporters for effectively everything | [→](opentelemetry/) |
-| **Grafana Alloy** | Grafana's distribution — an OTel Collector with extra components and its own configuration language | [→](alloy/) |
+| **OpenTelemetry Collector** | the vendor-neutral standard; receivers, processors and exporters for effectively everything | [→](opentelemetry/README.md) |
+| **Grafana Alloy** | Grafana's distribution — an OTel Collector with extra components and its own configuration language | [→](alloy/README.md) |
 
 Alloy is a superset rather than an alternative: it is built on the OTel Collector, with
 Prometheus scraping, Loki collection and eBPF profiling added. Choose it when the stack is
@@ -93,11 +93,11 @@ trace**, and on a DaemonSet those spans land on different nodes.
 
 Nothing deployed, and this is the component worth deploying **before** choosing any backend.
 
-The reason is specific: with a collector in front, evaluating [SigNoz](../../platforms/opentelemetry/signoz/),
+The reason is specific: with a collector in front, evaluating [SigNoz](../../platforms/opentelemetry/signoz/README.md),
 Tempo or a commercial platform means **adding an exporter** and comparing them on the same
 production telemetry. Without one, every comparison is a migration.
 
-For this repository, [Alloy](alloy/) is the natural pick — Grafana is already the UI, and one
+For this repository, [Alloy](alloy/README.md) is the natural pick — Grafana is already the UI, and one
 agent covers metrics, logs, traces and eBPF profiling instead of four. The upstream collector
 would be the choice if neutrality mattered more than convenience.
 

@@ -11,13 +11,13 @@ Code: [`app/`](app/)
 ## When writing one is justified
 
 Rarely. The [official exporter list](https://prometheus.io/docs/instrumenting/exporters/) is
-long, and [sql-exporter](../sql-exporter/) covers anything reachable by a query, which is more
+long, and [sql-exporter](../sql-exporter/README.md) covers anything reachable by a query, which is more
 than people expect.
 
 The genuine cases:
 
 - an **internal system** with an API and no exporter — a legacy service, an in-house scheduler, a vendor appliance
-- a **custom resource** whose status matters. Though [kube-state-metrics](../../collector/kube-state-metrics/) can expose CRDs without any code
+- a **custom resource** whose status matters. Though [kube-state-metrics](../../collector/kube-state-metrics/README.md) can expose CRDs without any code
 - **business metrics** that require logic, not just a query
 
 ## What writing one involves
@@ -47,7 +47,7 @@ the result and refresh it on your own schedule.
 
 ## Before writing one
 
-Check, in order: the official list, [sql-exporter](../sql-exporter/), and whether
+Check, in order: the official list, [sql-exporter](../sql-exporter/README.md), and whether
 kube-state-metrics can expose the CRD. One of those covers most cases, and none of them
 require code you then have to maintain.
 

@@ -28,7 +28,7 @@ usual surprise where log growth outpaces the budget.
 
 ## When not to use it
 
-- open source is a requirement — [Coroot](../coroot/) is the closest equivalent
+- open source is a requirement — [Coroot](../coroot/README.md) is the closest equivalent
 - you are prepared to run the stack yourself; you would be paying for operations you can absorb
 
 ## What to check before adopting

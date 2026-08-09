@@ -25,9 +25,9 @@ correlating three tools by timestamp.
 
 ## When not to use it
 
-- the question is "which services talk to each other and how are they doing" — [Coroot](../coroot/) answers that with less
+- the question is "which services talk to each other and how are they doing" — [Coroot](../coroot/README.md) answers that with less
 - small or simple environments, where the depth is unused complexity
-- you already have [Cilium](../../../../network/cni/cilium/) with Hubble, plus an application-level tool
+- you already have [Cilium](../../../../network/cni/cilium/README.md) with Hubble, plus an application-level tool
 
 ## Related
 

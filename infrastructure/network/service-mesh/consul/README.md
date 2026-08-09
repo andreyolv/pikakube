@@ -26,7 +26,7 @@ participants, because it supported the first two long before the third existed.
 
 ## When not to use it
 
-- starting fresh with **only Kubernetes** — [Linkerd](../linkerd/) or [Istio](../istio/) are more Kubernetes-native and have more community material
+- starting fresh with **only Kubernetes** — [Linkerd](../linkerd/README.md) or [Istio](../istio/README.md) are more Kubernetes-native and have more community material
 - you want the smallest possible mesh; Consul brings discovery and KV whether or not you need them
 
 ---

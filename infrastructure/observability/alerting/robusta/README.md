@@ -29,11 +29,11 @@ gather more data or take action.
 ## When not to use it
 
 - alert volume is low enough that gathering context by hand is not a burden
-- you want routing only, which [Alertmanager](../alertmanager/) already does
+- you want routing only, which [Alertmanager](../alertmanager/README.md) already does
 
 ## Related
 
-The same project maintains [kubewatch](../../events/kubewatch/), which is a much simpler
+The same project maintains [kubewatch](../../events/kubewatch/README.md), which is a much simpler
 event-notification tool.
 
 ---

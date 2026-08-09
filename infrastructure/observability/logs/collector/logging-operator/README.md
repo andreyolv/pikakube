@@ -30,12 +30,12 @@ where they go, without access to anyone else's configuration.
 
 ## When not to use it
 
-- a single pipeline to a single destination — [Fluent Bit](../fluent/fluent-bit/) alone is far less to run
+- a single pipeline to a single destination — [Fluent Bit](../fluent/fluent-bit/README.md) alone is far less to run
 - one team owns everything, which removes the delegation benefit that justifies the operator
 
 ## The comparison worth making
 
-[Fluent Operator](../fluent/fluent-operator/) also turns Fluent configuration into CRDs. The
+[Fluent Operator](../fluent/fluent-operator/README.md) also turns Fluent configuration into CRDs. The
 difference is intent: Fluent Operator manages the Fluent stack, while the Logging Operator is
 built around **tenant self-service** as the primary use case. If delegation is the reason you
 are looking, this is the one designed for it.

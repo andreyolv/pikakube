@@ -27,8 +27,8 @@ into environments that already have opinions.
 
 ## When not to use it
 
-- eBPF-first observability is the goal — [Cilium](../cilium/) goes considerably further, with Hubble
-- a local throwaway cluster, where [kindnet](../kindnet/) is enough
+- eBPF-first observability is the goal — [Cilium](../cilium/README.md) goes considerably further, with Hubble
+- a local throwaway cluster, where [kindnet](../kindnet/README.md) is enough
 
 ---
 

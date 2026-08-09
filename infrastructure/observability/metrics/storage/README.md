@@ -4,8 +4,8 @@
 
 Scraping, storing, evaluating rules, and answering queries.
 
-Tools covered: [`prometheus`](prometheus/) · [`victoria-metrics`](victoria-metrics/) ·
-[`netdata`](netdata/)
+Tools covered: [`prometheus`](prometheus/README.md) · [`victoria-metrics`](victoria-metrics/README.md) ·
+[`netdata`](netdata/README.md)
 
 ## Contents
 
@@ -36,9 +36,9 @@ the separation is intentional rather than a limitation to work around.
 
 | Tool | Notes | Detail |
 |---|---|---|
-| **Prometheus** | the standard; the ecosystem assumes it | [→](prometheus/) |
-| **VictoriaMetrics** | PromQL-compatible, substantially lower memory and disk, and long-term storage in the same system | [→](victoria-metrics/) |
-| **Netdata** | per-node real-time monitoring with automatic detection and a live UI | [→](netdata/) |
+| **Prometheus** | the standard; the ecosystem assumes it | [→](prometheus/README.md) |
+| **VictoriaMetrics** | PromQL-compatible, substantially lower memory and disk, and long-term storage in the same system | [→](victoria-metrics/README.md) |
+| **Netdata** | per-node real-time monitoring with automatic detection and a live UI | [→](netdata/README.md) |
 
 **Netdata is a different shape.** It is not a cluster-wide time-series database — it is
 high-resolution per-node monitoring with its own interface. Useful for looking closely at one
@@ -100,7 +100,7 @@ architectural decision, not a shortcut — one system instead of two.
 
 ## 6. How this applies to pikakube
 
-**Prometheus via [kube-prometheus-stack](prometheus/kube-prometheus-stack/)** is deployed —
+**Prometheus via [kube-prometheus-stack](prometheus/kube-prometheus-stack/README.md)** is deployed —
 the operator, Alertmanager, kube-state-metrics, node-exporter and Grafana in one release.
 
 Two defaults from that chart are worth revisiting even here, because they are the ones that

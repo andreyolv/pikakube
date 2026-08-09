@@ -16,7 +16,7 @@ trace leads to the flame graph of the function responsible, without leaving the 
 correlating timestamps by hand.
 
 Profiles arrive either from language SDKs or from eBPF via
-[Grafana Alloy](../../tracing/collector/alloy/), so instrumentation is optional.
+[Grafana Alloy](../../tracing/collector/alloy/README.md), so instrumentation is optional.
 
 ## When to use it
 
@@ -26,7 +26,7 @@ Profiles arrive either from language SDKs or from eBPF via
 
 ## When not to use it
 
-- you are not in the Grafana ecosystem — [Parca](../parca/) is a cleaner standalone choice
+- you are not in the Grafana ecosystem — [Parca](../parca/README.md) is a cleaner standalone choice
 - only one process needs investigating right now, where [`py-spy`](https://github.com/benfred/py-spy) is more direct
 
 ---

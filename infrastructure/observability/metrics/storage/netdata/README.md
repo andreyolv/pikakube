@@ -9,7 +9,7 @@
 
 > **A different shape from the others in this folder.** Netdata is per-node, real-time
 > monitoring with its own UI — not a cluster-wide time-series database. It is not an
-> alternative to [Prometheus](../prometheus/).
+> alternative to [Prometheus](../prometheus/README.md).
 
 ## The problem it solves
 
@@ -34,8 +34,8 @@ Two things it does that a Prometheus stack genuinely does not:
   ecosystem of alert rules and dashboards assumes Prometheus
 - long retention or historical analysis — it is oriented to the recent window at high
   resolution, which is the opposite trade
-- as an alerting foundation; that belongs with [Prometheus](../prometheus/) and
-  [Alertmanager](../../../alerting/alertmanager/)
+- as an alerting foundation; that belongs with [Prometheus](../prometheus/README.md) and
+  [Alertmanager](../../../alerting/alertmanager/README.md)
 
 ## The honest framing
 

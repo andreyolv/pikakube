@@ -22,8 +22,8 @@ delivery and acknowledgement as the product, which is the part that matters at 3
 
 ## When not to use it
 
-- Grafana is the centre of the stack and integration matters more — [Grafana OnCall](../oncall/)
-- you also want status pages and monitoring — [OneUptime](../oneuptime/)
+- Grafana is the centre of the stack and integration matters more — [Grafana OnCall](../oncall/README.md)
+- you also want status pages and monitoring — [OneUptime](../oneuptime/README.md)
 
 ## Known issues worth reading before deploying
 

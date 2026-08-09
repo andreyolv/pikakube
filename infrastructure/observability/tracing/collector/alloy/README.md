@@ -26,11 +26,11 @@ components wired into a pipeline.
 
 - the stack is **Grafana** — one agent for metrics, logs, traces and profiles instead of four
 - you want Promtail's replacement and an OTel collector without running both
-- eBPF profiling into [Pyroscope](../../../profiling/pyroscope/) is part of the plan
+- eBPF profiling into [Pyroscope](../../../profiling/pyroscope/README.md) is part of the plan
 
 ## When not to use it
 
-- vendor neutrality is the goal — the upstream [OpenTelemetry Collector](../opentelemetry/) is the neutral choice, and Alloy's extra value is Grafana-shaped
+- vendor neutrality is the goal — the upstream [OpenTelemetry Collector](../opentelemetry/README.md) is the neutral choice, and Alloy's extra value is Grafana-shaped
 - you only need OTLP forwarding, where upstream is smaller and more portable
 
 ## The trade

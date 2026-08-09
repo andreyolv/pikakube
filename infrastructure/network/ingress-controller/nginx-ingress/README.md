@@ -9,7 +9,7 @@ Context and comparison: [../README.md](../README.md)
 
 ---
 
-> **Not the same as [ingress-nginx](../ingress-nginx/).** That one is the Kubernetes
+> **Not the same as [ingress-nginx](../ingress-nginx/README.md).** That one is the Kubernetes
 > community controller. This is F5/NGINX Inc's, with a different codebase and a different
 > annotation set. Manifests written for one do not work on the other.
 
@@ -29,7 +29,7 @@ NGINX. What it adds over the community controller:
 
 ## When not to use it
 
-- no commercial requirement — [ingress-nginx](../ingress-nginx/) has far more community material, and most answers you find online assume it
+- no commercial requirement — [ingress-nginx](../ingress-nginx/README.md) has far more community material, and most answers you find online assume it
 
 ---
 

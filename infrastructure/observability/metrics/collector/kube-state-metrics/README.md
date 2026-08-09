@@ -21,7 +21,7 @@ a kube-state-metrics query, not a resource one.
 
 ## What it is not
 
-**Not [metrics-server](../metrics-server/).** That reports live CPU and memory usage for
+**Not [metrics-server](../metrics-server/README.md).** That reports live CPU and memory usage for
 `kubectl top` and the HPA. This reports **object state** for Prometheus. Different data,
 different consumers, both usually needed.
 

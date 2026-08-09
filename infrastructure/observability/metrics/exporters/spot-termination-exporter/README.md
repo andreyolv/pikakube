@@ -34,7 +34,7 @@ mysteriously vanished.
 |---|---|
 | Know it happened, and count it | this exporter |
 | **Do something about it** — drain gracefully | a node termination handler |
-| Understand the price landscape | [spot-price-exporter](../spot-price-exporter/) |
+| Understand the price landscape | [spot-price-exporter](../spot-price-exporter/README.md) |
 
 Detection without action is only half the answer. The metric explains the incident; the
 handler prevents it.

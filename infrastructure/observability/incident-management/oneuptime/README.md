@@ -24,7 +24,7 @@ to the commercial suites.
 ## When not to use it
 
 - Prometheus and Grafana already cover monitoring — you would be adopting a large platform for the on-call slice of it, and duplicating the rest
-- you only need schedules and escalation — [GoAlert](../goalert/) or [Grafana OnCall](../oncall/) are much smaller
+- you only need schedules and escalation — [GoAlert](../goalert/README.md) or [Grafana OnCall](../oncall/README.md) are much smaller
 
 ---
 

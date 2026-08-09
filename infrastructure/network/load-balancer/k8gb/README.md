@@ -33,7 +33,7 @@ No tunnels, no shared pod network, no commercial GSLB appliance.
 
 ## What it does not replace
 
-Each cluster still needs its own ingress IP from [MetalLB](../metallb/) or a cloud
+Each cluster still needs its own ingress IP from [MetalLB](../metallb/README.md) or a cloud
 controller. k8gb sits above that, choosing between the addresses those produce.
 
 ## The DNS caveat

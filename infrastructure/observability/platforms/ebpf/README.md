@@ -4,8 +4,8 @@
 
 Observability generated from the **kernel**, with nothing added to the application.
 
-Tools covered: [`coroot`](coroot/) · [`pixie`](pixie/) · [`deepflow`](deepflow/) ·
-[`groundcover`](groundcover/) · [`anteon`](anteon/)
+Tools covered: [`coroot`](coroot/README.md) · [`pixie`](pixie/README.md) · [`deepflow`](deepflow/README.md) ·
+[`groundcover`](groundcover/README.md) · [`anteon`](anteon/README.md)
 
 ## Contents
 
@@ -54,11 +54,11 @@ instrument is the mistake this promises to enable.
 
 | Tool | Notes | Detail |
 |---|---|---|
-| **Coroot** | service map, SLOs and cost attribution from eBPF; the most complete open-source option here | [→](coroot/) |
-| **Pixie** | CNCF, scriptable with PxL, strong for ad-hoc live inspection | [→](pixie/) |
-| **DeepFlow** | deep network and application flow correlation | [→](deepflow/) |
-| **groundcover** | commercial, eBPF-based, data stays in your cluster | [→](groundcover/) |
-| **Anteon** | service map plus load testing — see its README before deploying | [→](anteon/) |
+| **Coroot** | service map, SLOs and cost attribution from eBPF; the most complete open-source option here | [→](coroot/README.md) |
+| **Pixie** | CNCF, scriptable with PxL, strong for ad-hoc live inspection | [→](pixie/README.md) |
+| **DeepFlow** | deep network and application flow correlation | [→](deepflow/README.md) |
+| **groundcover** | commercial, eBPF-based, data stays in your cluster | [→](groundcover/README.md) |
+| **Anteon** | service map plus load testing — see its README before deploying | [→](anteon/README.md) |
 
 ## 4. Decision tree
 
@@ -115,8 +115,8 @@ best-of-breed path with Prometheus and Grafana.
 
 Two things make this folder more relevant here than it looks:
 
-- **[Cilium](../../../network/cni/cilium/) is already documented in depth.** If it became the CNI, Hubble would cover a large share of what these platforms offer — which is exactly the first branch of the decision tree, and the reason to check before installing anything
-- **[Beyla](../../tracing/instrumentation/auto-ebpf/beyla/) is the lighter answer.** It emits standard OTLP into the existing stack instead of replacing it, which fits a repository that has already committed to Prometheus and Grafana
+- **[Cilium](../../../network/cni/cilium/README.md) is already documented in depth.** If it became the CNI, Hubble would cover a large share of what these platforms offer — which is exactly the first branch of the decision tree, and the reason to check before installing anything
+- **[Beyla](../../tracing/instrumentation/auto-ebpf/beyla/README.md) is the lighter answer.** It emits standard OTLP into the existing stack instead of replacing it, which fits a repository that has already committed to Prometheus and Grafana
 
 The platforms here are the right call for a team with no observability and no path to
 instrumenting. That is not this repository's situation, and saying so is more useful than

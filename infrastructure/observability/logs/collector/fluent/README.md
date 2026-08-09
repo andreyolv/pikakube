@@ -4,8 +4,8 @@
 
 Three related projects that are frequently confused with one another.
 
-Tools covered: [`fluent-bit`](fluent-bit/) · [`fluentd`](fluentd/) ·
-[`fluent-operator`](fluent-operator/)
+Tools covered: [`fluent-bit`](fluent-bit/README.md) · [`fluentd`](fluentd/README.md) ·
+[`fluent-operator`](fluent-operator/README.md)
 
 ## Contents
 

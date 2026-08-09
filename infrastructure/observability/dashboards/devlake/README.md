@@ -36,7 +36,7 @@ DevLake ingests from those systems, normalises the data, and produces the
 
 ## When not to use it
 
-- you are looking for cluster or application dashboards — that is [Grafana](../grafana/)
+- you are looking for cluster or application dashboards — that is [Grafana](../grafana/README.md)
 - there is no intention to act on the numbers. DORA metrics used as a performance target for individuals reliably produce gaming rather than improvement
 
 ## Why it belongs in a platform repository

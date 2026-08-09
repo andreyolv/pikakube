@@ -12,7 +12,7 @@
 that is S3, Blob Storage or GCS. On a local or on-prem cluster there is no such service, and
 MinIO provides one.
 
-Same role it plays for [Loki](../../../../logs/storage/loki/minio/): the object storage layer
+Same role it plays for [Loki](../../../../logs/storage/loki/minio/README.md): the object storage layer
 that everything else assumes exists.
 
 ## When to use it

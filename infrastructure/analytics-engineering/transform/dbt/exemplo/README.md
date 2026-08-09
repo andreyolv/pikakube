@@ -1,15 +1,46 @@
-Welcome to your new dbt project!
+[← dbt](../README.md)
 
-### Using the starter project
+# Example dbt project
 
-Try running the following commands:
-- dbt run
-- dbt test
+A working dbt project used to exercise the setup documented in [../README.md](../README.md) —
+models, seeds, tests, macros and snapshots against a local PostgreSQL.
 
+---
 
-### Resources:
-- Learn more about dbt [in the docs](https://docs.getdbt.com/docs/introduction)
-- Check out [Discourse](https://discourse.getdbt.com/) for commonly asked questions and answers
-- Join the [chat](https://community.getdbt.com/) on Slack for live discussions and support
-- Find [dbt events](https://events.getdbt.com) near you
-- Check out [the blog](https://blog.getdbt.com/) for the latest news on dbt's development and best practices
+## Running it
+
+```bash
+dbt run
+dbt test
+```
+
+Setup — virtualenv, PostgreSQL, loading the sample tables — is in
+[../README.md](../README.md#notes).
+
+## What is in here
+
+| Folder | Contents |
+|---|---|
+| `models/` | the transformations, and where `ref()` builds the dependency graph |
+| `seeds/` | CSVs loaded as tables by `dbt seed` |
+| `tests/` | custom SQL assertions, beyond the schema tests |
+| `macros/` | reusable SQL |
+| `snapshots/` | slowly changing dimension tracking |
+| `analyses/` | SQL that is compiled but not materialised |
+
+## Note on seeds
+
+`dbt seed` loads the CSVs directly, and the parent README records why that is **not
+recommended** for anything real: it is limited, and any correction has to be made in the file
+itself. Loading through Python lets pandas clean the data first.
+
+Useful here precisely because this is an example.
+
+## Reference
+
+- [dbt documentation](https://docs.getdbt.com/docs/introduction)
+- [Discourse](https://discourse.getdbt.com/) · [Slack](https://community.getdbt.com/) · [blog](https://blog.getdbt.com/)
+
+---
+
+[← dbt](../README.md)

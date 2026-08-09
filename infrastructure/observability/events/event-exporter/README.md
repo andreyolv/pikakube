@@ -22,8 +22,8 @@ me when evictions across the cluster exceed a threshold" needs a number in Prome
 
 ## When not to use it
 
-- you need the event text preserved for investigation — that is [kubernetes-event-exporter](../kubernetes-event-exporter/)
-- you want object history — [sloop](../sloop/)
+- you need the event text preserved for investigation — that is [kubernetes-event-exporter](../kubernetes-event-exporter/README.md)
+- you want object history — [sloop](../sloop/README.md)
 
 ## Usually both
 

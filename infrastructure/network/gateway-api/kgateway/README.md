@@ -12,7 +12,7 @@ Context and comparison: [../README.md](../README.md)
 ## What it is
 
 An Envoy-based [Gateway API](../README.md) implementation, donated to the CNCF and
-continuing the open-source line of Solo.io's [Gloo](../../api-gateway/gloo/) edge.
+continuing the open-source line of Solo.io's [Gloo](../../api-gateway/gloo/README.md) edge.
 
 Its distinguishing focus is **AI and LLM traffic**: routing to model providers, failover
 between them, token-based rate limiting, and credential handling at the gateway rather than
@@ -30,7 +30,7 @@ context-length error.
 
 ## When not to use it
 
-- plain HTTP with no AI dimension — [Envoy Gateway](../envoy-gateway/) is the more neutral choice
+- plain HTTP with no AI dimension — [Envoy Gateway](../envoy-gateway/README.md) is the more neutral choice
 - staying on `Ingress`
 
 ## Related

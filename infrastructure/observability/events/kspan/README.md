@@ -27,7 +27,7 @@ appear on the same timeline, in the same view.
 ## When not to use it
 
 - production — it is experimental and its parent company is gone
-- routine event retention, which [kubernetes-event-exporter](../kubernetes-event-exporter/) does reliably
+- routine event retention, which [kubernetes-event-exporter](../kubernetes-event-exporter/README.md) does reliably
 
 ## Why the idea outlived the project
 

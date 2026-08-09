@@ -4,7 +4,7 @@
 
 Commercial observability — agent in your cluster, data in theirs.
 
-Tools covered: [`datadog`](datadog/)
+Tools covered: [`datadog`](datadog/README.md)
 
 ## Contents
 
@@ -43,7 +43,7 @@ The engineering case against is equally real, and both belong in the decision.
 **Instrument with OpenTelemetry, not with the vendor's agent.**
 
 Most commercial platforms accept OTLP. Emitting OTLP and routing it through the
-[OpenTelemetry Collector](../../tracing/collector/opentelemetry/) means the instrumentation
+[OpenTelemetry Collector](../../tracing/collector/opentelemetry/README.md) means the instrumentation
 in your code is vendor-neutral, and changing platform becomes a collector configuration change
 rather than a fleet-wide rewrite.
 

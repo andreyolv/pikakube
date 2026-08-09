@@ -23,9 +23,9 @@ operator handling orchestration, safe upgrades and TLS.
 
 ## When not to use it
 
-- Kubernetes debugging is the actual use case. You almost always arrive knowing the service and the time window, and [Loki](../loki/) matches that at a fraction of the cost
+- Kubernetes debugging is the actual use case. You almost always arrive knowing the service and the time window, and [Loki](../loki/README.md) matches that at a fraction of the cost
 - operational capacity is limited — shards, replicas, heap and rebalancing are real ongoing work
-- full-text search matters but running a cluster does not appeal — [Quickwit](../quickwit/) covers that middle ground
+- full-text search matters but running a cluster does not appeal — [Quickwit](../quickwit/README.md) covers that middle ground
 
 ## The cost reality
 

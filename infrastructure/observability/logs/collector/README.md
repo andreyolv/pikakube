@@ -5,7 +5,7 @@
 Reading logs off every node, enriching them, filtering them, and shipping them somewhere.
 
 Tools covered: [`fluent/`](fluent/README.md) (Fluent Bit, Fluentd, Fluent Operator) ·
-[`vector/`](vector/) · [`logstash/`](logstash/) · [`logging-operator/`](logging-operator/)
+[`vector/`](vector/README.md) · [`logstash/`](logstash/README.md) · [`logging-operator/`](logging-operator/README.md)
 
 ## Contents
 
@@ -39,12 +39,12 @@ is what makes the logs queryable at all.
 
 | Tool | Model | Shines when | Do not use when | Detail |
 |---|---|---|---|---|
-| **Fluent Bit** | C, very small footprint | **the default** — DaemonSet on every node, minimal memory, CNCF | you need heavy transformation in the collector | [→](fluent/fluent-bit/) |
-| **Vector** | Rust, high throughput | transformation matters — VRL is a genuine programming model, not a config dialect | you want the most widely deployed option | [→](vector/) |
-| **Fluentd** | Ruby, plugin-rich | you need a plugin that only exists here | greenfield — Fluent Bit is lighter and covers most cases | [→](fluent/fluentd/) |
-| **Fluent Operator** | operator for the Fluent family | you want collector configuration as CRDs rather than ConfigMaps | a single static configuration is enough | [→](fluent/fluent-operator/) |
-| **Logging Operator** | Kubernetes-native logging pipelines | routing should be declared per namespace, by the teams that own them | one central pipeline is fine | [→](logging-operator/) |
-| **Logstash** | JVM, part of the Elastic stack | you run Elasticsearch and want the matching component | resource footprint matters — it is the heaviest here | [→](logstash/) |
+| **Fluent Bit** | C, very small footprint | **the default** — DaemonSet on every node, minimal memory, CNCF | you need heavy transformation in the collector | [→](fluent/fluent-bit/README.md) |
+| **Vector** | Rust, high throughput | transformation matters — VRL is a genuine programming model, not a config dialect | you want the most widely deployed option | [→](vector/README.md) |
+| **Fluentd** | Ruby, plugin-rich | you need a plugin that only exists here | greenfield — Fluent Bit is lighter and covers most cases | [→](fluent/fluentd/README.md) |
+| **Fluent Operator** | operator for the Fluent family | you want collector configuration as CRDs rather than ConfigMaps | a single static configuration is enough | [→](fluent/fluent-operator/README.md) |
+| **Logging Operator** | Kubernetes-native logging pipelines | routing should be declared per namespace, by the teams that own them | one central pipeline is fine | [→](logging-operator/README.md) |
+| **Logstash** | JVM, part of the Elastic stack | you run Elasticsearch and want the matching component | resource footprint matters — it is the heaviest here | [→](logstash/README.md) |
 
 ## 3. Decision tree
 
@@ -94,7 +94,7 @@ or Vector as the aggregator is the classic arrangement.
 | No buffering | the backend hiccups and logs are lost silently | configure buffers and check the drop metrics |
 | Not monitoring the collector | it stops and nobody notices until logs are needed | alert on collector health and drop rate |
 | Logstash as the DaemonSet | a JVM per node, for a job Fluent Bit does in a few MB | Fluent Bit as the agent |
-| Shipping credentials in logs | they reach storage, backups and possibly a SaaS | redact at the collector, where [Vector](vector/) is strongest |
+| Shipping credentials in logs | they reach storage, backups and possibly a SaaS | redact at the collector, where [Vector](vector/README.md) is strongest |
 
 ## 6. How this applies to pikakube
 

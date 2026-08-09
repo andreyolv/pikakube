@@ -26,15 +26,15 @@ Linkerd got small enough, and Istio added ambient mode.
 
 To record that the "lightweight, non-invasive mesh" approach was evaluated, and where it
 went. Traefik itself remains relevant in this repo as an
-[ingress controller](../../ingress-controller/traefik/).
+[ingress controller](../../ingress-controller/traefik/README.md).
 
 ## What to use instead
 
 | Wanted from Traefik Mesh | Go to |
 |---|---|
-| Small, low-overhead mesh | [Linkerd](../linkerd/) |
+| Small, low-overhead mesh | [Linkerd](../linkerd/README.md) |
 | No per-pod sidecar | [Istio ambient mode](../istio-ambient-mode/) |
-| Traefik as a proxy, not a mesh | [`ingress-controller/`](../../ingress-controller/) · [`gateway-api/`](../../gateway-api/) |
+| Traefik as a proxy, not a mesh | [`ingress-controller/`](../../ingress-controller/README.md) · [`gateway-api/`](../../gateway-api/README.md) |
 
 ---
 

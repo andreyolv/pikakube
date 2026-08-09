@@ -35,7 +35,7 @@ A new hostname stops being a ticket and becomes an annotation.
 
 ## When not to use it
 
-- there is no zone you control — on a local cluster, [nip.io](../nip.io/) answers by construction
+- there is no zone you control — on a local cluster, [nip.io](../nip.io/README.md) answers by construction
 - records are owned by another team and must stay under their change process
 
 ## The gotcha: TXT ownership records

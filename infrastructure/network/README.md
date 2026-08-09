@@ -97,17 +97,17 @@ answer.
 | SSO, OIDC, identity-aware access | [`security/2-cluster/identity-access/`](../security/2-cluster/identity-access/) |
 | Routing traffic to LLM providers | [`ai/ai-gateway/`](../ai/ai-gateway/) |
 | Multi-cluster **management** and scheduling | [`platform-engineering/kubernetes/managed/multi-cluster/`](../platform-engineering/kubernetes/managed/multi-cluster/) |
-| Metrics, logs and traces | [`observability/`](../observability/) |
+| Metrics, logs and traces | [`observability/`](../observability/README.md) |
 
 ## The stack in pikakube
 
 | Layer | What is used | Why |
 |---|---|---|
-| CNI | [kindnet](cni/kindnet/) | Kind's default; Cilium is documented for when networking is the subject |
-| DNS — internal | [CoreDNS](dns/coredns/) | ships with the cluster |
-| DNS — external | [nip.io](dns/nip.io/) | hostnames with no zone to own |
+| CNI | [kindnet](cni/kindnet/README.md) | Kind's default; Cilium is documented for when networking is the subject |
+| DNS — internal | [CoreDNS](dns/coredns/README.md) | ships with the cluster |
+| DNS — external | [nip.io](dns/nip.io/README.md) | hostnames with no zone to own |
 | Load balancer | none | Kind publishes 80 and 443 to the host via `extraPortMappings` |
-| Ingress | [ingress-nginx](ingress-controller/ingress-nginx/) | wired in [`init.sh`](../../init.sh), with a mkcert wildcard certificate |
+| Ingress | [ingress-nginx](ingress-controller/ingress-nginx/README.md) | wired in [`init.sh`](../../init.sh), with a mkcert wildcard certificate |
 | Everything else | mapped, not deployed | single local cluster — the rest is catalogued for comparison |
 
 The consequence worth recording: because the `nip.io` zone is not ours, no public CA can

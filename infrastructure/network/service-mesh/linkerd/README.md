@@ -25,8 +25,8 @@ overhead low and reduces the number of knobs. Less to configure, less to get wro
 
 ## When not to use it
 
-- you need fine-grained traffic manipulation, an extension ecosystem, or complex multi-cluster topologies — that is [Istio](../istio/)
-- workloads run outside Kubernetes too — see [Kuma](../kuma/) or [Consul](../consul/)
+- you need fine-grained traffic manipulation, an extension ecosystem, or complex multi-cluster topologies — that is [Istio](../istio/README.md)
+- workloads run outside Kubernetes too — see [Kuma](../kuma/README.md) or [Consul](../consul/README.md)
 
 ---
 

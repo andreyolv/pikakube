@@ -26,7 +26,7 @@ and everyone sees the same output instead of one person relaying it.
 
 ## When not to use it
 
-- you want the **diagnosis**, not access to run commands — [k8sgpt](../k8sgpt/) or [HolmesGPT](../holmesgpt/)
+- you want the **diagnosis**, not access to run commands — [k8sgpt](../k8sgpt/README.md) or [HolmesGPT](../holmesgpt/README.md)
 - RBAC has not been thought through. See below
 
 ## The security consideration

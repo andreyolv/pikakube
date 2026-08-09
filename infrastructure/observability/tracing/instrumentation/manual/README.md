@@ -22,7 +22,7 @@ get.
 
 ## When manual instrumentation is worth it
 
-[Automatic instrumentation](../opentelemetry/) covers the mechanical part — HTTP handlers,
+[Automatic instrumentation](../opentelemetry/README.md) covers the mechanical part — HTTP handlers,
 database drivers, queue clients. It cannot know anything about your domain.
 
 Add manual instrumentation for:

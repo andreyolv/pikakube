@@ -5,9 +5,9 @@
 Kubernetes' own account of what it did — and the signal most platforms throw away by
 accident.
 
-Tools covered: [`kubernetes-event-exporter`](kubernetes-event-exporter/) ·
-[`event-exporter`](event-exporter/) · [`kube-events`](kube-events/) ·
-[`kubewatch`](kubewatch/) · [`sloop`](sloop/) · [`kspan`](kspan/)
+Tools covered: [`kubernetes-event-exporter`](kubernetes-event-exporter/README.md) ·
+[`event-exporter`](event-exporter/README.md) · [`kube-events`](kube-events/README.md) ·
+[`kubewatch`](kubewatch/README.md) · [`sloop`](sloop/README.md) · [`kspan`](kspan/README.md)
 
 ## Contents
 
@@ -49,12 +49,12 @@ durable, so the answer still exists in the morning.
 
 | Tool | Role | Shines when | Detail |
 |---|---|---|---|
-| **kubernetes-event-exporter** | exports events to sinks — Elasticsearch, Loki, webhooks, chat | **the default choice**; actively maintained, with flexible routing and filtering | [→](kubernetes-event-exporter/) |
-| **event-exporter** | exposes events as Prometheus metrics | you want to alert on event *rates* rather than store the text | [→](event-exporter/) |
-| **kube-events** | event rules and notifications | you want rule-based handling rather than raw export | [→](kube-events/) |
-| **kubewatch** | pushes cluster changes to chat | simple notification, not retention | [→](kubewatch/) |
-| **sloop** | records and visualises event history over time | reconstructing **what happened to a pod that no longer exists** | [→](sloop/) |
-| **kspan** | turns events into OpenTelemetry spans | you want events on the same timeline as traces | [→](kspan/) |
+| **kubernetes-event-exporter** | exports events to sinks — Elasticsearch, Loki, webhooks, chat | **the default choice**; actively maintained, with flexible routing and filtering | [→](kubernetes-event-exporter/README.md) |
+| **event-exporter** | exposes events as Prometheus metrics | you want to alert on event *rates* rather than store the text | [→](event-exporter/README.md) |
+| **kube-events** | event rules and notifications | you want rule-based handling rather than raw export | [→](kube-events/README.md) |
+| **kubewatch** | pushes cluster changes to chat | simple notification, not retention | [→](kubewatch/README.md) |
+| **sloop** | records and visualises event history over time | reconstructing **what happened to a pod that no longer exists** | [→](sloop/README.md) |
+| **kspan** | turns events into OpenTelemetry spans | you want events on the same timeline as traces | [→](kspan/README.md) |
 
 Two of these are doing something different from the rest:
 

@@ -14,7 +14,7 @@ MinIO fills that gap.
 
 It is not a logging component. It is the object storage backend that makes Loki's design work
 outside a cloud, and the same role applies to
-[Thanos](../../../../metrics/long-term-storage/thanos/), Tempo and anything else that expects
+[Thanos](../../../../metrics/long-term-storage/thanos/README.md), Tempo and anything else that expects
 a bucket.
 
 ## When to use it

@@ -30,7 +30,7 @@ now also implements the Gateway API.
 
 ## When not to use it
 
-- the team knows NGINX and the requirement is ordinary — [ingress-nginx](../ingress-nginx/) will be less new material
+- the team knows NGINX and the requirement is ordinary — [ingress-nginx](../ingress-nginx/README.md) will be less new material
 - you need API management
 
 ---

@@ -33,7 +33,7 @@ discovers them.
 ## When not to use it
 
 - single-node or throwaway clusters — there is no matrix to measure
-- when what you actually want is probing an **arbitrary external endpoint**; the blackbox exporter under [`observability/`](../../../observability/) is the general-purpose version of the same idea
+- when what you actually want is probing an **arbitrary external endpoint**; the blackbox exporter under [`observability/`](../../../observability/README.md) is the general-purpose version of the same idea
 
 ## Alerting note
 

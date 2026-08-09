@@ -4,9 +4,9 @@
 
 Where logs land, how long they stay, and how they are queried.
 
-Tools covered: [`loki`](loki/) · [`elastic-operator`](elastic-operator/) ·
-[`opensearch`](opensearch/) · [`quickwit`](quickwit/) · [`parseable`](parseable/) ·
-[`solr`](solr/)
+Tools covered: [`loki`](loki/README.md) · [`elastic-operator`](elastic-operator/README.md) ·
+[`opensearch`](opensearch/README.md) · [`quickwit`](quickwit/README.md) · [`parseable`](parseable/README.md) ·
+[`solr`](solr/README.md)
 
 ## Contents
 
@@ -41,12 +41,12 @@ security investigation, compliance search, analytics over log content.
 
 | Tool | Model | Shines when | Do not use when | Detail |
 |---|---|---|---|---|
-| **Loki** | label index, chunks in object storage | **the default** — Grafana-native, cheap, and matches Kubernetes debugging | you need real full-text search at scale | [→](loki/) |
-| **Elastic (ECK)** | full index | full-text search is genuinely required, and you can operate it | you want low operational weight | [→](elastic-operator/) |
-| **OpenSearch** | full index | same capability, Apache-licensed fork | the licensing question does not apply to you | [→](opensearch/) |
-| **Quickwit** | search on object storage | full-text search **without** running a cluster of stateful nodes | you need the Elastic ecosystem's tooling | [→](quickwit/) |
-| **Parseable** | Parquet on object storage | very low footprint, and logs you may want to analyse like data | rich search features are the requirement | [→](parseable/) |
-| **Solr** | full index | it is already in the organisation | choosing fresh for logs — the others fit this use better | [→](solr/) |
+| **Loki** | label index, chunks in object storage | **the default** — Grafana-native, cheap, and matches Kubernetes debugging | you need real full-text search at scale | [→](loki/README.md) |
+| **Elastic (ECK)** | full index | full-text search is genuinely required, and you can operate it | you want low operational weight | [→](elastic-operator/README.md) |
+| **OpenSearch** | full index | same capability, Apache-licensed fork | the licensing question does not apply to you | [→](opensearch/README.md) |
+| **Quickwit** | search on object storage | full-text search **without** running a cluster of stateful nodes | you need the Elastic ecosystem's tooling | [→](quickwit/README.md) |
+| **Parseable** | Parquet on object storage | very low footprint, and logs you may want to analyse like data | rich search features are the requirement | [→](parseable/README.md) |
+| **Solr** | full index | it is already in the organisation | choosing fresh for logs — the others fit this use better | [→](solr/README.md) |
 
 **Quickwit is the interesting middle.** It offers full-text search with object storage as the
 backend, which historically forced a choice between search quality and storage cost. Worth
@@ -114,7 +114,7 @@ small, and every question here starts from a service and a time window rather th
 
 Two things would have to be decided before it is real, and neither is the tool:
 
-- **object storage.** On Kind that means [MinIO](loki/minio/), which becomes a component to operate rather than a service that already exists
+- **object storage.** On Kind that means [MinIO](loki/minio/README.md), which becomes a component to operate rather than a service that already exists
 - **label discipline.** Loki's design collapses under high-cardinality labels, and the mistake is easy to make on day one and painful to undo later
 
 Quickwit is the one worth revisiting if search ever stops being enough — it is the option that

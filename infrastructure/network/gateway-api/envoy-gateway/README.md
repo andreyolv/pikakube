@@ -38,7 +38,7 @@ CORS without dropping to raw Envoy config.
 ## Related
 
 The same Envoy foundation appears across the repo: [`ai/ai-gateway/`](../../../ai/ai-gateway/)
-for LLM traffic, [`service-mesh/istio/`](../../service-mesh/istio/) for east-west.
+for LLM traffic, [`service-mesh/istio/`](../../service-mesh/istio/README.md) for east-west.
 
 ---
 

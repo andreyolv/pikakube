@@ -12,7 +12,7 @@
 The CNCF-graduated tracing backend, and for many teams the reference implementation of what a
 tracing UI should do.
 
-Its differentiator against [Tempo](../tempo/) is **search**. Jaeger indexes spans, so you can
+Its differentiator against [Tempo](../tempo/README.md) is **search**. Jaeger indexes spans, so you can
 find traces without knowing an ID:
 
 - all traces for a service and operation
@@ -31,9 +31,9 @@ following an identifier you already have.
 
 ## When not to use it
 
-- Grafana is the UI and logs carry `trace_id` — [Tempo](../tempo/) is cheaper and links better
+- Grafana is the UI and logs carry `trace_id` — [Tempo](../tempo/README.md) is cheaper and links better
 - storage cost matters and the index is hard to justify
-- you want an APM platform rather than a trace store — [SkyWalking](../skywalking/) or [`platforms/`](../../../platforms/README.md)
+- you want an APM platform rather than a trace store — [SkyWalking](../skywalking/README.md) or [`platforms/`](../../../platforms/README.md)
 
 ## Storage note
 

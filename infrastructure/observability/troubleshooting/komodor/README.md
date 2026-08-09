@@ -35,7 +35,7 @@ than an archaeology exercise.
 
 ## The self-hosted equivalent
 
-For the change-timeline problem specifically, [Sloop](../../events/sloop/) reconstructs object
+For the change-timeline problem specifically, [Sloop](../../events/sloop/README.md) reconstructs object
 history locally, and exported events plus Git history cover the rest — with more work and no
 external dependency.
 

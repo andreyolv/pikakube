@@ -5,7 +5,7 @@
 <https://github.com/grafana/grafana>
 <https://grafana.com/docs/grafana/latest/>
 
-Deployment: [`grafana-operator/`](grafana-operator/) — the declarative, GitOps-friendly way
+Deployment: [`grafana-operator/`](grafana-operator/README.md) — the declarative, GitOps-friendly way
 to run it.
 
 ---
@@ -24,7 +24,7 @@ Practical consequences:
 
 - **correlation across signals** — a latency spike on a graph links straight to the traces behind it
 - **an enormous community dashboard library**, so most components come with one already written
-- alerting exists in Grafana too, though [Alertmanager](../../alerting/alertmanager/) remains the standard when Prometheus is the source
+- alerting exists in Grafana too, though [Alertmanager](../../alerting/alertmanager/README.md) remains the standard when Prometheus is the source
 
 ## When to use it
 
@@ -33,16 +33,16 @@ Practical consequences:
 
 ## When not to use it
 
-- you want dashboards to be **entirely** declarative and lightweight, with no UI-first path at all — [Perses](../perses/) is designed for that
+- you want dashboards to be **entirely** declarative and lightweight, with no UI-first path at all — [Perses](../perses/README.md) is designed for that
 - the only requirement is one panel for one metric, where Grafana is more than the job needs
 
 ## Related in this repo
 
 Grafana's storage components are filed by signal rather than by vendor:
-[Loki](../../logs/storage/loki/) · [Tempo](../../tracing/storage/tempo/) ·
-[Mimir](../../metrics/long-term-storage/mimir/) · [Pyroscope](../../profiling/pyroscope/) ·
-[Alloy](../../tracing/collector/alloy/) · [Beyla](../../tracing/instrumentation/auto-ebpf/beyla/) ·
-[Faro](../../frontend/faro/)
+[Loki](../../logs/storage/loki/README.md) · [Tempo](../../tracing/storage/tempo/README.md) ·
+[Mimir](../../metrics/long-term-storage/mimir/README.md) · [Pyroscope](../../profiling/pyroscope/README.md) ·
+[Alloy](../../tracing/collector/alloy/README.md) · [Beyla](../../tracing/instrumentation/auto-ebpf/beyla/README.md) ·
+[Faro](../../frontend/faro/README.md)
 
 ---
 

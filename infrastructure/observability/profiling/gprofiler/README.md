@@ -24,7 +24,7 @@ which is how profiling ends up covering only the one service someone cared about
 ## When not to use it
 
 - the stack is effectively one language — a native profiler goes deeper
-- you want tight integration with an existing stack — [Pyroscope](../pyroscope/) for Grafana, [Parca](../parca/) for a standalone CNCF option
+- you want tight integration with an existing stack — [Pyroscope](../pyroscope/README.md) for Grafana, [Parca](../parca/README.md) for a standalone CNCF option
 
 ## Note on the project
 

@@ -19,13 +19,13 @@ that automatically and hand the responder a starting point instead of a blank pa
 
 ## When not to use it
 
-- **as the paging layer.** This does not replace schedules, escalation or acknowledgement — that is [GoAlert](../goalert/) or [Grafana OnCall](../oncall/)
+- **as the paging layer.** This does not replace schedules, escalation or acknowledgement — that is [GoAlert](../goalert/README.md) or [Grafana OnCall](../oncall/README.md)
 - where a wrong first hypothesis is expensive. A confident, incorrect starting point can cost more time than no starting point at all
 
 ## Related
 
 The same idea appears in [`troubleshooting/`](../../troubleshooting/README.md) —
-[HolmesGPT](../../troubleshooting/holmesgpt/) and [k8sgpt](../../troubleshooting/k8sgpt/)
+[HolmesGPT](../../troubleshooting/holmesgpt/README.md) and [k8sgpt](../../troubleshooting/k8sgpt/README.md)
 both do AI-assisted diagnosis, from the cluster side rather than the incident side.
 
 If AI-assisted triage is the goal, those two are more established and worth comparing first.

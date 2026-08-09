@@ -24,13 +24,13 @@ multiplied by node count.
 
 ## When not to use it
 
-- heavy transformation is needed in the collector — [Vector](../../vector/) and its VRL language are a better fit
-- you need a plugin that only exists in the Ruby ecosystem — [Fluentd](../fluentd/)
+- heavy transformation is needed in the collector — [Vector](../../vector/README.md) and its VRL language are a better fit
+- you need a plugin that only exists in the Ruby ecosystem — [Fluentd](../fluentd/README.md)
 
 ## Configuration reality
 
 Parsers, filters and routing live in a config format that is easy to start with and gets
-awkward at scale. If the configuration is going to grow, [Fluent Operator](../fluent-operator/)
+awkward at scale. If the configuration is going to grow, [Fluent Operator](../fluent-operator/README.md)
 turns it into reviewable CRDs — worth deciding early rather than after a 500-line ConfigMap
 exists.
 
@@ -48,7 +48,7 @@ solve the [one-hour expiry problem](../../../../events/README.md):
 
 Worth weighing against a dedicated exporter: doing it here means one fewer component, but
 event-specific filtering and routing are more limited than in
-[kubernetes-event-exporter](../../../../events/kubernetes-event-exporter/).
+[kubernetes-event-exporter](../../../../events/kubernetes-event-exporter/README.md).
 
 ### Related projects
 

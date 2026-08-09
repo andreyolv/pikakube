@@ -26,13 +26,13 @@ features Elastic does not have and vice versa.
 
 ## When not to use it
 
-- Kubernetes debugging is the real use case — [Loki](../loki/) is cheaper and fits how logs are actually consulted
+- Kubernetes debugging is the real use case — [Loki](../loki/README.md) is cheaper and fits how logs are actually consulted
 - the operational cost of a search cluster is not available
-- you want search without running a cluster — [Quickwit](../quickwit/)
+- you want search without running a cluster — [Quickwit](../quickwit/README.md)
 
 ## Choosing between OpenSearch and Elastic
 
-| | OpenSearch | [Elastic (ECK)](../elastic-operator/) |
+| | OpenSearch | [Elastic (ECK)](../elastic-operator/README.md) |
 |---|---|---|
 | Licence | Apache 2.0 | Elastic licence |
 | Managed on AWS | yes, natively | via Elastic Cloud |

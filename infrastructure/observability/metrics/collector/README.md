@@ -5,9 +5,9 @@
 Producing metrics **about Kubernetes itself**, and serving them to the things that consume
 them.
 
-Tools covered: [`kube-state-metrics`](kube-state-metrics/) ·
-[`metrics-server`](metrics-server/) · [`prometheus-adapter`](prometheus-adapter/) ·
-[`kuberhealthy`](kuberhealthy/)
+Tools covered: [`kube-state-metrics`](kube-state-metrics/README.md) ·
+[`metrics-server`](metrics-server/README.md) · [`prometheus-adapter`](prometheus-adapter/README.md) ·
+[`kuberhealthy`](kuberhealthy/README.md)
 
 ## Contents
 
@@ -72,7 +72,7 @@ answers a question the other cannot.
 ## 4. Autoscaling on custom metrics
 
 The HPA reads from Kubernetes metrics APIs, not from Prometheus. That is why
-[prometheus-adapter](prometheus-adapter/) exists — it translates PromQL results into the
+[prometheus-adapter](prometheus-adapter/README.md) exists — it translates PromQL results into the
 custom and external metrics APIs so an HPA can scale on queue depth, request rate, or anything
 else already in Prometheus.
 
@@ -104,7 +104,7 @@ still works.
 ## 7. How this applies to pikakube
 
 **kube-state-metrics** and **node-exporter** come with
-[kube-prometheus-stack](../storage/prometheus/kube-prometheus-stack/) and are deployed.
+[kube-prometheus-stack](../storage/prometheus/kube-prometheus-stack/README.md) and are deployed.
 metrics-server is not part of that chart — on Kind it needs `--kubelet-insecure-tls`, which is
 acceptable locally and must not travel to a real cluster.
 

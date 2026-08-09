@@ -23,7 +23,7 @@ Still maintained, still simple, and still perfectly capable of storing and displ
 
 ## When not to use it
 
-- new production deployments — [Tempo](../tempo/) and [Jaeger](../jaeger/) have more capable UIs and better OpenTelemetry alignment
+- new production deployments — [Tempo](../tempo/README.md) and [Jaeger](../jaeger/README.md) have more capable UIs and better OpenTelemetry alignment
 - large volumes, where the storage options are more limited than the alternatives
 
 ## Why it stays in the catalogue

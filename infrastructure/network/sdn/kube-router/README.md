@@ -31,8 +31,8 @@ something breaks.
 
 ## When not to use it
 
-- you need the richer constructs from [kube-ovn](../kube-ovn/) — VPCs, subnets, QoS
-- you want eBPF, deep observability or L7 policy — [Cilium](../../cni/cilium/) is a different class of tool
+- you need the richer constructs from [kube-ovn](../kube-ovn/README.md) — VPCs, subnets, QoS
+- you want eBPF, deep observability or L7 policy — [Cilium](../../cni/cilium/README.md) is a different class of tool
 - your network cannot do BGP, which removes the main reason to pick it
 
 ## The trade

@@ -27,7 +27,7 @@ retries, and canary routing.
 
 ## When not to use it
 
-- you need an ecosystem — plugins, integrations, documented answers and people who have used it. That is [Kong](../kong/) or [APISIX](../apisix/)
+- you need an ecosystem — plugins, integrations, documented answers and people who have used it. That is [Kong](../kong/README.md) or [APISIX](../apisix/README.md)
 - API management proper — consumers, plans, portal — is the requirement
 
 ## The honest framing

@@ -23,7 +23,7 @@ of an exporter.
 
 ## When not to use it
 
-- there is no KubeSphere in the picture — [kubernetes-event-exporter](../kubernetes-event-exporter/) has a broader community and covers the export case well
+- there is no KubeSphere in the picture — [kubernetes-event-exporter](../kubernetes-event-exporter/README.md) has a broader community and covers the export case well
 - Prometheus and Alertmanager already own alerting, in which case adding a second rule engine for events splits the definition of "what is an alert" across two places
 
 ---

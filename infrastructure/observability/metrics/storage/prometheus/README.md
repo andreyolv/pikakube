@@ -10,8 +10,8 @@
 <https://github.com/prometheus/pushgateway>
 <https://github.com/prometheus/OpenMetrics>
 
-Subfolders: [`kube-prometheus-stack/`](kube-prometheus-stack/) ·
-[`prometheus/`](prometheus/) · [`promlens/`](promlens/)
+Subfolders: [`kube-prometheus-stack/`](kube-prometheus-stack/README.md) ·
+[`prometheus/`](prometheus/) · [`promlens/`](promlens/README.md)
 
 ---
 
@@ -19,7 +19,7 @@ Subfolders: [`kube-prometheus-stack/`](kube-prometheus-stack/) ·
 
 The de facto standard for metrics in Kubernetes: service discovery from the API, HTTP
 scraping, a local time-series database, PromQL, and rule evaluation that feeds
-[Alertmanager](../../../alerting/alertmanager/).
+[Alertmanager](../../../alerting/alertmanager/README.md).
 
 Its gravitational pull is the real point. Effectively every component in this repository
 exposes Prometheus metrics, every community dashboard assumes it, and every alerting example
@@ -32,7 +32,7 @@ is written in PromQL. Choosing something else means giving that up.
 
 ## When not to use it
 
-- very high cardinality workloads, where [VictoriaMetrics](../victoria-metrics/) uses substantially less memory
+- very high cardinality workloads, where [VictoriaMetrics](../victoria-metrics/README.md) uses substantially less memory
 - long retention is the primary requirement; that needs [long-term storage](../../long-term-storage/README.md) regardless of which one you pick
 
 ## The two constraints worth knowing before deploying

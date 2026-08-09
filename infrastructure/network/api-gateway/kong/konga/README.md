@@ -22,7 +22,7 @@ using the admin API directly. It was the common answer to "Kong has no interface
 | Need | Option |
 |---|---|
 | Official UI | Kong Manager, bundled with Kong |
-| Declarative configuration | `decK`, or the [Kong Ingress Controller](../../../ingress-controller/kong-ingress/) with CRDs |
+| Declarative configuration | `decK`, or the [Kong Ingress Controller](../../../ingress-controller/kong-ingress/README.md) with CRDs |
 | GitOps | define `KongPlugin` and `KongConsumer` as manifests — reviewable, versioned, no UI needed |
 
 For a GitOps repository the third row is the honest answer: a UI that mutates state outside

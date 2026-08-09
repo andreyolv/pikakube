@@ -24,7 +24,7 @@ rather than being wired together.
 ## When not to use it
 
 - Grafana is not part of the stack — the integration is the main reason to choose it
-- you need a status page and broader incident tooling — [OneUptime](../oneuptime/)
+- you need a status page and broader incident tooling — [OneUptime](../oneuptime/README.md)
 
 ## Check the project's current status
 

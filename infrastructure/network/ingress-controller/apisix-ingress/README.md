@@ -12,7 +12,7 @@ Context and comparison: [../README.md](../README.md)
 
 ## What it is
 
-The controller that drives [Apache APISIX](../../api-gateway/apisix/) from Kubernetes
+The controller that drives [Apache APISIX](../../api-gateway/apisix/README.md) from Kubernetes
 objects — `Ingress`, plus APISIX CRDs such as `ApisixRoute` and `ApisixPluginConfig`.
 
 APISIX is the gateway; this is what configures it from the cluster API. Two artifacts, one
@@ -30,7 +30,7 @@ data path.
 
 ## Related
 
-Gateway and API-management context: [`api-gateway/apisix/`](../../api-gateway/apisix/)
+Gateway and API-management context: [`api-gateway/apisix/`](../../api-gateway/apisix/README.md)
 
 ---
 

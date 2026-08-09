@@ -30,14 +30,14 @@ Alongside that: a large plugin set, consumer and credential handling, and an adm
 
 ## When not to use it
 
-- ecosystem size and available examples matter most — [Kong](../kong/) is ahead there
-- you need a portal and per-plan analytics out of the box — [Tyk](../tyk/) includes more
+- ecosystem size and available examples matter most — [Kong](../kong/README.md) is ahead there
+- you need a portal and per-plan analytics out of the box — [Tyk](../tyk/README.md) includes more
 - there are no external consumers at all, in which case an [ingress controller](../../ingress-controller/README.md) is the right layer
 
 ## Kubernetes
 
 Configuration from cluster objects comes from the separate controller:
-[`ingress-controller/apisix-ingress/`](../../ingress-controller/apisix-ingress/)
+[`ingress-controller/apisix-ingress/`](../../ingress-controller/apisix-ingress/README.md)
 
 ---
 

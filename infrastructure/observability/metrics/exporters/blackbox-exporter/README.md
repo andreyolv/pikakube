@@ -31,7 +31,7 @@ the same statement, and only the second is what a user experiences.
 ## The Kubernetes-specific version
 
 For the specific question "can every node reach every other node", the
-[kubenurse](../../../../network/monitoring/kubenurse/) tool builds a node-to-node matrix. Both
+[kubenurse](../../../../network/monitoring/kubenurse/README.md) tool builds a node-to-node matrix. Both
 follow the same principle — **generate traffic to find out** — at different granularity.
 
 ## Certificate expiry, concretely

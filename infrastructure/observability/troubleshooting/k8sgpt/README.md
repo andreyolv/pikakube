@@ -25,8 +25,8 @@ That split matters: the useful half works offline, and the AI is optional.
 
 ## When not to use it
 
-- the problem is below the application layer — [Inspektor Gadget](../inspektor-gadget/)
-- you need investigation across alerts and history — [HolmesGPT](../holmesgpt/)
+- the problem is below the application layer — [Inspektor Gadget](../inspektor-gadget/README.md)
+- you need investigation across alerts and history — [HolmesGPT](../holmesgpt/README.md)
 - `--explain` is off the table for data-handling reasons; the plain scan still works
 
 ---

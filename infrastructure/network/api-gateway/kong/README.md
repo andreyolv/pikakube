@@ -28,12 +28,12 @@ apply to a specific caller, which is exactly what an ingress controller cannot e
 ## When not to use it
 
 - there are no external API consumers — an [ingress controller](../../ingress-controller/README.md) does the routing with far less to operate
-- you want a developer portal and per-plan analytics out of the box; [Tyk](../tyk/) includes more of that in its open-source tier
+- you want a developer portal and per-plan analytics out of the box; [Tyk](../tyk/README.md) includes more of that in its open-source tier
 
 ## Kubernetes
 
 Configuration from cluster objects comes from the separate Kong Ingress Controller:
-[`ingress-controller/kong-ingress/`](../../ingress-controller/kong-ingress/)
+[`ingress-controller/kong-ingress/`](../../ingress-controller/kong-ingress/README.md)
 
 ---
 
@@ -46,7 +46,7 @@ Configuration from cluster objects comes from the separate Kong Ingress Controll
 curl -I "http://httpbin.local.172.18.0.2.nip.io/headers"
 ```
 
-UI: [`konga/`](konga/) — archived, see its README before using it.
+UI: [`konga/`](konga/README.md) — archived, see its README before using it.
 
 ---
 

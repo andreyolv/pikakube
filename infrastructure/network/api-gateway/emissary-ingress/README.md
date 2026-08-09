@@ -26,8 +26,8 @@ authentication and traffic splitting, without a developer portal or consumer pla
 
 ## When not to use it
 
-- the requirement is per-consumer plans, keys and analytics — [Kong](../kong/) or [Tyk](../tyk/)
-- you are adopting the [Gateway API](../../gateway-api/README.md), where [Envoy Gateway](../../gateway-api/envoy-gateway/) is the more natural Envoy choice
+- the requirement is per-consumer plans, keys and analytics — [Kong](../kong/README.md) or [Tyk](../tyk/README.md)
+- you are adopting the [Gateway API](../../gateway-api/README.md), where [Envoy Gateway](../../gateway-api/envoy-gateway/README.md) is the more natural Envoy choice
 
 ---
 

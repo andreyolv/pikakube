@@ -23,7 +23,7 @@ reporting everything that looks wrong.
 
 - alert volume is high enough that initial triage is the bottleneck
 - responders repeatedly gather the same context by hand
-- you already run [Robusta](../../alerting/robusta/) — same project, and they compose
+- you already run [Robusta](../../alerting/robusta/README.md) — same project, and they compose
 
 ## When not to use it
 

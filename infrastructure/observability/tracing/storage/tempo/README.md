@@ -23,11 +23,11 @@ you do need to search, by scanning a bounded window rather than consulting an in
 
 - **the default in a Grafana stack** — metric exemplars link straight to traces, and logs link back
 - trace storage cost is a concern
-- object storage is available, or [MinIO](../../../logs/storage/loki/minio/) is acceptable
+- object storage is available, or [MinIO](../../../logs/storage/loki/minio/README.md) is acceptable
 
 ## When not to use it
 
-- you routinely need to find traces **without** an ID — "all slow requests to this endpoint last week" is what [Jaeger](../jaeger/) is better at
+- you routinely need to find traces **without** an ID — "all slow requests to this endpoint last week" is what [Jaeger](../jaeger/README.md) is better at
 - logs do not carry `trace_id`. Without it the model does not work, because nothing hands you the identifier
 
 ## The prerequisite nobody mentions

@@ -37,7 +37,7 @@ equivalent that covers the same surface with the same integration quality out of
 **Instrument with OpenTelemetry, not the Datadog agent.**
 
 Datadog accepts OTLP. Emitting OTLP through the
-[OpenTelemetry Collector](../../../tracing/collector/opentelemetry/) means the instrumentation
+[OpenTelemetry Collector](../../../tracing/collector/opentelemetry/README.md) means the instrumentation
 in your code is vendor-neutral, and changing platform later is a collector configuration
 change rather than a fleet-wide rewrite.
 

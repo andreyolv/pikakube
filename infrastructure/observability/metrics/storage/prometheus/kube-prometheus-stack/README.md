@@ -18,10 +18,10 @@ monitoring in one release:
 |---|---|
 | **Prometheus Operator** | manages Prometheus, Alertmanager and rules through CRDs |
 | **Prometheus** | scraping, storage, rule evaluation |
-| **Alertmanager** | [routing, grouping, inhibition](../../../../alerting/alertmanager/) |
-| **[kube-state-metrics](../../../collector/kube-state-metrics/)** | Kubernetes object state |
+| **Alertmanager** | [routing, grouping, inhibition](../../../../alerting/alertmanager/README.md) |
+| **[kube-state-metrics](../../../collector/kube-state-metrics/README.md)** | Kubernetes object state |
 | **node-exporter** | per-node OS metrics |
-| **[Grafana](../../../../dashboards/grafana/)** | dashboards, pre-provisioned |
+| **[Grafana](../../../../dashboards/grafana/README.md)** | dashboards, pre-provisioned |
 | **Default rules and dashboards** | a working baseline for cluster health |
 
 The default alert rules matter more than they look. They encode a decade of accumulated

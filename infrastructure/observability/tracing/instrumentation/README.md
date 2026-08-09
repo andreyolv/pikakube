@@ -4,8 +4,8 @@
 
 Producing the telemetry in the first place — the layer where the actual work is.
 
-Subfolders: [`opentelemetry/`](opentelemetry/) · [`manual/`](manual/) ·
-[`auto-ebpf/`](auto-ebpf/)
+Subfolders: [`opentelemetry/`](opentelemetry/README.md) · [`manual/`](manual/README.md) ·
+[`auto-ebpf/`](auto-ebpf/README.md)
 
 ## Contents
 
@@ -87,7 +87,7 @@ See [`../README.md`](../README.md#5-context-propagation-is-the-hard-part).
 
 ## Also here: logs and metrics
 
-OpenTelemetry is not only tracing. The [`manual/`](manual/) folder covers all three signals,
+OpenTelemetry is not only tracing. The [`manual/`](manual/README.md) folder covers all three signals,
 because the SDKs emit metrics and logs over the same protocol — which is the point of adopting
 OTLP rather than a tracing-specific SDK.
 
@@ -112,8 +112,8 @@ adopted — before any backend.
 
 The realistic sequence for this repository:
 
-1. **[Beyla](auto-ebpf/beyla/)** for immediate coverage, emitting standard OTLP so nothing is locked in
-2. **`trace_id` in structured logs**, which is what makes [Tempo](../storage/tempo/) usable at all
+1. **[Beyla](auto-ebpf/beyla/README.md)** for immediate coverage, emitting standard OTLP so nothing is locked in
+2. **`trace_id` in structured logs**, which is what makes [Tempo](../storage/tempo/README.md) usable at all
 3. **Manual attributes** only on paths where tenant or dataset context changes the answer
 
 The honest caveat stays the same: on scheduled batch pipelines the model fits badly, and the

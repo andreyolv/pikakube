@@ -36,8 +36,8 @@ Prometheus deployment has to change.
 
 ## When not to use it
 
-- very large scale with multi-tenancy — [Mimir](../mimir/) is designed for that shape
-- cardinality and cost are the underlying problem — [VictoriaMetrics](../../storage/victoria-metrics/) addresses both layers at once
+- very large scale with multi-tenancy — [Mimir](../mimir/README.md) is designed for that shape
+- cardinality and cost are the underlying problem — [VictoriaMetrics](../../storage/victoria-metrics/README.md) addresses both layers at once
 - retention is not actually a requirement yet; this is several components to operate
 
 ## Operational note
@@ -50,7 +50,7 @@ corrupt data. This is the mistake worth knowing about in advance.
 
 Known issue: <https://github.com/thanos-io/thanos/issues/8285>
 
-Object storage backend on a local cluster: [MinIO](minio/)
+Object storage backend on a local cluster: [MinIO](minio/README.md)
 
 ---
 

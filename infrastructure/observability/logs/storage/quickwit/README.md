@@ -24,11 +24,11 @@ pods.
 - you need full-text search but cannot justify operating Elasticsearch
 - storage cost is a real constraint and search quality is not negotiable
 - stateless search nodes fit the platform model better than a stateful cluster
-- it also ingests OTLP, so it can serve as a trace backend — worth knowing when comparing against [Tempo](../../../tracing/storage/tempo/)
+- it also ingests OTLP, so it can serve as a trace backend — worth knowing when comparing against [Tempo](../../../tracing/storage/tempo/README.md)
 
 ## When not to use it
 
-- Kubernetes debugging only, where you always know the service and the window — [Loki](../loki/) is simpler and enough
+- Kubernetes debugging only, where you always know the service and the window — [Loki](../loki/README.md) is simpler and enough
 - you depend on the Elastic ecosystem's tooling and integrations
 - sub-second search over very recent data is the requirement; object storage adds latency that an index on local disk does not have
 

@@ -5,7 +5,7 @@
 Conceptual reference for the `cluster-interconnection/` folder. Explains how workloads in
 separate Kubernetes clusters reach each other, and which approach fits which constraint.
 
-Tools covered: [`submariner`](submariner/) · [`kubeslice`](kubeslice/)
+Tools covered: [`submariner`](submariner/README.md) · [`kubeslice`](kubeslice/README.md)
 
 > **Not the same as multi-cluster *management*.** Scheduling workloads across clusters and
 > reconciling their state is a different capability — Karmada, KubeStellar, Open Cluster
@@ -213,8 +213,8 @@ The canonical documentation for all of it is the SIG's own site — see
 
 | Tool | Model | Shines when | Do not use when | Detail |
 |---|---|---|---|---|
-| **Submariner** | L3 tunnels (IPsec, WireGuard or VXLAN) between gateway nodes, plus Lighthouse for DNS and Globalnet for overlapping CIDRs | connecting clusters across clouds or networks you do not control, **especially with overlapping CIDRs** | a flat routed network already exists — the tunnels add nothing | [→](submariner/) |
-| **KubeSlice** | application-level "slices" — namespace-scoped overlay networks spanning clusters, with QoS and isolation per slice | you want tenant or application isolation across clusters, not just raw connectivity | you only need two clusters to talk; it is a heavier model | [→](kubeslice/) |
+| **Submariner** | L3 tunnels (IPsec, WireGuard or VXLAN) between gateway nodes, plus Lighthouse for DNS and Globalnet for overlapping CIDRs | connecting clusters across clouds or networks you do not control, **especially with overlapping CIDRs** | a flat routed network already exists — the tunnels add nothing | [→](submariner/README.md) |
+| **KubeSlice** | application-level "slices" — namespace-scoped overlay networks spanning clusters, with QoS and isolation per slice | you want tenant or application isolation across clusters, not just raw connectivity | you only need two clusters to talk; it is a heavier model | [→](kubeslice/README.md) |
 
 The difference in one line: **Submariner connects clusters; KubeSlice connects
 applications across clusters.** Submariner's unit is the cluster, KubeSlice's is the slice.
@@ -223,10 +223,10 @@ applications across clusters.** Submariner's unit is the cluster, KubeSlice's is
 
 | Alternative | Where | Why consider it |
 |---|---|---|
-| **Cilium Cluster Mesh** | [`cni/cilium/`](../cni/cilium/) | if Cilium is already the CNI everywhere, this is the lowest-friction option — no extra component |
-| **Istio / Linkerd multi-cluster** | [`service-mesh/`](../service-mesh/) | adds identity and L7 policy, not just reachability |
+| **Cilium Cluster Mesh** | [`cni/cilium/`](../cni/cilium/README.md) | if Cilium is already the CNI everywhere, this is the lowest-friction option — no extra component |
+| **Istio / Linkerd multi-cluster** | [`service-mesh/`](../service-mesh/README.md) | adds identity and L7 policy, not just reachability |
 | **Liqo** | [`platform-engineering/.../multi-cluster/liqo/`](../../platform-engineering/kubernetes/managed/multi-cluster/liqo/) | blurs the line — it does networking *and* offloads workloads |
-| **API gateway** | [`api-gateway/`](../api-gateway/) | the deliberate L7 answer when clusters should stay independent |
+| **API gateway** | [`api-gateway/`](../api-gateway/README.md) | the deliberate L7 answer when clusters should stay independent |
 
 ---
 
@@ -402,7 +402,7 @@ two Kind clusters and non-overlapping CIDRs, which the current
 would be the realistic thing to try, because Globalnet also makes it survive the default
 CIDR collision that two Kind clusters otherwise have.
 
-The prerequisite for anything here is CIDR planning — see [`cni/`](../cni/) for how pod
+The prerequisite for anything here is CIDR planning — see [`cni/`](../cni/README.md) for how pod
 CIDRs are allocated in the first place.
 
 ---

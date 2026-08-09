@@ -4,7 +4,7 @@
 
 The fourth signal — which **line of code** is burning the CPU and the memory.
 
-Tools covered: [`pyroscope`](pyroscope/) · [`parca`](parca/) · [`gprofiler`](gprofiler/)
+Tools covered: [`pyroscope`](pyroscope/README.md) · [`parca`](parca/README.md) · [`gprofiler`](gprofiler/README.md)
 
 ## Contents
 
@@ -53,9 +53,9 @@ Overhead is typically a few percent, which is what makes always-on viable.
 
 | Tool | Role | Shines when | Do not use when | Detail |
 |---|---|---|---|---|
-| **Pyroscope** | continuous profiling, now part of Grafana | Grafana is the stack — profiles sit next to metrics, logs and traces, and link from them | you are not in the Grafana ecosystem | [→](pyroscope/) |
-| **Parca** | eBPF continuous profiling, CNCF | you want a focused, standalone profiler with no wider platform attached | running on Kind — see its README | [→](parca/) |
-| **gProfiler** | multi-language cluster-wide profiler | you need broad language coverage in one agent | you want deep integration with an existing stack | [→](gprofiler/) |
+| **Pyroscope** | continuous profiling, now part of Grafana | Grafana is the stack — profiles sit next to metrics, logs and traces, and link from them | you are not in the Grafana ecosystem | [→](pyroscope/README.md) |
+| **Parca** | eBPF continuous profiling, CNCF | you want a focused, standalone profiler with no wider platform attached | running on Kind — see its README | [→](parca/README.md) |
+| **gProfiler** | multi-language cluster-wide profiler | you need broad language coverage in one agent | you want deep integration with an existing stack | [→](gprofiler/README.md) |
 
 ## 4. Language-level profilers
 

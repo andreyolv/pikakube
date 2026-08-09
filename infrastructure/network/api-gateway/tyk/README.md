@@ -28,7 +28,7 @@ its own proxy, and the pieces that turn APIs into products included rather than 
 
 ## When not to use it
 
-- the requirement is routing plus a plugin or two — [Kong](../kong/) has a larger ecosystem and more community material for that shape
+- the requirement is routing plus a plugin or two — [Kong](../kong/README.md) has a larger ecosystem and more community material for that shape
 - there are no external consumers, in which case none of this applies and an [ingress controller](../../ingress-controller/README.md) is enough
 
 ## The distinction against Kong

@@ -4,7 +4,7 @@
 
 Keeping metrics for months or years, and querying across clusters.
 
-Tools covered: [`thanos`](thanos/) · [`mimir`](mimir/) · [`cortex`](cortex/)
+Tools covered: [`thanos`](thanos/README.md) · [`mimir`](mimir/README.md) · [`cortex`](cortex/README.md)
 
 ## Contents
 
@@ -49,9 +49,9 @@ queries dramatically.
 
 | Tool | Model | Shines when | Detail |
 |---|---|---|---|
-| **Thanos** | sidecar next to each Prometheus, object storage behind | you already run Prometheus and want to extend it with minimal disruption | [→](thanos/) |
-| **Mimir** | remote write into a horizontally scalable cluster | very large scale, multi-tenancy, and Grafana is the stack | [→](mimir/) |
-| **Cortex** | remote write, the project Mimir forked from | you have an existing Cortex deployment | [→](cortex/) |
+| **Thanos** | sidecar next to each Prometheus, object storage behind | you already run Prometheus and want to extend it with minimal disruption | [→](thanos/README.md) |
+| **Mimir** | remote write into a horizontally scalable cluster | very large scale, multi-tenancy, and Grafana is the stack | [→](mimir/README.md) |
+| **Cortex** | remote write, the project Mimir forked from | you have an existing Cortex deployment | [→](cortex/README.md) |
 
 ## 4. Decision tree
 
@@ -99,11 +99,11 @@ What the folder records is the decision that arrives the moment there is a secon
 a question about last quarter. The realistic path from where the repository is:
 
 1. Prometheus is already running via kube-prometheus-stack → **Thanos** is the least invasive next step, because the sidecar changes nothing about it
-2. Object storage on a local cluster means [MinIO](thanos/minio/) — one more stateful component to own
+2. Object storage on a local cluster means [MinIO](thanos/minio/README.md) — one more stateful component to own
 3. The **compactor must be a single instance per bucket**; two corrupt the data, and it is the mistake worth knowing before the first deployment rather than after
 
 Worth stating plainly: if cardinality were the problem instead of retention, the right answer
-would be to reconsider [VictoriaMetrics](../storage/victoria-metrics/) and skip this layer
+would be to reconsider [VictoriaMetrics](../storage/victoria-metrics/README.md) and skip this layer
 altogether.
 
 ---

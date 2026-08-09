@@ -23,13 +23,13 @@ Metrics, logs and traces in one system, with OTLP ingestion.
 
 ## When not to use it
 
-- you want the most complete open-source platform — [SigNoz](../signoz/) covers more and has a larger community
+- you want the most complete open-source platform — [SigNoz](../signoz/README.md) covers more and has a larger community
 - production dependence without evaluation; this is a younger project than the alternatives
 
 ## How to evaluate it honestly
 
 Efficiency claims are the entire pitch, so test the claim rather than the feature list. The
-[OpenTelemetry Collector](../../../tracing/collector/opentelemetry/) makes that
+[OpenTelemetry Collector](../../../tracing/collector/opentelemetry/README.md) makes that
 straightforward: add a second exporter, send the same production telemetry to both, and compare
 resource use and query behaviour on identical data.
 

@@ -4,8 +4,8 @@
 
 One backend for **all three signals**, fed by OTLP.
 
-Tools covered: [`signoz`](signoz/) · [`openobserve`](openobserve/) ·
-[`hyperdx`](hyperdx/) · [`siglens`](siglens/) · [`sumologic`](sumologic/)
+Tools covered: [`signoz`](signoz/README.md) · [`openobserve`](openobserve/README.md) ·
+[`hyperdx`](hyperdx/README.md) · [`siglens`](siglens/README.md) · [`sumologic`](sumologic/)
 
 ## Contents
 
@@ -39,7 +39,7 @@ That changes the risk profile substantially. Migrating between OTLP-native platf
 repointing a collector, not re-instrumenting a fleet. It is the closest thing to a reversible
 decision in this space.
 
-Consequently the [OpenTelemetry Collector](../../tracing/collector/opentelemetry/) is the real
+Consequently the [OpenTelemetry Collector](../../tracing/collector/opentelemetry/README.md) is the real
 integration point, and is worth deploying **before** choosing a backend — it lets you route
 the same telemetry to two destinations while evaluating.
 
@@ -47,10 +47,10 @@ the same telemetry to two destinations while evaluating.
 
 | Tool | Notes | Detail |
 |---|---|---|
-| **SigNoz** | the most complete open-source option — metrics, logs, traces, dashboards and alerting on ClickHouse | [→](signoz/) |
-| **OpenObserve** | very efficient storage, strong on logs, small footprint | [→](openobserve/) |
-| **HyperDX** | trace and log correlation with session replay, on ClickHouse | [→](hyperdx/) |
-| **SigLens** | performance-focused, positioned on ingest cost | [→](siglens/) |
+| **SigNoz** | the most complete open-source option — metrics, logs, traces, dashboards and alerting on ClickHouse | [→](signoz/README.md) |
+| **OpenObserve** | very efficient storage, strong on logs, small footprint | [→](openobserve/README.md) |
+| **HyperDX** | trace and log correlation with session replay, on ClickHouse | [→](hyperdx/README.md) |
+| **SigLens** | performance-focused, positioned on ingest cost | [→](siglens/README.md) |
 | **Sumo Logic** | commercial SaaS; here for the collector and integration path | [→](sumologic/) |
 
 ## 4. Decision tree
@@ -92,7 +92,7 @@ platforms is a collector configuration change, not a migration.
 |---|---|
 | Prometheus is deeply embedded | PromQL, recording rules, alerting rules and community dashboards are a large sunk investment |
 | You need Grafana's ecosystem | the community dashboard library has no equivalent here |
-| Long-term metric retention at scale | [Thanos](../../metrics/long-term-storage/thanos/) and [Mimir](../../metrics/long-term-storage/mimir/) are purpose-built for it |
+| Long-term metric retention at scale | [Thanos](../../metrics/long-term-storage/thanos/README.md) and [Mimir](../../metrics/long-term-storage/mimir/README.md) are purpose-built for it |
 | Independent failure domains matter | one backend means all signals fail together |
 
 ## 6. Anti-patterns
@@ -118,7 +118,7 @@ The reason the repository does not use one is pedagogical, not technical. Saying
 is more useful than a catalogue that lists these without a verdict.
 
 If it were ever evaluated here, the path is already in place:
-[deploy the collector first](../../tracing/collector/opentelemetry/), add a second exporter,
+[deploy the collector first](../../tracing/collector/opentelemetry/README.md), add a second exporter,
 and compare on the same traffic.
 
 ---

@@ -12,7 +12,7 @@ Context and comparison: [../README.md](../README.md)
 
 ## What it is
 
-The controller that lets [Kong](../../api-gateway/kong/) act on Kubernetes objects: it reads
+The controller that lets [Kong](../../api-gateway/kong/README.md) act on Kubernetes objects: it reads
 `Ingress`, and Kong CRDs such as `KongPlugin` and `KongConsumer`, and configures the Kong
 data path accordingly.
 
@@ -26,12 +26,12 @@ from the cluster API.
 
 ## When not to use it
 
-- there is no API management requirement. Running Kong purely as an ingress controller means operating a gateway to do a job [ingress-nginx](../ingress-nginx/) or [Traefik](../traefik/) does with far less
+- there is no API management requirement. Running Kong purely as an ingress controller means operating a gateway to do a job [ingress-nginx](../ingress-nginx/README.md) or [Traefik](../traefik/README.md) does with far less
 - you have not chosen Kong yet — decide that first, in [`api-gateway/`](../../api-gateway/README.md)
 
 ## Related
 
-Gateway and API-management context: [`api-gateway/kong/`](../../api-gateway/kong/)
+Gateway and API-management context: [`api-gateway/kong/`](../../api-gateway/kong/README.md)
 
 ---
 

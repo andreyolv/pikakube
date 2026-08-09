@@ -26,7 +26,7 @@ other — graphable next to the workload that caused it, and alertable when it m
 
 - full FinOps attribution by namespace, team or project — that is
   [OpenCost/Kubecost](../../../../finops/) and it is a different tool for a different question
-- cloud provider metrics rather than cost — [AWS](../aws-exporter/) or [Azure](../azure-exporter/)
+- cloud provider metrics rather than cost — [AWS](../aws-exporter/README.md) or [Azure](../azure-exporter/README.md)
 
 ## Where it sits against FinOps
 
@@ -41,8 +41,8 @@ deploys, scaling events and traffic, in the same query language.
 
 ## Related
 
-Spot pricing has its own exporters: [spot-price](../spot-price-exporter/) and
-[spot-termination](../spot-termination-exporter/).
+Spot pricing has its own exporters: [spot-price](../spot-price-exporter/README.md) and
+[spot-termination](../spot-termination-exporter/README.md).
 
 ---
 

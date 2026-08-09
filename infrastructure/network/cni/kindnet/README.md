@@ -23,7 +23,7 @@ It satisfies the Kubernetes network model and deliberately stops there.
 ## When not to use it
 
 - any shared, staging or production cluster
-- when you are testing networking behaviour itself — policy enforcement, routing modes, observability. Install [Cilium](../cilium/) or [Calico](../calico/) on the Kind cluster instead
+- when you are testing networking behaviour itself — policy enforcement, routing modes, observability. Install [Cilium](../cilium/README.md) or [Calico](../calico/README.md) on the Kind cluster instead
 
 ## In pikakube
 

@@ -11,7 +11,7 @@ Context and comparison: [../README.md](../README.md)
 
 ## The problem it solves
 
-The same problem as [MetalLB](../metallb/): on bare metal, `type: LoadBalancer` has no
+The same problem as [MetalLB](../metallb/README.md): on bare metal, `type: LoadBalancer` has no
 controller to assign an external IP. OpenELB is an alternative implementation, supporting
 L2, BGP and VIP modes.
 

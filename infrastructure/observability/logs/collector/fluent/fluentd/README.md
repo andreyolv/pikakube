@@ -14,7 +14,7 @@ anything in this folder — over a thousand plugins covering inputs, outputs and
 that nothing else supports.
 
 That ecosystem is now its main reason to exist. For ordinary Kubernetes log shipping,
-[Fluent Bit](../fluent-bit/) is smaller and does the job; Fluentd earns its place when you
+[Fluent Bit](../fluent-bit/README.md) is smaller and does the job; Fluentd earns its place when you
 need a specific integration that only exists here.
 
 ## When to use it
@@ -28,14 +28,14 @@ need a specific integration that only exists here.
 
 - greenfield Kubernetes log collection — Fluent Bit covers it at a fraction of the resource cost
 - resource-constrained nodes; the Ruby runtime is heavy when multiplied by node count
-- transformation is the main requirement — [Vector](../../vector/) is a better tool for that
+- transformation is the main requirement — [Vector](../../vector/README.md) is a better tool for that
 
 ## The honest positioning
 
 Not deprecated, and not the default any more. The Fluent project's own centre of gravity has
 moved to Fluent Bit, and Fluentd is now the specialist option rather than the general one.
 
-Additional references: [`fluentd-daemonset/`](fluentd-daemonset/)
+Additional references: [`fluentd-daemonset/`](fluentd-daemonset/README.md)
 
 ---
 

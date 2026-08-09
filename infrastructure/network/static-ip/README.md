@@ -5,7 +5,7 @@
 Conceptual reference for the `static-ip/` folder: making the address a cluster uses to reach
 the outside world **predictable**.
 
-Tools covered: [`kube-ip`](kube-ip/)
+Tools covered: [`kube-ip`](kube-ip/README.md)
 
 ## Contents
 
@@ -55,7 +55,7 @@ or not granular enough.
 
 | Tool | What it does | Detail |
 |---|---|---|
-| **kubeip** | assigns reserved static IPs to nodes as they join, so the set of addresses the cluster uses stays within a known, allow-listable pool | [→](kube-ip/) |
+| **kubeip** | assigns reserved static IPs to nodes as they join, so the set of addresses the cluster uses stays within a known, allow-listable pool | [→](kube-ip/README.md) |
 
 ## 4. Decision tree
 

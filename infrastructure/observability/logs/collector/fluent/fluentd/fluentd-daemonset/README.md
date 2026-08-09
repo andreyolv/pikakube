@@ -15,7 +15,7 @@ Manifests for running [Fluentd](../README.md) directly as a DaemonSet, without a
 ## When it does not
 
 Running Fluentd on **every node** means paying the Ruby runtime footprint per node.
-[Fluent Bit](../../fluent-bit/) is the DaemonSet in almost every current setup, with Fluentd —
+[Fluent Bit](../../fluent-bit/README.md) is the DaemonSet in almost every current setup, with Fluentd —
 if needed at all — sitting behind it as an aggregator where the cost is paid a few times
 instead of once per node.
 

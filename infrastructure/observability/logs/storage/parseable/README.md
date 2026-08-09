@@ -26,9 +26,9 @@ another dataset in the lakehouse.
 
 ## When not to use it
 
-- rich search features are the requirement — [Quickwit](../quickwit/) or [OpenSearch](../opensearch/)
+- rich search features are the requirement — [Quickwit](../quickwit/README.md) or [OpenSearch](../opensearch/README.md)
 - you want the largest community and the most examples; this is a smaller project than the alternatives
-- Grafana-native log exploration is the workflow — [Loki](../loki/) integrates more tightly
+- Grafana-native log exploration is the workflow — [Loki](../loki/README.md) integrates more tightly
 
 ## The angle worth remembering
 

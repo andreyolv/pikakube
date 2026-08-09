@@ -24,8 +24,8 @@ designed for.
 
 ## When not to use it
 
-- choosing fresh for logs. [Loki](../loki/), [Quickwit](../quickwit/) and
-  [OpenSearch](../opensearch/) are all better matches for log-shaped workloads, and each has a
+- choosing fresh for logs. [Loki](../loki/README.md), [Quickwit](../quickwit/README.md) and
+  [OpenSearch](../opensearch/README.md) are all better matches for log-shaped workloads, and each has a
   larger community for that use case
 - you want Kubernetes-native log tooling with ready dashboards and collectors
 

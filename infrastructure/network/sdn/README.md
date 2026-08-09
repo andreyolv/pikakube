@@ -5,8 +5,8 @@
 Conceptual reference for the `sdn/` folder: networking that goes **beyond what the CNI
 specification requires**, with programmable L2/L3 constructs.
 
-Tools covered: [`kube-ovn`](kube-ovn/) · [`ovn-kubernetes`](ovn-kubernetes/) ·
-[`kube-router`](kube-router/) · [`kilo`](kilo/)
+Tools covered: [`kube-ovn`](kube-ovn/README.md) · [`ovn-kubernetes`](ovn-kubernetes/README.md) ·
+[`kube-router`](kube-router/README.md) · [`kilo`](kilo/README.md)
 
 ## Contents
 
@@ -29,12 +29,12 @@ The split used in this repository:
 
 | Folder | Question it answers |
 |---|---|
-| [`cni/`](../cni/) | which plugin satisfies the Kubernetes network model — pod IPs, no NAT, policy? |
+| [`cni/`](../cni/README.md) | which plugin satisfies the Kubernetes network model — pod IPs, no NAT, policy? |
 | **`sdn/`** | which plugin gives me a **programmable network** on top of that — VPCs, real subnets, ACLs, cross-site meshes? |
 
 A cluster picks **one** primary CNI. If that choice is driven by needing cloud-style network
 constructs or a cross-location overlay, the candidate is in this folder. If it is driven by
-policy enforcement, dataplane and observability, it is in [`cni/`](../cni/).
+policy enforcement, dataplane and observability, it is in [`cni/`](../cni/README.md).
 
 Kilo is the exception: it is not a CNI at all, it is a WireGuard mesh that works *alongside*
 one.
@@ -63,10 +63,10 @@ from `iptables`/`tcpdump` to OVS commands most teams have never used.
 
 | Tool | What it is | Shines when | Do not use when | Detail |
 |---|---|---|---|---|
-| **kube-ovn** | CNI built on OVN/OVS, bringing VPC, subnet, QoS, ACL and static IPs | you need **cloud-VPC semantics inside Kubernetes** — hard multi-tenancy, real subnets, per-tenant address space | a general-purpose cluster; the operational surface is large and unjustified | [→](kube-ovn/) |
-| **ovn-kubernetes** | the upstream OVN-based CNI, the one behind OpenShift | you want the OVN substrate with the opinions of a large distribution, or you are aligning with OpenShift | you are not committed to the OVN ecosystem | [→](ovn-kubernetes/) |
-| **kube-router** | one daemon doing CNI + service proxy (IPVS, replacing kube-proxy) + NetworkPolicy, using **BGP** | you want a small, single-component stack with BGP and no overlay | you need the richer constructs above — it is deliberately lean | [→](kube-router/) |
-| **kilo** | **WireGuard mesh** across locations — not a CNI | one cluster spanning clouds, regions or edge sites over untrusted networks | all nodes sit on one trusted network; the encryption and mesh buy nothing | [→](kilo/) |
+| **kube-ovn** | CNI built on OVN/OVS, bringing VPC, subnet, QoS, ACL and static IPs | you need **cloud-VPC semantics inside Kubernetes** — hard multi-tenancy, real subnets, per-tenant address space | a general-purpose cluster; the operational surface is large and unjustified | [→](kube-ovn/README.md) |
+| **ovn-kubernetes** | the upstream OVN-based CNI, the one behind OpenShift | you want the OVN substrate with the opinions of a large distribution, or you are aligning with OpenShift | you are not committed to the OVN ecosystem | [→](ovn-kubernetes/README.md) |
+| **kube-router** | one daemon doing CNI + service proxy (IPVS, replacing kube-proxy) + NetworkPolicy, using **BGP** | you want a small, single-component stack with BGP and no overlay | you need the richer constructs above — it is deliberately lean | [→](kube-router/README.md) |
+| **kilo** | **WireGuard mesh** across locations — not a CNI | one cluster spanning clouds, regions or edge sites over untrusted networks | all nodes sit on one trusted network; the encryption and mesh buy nothing | [→](kilo/README.md) |
 
 ### The three-way distinction worth remembering
 
@@ -97,7 +97,7 @@ flowchart TD
 
 | Anti-pattern | Why it is bad | What to do instead |
 |---|---|---|
-| Adopting OVN for a general-purpose cluster | you inherit a control plane and a debugging skillset for constructs you never use | Cilium or Calico from [`cni/`](../cni/) |
+| Adopting OVN for a general-purpose cluster | you inherit a control plane and a debugging skillset for constructs you never use | Cilium or Calico from [`cni/`](../cni/README.md) |
 | Running two primary CNIs | they fight over IPAM and the pod namespace | one primary; Multus for extra interfaces |
 | Choosing kilo when all nodes share a trusted network | encryption and mesh overhead for nothing | plain CNI |
 | Expecting kilo to provide pod networking | it meshes nodes; it is not a CNI | pair it with one |
@@ -105,7 +105,7 @@ flowchart TD
 
 ## 6. How this applies to pikakube
 
-Nothing here is in use — the cluster is Kind with [kindnet](../cni/kindnet/), and none of
+Nothing here is in use — the cluster is Kind with [kindnet](../cni/kindnet/README.md), and none of
 these constructs apply on a laptop.
 
 They are mapped for the on-prem case, which is where they actually matter: **kube-ovn** when

@@ -18,8 +18,8 @@ It is a **third, separate** NGINX project in this repository:
 
 | Project | Folder | API |
 |---|---|---|
-| `kubernetes/ingress-nginx` | [`ingress-controller/ingress-nginx/`](../../ingress-controller/ingress-nginx/) | `Ingress` |
-| `nginx/kubernetes-ingress` | [`ingress-controller/nginx-ingress/`](../../ingress-controller/nginx-ingress/) | `Ingress` + own CRDs |
+| `kubernetes/ingress-nginx` | [`ingress-controller/ingress-nginx/`](../../ingress-controller/ingress-nginx/README.md) | `Ingress` |
+| `nginx/kubernetes-ingress` | [`ingress-controller/nginx-ingress/`](../../ingress-controller/nginx-ingress/README.md) | `Ingress` + own CRDs |
 | **`nginx/nginx-gateway-fabric`** | here | **Gateway API** |
 
 Different codebases with different behaviour. Only the proxy is shared.
@@ -31,7 +31,7 @@ Different codebases with different behaviour. Only the proxy is shared.
 
 ## When not to use it
 
-- Envoy is acceptable — [Envoy Gateway](../envoy-gateway/) is closer to the reference implementation and moves faster
+- Envoy is acceptable — [Envoy Gateway](../envoy-gateway/README.md) is closer to the reference implementation and moves faster
 - you are staying on `Ingress`
 
 ---

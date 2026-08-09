@@ -6,9 +6,9 @@ Conceptual reference for the `dns/` folder. Explains how name resolution works, 
 Kubernetes does it internally, how it is organised inside a company, and which tool in this
 folder solves which problem.
 
-Tools covered: [`coredns`](coredns/) · [`external-dns`](external-dns/) ·
-[`node-local-dns`](node-local-dns/) · [`nip.io`](nip.io/) — plus
-[`k8gb`](../load-balancer/k8gb/) for DNS-based global failover.
+Tools covered: [`coredns`](coredns/README.md) · [`external-dns`](external-dns/README.md) ·
+[`node-local-dns`](node-local-dns/README.md) · [`nip.io`](nip.io/README.md) — plus
+[`k8gb`](../load-balancer/k8gb/README.md) for DNS-based global failover.
 
 Certificates depend heavily on DNS but are a separate capability — see
 [`security/2-cluster/certificates/`](../../security/2-cluster/certificates/README.md).
@@ -280,11 +280,11 @@ to manage a record it actually owns.
 
 | Tool | Role | Shines when | Do not use when | Detail |
 |---|---|---|---|---|
-| **CoreDNS** | cluster resolver | always — it is the cluster's DNS, and its plugin chain also handles rewriting, forwarding and stub zones | expecting it to be a public authoritative server | [→](coredns/) |
-| **external-dns** | publishes records to an external provider | Ingress/Service hostnames must exist in real DNS | there is no zone you control, or records are managed by another team | [→](external-dns/) |
-| **node-local-dns** | per-node DNS cache (DaemonSet) | high query volume, CoreDNS under load, or intermittent 5s timeouts | small clusters, where it is added complexity | [→](node-local-dns/) |
-| **nip.io** | wildcard DNS for any IP, no setup | local and ephemeral clusters | anything real — it depends on a third-party service | [→](nip.io/) |
-| **k8gb** | DNS-based global load balancing and failover | multi-cluster, cross-region failover driven by health | a single cluster | [→](../load-balancer/k8gb/) |
+| **CoreDNS** | cluster resolver | always — it is the cluster's DNS, and its plugin chain also handles rewriting, forwarding and stub zones | expecting it to be a public authoritative server | [→](coredns/README.md) |
+| **external-dns** | publishes records to an external provider | Ingress/Service hostnames must exist in real DNS | there is no zone you control, or records are managed by another team | [→](external-dns/README.md) |
+| **node-local-dns** | per-node DNS cache (DaemonSet) | high query volume, CoreDNS under load, or intermittent 5s timeouts | small clusters, where it is added complexity | [→](node-local-dns/README.md) |
+| **nip.io** | wildcard DNS for any IP, no setup | local and ephemeral clusters | anything real — it depends on a third-party service | [→](nip.io/README.md) |
+| **k8gb** | DNS-based global load balancing and failover | multi-cluster, cross-region failover driven by health | a single cluster | [→](../load-balancer/k8gb/README.md) |
 
 ### How they combine
 

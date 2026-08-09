@@ -5,10 +5,10 @@
 Conceptual reference for the `monitoring/` folder. About one narrow question: **is the
 network actually working?**
 
-Tools covered: [`kubenurse`](kubenurse/) · [`zabbix`](zabbix/)
+Tools covered: [`kubenurse`](kubenurse/README.md) · [`zabbix`](zabbix/README.md)
 
 > **Not the same as observability.** Metrics, logs, traces and their pipelines live under
-> [`observability/`](../../observability/). This folder is specifically about **probing
+> [`observability/`](../../observability/README.md). This folder is specifically about **probing
 > network reachability** — generating traffic to find out whether paths work.
 
 ## Contents
@@ -57,15 +57,15 @@ vague "the network is flaky" into a specific matrix: this node cannot reach that
 only that pair.
 
 The same idea appears elsewhere in the repo at different granularity — the blackbox exporter
-under [`observability/`](../../observability/) probes arbitrary endpoints, and
-[`kubenurse`](kubenurse/) specialises it to the cluster's own internal paths.
+under [`observability/`](../../observability/README.md) probes arbitrary endpoints, and
+[`kubenurse`](kubenurse/README.md) specialises it to the cluster's own internal paths.
 
 ## 3. The tools in this folder
 
 | Tool | Model | Shines when | Do not use when | Detail |
 |---|---|---|---|---|
-| **kubenurse** | DaemonSet; every node probes every other node plus API server, DNS and ingress, exposing Prometheus metrics | you want continuous proof that the cluster network works, node by node | a single-node or throwaway cluster — there are no paths to compare | [→](kubenurse/) |
-| **Zabbix** | general infrastructure monitoring platform, not Kubernetes-native | the company already runs Zabbix for the network and hardware estate, and the cluster must report into it | Prometheus is already the standard — adding a second monitoring stack is the cost, not the benefit | [→](zabbix/) |
+| **kubenurse** | DaemonSet; every node probes every other node plus API server, DNS and ingress, exposing Prometheus metrics | you want continuous proof that the cluster network works, node by node | a single-node or throwaway cluster — there are no paths to compare | [→](kubenurse/README.md) |
+| **Zabbix** | general infrastructure monitoring platform, not Kubernetes-native | the company already runs Zabbix for the network and hardware estate, and the cluster must report into it | Prometheus is already the standard — adding a second monitoring stack is the cost, not the benefit | [→](zabbix/README.md) |
 
 The two are not really alternatives. kubenurse answers *"do the cluster's internal paths
 work?"* and feeds Prometheus. Zabbix answers *"how does this cluster look to the

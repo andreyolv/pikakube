@@ -6,12 +6,12 @@ Translating something that has no metrics into something Prometheus can scrape.
 
 Reference: <https://prometheus.io/docs/instrumenting/exporters/>
 
-Tools covered: [`blackbox-exporter`](blackbox-exporter/) ·
-[`postgres-exporter`](postgres-exporter/) · [`sql-exporter`](sql-exporter/) ·
-[`aws-exporter`](aws-exporter/) · [`azure-exporter`](azure-exporter/) ·
-[`cloudcost-exporter`](cloudcost-exporter/) · [`spot-price-exporter`](spot-price-exporter/) ·
-[`spot-termination-exporter`](spot-termination-exporter/) ·
-[`custom-exporter`](custom-exporter/)
+Tools covered: [`blackbox-exporter`](blackbox-exporter/README.md) ·
+[`postgres-exporter`](postgres-exporter/README.md) · [`sql-exporter`](sql-exporter/README.md) ·
+[`aws-exporter`](aws-exporter/README.md) · [`azure-exporter`](azure-exporter/README.md) ·
+[`cloudcost-exporter`](cloudcost-exporter/README.md) · [`spot-price-exporter`](spot-price-exporter/README.md) ·
+[`spot-termination-exporter`](spot-termination-exporter/README.md) ·
+[`custom-exporter`](custom-exporter/README.md)
 
 ## Contents
 
@@ -39,15 +39,15 @@ therefore alertable, dashboardable and subject to an SLO — without touching th
 
 | Family | What they translate | Tools |
 |---|---|---|
-| **Probing** | reachability and response of an endpoint | [blackbox](blackbox-exporter/) |
-| **Databases** | connection counts, replication lag, query results | [postgres](postgres-exporter/), [sql](sql-exporter/) |
-| **Cloud APIs** | cloud provider metrics and billing into Prometheus | [aws](aws-exporter/), [azure](azure-exporter/), [cloudcost](cloudcost-exporter/) |
-| **Spot instances** | price and termination notices | [spot-price](spot-price-exporter/), [spot-termination](spot-termination-exporter/) |
+| **Probing** | reachability and response of an endpoint | [blackbox](blackbox-exporter/README.md) |
+| **Databases** | connection counts, replication lag, query results | [postgres](postgres-exporter/README.md), [sql](sql-exporter/README.md) |
+| **Cloud APIs** | cloud provider metrics and billing into Prometheus | [aws](aws-exporter/README.md), [azure](azure-exporter/README.md), [cloudcost](cloudcost-exporter/README.md) |
+| **Spot instances** | price and termination notices | [spot-price](spot-price-exporter/README.md), [spot-termination](spot-termination-exporter/README.md) |
 
 Two are worth singling out:
 
-- **[blackbox-exporter](blackbox-exporter/)** is the only one that probes rather than reads. It is how "is this endpoint up, from outside" becomes a metric — the synthetic monitoring building block.
-- **[sql-exporter](sql-exporter/)** turns **arbitrary queries** into metrics, which is the escape hatch for anything the specific exporters do not cover — including business metrics straight from the database.
+- **[blackbox-exporter](blackbox-exporter/README.md)** is the only one that probes rather than reads. It is how "is this endpoint up, from outside" becomes a metric — the synthetic monitoring building block.
+- **[sql-exporter](sql-exporter/README.md)** turns **arbitrary queries** into metrics, which is the escape hatch for anything the specific exporters do not cover — including business metrics straight from the database.
 
 ## 3. Decision tree
 
@@ -80,7 +80,7 @@ flowchart TD
 ```
 
 The last branch is the one to resist. Between the official list, `sql-exporter` and
-[kube-state-metrics' CRD support](../collector/kube-state-metrics/), very little genuinely
+[kube-state-metrics' CRD support](../collector/kube-state-metrics/README.md), very little genuinely
 requires code you then have to maintain.
 
 ## 4. The one for a data platform
@@ -106,12 +106,12 @@ tool, just a query on a schedule feeding the alerting stack that already exists.
 Nothing deployed. Two are worth calling out as the highest-value additions for a **data**
 platform specifically, because neither requires a new system:
 
-**[blackbox-exporter](blackbox-exporter/)** — `probe_ssl_earliest_cert_expiry` turns
+**[blackbox-exporter](blackbox-exporter/README.md)** — `probe_ssl_earliest_cert_expiry` turns
 certificate expiry into an alert. The repository documents
 [certificates](../../../security/2-cluster/certificates/README.md) in depth, and this is the
 one line that stops an expiry from ever being a surprise.
 
-**[sql-exporter](sql-exporter/)** — freshness, completeness and rejected-record counts are
+**[sql-exporter](sql-exporter/README.md)** — freshness, completeness and rejected-record counts are
 queries, and a query can be a metric. That is data quality alerting through the Prometheus and
 Alertmanager already deployed, with no new pipeline and no new on-call surface. For this
 repository it is the cheapest bridge between the platform and the data on it.

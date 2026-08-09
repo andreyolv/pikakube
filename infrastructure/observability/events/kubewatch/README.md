@@ -22,13 +22,13 @@ layer, no retention.
 
 ## When not to use it
 
-- retention matters — this notifies, it does not store. [kubernetes-event-exporter](../kubernetes-event-exporter/)
+- retention matters — this notifies, it does not store. [kubernetes-event-exporter](../kubernetes-event-exporter/README.md)
 - you need a real audit trail — that is [audit logs](../../../security/2-cluster/audit/), which are complete and tamper-evident in a way notifications are not
 - the cluster is busy enough that the channel becomes unreadable
 
 ## Related
 
-Maintained by the same project as [Robusta](../../alerting/robusta/), which covers the richer
+Maintained by the same project as [Robusta](../../alerting/robusta/README.md), which covers the richer
 enrichment and automation case.
 
 ---

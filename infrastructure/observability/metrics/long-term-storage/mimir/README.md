@@ -12,7 +12,7 @@ Long-term, horizontally scalable metrics storage built for very large scale and
 **multi-tenancy** — fed by Prometheus **remote write** rather than by a sidecar.
 
 That difference in ingestion is the main architectural distinction from
-[Thanos](../thanos/): Prometheus becomes a forwarder, and Mimir owns storage, querying and
+[Thanos](../thanos/README.md): Prometheus becomes a forwarder, and Mimir owns storage, querying and
 rule evaluation centrally.
 
 Multi-tenancy is native rather than bolted on — separate limits, retention and isolation per
@@ -27,9 +27,9 @@ tenant, which is what a platform team needs when several teams share one metrics
 
 ## When not to use it
 
-- a modest deployment — it is a distributed system with many components, and [Thanos](../thanos/) reaches the same result with less
+- a modest deployment — it is a distributed system with many components, and [Thanos](../thanos/README.md) reaches the same result with less
 - Prometheus should stay authoritative locally; remote write inverts that relationship
-- cardinality and resource cost are the actual problem — [VictoriaMetrics](../../storage/victoria-metrics/)
+- cardinality and resource cost are the actual problem — [VictoriaMetrics](../../storage/victoria-metrics/README.md)
 
 ## Thanos or Mimir
 

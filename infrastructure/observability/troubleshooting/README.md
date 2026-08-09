@@ -4,8 +4,8 @@
 
 Turning signals into a diagnosis — including letting a machine narrow it down first.
 
-Tools covered: [`k8sgpt`](k8sgpt/) · [`holmesgpt`](holmesgpt/) ·
-[`inspektor-gadget`](inspektor-gadget/) · [`botkube`](botkube/) · [`komodor`](komodor/)
+Tools covered: [`k8sgpt`](k8sgpt/README.md) · [`holmesgpt`](holmesgpt/README.md) ·
+[`inspektor-gadget`](inspektor-gadget/README.md) · [`botkube`](botkube/README.md) · [`komodor`](komodor/README.md)
 
 ## Contents
 
@@ -34,23 +34,23 @@ These tools automate the mechanical part.
 
 | Approach | What it does | Tools |
 |---|---|---|
-| **Rule-based scanning** | checks the cluster against known failure patterns and reports what looks broken | [k8sgpt](k8sgpt/) |
-| **AI-assisted investigation** | takes an alert, gathers context across sources, and proposes a cause | [HolmesGPT](holmesgpt/), and [Aurora](../incident-management/aurora/) from the incident side |
-| **Deep runtime inspection** | eBPF tooling that observes syscalls, file and network activity live | [Inspektor Gadget](inspektor-gadget/) |
+| **Rule-based scanning** | checks the cluster against known failure patterns and reports what looks broken | [k8sgpt](k8sgpt/README.md) |
+| **AI-assisted investigation** | takes an alert, gathers context across sources, and proposes a cause | [HolmesGPT](holmesgpt/README.md), and [Aurora](../incident-management/aurora/README.md) from the incident side |
+| **Deep runtime inspection** | eBPF tooling that observes syscalls, file and network activity live | [Inspektor Gadget](inspektor-gadget/README.md) |
 
 Plus two that change **where** the work happens rather than what it is:
-[Botkube](botkube/) brings the cluster into chat, and [Komodor](komodor/) reconstructs change
+[Botkube](botkube/README.md) brings the cluster into chat, and [Komodor](komodor/README.md) reconstructs change
 timelines.
 
 ## 3. The tools in this folder
 
 | Tool | Role | Shines when | Do not use when | Detail |
 |---|---|---|---|---|
-| **k8sgpt** | scans for known problems, optionally explaining them with an LLM | you want an immediate list of what is broken and why, with no setup | you need deep runtime inspection | [→](k8sgpt/) |
-| **HolmesGPT** | AI investigation that gathers context and proposes root cause | alerts arrive and triage is the bottleneck | you cannot send cluster data to a model | [→](holmesgpt/) |
-| **Inspektor Gadget** | eBPF inspection — syscalls, file, network, DNS, per pod | the problem is below the application and `kubectl` cannot see it | ordinary application-level debugging | [→](inspektor-gadget/) |
-| **Botkube** | cluster interaction and notifications from chat | the team lives in Slack and you want triage without a terminal | you want the diagnosis itself, not access to run commands | [→](botkube/) |
-| **Komodor** | change and event timeline, SaaS | "what changed before this broke" is the recurring question | data cannot leave the cluster | [→](komodor/) |
+| **k8sgpt** | scans for known problems, optionally explaining them with an LLM | you want an immediate list of what is broken and why, with no setup | you need deep runtime inspection | [→](k8sgpt/README.md) |
+| **HolmesGPT** | AI investigation that gathers context and proposes root cause | alerts arrive and triage is the bottleneck | you cannot send cluster data to a model | [→](holmesgpt/README.md) |
+| **Inspektor Gadget** | eBPF inspection — syscalls, file, network, DNS, per pod | the problem is below the application and `kubectl` cannot see it | ordinary application-level debugging | [→](inspektor-gadget/README.md) |
+| **Botkube** | cluster interaction and notifications from chat | the team lives in Slack and you want triage without a terminal | you want the diagnosis itself, not access to run commands | [→](botkube/README.md) |
+| **Komodor** | change and event timeline, SaaS | "what changed before this broke" is the recurring question | data cannot leave the cluster | [→](komodor/README.md) |
 
 ## 4. On AI-assisted diagnosis
 

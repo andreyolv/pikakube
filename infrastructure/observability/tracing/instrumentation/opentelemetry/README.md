@@ -35,7 +35,7 @@ clients, database drivers, message queues — with no source change.
 opentelemetry-instrument python app.py
 ```
 
-In Kubernetes the [operator](../../collector/opentelemetry/) can inject this through a pod
+In Kubernetes the [operator](../../collector/opentelemetry/README.md) can inject this through a pod
 annotation, which means instrumenting a fleet without rebuilding images.
 
 Start there. Add manual spans afterwards, only where the automatic picture is insufficient.

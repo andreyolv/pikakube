@@ -28,7 +28,7 @@ firewalls and VMs, and a new cluster is expected to report into it like everythi
 ## When not to use it
 
 - Prometheus is already the standard in the cluster — running both means two stacks, two alert definitions and two on-call surfaces
-- what you want is **cluster-internal path probing**; that is [kubenurse](../kubenurse/), and it is not what Zabbix is for
+- what you want is **cluster-internal path probing**; that is [kubenurse](../kubenurse/README.md), and it is not what Zabbix is for
 
 ## The honest framing
 

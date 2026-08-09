@@ -29,7 +29,7 @@ node, then filter and read.
 - **as a permanent installation.** It observes real traffic including credentials and
   personal data, costs CPU and memory on every node, and is an obvious target. Turn it on
   for an investigation and off afterwards
-- when [Cilium](../../cni/cilium/) is already the CNI — **Hubble** covers much of this with
+- when [Cilium](../../cni/cilium/README.md) is already the CNI — **Hubble** covers much of this with
   nothing extra to install
 - as a first step; most problems are DNS, endpoints or policy and never reach the wire
 

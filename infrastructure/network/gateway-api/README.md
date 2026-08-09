@@ -5,8 +5,8 @@
 Conceptual reference for the `gateway-api/` folder: the **successor to Ingress**, and the
 implementations built around it.
 
-Tools covered: [`envoy-gateway`](envoy-gateway/) · [`kgateway`](kgateway/) ·
-[`nginx-gateway-fabric`](nginx-gateway-fabric/) · [`kuadrant`](kuadrant/)
+Tools covered: [`envoy-gateway`](envoy-gateway/README.md) · [`kgateway`](kgateway/README.md) ·
+[`nginx-gateway-fabric`](nginx-gateway-fabric/README.md) · [`kuadrant`](kuadrant/README.md)
 
 ## Contents
 
@@ -73,10 +73,10 @@ design. See [`service-mesh/`](../service-mesh/README.md).
 
 | Tool | Data path | Shines when | Detail |
 |---|---|---|---|
-| **Envoy Gateway** | Envoy | the reference-grade implementation, from the Envoy project itself | [→](envoy-gateway/) |
-| **kgateway** | Envoy | Gateway API plus AI and LLM routing — the successor line to Gloo's open-source edge | [→](kgateway/) |
-| **NGINX Gateway Fabric** | NGINX | you want NGINX as the data path with the new API | [→](nginx-gateway-fabric/) |
-| **Kuadrant** | policy layer | **not a gateway** — adds rate limiting and authz to an existing one via policy attachment | [→](kuadrant/) |
+| **Envoy Gateway** | Envoy | the reference-grade implementation, from the Envoy project itself | [→](envoy-gateway/README.md) |
+| **kgateway** | Envoy | Gateway API plus AI and LLM routing — the successor line to Gloo's open-source edge | [→](kgateway/README.md) |
+| **NGINX Gateway Fabric** | NGINX | you want NGINX as the data path with the new API | [→](nginx-gateway-fabric/README.md) |
+| **Kuadrant** | policy layer | **not a gateway** — adds rate limiting and authz to an existing one via policy attachment | [→](kuadrant/README.md) |
 
 ## 5. Migrating from Ingress
 
@@ -112,7 +112,7 @@ implementation, rather than the single `HelmRelease` everything else uses.
 
 ## 7. How this applies to pikakube
 
-Not in use — the cluster runs [ingress-nginx](../ingress-controller/ingress-nginx/) with
+Not in use — the cluster runs [ingress-nginx](../ingress-controller/ingress-nginx/README.md) with
 `Ingress` objects.
 
 This folder is the mapped answer to "what replaces it". The realistic first step on a real

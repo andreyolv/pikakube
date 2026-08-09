@@ -27,7 +27,7 @@ searching a corpus.
 
 ## When not to use it
 
-- genuine full-text search across large volumes is the workload — [Quickwit](../quickwit/) or [OpenSearch](../opensearch/)
+- genuine full-text search across large volumes is the workload — [Quickwit](../quickwit/README.md) or [OpenSearch](../opensearch/README.md)
 - logs are a product rather than a debugging aid: security hunting, compliance search, analytics over content
 
 ## The mistake everyone makes once
@@ -45,7 +45,7 @@ than to fix.
 
 ## Notes
 
-Object storage backend: [`minio/`](minio/)
+Object storage backend: [`minio/`](minio/README.md)
 
 - Kubernetes monitoring Helm chart: <https://github.com/grafana/k8s-monitoring-helm>
 - **Meta-monitoring** — monitoring Loki itself: <https://github.com/grafana/loki/tree/main/production/helm/meta-monitoring>

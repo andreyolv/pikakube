@@ -5,8 +5,8 @@
 Where observability turns into action — and where most platforms accumulate their worst
 technical debt.
 
-Tools covered: [`alertmanager`](alertmanager/) · [`robusta`](robusta/) ·
-[`keep`](keep/) · [`kwatch`](kwatch/)
+Tools covered: [`alertmanager`](alertmanager/README.md) · [`robusta`](robusta/README.md) ·
+[`keep`](keep/README.md) · [`kwatch`](kwatch/README.md)
 
 ## Contents
 
@@ -46,9 +46,9 @@ These get merged and should not be:
 | Job | What it means | Where it lives |
 |---|---|---|
 | **Generation** | evaluating a rule and deciding an alert is firing | Prometheus rules, not this folder |
-| **Routing** | grouping, deduplicating, silencing, and deciding where it goes | [Alertmanager](alertmanager/) |
-| **Enrichment** | attaching the logs, graphs and recent changes that explain it | [Robusta](robusta/) |
-| **Correlation** | collapsing many alerts from many sources into one incident | [Keep](keep/) |
+| **Routing** | grouping, deduplicating, silencing, and deciding where it goes | [Alertmanager](alertmanager/README.md) |
+| **Enrichment** | attaching the logs, graphs and recent changes that explain it | [Robusta](robusta/README.md) |
+| **Correlation** | collapsing many alerts from many sources into one incident | [Keep](keep/README.md) |
 
 Alertmanager does **not** generate alerts. Prometheus evaluates the rules and pushes firing
 alerts to it. This trips people up constantly when an alert never arrives — the rule may not
@@ -74,10 +74,10 @@ producing a wall of notifications.
 
 | Tool | Role | Shines when | Do not use when | Detail |
 |---|---|---|---|---|
-| **Alertmanager** | routing | you already run Prometheus — it is the standard and integrates with everything | there is no Prometheus and you only want pod-crash notifications | [→](alertmanager/) |
-| **Robusta** | enrichment and automation | alerts arrive without context and every page starts with ten minutes of digging | alert volume is low enough that context is easy to gather manually | [→](robusta/) |
-| **Keep** | correlation across sources | alerts come from many systems and nobody can tell which are the same incident | Prometheus is the only source — Alertmanager's grouping already covers it | [→](keep/) |
-| **kwatch** | simple event notifications | you want "tell me in Slack when a pod crash-loops" with no Prometheus at all | you already have Prometheus and Alertmanager | [→](kwatch/) |
+| **Alertmanager** | routing | you already run Prometheus — it is the standard and integrates with everything | there is no Prometheus and you only want pod-crash notifications | [→](alertmanager/README.md) |
+| **Robusta** | enrichment and automation | alerts arrive without context and every page starts with ten minutes of digging | alert volume is low enough that context is easy to gather manually | [→](robusta/README.md) |
+| **Keep** | correlation across sources | alerts come from many systems and nobody can tell which are the same incident | Prometheus is the only source — Alertmanager's grouping already covers it | [→](keep/README.md) |
+| **kwatch** | simple event notifications | you want "tell me in Slack when a pod crash-loops" with no Prometheus at all | you already have Prometheus and Alertmanager | [→](kwatch/README.md) |
 
 ## 5. Decision tree
 

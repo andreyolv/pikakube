@@ -38,7 +38,7 @@ the same location talk directly, and only cross-location traffic goes through th
 | Goal | Tool |
 |---|---|
 | **One cluster**, nodes in different places | **kilo** |
-| **Several clusters**, in different places, that need to talk | [Submariner](../../cluster-interconnection/submariner/) or a service mesh |
+| **Several clusters**, in different places, that need to talk | [Submariner](../../cluster-interconnection/submariner/README.md) or a service mesh |
 
 Mixing these up is the common mistake. Kilo makes distant machines behave like one cluster;
 cluster-interconnection keeps clusters separate and connects them.

@@ -32,12 +32,12 @@ resources bound to a `Gateway` or an `HTTPRoute`:
 
 - you run a Gateway API implementation and need rate limiting or auth **without** adopting a full [API gateway](../../api-gateway/README.md)
 - you want policy expressed in Gateway API resources rather than vendor annotations
-- multi-cluster, where `DNSPolicy` overlaps with what [k8gb](../../load-balancer/k8gb/) does
+- multi-cluster, where `DNSPolicy` overlaps with what [k8gb](../../load-balancer/k8gb/README.md) does
 
 ## When not to use it
 
 - you have no Gateway API implementation yet — install one first
-- the requirement is full API management with a developer portal, consumers and plans; that is [Kong](../../api-gateway/kong/) or [Tyk](../../api-gateway/tyk/)
+- the requirement is full API management with a developer portal, consumers and plans; that is [Kong](../../api-gateway/kong/README.md) or [Tyk](../../api-gateway/tyk/README.md)
 
 ## Reference
 

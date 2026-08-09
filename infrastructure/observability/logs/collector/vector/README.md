@@ -28,7 +28,7 @@ transformation can be verified before it reaches production.
 
 ## When not to use it
 
-- simple shipping with light filtering — [Fluent Bit](../fluent/fluent-bit/) is smaller and the more common choice
+- simple shipping with light filtering — [Fluent Bit](../fluent/fluent-bit/README.md) is smaller and the more common choice
 - you want the most widely deployed option with the most examples available
 
 ## Where it fits best

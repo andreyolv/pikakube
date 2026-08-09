@@ -10,7 +10,7 @@ Context and comparison: [../README.md](../README.md)
 
 ## The problem it solves
 
-The same substrate as [Kube-OVN](../kube-ovn/) — pod networking implemented on **OVN/OVS**
+The same substrate as [Kube-OVN](../kube-ovn/README.md) — pod networking implemented on **OVN/OVS**
 rather than iptables or eBPF — but as the upstream project that large distributions build
 on. It is the CNI behind OpenShift.
 
@@ -25,7 +25,7 @@ a control plane rather than assembled from per-node rules.
 
 ## When not to use it
 
-- you want OVN features with a friendlier, more Kubernetes-native API — [Kube-OVN](../kube-ovn/) is the more approachable of the two
+- you want OVN features with a friendlier, more Kubernetes-native API — [Kube-OVN](../kube-ovn/README.md) is the more approachable of the two
 - you are not committed to the OVN ecosystem at all; the operational cost only pays off if the model is genuinely needed
 
 ## Choosing between the two OVN options
