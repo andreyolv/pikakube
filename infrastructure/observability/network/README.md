@@ -58,7 +58,7 @@ checking before installing anything: the answer may already be running.
 |---|---|---|
 | Installing a flow tool when Cilium is already the CNI | Hubble covers it, better | check first |
 | Capturing all flows with no retention plan | flow data volume is very large | sample and scope by namespace |
-| Using flow logs as a security audit trail | they show traffic, not intent or identity | [audit logs](../../security/2-cluster/audit/) and runtime security |
+| Using flow logs as a security audit trail | they show traffic, not intent or identity | [audit logs](../../security/2-cluster/audit/README.md) and runtime security |
 | Treating it as a debugging tool | it is a continuous signal; ad-hoc debugging is [netshoot](../../network/troubleshooting/netshoot/README.md) | use it for patterns, not for one-off checks |
 
 ## How this applies to pikakube

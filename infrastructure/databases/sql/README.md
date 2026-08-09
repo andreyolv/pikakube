@@ -5,7 +5,7 @@
 The relational default, and the right answer more often than the alternatives suggest.
 
 Tools covered: [`postgresql`](postgresql/README.md) · [`mysql`](mysql/README.md) ·
-[`mariadb`](mariadb/README.md) · [`sqlite`](sqlite/README.md) · [`sqlserver`](sqlserver/)
+[`mariadb`](mariadb/README.md) · [`sqlite`](sqlite/README.md) · [`sqlserver`](sqlserver/README.md)
 
 ## Contents
 
@@ -63,7 +63,7 @@ model would be tidier.
 | **MySQL** | very widely deployed, strong replication story, simpler operationally in some respects | [→](mysql/README.md) |
 | **MariaDB** | MySQL fork with divergent features and a clear open-source position | [→](mariadb/README.md) |
 | **SQLite** | in-process, no server — enormously useful and constantly underrated | [→](sqlite/README.md) |
-| **SQL Server** | present because it exists in real estates, usually as a source rather than a target | [→](sqlserver/) |
+| **SQL Server** | present because it exists in real estates, usually as a source rather than a target | [→](sqlserver/README.md) |
 
 **SQLite deserves more than a footnote.** It is the right answer for embedded state, local
 tooling, tests, and single-node workloads — and with [Litestream](sqlite/litestream/README.md) it
@@ -99,7 +99,7 @@ is where "the database did not come back" usually originates — see
 
 **Connection pooling.** Postgres allocates a process per connection and exhausts long before it
 exhausts CPU. A pooler is not an optimisation, it is a requirement — see
-[`tooling/pooler/`](../tooling/pooler/).
+[`tooling/pooler/`](../tooling/pooler/README.md).
 
 **Restore, actually tested.** With the operator scaled to zero first, or it recreates an empty
 volume before the restore lands — see
@@ -112,7 +112,7 @@ volume before the restore lands — see
 | A second database for a feature Postgres covers | one more system to back up, monitor and upgrade | measure the constraint first |
 | No connection pooler | connection exhaustion under load that CPU graphs do not explain | PgBouncer or PgCat |
 | Analytics on the production OLTP database | one query causes an unrelated outage | a replica, or the warehouse |
-| Schema changes without a migration tool | environments diverge and nobody can reproduce production | [`tooling/migration/`](../tooling/migration/) |
+| Schema changes without a migration tool | environments diverge and nobody can reproduce production | [`tooling/migration/`](../tooling/migration/README.md) |
 | Untested restores | discovered during the incident | scheduled restore drills |
 | `latin1` or a legacy collation by default | encoding problems that surface years later | UTF-8, explicitly |
 | Defaults for `shared_buffers`, `work_mem` | the default configuration assumes a small machine | tune from the actual workload |

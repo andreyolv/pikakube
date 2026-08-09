@@ -56,7 +56,7 @@ outside Spark — in how data was written, usually by a streaming job.
 
 Fixing it is compaction and table maintenance, not Spark tuning. See
 [file formats](../../../file-formats.md) and the table formats in
-[`data-governance/`](../../../../data-governance/).
+[`data-governance/`](../../../../data-governance/README.md).
 
 ---
 

@@ -51,7 +51,7 @@ The problem it is best at surfacing, and the one worth understanding:
 The cause is almost never Spark. It is how the data was written — usually a streaming job
 producing one file per micro-batch. The fix is compaction and table maintenance, which lives
 with [file formats](../../../../file-formats.md) and the table formats in
-[`data-governance/`](../../../../../data-governance/).
+[`data-governance/`](../../../../../data-governance/README.md).
 
 DataFlint's value is making that visible from the consuming side, where the pain is felt.
 

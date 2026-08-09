@@ -44,7 +44,7 @@ decides what happens when a node dies.
 
 **Connection pooling.** Postgres allocates a process per connection and exhausts long before it
 exhausts CPU. The symptom is a database that appears slow while idle. A pooler is a
-requirement, not a tuning step — see [`tooling/pooler/`](../../tooling/pooler/).
+requirement, not a tuning step — see [`tooling/pooler/`](../../tooling/pooler/README.md).
 
 **Storage.** An RWO volume pins the pod to a node, and a node failure means waiting for detach —
 see [`storage/`](../../../site-reliability-engineering/storage/README.md).

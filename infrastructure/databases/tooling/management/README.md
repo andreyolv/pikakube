@@ -80,7 +80,7 @@ running exploratory queries against the primary is a well-established way to cau
 outage — see the anti-patterns in [`sql/`](../../sql/README.md#6-anti-patterns).
 
 For the authentication piece, the cluster already has the components:
-[`identity-access/`](../../../security/2-cluster/identity-access/) and the
+[`identity-access/`](../../../security/2-cluster/identity-access/README.md) and the
 [ingress controllers](../../../network/README.md) that can enforce it.
 
 ## Anti-patterns

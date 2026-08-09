@@ -34,7 +34,7 @@ do not overlap.
 ## When not to use it
 
 - as a source of monitoring data. Prometheus scraping cAdvisor covers that, with history
-- if autoscaling needs **custom** metrics — that is [prometheus-adapter](../prometheus-adapter/README.md) or [KEDA](../../../../devops/event-driven/keda/)
+- if autoscaling needs **custom** metrics — that is [prometheus-adapter](../prometheus-adapter/README.md) or [KEDA](../../../../devops/event-driven/keda/README.md)
 
 ## Kind note
 

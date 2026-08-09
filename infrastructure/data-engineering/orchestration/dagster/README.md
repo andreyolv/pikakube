@@ -27,7 +27,7 @@ maintained separately.
 ## What follows from the asset model
 
 **Lineage comes free.** The graph already knows that `orders_daily` derives from `orders_raw`.
-That overlaps directly with what [`data-governance/`](../../../data-governance/) addresses with
+That overlaps directly with what [`data-governance/`](../../../data-governance/README.md) addresses with
 separate tooling.
 
 **Local development is genuinely good.** Assets are ordinary Python functions with typed inputs

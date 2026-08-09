@@ -103,7 +103,7 @@ does the work.
 
 **SQLMesh** is mapped as the serious alternative rather than as a curiosity. Its column-level
 lineage overlaps directly with what this repository currently addresses through separate tooling
-in [`data-governance/`](../../data-governance/) — which makes it worth a real evaluation rather
+in [`data-governance/`](../../data-governance/README.md) — which makes it worth a real evaluation rather
 than a footnote.
 
 ---

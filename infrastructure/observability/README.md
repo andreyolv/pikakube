@@ -83,9 +83,9 @@ organisations end up paying for a platform *and* operating the components it rep
 
 | Concern | Where |
 |---|---|
-| Cost visibility and FinOps | [`finops/`](../finops/) |
-| Security posture, runtime security, SIEM | [`security/`](../security/) |
-| Cluster audit logs | [`security/2-cluster/audit/`](../security/2-cluster/audit/) |
+| Cost visibility and FinOps | [`finops/`](../finops/README.md) |
+| Security posture, runtime security, SIEM | [`security/`](../security/README.md) |
+| Cluster audit logs | [`security/2-cluster/audit/`](../security/2-cluster/audit/README.md) |
 | Network reachability probing | [`network/monitoring/`](../network/monitoring/README.md) |
 | Diagnosing a specific broken connection | [`network/troubleshooting/`](../network/troubleshooting/README.md) |
 | SLOs and error budgets | [`site-reliability-engineering/`](../site-reliability-engineering/README.md) |

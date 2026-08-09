@@ -42,7 +42,7 @@ repository like everything else.
 
 Kafka topic governance is usually a wiki page and good intentions. Declaring topics as
 resources means naming conventions, retention policy and access can be enforced by
-[Kyverno](../../../../security/2-cluster/policies/kyverno/) or by review — the same way every
+[Kyverno](../../../../security/2-cluster/policies/kyverno/README.md) or by review — the same way every
 other resource in the cluster is governed.
 
 This repository already does topic and user governance for Kafka with Strimzi. The operator

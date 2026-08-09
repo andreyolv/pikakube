@@ -44,7 +44,7 @@ dump is measured in hours; upgrading across major versions requires one.
 | **`binlog_format = ROW`** | required for reliable CDC — see [`../README.md`](../README.md#the-configuration-that-bites) |
 | `character_set_server = utf8mb4` | `latin1` defaults produce encoding problems years later |
 | `sql_mode` | permissive defaults silently truncate and coerce data |
-| `max_connections` | with a [pooler](../../../tooling/pooler/) in front, since MySQL also has a ceiling |
+| `max_connections` | with a [pooler](../../../tooling/pooler/README.md) in front, since MySQL also has a ceiling |
 
 ## On Kubernetes
 

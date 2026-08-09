@@ -54,7 +54,7 @@ answer now.
 | Backup destination outlives the cluster | object storage, not a PVC in the same cluster |
 | PITR works, not just full backups | recovering to *before* the bad migration is the real requirement |
 | Minor upgrade path | how a version bump happens, and what it interrupts |
-| Connection pooling | see [`tooling/pooler/`](../../../tooling/pooler/) |
+| Connection pooling | see [`tooling/pooler/`](../../../tooling/pooler/README.md) |
 
 The first row is the one that is skipped. An operator that takes backups and has never been
 restored from is a hypothesis — see

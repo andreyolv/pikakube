@@ -38,7 +38,7 @@ The separation is worth stating because these get conflated constantly:
 | Ingestion and ELT connectors | [`analytics-engineering/integration/`](../analytics-engineering/integration/README.md) |
 | SQL transformation and modelling | [`analytics-engineering/transform/`](../analytics-engineering/transform/README.md) — dbt, SQLMesh |
 | Streaming and real-time processing | [`data-streaming/`](../data-streaming/README.md) |
-| Table formats, catalogues, lineage | [`data-governance/`](../data-governance/) |
+| Table formats, catalogues, lineage | [`data-governance/`](../data-governance/README.md) |
 | Databases as systems of record | [`databases/`](../databases/README.md) |
 | Where the bytes physically live | [`site-reliability-engineering/storage/`](../site-reliability-engineering/storage/README.md) |
 

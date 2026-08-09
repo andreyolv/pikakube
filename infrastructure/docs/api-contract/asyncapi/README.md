@@ -78,7 +78,7 @@ The reasoning is already recorded in
 [apicurio-registry](../../../data-streaming/schema-registry/apicurio-registry/README.md): event
 contracts are almost universally undocumented, Kafka topics have owners and semantics that live
 in people's heads, and turning that into a query rather than a conversation is the same goal as
-[`data-governance/`](../../../data-governance/) applied to interfaces.
+[`data-governance/`](../../../data-governance/README.md) applied to interfaces.
 
 The sequence that would pay off, none of which requires deploying anything to the cluster:
 

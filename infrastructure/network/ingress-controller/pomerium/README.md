@@ -45,13 +45,13 @@ about identity.
 
 - plain HTTP routing — this is a much larger component than the job needs
 - for authenticating **end users of a public product**; that belongs in the application or an API gateway
-- when [oauth2-proxy](../../../security/2-cluster/identity-access/) already covers it — it is lighter, if you only need authentication and not per-route authorisation policy
+- when [oauth2-proxy](../../../security/2-cluster/identity-access/README.md) already covers it — it is lighter, if you only need authentication and not per-route authorisation policy
 
 ## Related capabilities
 
 | Concern | Where |
 |---|---|
-| SSO and identity providers | [`security/2-cluster/identity-access/`](../../../security/2-cluster/identity-access/) |
+| SSO and identity providers | [`security/2-cluster/identity-access/`](../../../security/2-cluster/identity-access/README.md) |
 | Certificates for the routes it serves | [`certificates/`](../../../security/2-cluster/certificates/README.md) |
 | API keys, quotas, rate limiting for APIs | [`api-gateway/`](../../api-gateway/README.md) |
 

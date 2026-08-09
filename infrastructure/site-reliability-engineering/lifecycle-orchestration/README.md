@@ -42,7 +42,7 @@ They solve adjacent halves:
 
 | Question | Where |
 |---|---|
-| How does the cluster match Git? | [`platform-engineering/gitops/`](../../platform-engineering/gitops/) |
+| How does the cluster match Git? | [`platform-engineering/gitops/`](../../platform-engineering/gitops/README.md) |
 | **How does a change move between environments?** | **here** |
 | How is a single release rolled out safely? | [`progressive-delivery/`](../progressive-delivery/README.md) |
 | What does "successful" mean, numerically? | [`service-level/`](../service-level/README.md) |
@@ -69,7 +69,7 @@ It is mapped because the moment a second environment exists, the informal approa
 tag in the other folder — becomes the mechanism by which untested changes reach production.
 
 Worth noting the ecosystem fit: Kargo pairs with Argo CD, and this repository is Flux-based.
-Both are mapped under [`platform-engineering/gitops/`](../../platform-engineering/gitops/), so
+Both are mapped under [`platform-engineering/gitops/`](../../platform-engineering/gitops/README.md), so
 the choice is open rather than settled.
 
 ---

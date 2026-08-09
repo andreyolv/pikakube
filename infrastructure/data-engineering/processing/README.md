@@ -83,7 +83,7 @@ flowchart TD
 |---|---|---|
 | Spark for small data | coordination overhead exceeds the work | DuckDB |
 | Processing inside the orchestrator | couples compute to scheduling — see [`orchestration/`](../orchestration/README.md) | submit a job |
-| Ignoring the small-files problem | thousands of tiny files destroy read performance and cost | compaction, and the table formats in [`data-governance/`](../../data-governance/) |
+| Ignoring the small-files problem | thousands of tiny files destroy read performance and cost | compaction, and the table formats in [`data-governance/`](../../data-governance/README.md) |
 | Default executor sizing | either wasting resources or failing on shuffle spill | size from the actual shuffle profile |
 | No `spark-history-server` | finished jobs leave nothing to diagnose | keep event logs |
 | Rewriting transformations in Python | SQL is testable, reviewable, and understood by more people | SQL where possible — [`analytics-engineering/transform/`](../../analytics-engineering/transform/README.md) |

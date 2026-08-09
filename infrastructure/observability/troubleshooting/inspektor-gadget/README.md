@@ -33,7 +33,7 @@ container — instead of leaving you with a PID.
 
 ## Related
 
-Overlaps with [`security/2-cluster/runtime-security/`](../../../security/2-cluster/runtime-security/) —
+Overlaps with [`security/2-cluster/runtime-security/`](../../../security/2-cluster/runtime-security/README.md) —
 Falco, Tetragon and Tracee observe the same layer. The difference is intent: those detect and
 alert on policy violations continuously, this one is used to answer a question now.
 

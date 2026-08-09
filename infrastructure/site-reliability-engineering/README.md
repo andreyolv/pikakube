@@ -48,8 +48,8 @@ Read in that order, each folder answers the question the previous one raises:
 |---|---|
 | Metrics, logs, traces, alerting | [`observability/`](../observability/README.md) |
 | Incident response and on-call | [`observability/incident-management/`](../observability/incident-management/README.md) |
-| Cost and right-sizing | [`finops/`](../finops/) |
-| GitOps delivery mechanics | [`platform-engineering/gitops/`](../platform-engineering/gitops/) |
+| Cost and right-sizing | [`finops/`](../finops/README.md) |
+| GitOps delivery mechanics | [`platform-engineering/gitops/`](../platform-engineering/gitops/README.md) |
 | Network resilience and failover | [`network/load-balancer/k8gb/`](../network/load-balancer/k8gb/README.md) |
 
 The split with `observability/` is worth stating: that folder **tells you** something is wrong,

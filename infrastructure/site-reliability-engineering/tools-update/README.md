@@ -87,9 +87,9 @@ plugins must move together.
 
 ## Related
 
-- Deprecated API detection before a cluster upgrade: [`platform-engineering/kubernetes/managed/check-deprecated-apis/`](../../platform-engineering/kubernetes/managed/check-deprecated-apis/)
+- Deprecated API detection before a cluster upgrade: [`platform-engineering/kubernetes/managed/check-deprecated-apis/`](../../platform-engineering/kubernetes/managed/check-deprecated-apis/README.md)
 - Backup before upgrading: [`backup/velero/`](../backup/velero/README.md)
-- Image internalisation: [`security/3-container/`](../../security/3-container/)
+- Image internalisation: [`security/3-container/`](../../security/3-container/README.md)
 
 ---
 

@@ -18,7 +18,7 @@ that usually have to be assembled around it:
 | Federated SQL | a query engine |
 | **Reflections** | materialised views the optimiser uses automatically, without the query being rewritten |
 | Semantic layer | virtual datasets with governed definitions — see [`semantic/`](../../../analytics-engineering/semantic/README.md) |
-| Catalogue and lineage | part of what [`data-governance/`](../../../data-governance/) covers |
+| Catalogue and lineage | part of what [`data-governance/`](../../../data-governance/README.md) covers |
 | UI | self-service exploration for analysts |
 
 **Reflections are the distinguishing feature.** They are transparent materialisations: define
@@ -36,7 +36,7 @@ consider it.
 
 ## When not to use it
 
-- you prefer composable, replaceable components — [Trino](../trino-gateway/README.md) plus [dbt](../../../analytics-engineering/transform/dbt/README.md) plus a [catalogue](../../../data-governance/)
+- you prefer composable, replaceable components — [Trino](../trino-gateway/README.md) plus [dbt](../../../analytics-engineering/transform/dbt/README.md) plus a [catalogue](../../../data-governance/README.md)
 - fully open source is a requirement; the OSS edition is genuinely usable but the product line is commercial
 - Trino is already deployed and working
 

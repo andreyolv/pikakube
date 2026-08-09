@@ -135,7 +135,7 @@ recorded rationale and no ADR:
 
 | Decision | Where the reasoning currently lives |
 |---|---|
-| Flux over Argo CD | [`platform-engineering/gitops/`](../../platform-engineering/gitops/) |
+| Flux over Argo CD | [`platform-engineering/gitops/`](../../platform-engineering/gitops/README.md) |
 | nip.io over a real domain for the local cluster | [`network/dns/`](../../network/dns/README.md) |
 | CloudNativePG over the other Postgres operators | [`databases/sql/postgresql/operator/`](../../databases/sql/postgresql/operator/README.md) |
 | READMEs rendered by GitHub, rather than a generated site | [`site-generator/`](../site-generator/README.md) |

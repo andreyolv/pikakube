@@ -92,11 +92,11 @@ answer.
 
 | Concern | Where |
 |---|---|
-| Network policies and segmentation | [`security/2-cluster/network-policies/`](../security/2-cluster/network-policies/) — enforced by the CNI, but a security capability |
+| Network policies and segmentation | [`security/2-cluster/network-policies/`](../security/2-cluster/network-policies/README.md) — enforced by the CNI, but a security capability |
 | Certificates and TLS trust | [`security/2-cluster/certificates/`](../security/2-cluster/certificates/README.md) |
-| SSO, OIDC, identity-aware access | [`security/2-cluster/identity-access/`](../security/2-cluster/identity-access/) |
-| Routing traffic to LLM providers | [`ai/ai-gateway/`](../ai/ai-gateway/) |
-| Multi-cluster **management** and scheduling | [`platform-engineering/kubernetes/managed/multi-cluster/`](../platform-engineering/kubernetes/managed/multi-cluster/) |
+| SSO, OIDC, identity-aware access | [`security/2-cluster/identity-access/`](../security/2-cluster/identity-access/README.md) |
+| Routing traffic to LLM providers | [`ai/ai-gateway/`](../ai/ai-gateway/README.md) |
+| Multi-cluster **management** and scheduling | [`platform-engineering/kubernetes/managed/multi-cluster/`](../platform-engineering/kubernetes/managed/multi-cluster/README.md) |
 | Metrics, logs and traces | [`observability/`](../observability/README.md) |
 
 ## The stack in pikakube

@@ -35,7 +35,7 @@ pool, the footprint alone makes it impractical, regardless of whether the featur
 ## Related
 
 For load testing as its own capability, see
-[`software-engineering/tests/load/`](../../../../software-engineering/tests/load/) — k6 and
+[`software-engineering/tests/load/`](../../../../software-engineering/testing/load/README.md) — k6 and
 Locust, without an observability platform attached.
 
 ---

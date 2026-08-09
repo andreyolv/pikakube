@@ -64,7 +64,7 @@ and nobody can say which is authoritative.
 |---|---|
 | Orchestration, Spark, distributed processing | [`data-engineering/`](../data-engineering/README.md) |
 | Streaming ingestion and CDC | [`data-streaming/`](../data-streaming/README.md) |
-| Table formats, catalogue, lineage, contracts, quality | [`data-governance/`](../data-governance/) |
+| Table formats, catalogue, lineage, contracts, quality | [`data-governance/`](../data-governance/README.md) |
 | Warehouses and databases themselves | [`databases/`](../databases/README.md) |
 
 Data **quality** in particular lives in `data-governance/` rather than here, even though dbt

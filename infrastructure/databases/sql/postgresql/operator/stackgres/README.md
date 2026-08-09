@@ -14,7 +14,7 @@ bundles the surrounding stack and ships it as one unit:
 
 | Included | Which otherwise is |
 |---|---|
-| **PgBouncer** | a separate deployment you have to remember — see [`tooling/pooler/`](../../../../tooling/pooler/) |
+| **PgBouncer** | a separate deployment you have to remember — see [`tooling/pooler/`](../../../../tooling/pooler/README.md) |
 | Envoy | a proxy in front, for observability and connection handling |
 | Prometheus exporter | configured separately |
 | Backup to object storage | configured separately |

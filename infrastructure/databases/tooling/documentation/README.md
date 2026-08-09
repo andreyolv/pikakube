@@ -51,7 +51,7 @@ That gap is filled by two things, and only one of them is a tool:
   catalogue, and generators surface it. Comments in the DDL are documentation that ships with
   the schema and cannot drift from it.
 - **A data catalogue** — ownership, lineage, glossary. That is a different concern and lives in
-  [`data-governance/`](../../../data-governance/).
+  [`data-governance/`](../../../data-governance/README.md).
 
 Writing comments as part of migrations is the highest-leverage habit here, and it costs a line
 per column at the moment when someone actually knows the answer.
@@ -89,7 +89,7 @@ Two connections worth making explicit:
 - [`management/`](../management/README.md) gives people a query interface; giving them one for a
   schema nobody can explain moves the bottleneck rather than removing it
 
-Structure here, meaning in [`data-governance/`](../../../data-governance/). Neither substitutes
+Structure here, meaning in [`data-governance/`](../../../data-governance/README.md). Neither substitutes
 for the other.
 
 ---

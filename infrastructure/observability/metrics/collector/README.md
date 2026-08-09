@@ -76,7 +76,7 @@ The HPA reads from Kubernetes metrics APIs, not from Prometheus. That is why
 custom and external metrics APIs so an HPA can scale on queue depth, request rate, or anything
 else already in Prometheus.
 
-The alternative is [KEDA](../../../devops/event-driven/keda/), which covers the same need with
+The alternative is [KEDA](../../../devops/event-driven/keda/README.md), which covers the same need with
 a broader set of scalers and is usually the better answer for event-driven workloads.
 
 ## 5. Anti-patterns
@@ -86,7 +86,7 @@ a broader set of scalers and is usually the better answer for event-driven workl
 | Treating metrics-server as monitoring | it stores nothing and answers no question about the past | Prometheus for history, metrics-server for the HPA |
 | Installing only one of metrics-server / kube-state-metrics | they cover different data; `kubectl top` or every state alert stops working | both, they do not overlap |
 | kube-state-metrics with default labels on a large cluster | a series per object, and cluster size drives cardinality directly | configure the label allow-list |
-| prometheus-adapter for event-driven scaling | no scale-to-zero, and one source only | [KEDA](../../../devops/event-driven/keda/) |
+| prometheus-adapter for event-driven scaling | no scale-to-zero, and one source only | [KEDA](../../../devops/event-driven/keda/README.md) |
 | Assuming CRD status is visible | operator and Crossplane status exists only in `kubectl` until something exports it | `customResourceState` |
 | Passive metrics as proof a capability works | nothing tested PVC provisioning today, so nothing knows | Kuberhealthy |
 

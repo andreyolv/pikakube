@@ -52,7 +52,7 @@ database without asking us?*
 |---|---|
 | Running one database well | the operator, in [`sql/`](../sql/README.md) or [`nosql/`](../nosql/README.md) |
 | **Teams provisioning their own** | here |
-| Self-service infrastructure generally | [`platform-engineering/`](../../platform-engineering/) — Crossplane, Backstage |
+| Self-service infrastructure generally | [`platform-engineering/`](../../platform-engineering/README.md) — Crossplane, Backstage |
 
 The overlap with `platform-engineering/` is real. A Crossplane composition plus a Backstage
 template achieves something similar, using components this repository already maps — which is
@@ -78,8 +78,8 @@ directly, which is the right shape for one cluster.
 It is mapped because the transition it represents is a real one for a platform team: the point
 at which "we run the databases" has to become "teams provision databases from a catalogue" —
 and the alternative path, through
-[Crossplane](../../platform-engineering/iac/) and
-[Backstage](../../platform-engineering/idp/), is already mapped in this repository.
+[Crossplane](../../platform-engineering/iac/README.md) and
+[Backstage](../../platform-engineering/idp/README.md), is already mapped in this repository.
 
 ---
 

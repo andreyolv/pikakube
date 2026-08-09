@@ -35,7 +35,7 @@ context-length error.
 
 ## Related
 
-Other AI-traffic tooling in this repo: [`ai/ai-gateway/`](../../../ai/ai-gateway/), including
+Other AI-traffic tooling in this repo: [`ai/ai-gateway/`](../../../ai/ai-gateway/README.md), including
 Envoy AI Gateway and Higress.
 
 ---

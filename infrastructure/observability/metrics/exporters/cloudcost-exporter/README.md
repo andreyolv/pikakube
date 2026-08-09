@@ -25,7 +25,7 @@ other — graphable next to the workload that caused it, and alertable when it m
 ## When not to use it
 
 - full FinOps attribution by namespace, team or project — that is
-  [OpenCost/Kubecost](../../../../finops/) and it is a different tool for a different question
+  [OpenCost/Kubecost](../../../../finops/README.md) and it is a different tool for a different question
 - cloud provider metrics rather than cost — [AWS](../aws-exporter/README.md) or [Azure](../azure-exporter/README.md)
 
 ## Where it sits against FinOps
@@ -33,7 +33,7 @@ other — graphable next to the workload that caused it, and alertable when it m
 | Question | Where |
 |---|---|
 | What does this cloud resource cost? | **here** |
-| What does this namespace or team cost? | [`finops/`](../../../../finops/) |
+| What does this namespace or team cost? | [`finops/`](../../../../finops/README.md) |
 | Why did cost change at 14:00 yesterday? | **here**, correlated with metrics |
 
 The third row is what this adds and the FinOps tools do not: cost on the same timeline as

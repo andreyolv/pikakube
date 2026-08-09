@@ -33,7 +33,7 @@ elasticity properties of [AutoMQ](../automq/README.md).
 
 ## When to use it
 
-- **data contracts must be enforced**, not merely documented — see [`data-governance/`](../../../data-governance/)
+- **data contracts must be enforced**, not merely documented — see [`data-governance/`](../../../data-governance/README.md)
 - Protobuf is the format, where Buf's tooling is strongest
 - schema violations reaching consumers has already been a real incident
 
@@ -57,7 +57,7 @@ Even without adopting it, the principle applies: **a contract that is not enforc
 documentation**.
 
 The same conclusion appears in [`schema-registry/`](../../schema-registry/README.md#the-structural-weakness)
-and in [`data-governance/`](../../../data-governance/) — the enforcement point matters more than
+and in [`data-governance/`](../../../data-governance/README.md) — the enforcement point matters more than
 the definition.
 
 [protovalidate](https://github.com/bufbuild/protovalidate) is the related piece: validation

@@ -54,7 +54,7 @@ The clean cases for adopting it: **starting fresh**, or **rebuild cost and linea
 painful**. Migrating a working dbt project for elegance is rarely worth it.
 
 Worth noting for this repository: its column-level lineage overlaps directly with what
-[`data-governance/`](../../../data-governance/) addresses through separate tooling — which makes
+[`data-governance/`](../../../data-governance/README.md) addresses through separate tooling — which makes
 it a more interesting evaluation here than it would be elsewhere.
 
 ---

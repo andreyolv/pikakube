@@ -85,7 +85,7 @@ flowchart TD
 | Assuming events are still there | they expired an hour after the incident | export them somewhere durable |
 | Exporting every event without filtering | volume is enormous and mostly routine | filter by type and reason |
 | Alerting on individual events | most are normal operation | alert on rates, or on specific reasons like `OOMKilled` |
-| Using events as an audit trail | they are best-effort and can be dropped under load | [audit logs](../../security/2-cluster/audit/) are the audit trail |
+| Using events as an audit trail | they are best-effort and can be dropped under load | [audit logs](../../security/2-cluster/audit/README.md) are the audit trail |
 
 ## 6. How this applies to pikakube
 

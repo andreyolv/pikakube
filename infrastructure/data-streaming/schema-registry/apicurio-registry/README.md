@@ -54,7 +54,7 @@ semantics that live in people's heads.
 
 Registering them alongside REST contracts turns "what does this topic contain and who owns it"
 into a query rather than a conversation — which is the same goal as
-[`data-governance/`](../../../data-governance/), applied to interfaces.
+[`data-governance/`](../../../data-governance/README.md), applied to interfaces.
 
 ---
 

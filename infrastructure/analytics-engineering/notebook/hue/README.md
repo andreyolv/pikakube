@@ -51,7 +51,7 @@ Hue's advantage is the **browsing** experience: it is better at exploring what e
 a different question from querying what you already know about.
 
 For discovery as a governed capability rather than a UI feature, see
-[`data-governance/`](../../../data-governance/) — a catalogue answers "what exists and who owns
+[`data-governance/`](../../../data-governance/README.md) — a catalogue answers "what exists and who owns
 it" more durably than a browser does.
 
 ---

@@ -10,7 +10,7 @@ Tools covered: [`submariner`](submariner/README.md) · [`kubeslice`](kubeslice/R
 > **Not the same as multi-cluster *management*.** Scheduling workloads across clusters and
 > reconciling their state is a different capability — Karmada, KubeStellar, Open Cluster
 > Management and Liqo live under
-> [`platform-engineering/kubernetes/managed/multi-cluster/`](../../platform-engineering/kubernetes/managed/multi-cluster/).
+> [`platform-engineering/kubernetes/managed/multi-cluster/`](../../platform-engineering/kubernetes/managed/multi-cluster/README.md).
 > This folder is only about **packets and names crossing a cluster boundary**.
 
 ## Contents
@@ -199,7 +199,7 @@ peer" — which is precisely what makes Lighthouse's local-preference behaviour 
 
 **Work API and ClusterProfile belong to the management side.** They are what Open Cluster
 Management, Karmada and KubeStellar implement — the capability living under
-[`platform-engineering/kubernetes/managed/multi-cluster/`](../../platform-engineering/kubernetes/managed/multi-cluster/).
+[`platform-engineering/kubernetes/managed/multi-cluster/`](../../platform-engineering/kubernetes/managed/multi-cluster/README.md).
 This is why the split declared at the top of this document is real rather than arbitrary:
 the same SIG defines both halves, on a shared foundation, but they answer different
 questions. Connectivity and discovery live here; placement and lifecycle live there.
@@ -225,7 +225,7 @@ applications across clusters.** Submariner's unit is the cluster, KubeSlice's is
 |---|---|---|
 | **Cilium Cluster Mesh** | [`cni/cilium/`](../cni/cilium/README.md) | if Cilium is already the CNI everywhere, this is the lowest-friction option — no extra component |
 | **Istio / Linkerd multi-cluster** | [`service-mesh/`](../service-mesh/README.md) | adds identity and L7 policy, not just reachability |
-| **Liqo** | [`platform-engineering/.../multi-cluster/liqo/`](../../platform-engineering/kubernetes/managed/multi-cluster/liqo/) | blurs the line — it does networking *and* offloads workloads |
+| **Liqo** | [`platform-engineering/.../multi-cluster/liqo/`](../../platform-engineering/kubernetes/managed/multi-cluster/liqo/README.md) | blurs the line — it does networking *and* offloads workloads |
 | **API gateway** | [`api-gateway/`](../api-gateway/README.md) | the deliberate L7 answer when clusters should stay independent |
 
 ---

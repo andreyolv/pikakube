@@ -46,7 +46,7 @@ when something goes wrong.
 The idea worth taking from it, independent of the tool: **treating a data stream as a
 registered object with an owner** is a governance pattern, and it applies whichever ingestion
 tool is used. That thinking belongs with
-[`data-governance/`](../../../data-governance/).
+[`data-governance/`](../../../data-governance/README.md).
 
 ---
 

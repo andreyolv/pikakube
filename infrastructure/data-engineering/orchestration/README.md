@@ -132,7 +132,7 @@ only appears when an orchestrator meets the rest of the platform.
 
 The alternatives are mapped rather than run. **Dagster** is the one worth a real evaluation:
 asset-centric semantics and native lineage address problems this repository currently solves
-with separate tooling in [`data-governance/`](../../data-governance/).
+with separate tooling in [`data-governance/`](../../data-governance/README.md).
 
 ---
 

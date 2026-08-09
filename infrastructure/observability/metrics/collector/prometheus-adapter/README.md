@@ -28,7 +28,7 @@ already scraping cAdvisor.
 
 ## When not to use it
 
-- **event-driven scaling** — [KEDA](../../../../devops/event-driven/keda/) covers the same
+- **event-driven scaling** — [KEDA](../../../../devops/event-driven/keda/README.md) covers the same
   ground with prebuilt scalers for Kafka, RabbitMQ, SQS, cron and dozens more, plus
   scale-to-zero, which the HPA cannot do
 - only CPU-based autoscaling is needed — metrics-server is simpler

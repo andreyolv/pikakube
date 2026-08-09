@@ -49,7 +49,7 @@ Worth asking honestly: **is this a queue problem or a log problem?**
 | **Memphis, RabbitMQ, NATS** | **Kafka, Pulsar, Redpanda** |
 
 A large amount of Kafka gets deployed for what is really the left column — and
-[RabbitMQ](../../../software-engineering/message-queue/rabbitmq/) or NATS would be a fraction of
+[RabbitMQ](../../../software-engineering/messaging/broker/rabbitmq/README.md) or NATS would be a fraction of
 the operational cost.
 
 That distinction is the useful thing this tool surfaces, whether or not it is the answer.

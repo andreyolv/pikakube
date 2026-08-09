@@ -46,7 +46,7 @@ Object storage in the write path is the entire bet. It buys elasticity and cost,
 the log's durability depend on a service underneath it.
 
 In a cloud that service is S3 and the trade is clearly good. On-premise it means
-[MinIO](../../../site-reliability-engineering/storage/object-storage/minio/) becomes load-bearing
+[MinIO](../../../site-reliability-engineering/storage/object-storage/minio/README.md) becomes load-bearing
 for the event log — and that folder records why that category is in a difficult state right now.
 
 ## Related

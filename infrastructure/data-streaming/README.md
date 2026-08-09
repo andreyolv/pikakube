@@ -78,7 +78,7 @@ you confront.
 |---|---|
 | Batch processing and orchestration | [`data-engineering/`](../data-engineering/README.md) |
 | SQL modelling and BI | [`analytics-engineering/`](../analytics-engineering/README.md) |
-| Table formats, lineage, contracts | [`data-governance/`](../data-governance/) |
+| Table formats, lineage, contracts | [`data-governance/`](../data-governance/README.md) |
 | Databases as systems of record | [`databases/`](../databases/README.md) |
 | CDC as an ingestion mechanism | here, and [`analytics-engineering/integration/`](../analytics-engineering/integration/README.md) for the batch equivalent |
 

@@ -19,7 +19,7 @@ graphed, compared and alerted on alongside everything else.
 ## When to use it
 
 - a spot strategy exists and instance type or zone selection should be informed by data
-- validating that [Karpenter](../../../../finops/) or an autoscaler is choosing what you expect
+- validating that [Karpenter](../../../../finops/README.md) or an autoscaler is choosing what you expect
 - watching for price spikes that make the current selection uneconomical
 
 ## When not to use it
@@ -36,7 +36,7 @@ is worse than none.
 
 ## Related
 
-[`finops/`](../../../../finops/) covers the spot strategy itself, including Karpenter and the
+[`finops/`](../../../../finops/README.md) covers the spot strategy itself, including Karpenter and the
 consolidation behaviour that makes spot viable in the first place.
 
 ---

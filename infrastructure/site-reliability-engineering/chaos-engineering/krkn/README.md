@@ -35,7 +35,7 @@ assumes Kubernetes keeps working and disrupts what runs on it. krkn is willing t
 Kubernetes.
 
 That is worth knowing about for on-premise clusters, where the control plane is yours to lose —
-see [`platform-engineering/kubernetes/on-premise/`](../../../platform-engineering/kubernetes/on-premise/).
+see [`platform-engineering/kubernetes/on-premise/`](../../../platform-engineering/kubernetes/on-premise/README.md).
 
 ---
 

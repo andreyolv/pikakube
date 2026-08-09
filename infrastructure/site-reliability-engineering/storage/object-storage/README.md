@@ -4,7 +4,7 @@
 
 An HTTP API for storing blobs — not a filesystem, and not a PVC.
 
-Tools covered: [`minio`](minio/) · [`garage`](garage/README.md) · [`seaweedfs`](seaweedfs/README.md) ·
+Tools covered: [`minio`](minio/README.md) · [`garage`](garage/README.md) · [`seaweedfs`](seaweedfs/README.md) ·
 [`rustfs`](rustfs/README.md)
 
 ---
@@ -41,7 +41,7 @@ reliable way to corrupt data. If a PVC is what is needed, that is
 
 | Tool | Notes | Detail |
 |---|---|---|
-| **MinIO** | the de facto standard, and its open-source position has deteriorated — see its README | [→](minio/) |
+| **MinIO** | the de facto standard, and its open-source position has deteriorated — see its README | [→](minio/README.md) |
 | **Garage** | lightweight, designed for geo-distributed self-hosting, Apache-2.0 | [→](garage/README.md) |
 | **SeaweedFS** | capable, with documentation problems recorded in its README | [→](seaweedfs/README.md) |
 | **RustFS** | newer Rust implementation, with the same documentation caveat | [→](rustfs/README.md) |

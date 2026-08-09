@@ -66,7 +66,7 @@ for the workload" — it is **"is it better by enough to justify operating it"**
 |---|---|
 | Query engines over the lakehouse | [`data-engineering/query-engine/`](../data-engineering/query-engine/README.md) |
 | Real-time serving OLAP | [`data-streaming/olap/`](../data-streaming/olap/README.md) |
-| Table formats and catalogue | [`data-governance/`](../data-governance/) |
+| Table formats and catalogue | [`data-governance/`](../data-governance/README.md) |
 | Where the volumes live | [`site-reliability-engineering/storage/`](../site-reliability-engineering/storage/README.md) |
 | Backup and restore | [`site-reliability-engineering/backup/`](../site-reliability-engineering/backup/README.md) |
 | Metrics and exporters | [`observability/metrics/exporters/`](../observability/metrics/exporters/README.md) |
@@ -85,7 +85,7 @@ What still decides whether it works:
 
 - **storage.** An RWO volume pins a pod to a node — see [`storage/`](../site-reliability-engineering/storage/README.md)
 - **restore, tested.** With the operator paused, or it recreates the volume first — see [Velero](../site-reliability-engineering/backup/velero/README.md)
-- **connection pooling.** Postgres runs out of connections long before it runs out of capacity — see [`tooling/pooler/`](tooling/pooler/)
+- **connection pooling.** Postgres runs out of connections long before it runs out of capacity — see [`tooling/pooler/`](tooling/pooler/README.md)
 
 ## How this applies to pikakube
 

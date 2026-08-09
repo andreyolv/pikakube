@@ -207,7 +207,7 @@ historical context.
 
 Related capabilities that depend on this choice:
 
-- [`network-policies`](../../security/2-cluster/network-policies/) — only enforced if the CNI implements it
+- [`network-policies`](../../security/2-cluster/network-policies/README.md) — only enforced if the CNI implements it
 - [`service-mesh`](../service-mesh/README.md) — overlaps with Cilium at L7; decide which layer owns mTLS
 - [`traffic-analyzer`](../traffic-analyzer/README.md) and [`troubleshooting`](../troubleshooting/README.md) — where flow inspection actually happens
 

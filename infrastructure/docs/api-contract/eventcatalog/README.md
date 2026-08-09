@@ -60,7 +60,7 @@ Worth being precise, because the boundary with adjacent tools gets blurred:
 It is documentation, generated and published. It cannot prevent a breaking change — it makes the
 blast radius visible before someone ships one.
 
-For the third column, see [`data-governance/`](../../../data-governance/): lineage and dataset
+For the third column, see [`data-governance/`](../../../data-governance/README.md): lineage and dataset
 ownership are a related concern at a different layer.
 
 ## Notes
