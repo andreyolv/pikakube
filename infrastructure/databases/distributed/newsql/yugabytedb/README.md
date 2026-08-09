@@ -38,7 +38,7 @@ It is **Apache 2.0**, which is a material difference from CockroachDB's source-a
 ## When not to use it
 
 - **the ceiling has not been measured** — this is slower than PostgreSQL for a workload that fits
-  on one machine; see [`../README.md`](../README.md#2-the-cost-stated-first)
+  on one machine; see [`distributed/`](../../README.md#2-the-cost-stated-first)
 - MySQL compatibility — [TiDB](../tidb/README.md) or [Vitess](../vitess/README.md)
 - analytics on the same data — TiDB's [HTAP](../tidb/README.md) story has no equivalent here
 - single region, where the design's cost is paid and its benefit is unused

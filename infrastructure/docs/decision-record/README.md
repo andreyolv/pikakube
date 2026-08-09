@@ -126,7 +126,7 @@ The last row is the most practical trigger. If a decision would make a competent
 
 **This is the named gap in the repository.**
 
-Every capability folder under [`infrastructure/`](../../) catalogues the alternatives and
+Every capability folder under [`infrastructure/`](../../README.md) catalogues the alternatives and
 explains the trade-offs, which is most of the work. What is missing is the other half: which
 option was chosen *here*, and why.
 

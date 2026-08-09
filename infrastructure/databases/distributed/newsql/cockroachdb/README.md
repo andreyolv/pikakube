@@ -45,7 +45,7 @@ simpler to reason about.
 ## When not to use it
 
 - **the ceiling has not been measured** — a workload that fits on one machine will be *slower*
-  here; see [`../README.md`](../README.md#2-the-cost-stated-first)
+  here; see [`distributed/`](../../README.md#2-the-cost-stated-first)
 - deep PostgreSQL compatibility is needed — extensions, PostGIS, specific plan behaviour.
   [YugabyteDB](../yugabytedb/README.md) reuses the actual Postgres query layer
 - **single region** — you pay the design's cost and get none of its benefit

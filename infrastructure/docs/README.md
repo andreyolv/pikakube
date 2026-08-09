@@ -115,7 +115,7 @@ different jobs — see [`diagram/`](diagram/README.md).
 ## 6. How this applies to pikakube
 
 This repository **is** the argument for the folder. Every capability under
-[`infrastructure/`](../) carries a README with the trade-offs, the decision tree and the
+[`infrastructure/`](../README.md) carries a README with the trade-offs, the decision tree and the
 anti-patterns — which is documentation as code applied to a tooling catalogue.
 
 Where things stand:
@@ -142,4 +142,4 @@ Two loose ends recorded here rather than left implicit:
 
 ---
 
-[← infrastructure/](../)
+[← infrastructure/](../README.md)

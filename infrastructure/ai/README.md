@@ -1,4 +1,4 @@
-[← infrastructure/](../)
+[← infrastructure/](../README.md)
 
 # AI
 
@@ -251,6 +251,11 @@ being used.
 - <https://github.com/mcp-use/mcp-use> — a library for connecting LLMs to MCP servers from your
   own code, rather than only from a host application that already speaks the protocol. See
   [`mcp/`](mcp/README.md).
+- <https://github.com/anthropics/claude-cookbooks> — worked notebooks for building against the
+  Claude API: tool use, structured output, retrieval, evaluation, vision. Reference material
+  rather than a dependency, and useful for the same reason the OpenLineage workshops are —
+  the runnable example is a faster way to learn an API's shape than its specification. Note the
+  vendor bias, which is inherent: these demonstrate one provider's API, not the general problem.
 
 ### 7.5 Serving and safety
 
@@ -318,6 +323,7 @@ project was recorded as a pointer and is **not evaluated here**, which is the ho
 
 | Recorded | What it is |
 |---|---|
+| <https://github.com/anthropics/claude-code> | Anthropic's coding agent, run from the terminal or hosted in an editor. Agentic rather than completion-based: it reads the repository, runs commands, and edits files across a task. Configured per repository through a `CLAUDE.md` and reusable skills — the packaged-instruction pattern described in section 7.10 |
 | <https://github.com/openai/codex> | OpenAI's coding agent, run from the terminal |
 | <https://github.com/aider-ai/aider> | terminal pair programmer, built around Git — it commits its own changes, which makes review and revert normal operations |
 | <https://github.com/cline/cline> | autonomous coding agent as an editor extension |
@@ -469,4 +475,4 @@ deliberately.
 
 ---
 
-[← infrastructure/](../)
+[← infrastructure/](../README.md)

@@ -26,7 +26,7 @@ Capabilities: [`language/`](language/README.md) · [`api/`](api/README.md) ·
 
 ## 1. What this discipline covers
 
-Every other discipline in [`infrastructure/`](../) runs something the platform needs. This one is
+Every other discipline in [`infrastructure/`](../README.md) runs something the platform needs. This one is
 about the **application layer** — what gets built on top, and what supports building it.
 
 That makes it the discipline most directly experienced by the people the platform exists for. A
@@ -139,4 +139,4 @@ elsewhere.
 
 ---
 
-[← infrastructure/](../)
+[← infrastructure/](../README.md)

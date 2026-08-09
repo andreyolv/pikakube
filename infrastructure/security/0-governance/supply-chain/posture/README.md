@@ -4,7 +4,7 @@
 
 Rating the security practices of a **repository** rather than the contents of an artefact.
 
-Tools: [`scorecard/`](scorecard/README.md)
+Tools: [`scorecard/`](scorecard/README.md) · [`allstar/`](allstar/README.md)
 
 ## Contents
 
@@ -36,6 +36,19 @@ protection, read-only workflow tokens and pinned actions is not thereby secure; 
 repository where certain classes of failure are less likely and certain classes of compromise
 are harder. That is a correlation, and it is a useful one, provided nobody mistakes it for a
 guarantee.
+
+The two tools here are the OpenSSF pair, and they are two halves of one job:
+
+| | [`scorecard/`](scorecard/README.md) | [`allstar/`](allstar/README.md) |
+|---|---|---|
+| What it does | **rates** — runs checks and produces a score | **enforces** — watches settings and acts on drift |
+| Output | a report, and SARIF findings | a GitHub issue, or the setting changed |
+| Cadence | on demand, or on a schedule | continuous |
+| Answers | where are we today? | did it stay that way? |
+
+Scorecard is the first move, because reading the failing checks is how the work gets scoped.
+Allstar is what stops the work unwinding — practices drift, and a report has no opinion about
+that.
 
 ## 2. What is actually measured
 
@@ -119,7 +132,8 @@ flowchart TD
 | A minimum score as a dependency acceptance gate | scores are not comparable across project types, and small well-run libraries often score poorly | use it comparatively, with judgement |
 | Optimising the number | several checks are satisfiable cosmetically without changing risk | fix the checks that correspond to real exposure — pinning, token scopes, review |
 | Publishing the badge as an assurance statement | it invites exactly the misreading in section 4 | state what it measures if you publish it |
-| Running it once | practices drift; unpinned actions creep back in | run it on a schedule |
+| Running it once | practices drift; unpinned actions creep back in | run it on a schedule, and enforce with [`allstar/`](allstar/README.md) |
+| Enforcing with `fix` before anyone has seen a finding | a bot silently changes teams' settings, and the App gets uninstalled | start Allstar in `issue` mode, same as admission policies start in audit |
 | Ignoring the "maintained" check on dependencies | a well-scored abandoned project still will not fix the next CVE | weight maintenance heavily for dependencies |
 
 ## 7. How this applies to pikakube
@@ -138,6 +152,11 @@ workflow token permissions, and no `SECURITY.md`. The first two are the ones wor
 [supply-chain notes](../README.md#11-notes) point at, and they are also the exposure
 [harden-runner](../../runner-hardening/harden-runner/README.md) exists to contain from the
 other direction.
+
+[Allstar](allstar/README.md) is the follow-on, in that order and not the other one: run Scorecard,
+read the failing checks, fix them, then install Allstar in `issue` mode so they stay fixed. It is
+free on public repositories too, and it covers the same two findings — dangerous workflows and
+branch protection — from the enforcement side rather than the reporting side.
 
 ---
 

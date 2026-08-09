@@ -1,12 +1,12 @@
-[← infrastructure/](../)
+[← infrastructure/](../README.md)
 
 # MLOps
 
 The lifecycle of a model — experiment, track, register, deploy, monitor, retrain — and the
 operational discipline that keeps it honest.
 
-Capabilities: [`lifecycle/`](lifecycle/README.md) · [`app/`](app/README.md) ·
-[`algorithms/`](algorithms/README.md)
+Capabilities: [`lifecycle/`](lifecycle/README.md) · [`feature-store/`](feature-store/README.md) ·
+[`app/`](app/README.md) · [`algorithms/`](algorithms/README.md)
 
 ## Contents
 
@@ -169,6 +169,7 @@ the run that created it. With it, "promote version 7 to production" is a reviewa
 | Capability | The question it answers | Note |
 |---|---|---|
 | [`lifecycle/`](lifecycle/README.md) | how are experiments tracked, models registered and pipelines run? | MLflow vs Kubeflow — the real decision in this folder |
+| [`feature-store/`](feature-store/README.md) | do training and inference read the same feature, computed once? | the structural answer to the skew in [3.3](#33-training-serving-skew); real infrastructure, and not always warranted |
 | [`app/`](app/README.md) | how does a person actually use this model? | Gradio and Streamlit — demos and data apps |
 | [`algorithms/`](algorithms/README.md) | what problem class is this, and what is the standard tooling? | reference and orientation, **not deployable infrastructure** |
 
@@ -299,4 +300,4 @@ everything downstream of "the model is registered" is still manual.
 
 ---
 
-[← infrastructure/](../)
+[← infrastructure/](../README.md)

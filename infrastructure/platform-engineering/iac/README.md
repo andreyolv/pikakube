@@ -4,7 +4,8 @@
 
 Provisioning the things Kubernetes cannot provision for itself — including the cluster it runs on.
 
-Tools covered: [`cloud/`](cloud/README.md) · [`engine/`](engine/README.md) · [`lint/`](lint/README.md)
+Tools covered: [`cloud/`](cloud/README.md) · [`engine/`](engine/README.md) ·
+[`lint/`](lint/README.md) · [`docs/`](docs/README.md)
 
 ## Contents
 
@@ -135,6 +136,7 @@ flowchart TD
 | Cloud admin credentials in CI | the most exposed system holds the most powerful key | short-lived credentials, or workload identity in-cluster |
 | Provider versions unpinned | a plan that was clean yesterday destroys something today | pin providers and modules |
 | No linting | the failure surfaces as a failed apply against a real account | [`lint/`](lint/README.md), in CI |
+| Module inputs and outputs documented by hand | wrong on the first new variable, and nothing checks it | generate them — [`docs/`](docs/README.md) |
 
 ## 7. How this applies to pikakube
 

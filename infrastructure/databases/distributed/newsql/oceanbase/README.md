@@ -39,7 +39,7 @@ their own resources and isolation, rather than a naming convention over schemas.
 ## When not to use it
 
 - **the ceiling has not been measured** — the standard warning in
-  [`../README.md`](../README.md#2-the-cost-stated-first) applies
+  [`distributed/`](../../README.md#2-the-cost-stated-first) applies
 - PostgreSQL compatibility is what matters — [YugabyteDB](../yugabytedb/README.md)
 - the documentation and community are a practical obstacle — see below
 - a smaller operational surface is preferred

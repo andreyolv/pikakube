@@ -1,4 +1,4 @@
-[← infrastructure/](../)
+[← infrastructure/](../README.md)
 
 # FinOps
 
@@ -362,4 +362,4 @@ what makes multi-cluster aggregation possible later.
 
 ---
 
-[← infrastructure/](../)
+[← infrastructure/](../README.md)

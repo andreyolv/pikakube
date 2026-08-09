@@ -132,7 +132,7 @@ or a generated topology handed to someone trying to understand the system.
 ## 7. How this applies to pikakube
 
 **Mermaid is used throughout.** Every capability README under
-[`infrastructure/`](../../) carries a decision tree in it, rendered by GitHub without a build
+[`infrastructure/`](../../README.md) carries a decision tree in it, rendered by GitHub without a build
 step. That is the approach working as intended — the diagram is in the same file as the prose,
 reviewed in the same diff.
 

@@ -12,7 +12,7 @@ Reads the event logs Spark writes during execution and reconstructs the Spark UI
 jobs: stages, tasks, shuffle read and write sizes, the DAG, and where the time went.
 
 Without it, a job that has ended leaves nothing behind — see
-[`../README.md`](../README.md#1-the-problem-it-solves).
+[`../README.md`](../README.md#the-problem-it-solves).
 
 ## Configuration
 

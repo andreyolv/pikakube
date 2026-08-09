@@ -9,7 +9,7 @@ Tools covered: [Neosync](https://github.com/nucleuscloud/neosync)
 ## Contents
 
 1. [The problem](#1-the-problem)
-2. [Four approaches](#4-four-approaches)
+2. [Four approaches](#2-four-approaches)
 3. [What makes anonymization hard](#3-what-makes-anonymization-hard)
 4. [Neosync](#4-neosync)
 5. [Anti-patterns](#5-anti-patterns)

@@ -90,7 +90,7 @@ The [portfolio site](../../../../portfolio/) is built with this, using the Mater
 for versioning and GitHub Pages for hosting.
 
 Worth being explicit about the split in this repository: the portfolio is a **site**, and the
-capability catalogue under [`infrastructure/`](../../../) is **READMEs rendered by GitHub**. The
+capability catalogue under [`infrastructure/`](../../../README.md) is **READMEs rendered by GitHub**. The
 second deliberately has no generator, because the folder tree is the navigation and a build step
 would take that away rather than add to it.
 

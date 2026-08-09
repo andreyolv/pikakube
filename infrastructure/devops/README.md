@@ -1,4 +1,4 @@
-[← infrastructure/](../)
+[← infrastructure/](../README.md)
 
 # DevOps
 
@@ -264,4 +264,4 @@ continuous-convergence model is the direct ancestor of what a Kubernetes control
 
 ---
 
-[← infrastructure/](../)
+[← infrastructure/](../README.md)

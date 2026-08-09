@@ -137,7 +137,7 @@ working configuration is recorded in [`mkdocs/`](mkdocs/README.md) — including
 workflow and the `gh-deploy` publishing path.
 
 The rest of this repository takes the other branch of the decision tree deliberately: the
-capability documentation under [`infrastructure/`](../../) is **READMEs rendered by GitHub**,
+capability documentation under [`infrastructure/`](../../README.md) is **READMEs rendered by GitHub**,
 with Mermaid inline. No build, no site, no navigation to maintain — and it works because the
 folder structure *is* the navigation.
 

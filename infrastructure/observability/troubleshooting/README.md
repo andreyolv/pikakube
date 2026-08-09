@@ -5,7 +5,8 @@
 Turning signals into a diagnosis — including letting a machine narrow it down first.
 
 Tools covered: [`k8sgpt`](k8sgpt/README.md) · [`holmesgpt`](holmesgpt/README.md) ·
-[`inspektor-gadget`](inspektor-gadget/README.md) · [`botkube`](botkube/README.md) · [`komodor`](komodor/README.md)
+[`inspektor-gadget`](inspektor-gadget/README.md) · [`botkube`](botkube/README.md) · [`komodor`](komodor/README.md) ·
+[`stern`](stern/README.md)
 
 ## Contents
 
@@ -42,6 +43,10 @@ Plus two that change **where** the work happens rather than what it is:
 [Botkube](botkube/README.md) brings the cluster into chat, and [Komodor](komodor/README.md) reconstructs change
 timelines.
 
+And one that does none of the above and is used in almost every incident anyway:
+[stern](stern/README.md) tails logs from many pods at once. It diagnoses nothing — it just
+puts the output in front of you, which is usually the step before a diagnosis.
+
 ## 3. The tools in this folder
 
 | Tool | Role | Shines when | Do not use when | Detail |
@@ -51,6 +56,7 @@ timelines.
 | **Inspektor Gadget** | eBPF inspection — syscalls, file, network, DNS, per pod | the problem is below the application and `kubectl` cannot see it | ordinary application-level debugging | [→](inspektor-gadget/README.md) |
 | **Botkube** | cluster interaction and notifications from chat | the team lives in Slack and you want triage without a terminal | you want the diagnosis itself, not access to run commands | [→](botkube/README.md) |
 | **Komodor** | change and event timeline, SaaS | "what changed before this broke" is the recurring question | data cannot leave the cluster | [→](komodor/README.md) |
+| **stern** | tails logs from many pods and containers at once, CLI | the answer is in the logs of a multi-replica workload, right now | you need history, search or retention — that is [`logs/`](../logs/README.md) | [→](stern/README.md) |
 
 ## 4. On AI-assisted diagnosis
 
@@ -80,6 +86,7 @@ flowchart TD
     START -->|A problem below the<br/>application| IG[Inspektor Gadget<br/>syscalls, files, DNS]
     START -->|'What changed<br/>before this broke?'| Q1
     START -->|The team lives in chat| BK[Botkube<br/>— review RBAC first]
+    START -->|'What is this workload<br/>printing right now?'| ST[stern<br/>live tail across pods —<br/>not a log store]
 
     Q1{Can data leave<br/>the cluster?}
     Q1 -->|Yes| KO[Komodor — SaaS]
@@ -99,6 +106,7 @@ flowchart TD
 | Chat-based `kubectl` without RBAC review | the bot's permissions become everyone's permissions | least privilege, and audit it |
 | Reaching for eBPF inspection first | most problems are events, config or resources | scan first, inspect after |
 | Automating triage instead of fixing recurring causes | the same incident is diagnosed faster forever | fix the class of problem |
+| Treating a live tail as the logging strategy | stern reads from the kubelet — deleted pods and rotated logs are gone | ship logs to [`logs/storage/`](../logs/storage/README.md); tail for the incident, query for the post-mortem |
 
 ## 7. How this applies to pikakube
 

@@ -107,7 +107,7 @@ Doing it in reverse is the common failure: a running Tempo with nothing in it, a
 conclusion that tracing "did not work".
 
 For a data platform, worth repeating the honest limit from
-[`../README.md`](../README.md#7-how-this-applies-to-pikakube): traces pay off on synchronous
+[`../README.md`](../README.md#8-how-this-applies-to-pikakube): traces pay off on synchronous
 multi-hop paths, and much less on scheduled batch pipelines where the unit of work is a DAG
 run rather than a request.
 

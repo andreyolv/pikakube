@@ -1,4 +1,4 @@
-[← infrastructure/](../)
+[← infrastructure/](../README.md)
 
 # Platform engineering
 
@@ -137,4 +137,4 @@ and where the gap is.
 
 ---
 
-[← infrastructure/](../)
+[← infrastructure/](../README.md)

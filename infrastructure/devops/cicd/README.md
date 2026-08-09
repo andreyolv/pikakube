@@ -9,7 +9,7 @@ Tools covered: [`github-actions`](github-actions/README.md) ·
 [`argo-workflows`](argo-workflows/README.md) · [`dagger`](dagger/README.md) ·
 [`tekton`](tekton/README.md) · [`jenkins`](jenkins/README.md) ·
 [`jenkins-x`](jenkins-x/README.md) · [`pipecd`](pipecd/README.md) ·
-[`spinnaker`](spinnaker/README.md)
+[`spinnaker`](spinnaker/README.md) · [`release-please`](release-please/README.md)
 
 ## Contents
 
@@ -164,6 +164,7 @@ one is better.
 | **Jenkins X** | an opinionated GitOps CI/CD bundle | past its peak; largely superseded | [→](jenkins-x/README.md) |
 | **PipeCD** | pull-based CD with progressive delivery | genuinely pull-based, but overlaps with Flux and Argo CD | [→](pipecd/README.md) |
 | **Spinnaker** | multi-cloud deployment orchestration | past its peak; very heavy | [→](spinnaker/README.md) |
+| **release-please** | release automation, not a pipeline runner | sits beside CI; computes the version and changelog from commits | [→](release-please/README.md) |
 
 Three of these deserve a sentence rather than a table row:
 
@@ -272,6 +273,7 @@ What is actually deployed here, from the manifests:
 | [Tekton](tekton/README.md) | HelmRelease from a `GitRepository` pointing at the operator repo, tag `v0.74.0` — **the URL has a stray `]` and is broken as written** |
 | [Spinnaker](spinnaker/README.md) | a namespace only; nothing installed |
 | [Dagger](dagger/README.md), [Jenkins X](jenkins-x/README.md), [PipeCD](pipecd/README.md) | mapped, not deployed |
+| [release-please](release-please/README.md) | mapped, and **not applicable here** — this repository is manifests, not released software; its target would be a chart or an application repository |
 
 The recorded findings that carry the most weight, all of them in the tool pages below:
 

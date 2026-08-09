@@ -79,7 +79,7 @@ Quoting labels containing punctuation avoids it entirely.
 Recorded in the original notes: <https://github.com/mermaid-js/mermaid/issues/6109>
 
 Mermaid is used throughout this repository — every capability README under
-[`infrastructure/`](../../../) carries a decision tree written in it, rendered by GitHub with no
+[`infrastructure/`](../../../README.md) carries a decision tree written in it, rendered by GitHub with no
 build step. That is the tool being used for precisely what it is good at.
 
 One thing worth correcting: [`docs/mermaid/`](../../../../docs/mermaid/) at the repository root

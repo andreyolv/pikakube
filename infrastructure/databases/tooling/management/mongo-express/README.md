@@ -70,7 +70,7 @@ itself, which reflects how it is actually used — a development convenience bes
 rather than a platform service.
 
 For this platform, MongoDB is a **source system** rather than something served — see
-[`mongo/`](../../../nosql/document/mongo/README.md#notes) — so the realistic use is inspecting a
+[`mongo/`](../../../nosql/document/mongo/README.md) — so the realistic use is inspecting a
 collection while building an extraction pipeline. That is exactly the case this tool is good at,
 and exactly the case where its lack of a user model does not matter.
 

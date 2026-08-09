@@ -4,12 +4,13 @@
 
 Rules that a machine can check, enforced before anyone has to read the code.
 
-Tools covered: [`shellcheck/`](shellcheck/README.md) — the shell linter, and the only one with its
-own page here.
+Tools covered, with their own pages here: [`shellcheck/`](shellcheck/README.md) — the shell linter
+— plus [`typos/`](typos/README.md) and [`codespell/`](codespell/README.md), the two spell checkers
+that work on source code without a word list to maintain.
 
 Also catalogued as [a table in section 3](#3-the-tools), with upstream links: Ruff · pylint ·
-flake8 · isort · pycodestyle · autopep8 · Black · MegaLinter · Super-Linter · EditorConfig.
-Nothing in this folder is deployed — these are CLIs for a pipeline.
+flake8 · isort · pycodestyle · autopep8 · Black · MegaLinter · Super-Linter · typos · codespell ·
+EditorConfig. Nothing in this folder is deployed — these are CLIs for a pipeline.
 
 ## Contents
 
@@ -96,12 +97,23 @@ here).
 | **Black** | the opinionated Python formatter | a **formatter**, not a linter — see [`../format/`](../format/README.md); `ruff format` is compatible with it | <https://github.com/psf/black> |
 | **MegaLinter** | meta-linter, many languages, CI-oriented | useful for polyglot repositories; heavy | <https://github.com/oxsecurity/megalinter> |
 | **Super-Linter** | GitHub's meta-linter action | same idea, GitHub Actions-native | <https://github.com/super-linter/super-linter> |
+| **typos** | source-code spell checker, Rust, from crate-ci | **the spelling recommendation** — fast, and needs no word list — [→](typos/README.md) | <https://github.com/crate-ci/typos> |
+| **codespell** | the older Python equivalent | larger installed base and dictionary, slower — [→](codespell/README.md) | <https://github.com/codespell-project/codespell> |
 | **EditorConfig** | per-editor whitespace settings | **redundant here** — linters and formatters already cover it | <https://github.com/editorconfig/editorconfig> |
 
 Black is catalogued in this folder because that is where the original notes recorded it. It is a
 formatter and conceptually belongs in [`../format/`](../format/README.md); the classification is
 left visible rather than silently moved, because knowing which tool is which is exactly the
 distinction that keeps a formatter and a linter from fighting.
+
+The two spell checkers are language-agnostic, like the meta-linters above them, and they are a
+different kind of check from everything else on this page: they find mistakes in **text** —
+comments, strings, identifiers and documentation — rather than in logic. They also escape section
+6's adoption problem entirely, because both report only words that are definitely wrong rather
+than words they do not recognise, so the first run produces a handful of findings instead of
+thousands. The comparison between them is
+[in the typos page](typos/README.md#typos-or-codespell). Prose *style* is a separate concern again
+and lives with the documentation tooling: [Vale](../../../docs/authoring/vale/README.md).
 
 ## 4. Meta-linters
 
@@ -213,12 +225,19 @@ For this repository specifically:
 |---|---|
 | Python — the Flask, FastAPI and Celery examples under `api/` and `messaging/` | **Ruff**, via `ruff-pre-commit` |
 | YAML — the Flux manifests, which are most of the repository | not covered by anything here; `yamllint` or a meta-linter would be the answer |
+| Shell — `init.sh` and the rest | [ShellCheck](shellcheck/README.md) |
 | Markdown — these READMEs | Prettier, in [`../format/`](../format/README.md) |
+| Spelling — everywhere, but mostly the prose | [**typos**](typos/README.md), as a pre-commit hook |
 
-The gap is the middle row, and it is the one that would find real problems: a repository that is
-mostly Kubernetes YAML has no linting on its YAML. MegaLinter or Super-Linter would close it in
+The YAML row is the largest gap, and it is the one that would find real problems: a repository that
+is mostly Kubernetes YAML has no linting on its YAML. MegaLinter or Super-Linter would close it in
 one CI step, at the cost of a slow job — which for a documentation-and-manifests repository is an
 acceptable trade.
+
+The last row is the cheapest thing on this page. There are 1204 `README.md` files under
+`infrastructure/`, written across many sessions, and typos accumulate in prose faster than anyone
+rereads it. Unlike every other tool here, adopting it costs one commit: the first run finds a
+handful of real mistakes rather than thousands of arguable ones.
 
 ---
 

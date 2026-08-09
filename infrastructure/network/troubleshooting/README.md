@@ -5,7 +5,7 @@
 Conceptual reference for the `troubleshooting/` folder. Less a tool catalogue than a
 **method**: how to narrow down a Kubernetes network problem without guessing.
 
-Tools covered: [`netshoot`](netshoot/README.md)
+Tools covered: [`netshoot`](netshoot/README.md) · [`goldpinger`](goldpinger/README.md)
 
 ## Contents
 
@@ -17,9 +17,10 @@ Tools covered: [`netshoot`](netshoot/README.md)
 6. [Layer 4 — path and MTU](#6-layer-4--path-and-mtu)
 7. [Layer 5 — leaving the cluster](#7-layer-5--leaving-the-cluster)
 8. [How to get a shell in the right place](#8-how-to-get-a-shell-in-the-right-place)
-9. [Symptom index](#9-symptom-index)
-10. [Anti-patterns](#10-anti-patterns)
-11. [References](#references)
+9. [When it is not one connection but the network itself](#9-when-it-is-not-one-connection-but-the-network-itself)
+10. [Symptom index](#10-symptom-index)
+11. [Anti-patterns](#11-anti-patterns)
+12. [References](#references)
 
 ---
 
@@ -197,7 +198,36 @@ select it. "It works from my debug pod" therefore proves very little.
 
 ---
 
-## 9. Symptom index
+## 9. When it is not one connection but the network itself
+
+The method above assumes **one** failing path, tested from a shell. It falls apart when the
+failure is partial and moving: some pods time out, others do not, and the set changes with
+every reschedule. Testing from one pod then proves whatever that pod happened to experience.
+
+[**Goldpinger**](goldpinger/README.md) answers that shape of question instead. It runs as a
+DaemonSet in which every instance pings every other, producing an N×N pod-to-pod
+connectivity graph with a web UI and Prometheus metrics. A failure appears as a specific
+**edge**, which localises the fault to a node pair rather than leaving you with "the network
+is flaky".
+
+The two tools are not alternatives:
+
+| | [netshoot](netshoot/README.md) | [Goldpinger](goldpinger/README.md) |
+|---|---|---|
+| Shape | interactive shell, on demand | DaemonSet, always running |
+| Answers | "why does *this* connection fail?" | "which node pairs cannot reach each other?" |
+| Scope | anything you can type a command for | pod-to-pod reachability only |
+| Output | your terminal | graph + Prometheus metrics |
+
+Goldpinger tests reachability between its own pods — not DNS, not Service routing, not
+NetworkPolicy. A green graph narrows the problem to the layers above the CNI; it does not
+declare the network healthy. Adjacent, and worth knowing about:
+[kubenurse](../monitoring/kubenurse/README.md) in `network/monitoring/`, which probes the API
+server, DNS and the ingress round trip as well.
+
+---
+
+## 10. Symptom index
 
 | Symptom | Start at | Most likely cause |
 |---|---|---|
@@ -211,10 +241,11 @@ select it. "It works from my debug pod" therefore proves very little.
 | Works on VPN, fails off VPN | [§2](#2-layer-0--is-it-dns) | conditional forwarding, see [`../dns/`](../dns/README.md#conditional-forwarding-and-the-vpn-problem) |
 | Works in the browser, fails in the app | [§7](#7-layer-5--leaving-the-cluster) | incomplete certificate chain |
 | hostNetwork pod resolves nothing internal | [§2](#2-layer-0--is-it-dns) | missing `dnsPolicy: ClusterFirstWithHostNet` |
+| Intermittent timeouts that follow the node, not the workload | [§9](#9-when-it-is-not-one-connection-but-the-network-itself) | a broken node pair — a connectivity matrix names it |
 
 ---
 
-## 10. Anti-patterns
+## 11. Anti-patterns
 
 | Anti-pattern | Why it is bad | What to do instead |
 |---|---|---|
@@ -222,6 +253,7 @@ select it. "It works from my debug pod" therefore proves very little.
 | Debugging from a different pod than the affected one | different DNS config and different policies apply | ephemeral container targeting the real pod |
 | Starting with `tcpdump` | expensive and usually unnecessary — the answer is almost always in layers 0–2 | walk the layers in order |
 | Concluding "the network is broken" from one failed `curl` | it also fails on DNS, policy, readiness and TLS | isolate the layer before naming a cause |
+| Debugging a partial, intermittent failure one shell at a time | each test samples one path at one moment, and the set of broken paths moves | a continuous matrix — [Goldpinger](goldpinger/README.md), §9 |
 | Hardcoding a pod IP to work around DNS | it changes on every reschedule | fix the resolution problem |
 | Leaving debug pods running | they accumulate and hold resources | `--rm`, or ephemeral containers, which vanish with the pod |
 
@@ -232,6 +264,7 @@ select it. "It works from my debug pod" therefore proves very little.
 - [Kubernetes — debug services](https://kubernetes.io/docs/tasks/debug/debug-application/debug-service/)
 - [Kubernetes — ephemeral containers](https://kubernetes.io/docs/concepts/workloads/pods/ephemeral-containers/)
 - [netshoot — included tools](https://github.com/nicolaka/netshoot)
+- [Goldpinger](https://github.com/bloomberg/goldpinger)
 - [DNS in this repo](../dns/README.md) · [CNI in this repo](../cni/README.md) · [Certificates](../../security/2-cluster/certificates/README.md)
 
 ---

@@ -34,7 +34,7 @@ and a SQL layer above it.
 ## When not to use it
 
 - **the ceiling has not been measured** — see
-  [`../README.md`](../README.md#2-the-cost-stated-first)
+  [`distributed/`](../../README.md#2-the-cost-stated-first)
 - close PostgreSQL compatibility matters — [YugabyteDB](../yugabytedb/README.md) reuses the
   actual Postgres query layer
 - MySQL compatibility — [TiDB](../tidb/README.md) or [Vitess](../vitess/README.md)

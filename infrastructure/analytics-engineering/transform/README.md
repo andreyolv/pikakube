@@ -4,7 +4,8 @@
 
 Turning raw data into something trustworthy — in SQL, in version control.
 
-Tools covered: [`dbt`](dbt/README.md) · [`sqlmesh`](sqlmesh/README.md)
+Tools covered: [`dbt`](dbt/README.md) · [`sqlmesh`](sqlmesh/README.md) ·
+[`recce`](recce/README.md)
 
 ## Contents
 
@@ -46,6 +47,8 @@ exactly what downstream breaks, before it does.
 
 ## 3. The tools
 
+### The framework choice
+
 | Tool | Model | Shines when | Do not use when | Detail |
 |---|---|---|---|---|
 | **dbt** | the de facto standard — models, tests, docs, macros | **the default** — largest ecosystem, most packages, most people who know it | you need real state awareness and virtual environments | [→](dbt/README.md) |
@@ -63,6 +66,23 @@ any other way:
 
 That is the more rigorous model. dbt remains the default because the ecosystem, packages and
 familiarity are worth a great deal in practice.
+
+### Recce is not a third option
+
+[**Recce**](recce/README.md) is listed in this folder and it is **not an alternative to dbt or
+SQLMesh** — it requires a dbt project and reviews changes made in it. Placing it beside the two
+frameworks would imply a choice that does not exist, so it is stated plainly here.
+
+What it adds is the missing half of the dbt pull-request workflow. A model change appears in
+review as a **SQL diff**; what nobody can see from that diff is whether row counts moved, whether
+a distribution shifted, or whether a join started fanning out. Recce builds both versions and
+diffs the **output** — row count, schema, profile, values — so the review comment is about the
+data rather than about the code.
+
+It is complementary to dbt's tests, not a replacement: tests assert invariants somebody already
+knew to assert, Recce surfaces the deltas nobody predicted. It costs both versions being
+materialised somewhere, which is the real adoption question — see
+[`recce/`](recce/README.md).
 
 ## 4. Decision tree
 
@@ -94,6 +114,7 @@ flowchart TD
 | Full rebuild every run | cost grows with history, for data that did not change | incremental models |
 | Metric definitions inside models | the same metric gets defined twice, differently | a [semantic layer](../semantic/README.md) |
 | Running transformations from the orchestrator's workers | couples compute to scheduling | submit the run; see [`data-engineering/orchestration/`](../../data-engineering/orchestration/README.md) |
+| Approving a model change from the SQL diff alone | the diff shows the code; the fan-out, the dropped rows and the shifted distribution are invisible | diff the resulting data — see [`recce/`](recce/README.md) |
 
 ## 6. How this applies to pikakube
 
@@ -105,6 +126,13 @@ does the work.
 lineage overlaps directly with what this repository currently addresses through separate tooling
 in [`data-governance/`](../../data-governance/README.md) — which makes it worth a real evaluation rather
 than a footnote.
+
+**Recce** is documented, not adopted. It is only worth anything where dbt changes already go
+through pull requests, and its cost is a place to materialise both versions. It pairs with
+[`data-governance/quality/`](../../data-governance/quality/README.md) — quality checks validate
+data after it lands, Recce validates a change before it merges — and with
+[`data-governance/lineage/`](../../data-governance/lineage/README.md), which answers what is
+affected while Recce answers how.
 
 ---
 

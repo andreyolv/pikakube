@@ -172,4 +172,4 @@ cheapest governance capability available here and it is not switched on.
 
 ---
 
-[← infrastructure/](../)
+[← infrastructure/](../README.md)

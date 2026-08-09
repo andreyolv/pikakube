@@ -195,7 +195,7 @@ Several things in there are worth extracting:
   and the tenant's CA mounted for TLS verification. The second is the pattern to copy.
 
 **The honest caveat that closes every file in this folder:** as
-[`../README.md`](../README.md#the-uncomfortable-conclusion) and
+[`../README.md`](../README.md#the-licence-situation) and
 [`../../README.md`](../../README.md#the-honest-state-of-this-category) both record, MinIO's open
 position has deteriorated and the alternatives — [Garage](../../garage/README.md),
 [SeaweedFS](../../seaweedfs/README.md), [RustFS](../../rustfs/README.md) — are weak. The operator

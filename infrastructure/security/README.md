@@ -1,4 +1,4 @@
-[← infrastructure/](../)
+[← infrastructure/](../README.md)
 
 # Security
 
@@ -263,4 +263,4 @@ cluster runs.
 
 ---
 
-[← infrastructure/](../)
+[← infrastructure/](../README.md)
