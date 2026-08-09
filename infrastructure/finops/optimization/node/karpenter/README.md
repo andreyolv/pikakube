@@ -5,7 +5,8 @@
 Group-less node provisioning: look at the pending pods, buy the machine that actually fits.
 
 Tools covered: [`karpenter-aws`](karpenter-aws/README.md) ·
-[`karpenter-azure`](karpenter-azure/README.md) · [`gpu-provisioner`](gpu-provisioner/README.md)
+[`karpenter-azure`](karpenter-azure/README.md) · [`karpenter-gcp`](karpenter-gcp/README.md) ·
+[`gpu-provisioner`](gpu-provisioner/README.md)
 
 ## Contents
 
@@ -107,9 +108,15 @@ like nothing at all.
 |---|---|---|---|
 | **AWS** | AWS, `aws/karpenter-provider-aws` | the original and the most mature; the default node autoscaler on EKS | [→](karpenter-aws/README.md) |
 | **Azure** | Microsoft, `Azure/karpenter-provider-azure` | production-capable and moving fast; also the engine behind AKS Node Auto Provisioning | [→](karpenter-azure/README.md) |
+| **GCP** | **CloudPilot AI**, `cloudpilot-ai/karpenter-provider-gcp` — **not Google** | third-party, young, Apache 2.0, derived from the AWS provider | [→](karpenter-gcp/README.md) |
 | **gpu-provisioner** | Microsoft (KAITO) | **not general-purpose** — a Karpenter-derived controller for provisioning GPU nodes for AI workloads on AKS | [→](gpu-provisioner/README.md) |
 
-The third is a different thing wearing the same API, and worth flagging: it uses the Karpenter
+**The maintainer column is the one to read.** AWS and Azure ship a provider for their own platform
+and stand behind it; Google does not, and a third party fills that gap. "Karpenter works on all
+three clouds" is true and slightly misleading — on two of them the cloud provider is accountable
+for it, and on the third a startup is.
+
+The last row is a different thing wearing the same API, and worth flagging: it uses the Karpenter
 object model but exists to serve [KAITO](https://github.com/kaito-project/kaito) GPU workspaces, not
 to run a cluster's general capacity. Do not reach for it as "Karpenter for GPUs on Azure" — the
 Azure provider handles GPU SKUs in a normal NodePool.
@@ -122,13 +129,18 @@ flowchart TD
 
     START -->|AWS| AWS[karpenter-provider-aws<br/>the mature path]
     START -->|Azure| AZ{What are you<br/>provisioning?}
-    START -->|Neither| OTHER[Check for a provider —<br/>core is cloud-agnostic but<br/>providers vary widely<br/>in maturity]
+    START -->|GCP| GCP{Autopilot?}
+    START -->|Another| OTHER[Check for a provider —<br/>core is cloud-agnostic but<br/>providers vary widely<br/>in maturity]
+
+    GCP -->|Yes| NONE[Nothing to provision.<br/>Google schedules and<br/>bills per pod]
+    GCP -->|No, standard GKE| GCPP[karpenter-provider-gcp<br/>third-party — read<br/>who maintains it first]
 
     AZ -->|General cluster capacity| AZP[karpenter-provider-azure<br/>NodePool + AKSNodeClass]
     AZ -->|GPU nodes for<br/>KAITO workspaces| GPU[gpu-provisioner<br/>narrow scope]
 
     AWS --> CFG
     AZP --> CFG
+    GCPP --> CFG
     CFG[[Wide requirements, spot enabled,<br/>WhenEmptyOrUnderutilized,<br/>spotToSpotConsolidation on,<br/>expireAfter set.]]
 ```
 
@@ -189,10 +201,13 @@ keep restarting" into "expiry rolled four nodes at 03:00".
 
 ## 10. How this applies to pikakube
 
-Karpenter is mapped for **both clouds**, which is the useful part — the same NodePool model against
-two providers, with the provider-specific pain recorded separately in
-[karpenter-aws](karpenter-aws/README.md) (IAM permissions) and
-[karpenter-azure](karpenter-azure/README.md) (node bootstrap and identity).
+Karpenter is mapped for **all three major clouds**, which is the useful part — the same NodePool
+model against three providers, with the provider-specific pain recorded separately in
+[karpenter-aws](karpenter-aws/README.md) (IAM permissions),
+[karpenter-azure](karpenter-azure/README.md) (node bootstrap and identity) and
+[karpenter-gcp](karpenter-gcp/README.md) (a third-party provider rather than Google's).
+
+Only AWS and Azure have manifests here; GCP is catalogued, not deployed.
 
 Both HelmReleases enable `spotToSpotConsolidation`, deployed through Flux — AWS from the public ECR
 OCI repository pinned at chart 0.36.0, Azure from `mcr.microsoft.com` at 1.4.0. The version gap is

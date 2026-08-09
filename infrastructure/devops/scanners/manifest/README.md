@@ -5,7 +5,8 @@
 Checking manifests in the pull request, where a finding costs a comment instead of a change window.
 
 Tools covered: [`yamllint/`](yamllint/README.md) · [`kubeconform/`](kubeconform/README.md) ·
-[`kubectl-validate/`](kubectl-validate/README.md) · [`kube-score/`](kube-score/README.md)
+[`flux-schema/`](flux-schema/README.md) · [`kubectl-validate/`](kubectl-validate/README.md) ·
+[`kube-score/`](kube-score/README.md)
 
 ## Contents
 
@@ -22,13 +23,13 @@ Tools covered: [`yamllint/`](yamllint/README.md) · [`kubeconform/`](kubeconform
 
 ## 1. Three layers, in order
 
-The four tools here are not alternatives. Three of them are **layers**, each catching a class of
-problem the one before it cannot see, and the fourth is an alternative to the second:
+The five tools here are not alternatives. Three of them are **layers**, each catching a class of
+problem the one before it cannot see, and two more are alternatives within layer 2:
 
 | Layer | Question | Tool | Catches | Misses |
 |---|---|---|---|---|
 | **1** | Is it YAML? | [yamllint](yamllint/README.md) | duplicate keys, tabs, the Norway problem, indentation | `kind: Deploymnet` |
-| **2** | Is it Kubernetes? | [kubeconform](kubeconform/README.md), or [kubectl-validate](kubectl-validate/README.md) | misspelled fields, wrong types, removed API versions | a Deployment with no probes and no limits |
+| **2** | Is it Kubernetes? | [kubeconform](kubeconform/README.md), [flux-schema](flux-schema/README.md), or [kubectl-validate](kubectl-validate/README.md) | misspelled fields, wrong types, removed API versions | a Deployment with no probes and no limits |
 | **3** | Is it *good* Kubernetes? | [kube-score](kube-score/README.md) | missing probes, no requests or limits, `image: latest`, no PDB, `runAsRoot` | anything that is policy rather than practice |
 
 Running them in this order is not stylistic. A file that will not parse makes layers 2 and 3 report
@@ -60,16 +61,22 @@ noisy rather than configured.
 
 ## 3. Layer 2: is it Kubernetes?
 
-Two tools, and the choice is currently easy.
+Three tools, and the choice turns on **how many custom resources the repository contains**.
 
-| | [kubeconform](kubeconform/README.md) | [kubectl-validate](kubectl-validate/README.md) |
-|---|---|---|
-| Validation source | generated Kubernetes OpenAPI schemas | **the API server's own validation code** |
-| Speed | very fast, parallel | slower |
-| CRD support | via `-schema-location` | native |
-| Maintained | **yes** | **no** — see below |
+| | [kubeconform](kubeconform/README.md) | [flux-schema](flux-schema/README.md) | [kubectl-validate](kubectl-validate/README.md) |
+|---|---|---|---|
+| Validation source | generated Kubernetes OpenAPI schemas | a **built-in catalog** plus a hosted one | **the API server's own validation code** |
+| Speed | very fast, parallel | fast | slower |
+| **CRD support** | via `-schema-location`, per CRD | **built in** — Flux ecosystem, Gateway API, OpenShift | native |
+| Beyond schema shape | no | **CEL rules** | no |
+| Maintained | **yes** | **yes**, by the fluxcd org | **no** — see below |
+| Maturity | established | newer |  |
 
-**Use kubeconform.** kubectl-validate is the better design on paper — it uses the same code paths as
+**kubeconform for a repository of core Kubernetes manifests. flux-schema when it is full of custom
+resources** — which, for anything Flux-managed, it is. That is not a quality judgement between the
+two; it is about which one can see the objects you actually wrote.
+
+kubectl-validate is the better design on paper — it uses the same code paths as
 the API server, so there is no drift between what it accepts and what the cluster accepts — and it
 has had no release in roughly two years. The recorded evidence is an open issue titled *"State of
 the Project"*, which is its own answer.
@@ -87,6 +94,9 @@ second time against the *upgrade target* version is the cheapest possible upgrad
 And one thing that is easy to get silently wrong: **CRD schemas must be configured**, or every
 custom resource is skipped. On a platform built from operators that is most of the interesting
 manifests, and the pipeline will report success while checking almost nothing.
+
+That caveat is the entire reason [flux-schema](flux-schema/README.md) is worth considering here: it
+ships the catalog instead of asking you to assemble one.
 
 ## 4. Layer 3: is it good Kubernetes?
 
@@ -136,11 +146,15 @@ flowchart TD
     START -->|Plain manifests| L1
 
     REN --> L1[yamllint<br/>configure line-length<br/>before anything else]
-    L1 --> L2[kubeconform -strict<br/>-kubernetes-version = the<br/>version you actually run]
-    L2 --> CRD{Are there custom<br/>resources?}
-    CRD -->|Yes| SCH[-schema-location for the<br/>CRDs, or they are silently<br/>skipped]
-    CRD -->|No| L3
-    SCH --> L3[kube-score<br/>on the rendered output]
+    L1 --> CRD{Are there custom<br/>resources?}
+    CRD -->|Many — HelmRelease,<br/>operator CRDs| FS[flux-schema<br/>catalog is built in,<br/>plus CEL rules]
+    CRD -->|A few| SCH[kubeconform -strict<br/>+ -schema-location per CRD,<br/>or they are silently skipped]
+    CRD -->|None| KC[kubeconform -strict<br/>-kubernetes-version = the<br/>version you actually run]
+
+    FS --> L3
+    SCH --> L3
+    KC --> L3
+    L3[kube-score<br/>on the rendered output]
 
     L3 --> AGREE{Does the team agree<br/>with the check?}
     AGREE -->|Yes| FAIL[Fail the build]
@@ -168,10 +182,10 @@ flowchart TD
 
 ## 8. How this applies to pikakube
 
-**Nothing here is deployed, and nothing here needs to be** — all four are CLIs that belong in a
+**Nothing here is deployed, and nothing here needs to be** — all five are CLIs that belong in a
 pipeline. But nothing here is *wired in* either, and that is the gap.
 
-All four tools are documented. None runs against this repository. Given that this is a
+All five tools are documented. None runs against this repository. Given that this is a
 manifest-heavy repository reconciled by
 [Flux](../../../platform-engineering/gitops/flux/README.md), that is the highest-value unclaimed
 improvement in the whole discipline: the tools are chosen, the flags are known, and the missing part
@@ -182,8 +196,8 @@ The order to add them, cheapest first:
 | Step | What | Why first |
 |---|---|---|
 | 1 | [yamllint](yamllint/README.md) as a pre-commit hook, with the line-length rule configured | costs nothing, catches duplicate keys, and gives feedback before the commit |
-| 2 | [kubeconform](kubeconform/README.md) `-strict` on rendered output, with the cluster's version | catches typos and deprecated APIs, and runs in seconds |
-| 3 | [kubeconform](kubeconform/README.md) again against the **upgrade target** version | turns cluster upgrades from archaeology into a build result |
+| 2 | [flux-schema](flux-schema/README.md) on rendered output | its catalog covers the `HelmRelease`, `OCIRepository` and operator CRDs this repository is mostly made of |
+| 3 | [kubeconform](kubeconform/README.md) `-strict` against the **upgrade target** version | turns cluster upgrades from archaeology into a build result — version targeting is what it is best at |
 | 4 | [kube-score](kube-score/README.md) with a small agreed check set, failing the build | the only one that changes how workloads are written |
 
 **Two things specific to this repository would decide whether it works.**
@@ -193,8 +207,13 @@ sources are not what reaches the cluster.
 
 **CRD schemas**, per section 3, and this is the one most likely to be skipped. This platform is
 built from operators — CNPG, RabbitMQ, KEDA, Grafana, Argo, KubeElasti and more. Without
-`-schema-location` configured for their CRDs, a schema check would skip exactly the resources most
-likely to be wrong and report success while doing it.
+`-schema-location` configured for their CRDs, a kubeconform check would skip exactly the resources
+most likely to be wrong and report success while doing it.
+
+[flux-schema](flux-schema/README.md) is the direct answer to that, and it is why it now sits at
+step 2 rather than kubeconform: its built-in catalog covers the Flux ecosystem, which is what almost
+every manifest in this repository is. The two are complementary — flux-schema for coverage of what
+is actually here, kubeconform for version-targeted upgrade checks.
 
 **The two recorded opinions** in this folder are both about documentation, and both are worth
 keeping:

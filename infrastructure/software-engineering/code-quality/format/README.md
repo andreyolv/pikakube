@@ -4,7 +4,8 @@
 
 Ending the argument about whitespace by removing the option to have one.
 
-Tools covered: [`prettier`](prettier/README.md)
+Tools covered: [`prettier`](prettier/README.md) — web and config formats ·
+[`shfmt`](shfmt/README.md) — shell
 
 ## Contents
 

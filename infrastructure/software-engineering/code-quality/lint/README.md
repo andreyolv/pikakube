@@ -4,9 +4,12 @@
 
 Rules that a machine can check, enforced before anyone has to read the code.
 
-Tools covered: Ruff · pylint · flake8 · isort · pycodestyle · autopep8 · Black · MegaLinter ·
-Super-Linter · EditorConfig — catalogued as [a table in section 3](#3-the-tools), with upstream
-links. There are no tool subfolders here; nothing in this folder is deployed.
+Tools covered: [`shellcheck/`](shellcheck/README.md) — the shell linter, and the only one with its
+own page here.
+
+Also catalogued as [a table in section 3](#3-the-tools), with upstream links: Ruff · pylint ·
+flake8 · isort · pycodestyle · autopep8 · Black · MegaLinter · Super-Linter · EditorConfig.
+Nothing in this folder is deployed — these are CLIs for a pipeline.
 
 ## Contents
 

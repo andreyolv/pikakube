@@ -4,7 +4,8 @@
 
 Requests are what you pay for. Almost nobody sets them from evidence.
 
-Tools covered: [`vpa`](vpa/README.md) · [`goldilocks`](goldilocks/README.md) · [`krr`](krr/README.md) ·
+Tools covered: [`kube-capacity`](kube-capacity/README.md) · [`vpa`](vpa/README.md) ·
+[`goldilocks`](goldilocks/README.md) · [`krr`](krr/README.md) ·
 [`stormforge`](stormforge/README.md) · [`perfectscale`](perfectscale/README.md)
 
 ## Contents
@@ -128,15 +129,25 @@ Scaling on a queue or request-rate metric rather than CPU is the cleanest resolu
 
 | Tool | Model | Where it shines | Detail |
 |---|---|---|---|
+| **kube-capacity** | open source, read-only CLI | **shows the gap and nothing else** — requests, limits and utilisation in one table, needing only metrics-server | [→](kube-capacity/README.md) |
 | **VPA** | open source, in-cluster controller | the Kubernetes-native mechanism; also **the recommendation engine other tools consume** | [→](vpa/README.md) |
 | **Goldilocks** | open source (Fairwinds) | **a UI over VPA recommendations** — the fastest way to show teams the gap, per namespace | [→](goldilocks/README.md) |
 | **KRR** | open source (Robusta), CLI | **no controller at all** — reads history straight from Prometheus and prints a report | [→](krr/README.md) |
 | **StormForge** | commercial SaaS + in-cluster agent | machine-learned recommendations covering **both requests and limits**, with a target reliability level | [→](stormforge/README.md) |
 | **PerfectScale** | commercial SaaS | continuous right-sizing with reliability-vs-cost framing and multi-cluster reporting | [→](perfectscale/README.md) |
 
-**Start with KRR.** It installs nothing, runs against the Prometheus you already have, and prints
-the gap between requested and used per workload. That output is usually enough to decide whether any
-of the rest is worth deploying — and often enough to produce the first wave of pull requests.
+**Start with kube-capacity.** One binary, no controller, no Prometheus — just requests against
+utilisation in a table. It answers the prior question the rest of this folder assumes: *is there a
+gap worth acting on at all?* If requests and usage are already close, nothing else here is needed,
+and that is a useful answer to get in ten seconds.
+
+**Then KRR.** It installs nothing either, runs against the Prometheus you already have, and turns
+the snapshot into a recommendation grounded in **history** — which is what an actual request value
+has to come from. That output is usually enough to decide whether any of the rest is worth
+deploying, and often enough to produce the first wave of pull requests.
+
+The distinction between those two is the one to keep: kube-capacity shows **now**, KRR reads
+**over time**. Setting a request from a single observation is how you get an OOM at the next peak.
 
 **Goldilocks is the second step**, because right-sizing is a social problem: a per-namespace page a
 team can open themselves changes more behaviour than a spreadsheet from the platform team.
@@ -156,8 +167,12 @@ convincing teams to merge the change, which no vendor solves.
 flowchart TD
     START{Do you know the gap<br/>between requested<br/>and used?}
 
-    START -->|No| KRR[KRR<br/>run it today, no install,<br/>reads your Prometheus]
+    START -->|No idea| KC[kube-capacity --util<br/>one binary, needs only<br/>metrics-server]
     START -->|Yes, and it is large| Q1
+
+    KC --> SMALL{Is the gap<br/>actually large?}
+    SMALL -->|No| STOP([Stop. Nothing else<br/>here is needed.])
+    SMALL -->|Yes| KRR[KRR<br/>reads Prometheus history —<br/>a snapshot is not a<br/>request value]
 
     KRR --> Q1
     Q1{Who needs to act<br/>on the number?}

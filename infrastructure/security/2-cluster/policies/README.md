@@ -7,7 +7,8 @@ Admission control is the last point at which a bad resource can be stopped. Afte
 Tools: [`gatekeeper/`](gatekeeper/README.md) — OPA/Rego ·
 [`kyverno/`](kyverno/README.md) — YAML, Kubernetes-native ·
 [`kubewarden/`](kubewarden/README.md) — WebAssembly ·
-[`opal/`](opal/README.md) — keeps OPA's data fresh
+[`opal/`](opal/README.md) — keeps OPA's data fresh ·
+[`conftest/`](conftest/README.md) — **the same Rego, in CI instead of at admission**
 
 ## Contents
 

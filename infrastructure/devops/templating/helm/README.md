@@ -10,6 +10,8 @@
 
 <https://github.com/helm/helm-mapkubeapis>
 
+Related: [`helm-unittest/`](helm-unittest/README.md) — unit-testing what a chart actually renders
+
 ---
 
 ## The problem it solves

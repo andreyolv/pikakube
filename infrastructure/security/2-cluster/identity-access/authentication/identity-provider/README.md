@@ -8,8 +8,7 @@ commitment.
 Children: [`keycloak/`](keycloak/README.md) — the heavyweight default ·
 [`authentik/`](authentik/README.md) — modern, good UX ·
 [`zitadel/`](zitadel/README.md) — Go, multi-tenant, event-sourced ·
-[`casdoor/`](casdoor/README.md) — Go, lighter ·
-[`aaa/`](aaa/README.md) — an empty placeholder
+[`casdoor/`](casdoor/README.md) — Go, lighter
 
 ## Contents
 
