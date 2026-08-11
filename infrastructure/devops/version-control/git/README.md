@@ -223,6 +223,51 @@ produces a permission error that looks like a missing key rather than an unautho
 `user.email` should match a verified address on the account, or commits will not be attributed
 and will not appear in the contribution history.
 
+## Driving Git from Python
+
+<https://github.com/gitpython-developers/GitPython>
+
+Anything that automates a repository — a bot that commits a version bump, a script that reads
+history to build a changelog — otherwise assembles `git` invocations with string concatenation and
+parses the output with regular expressions. That works and it breaks on the first filename with a
+space in it. **GitPython** gives objects instead: `Repo`, `Commit`, `Blob`, `Diff`, `Remote`.
+
+Two facts from its own README decide most of the evaluation, and neither is a footnote:
+
+**It is in maintenance mode.** The maintainers state it plainly — *"there will be no feature
+development, unless these are contributed"*, and *"no bug fixes, unless they are relevant to the
+safety of users, or contributed."* The original author's focus moved to
+[Gitoxide](https://github.com/Byron/gitoxide), a Rust implementation of Git. A stable library doing
+a well-defined job in maintenance mode is a reasonable dependency; it does mean a bug you hit is a
+bug you fix.
+
+**It leaks resources in long-running processes.** Also stated directly: *"GitPython is not suited
+for long-running processes (like daemons) as it tends to leak system resources"* — the cause is
+reliance on destructors, which no longer run deterministically in modern Python.
+
+That second point is the one that matters in a Kubernetes repository, and it is a neat trap: the
+obvious use for such a library is a **controller** that watches something and commits back to Git,
+and that is exactly the shape it is documented not to suit. Keep it inside short-lived processes — a
+`Job`, a CI step, a CLI. `repo.close()` or the context manager mitigates it; it does not make a
+daemon a good idea.
+
+It also **invokes the `git` binary** rather than implementing Git, so it needs Git 1.7+ on `PATH` —
+and a slim Python base image usually does not have it, with the failure appearing at runtime.
+
+| Option | When it wins |
+|---|---|
+| **`subprocess`** | one or two commands — no dependency, no surprises |
+| **GitPython** | the object model genuinely saves work, in a short-lived process |
+| **pygit2** | libgit2 bindings: faster, no subprocess, safe for long-running — at the cost of a native dependency |
+| **dulwich** | pure Python, no `git` binary needed — useful in constrained images |
+
+For this platform the plausible use is GitOps automation — writing back to the repository Flux
+reconciles from. Worth noting that the purpose-built answers already exist:
+[Flux's image automation](../../image/update/README.md) writes new tags back to Git with no custom
+code, and [release-please](../../cicd/release-please/README.md) generates versions and changelogs
+from commit history. Reaching for a library means the requirement is genuinely bespoke — and if that
+bespoke thing is a controller, this is the wrong library for it.
+
 ## Where it fits here
 
 Not something to deploy — this folder is the **conventions layer**, and it applies to every

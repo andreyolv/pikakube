@@ -23,8 +23,28 @@ because they share a store and identifiers rather than being joined after the fa
 - correlation between traces and logs is the recurring pain
 - log volume is the cost driver — columnar storage is usually cheaper per GB
 
+## What is not open source
+
+Same catch as [OpenObserve](../openobserve/README.md), one step milder. The community edition
+does ship user management — invite-based accounts and three fixed roles (admin, editor, viewer) —
+so it is not the "one shared root password" situation. **But SSO is the paid line: SAML and
+Google OAuth live in the `ee/` directory under the SigNoz Enterprise License, not in the
+Apache-licensed core.**
+
+So self-hosting means:
+
+- **no identity provider integration** — accounts are created by invite and live only in SigNoz,
+  which means offboarding someone is a manual step in yet another system
+- **roles are coarse and fixed** — no custom permissions, no per-team scoping of what a viewer can see
+- the authentication story is exactly the piece you cannot fix yourself, because it is the piece
+  that is not open
+
+The engine is genuinely open and genuinely good. Access control is where the funnel is, and it is
+worth pricing that in before treating this as "the open-source replacement for four systems".
+
 ## When not to use it
 
+- **SSO or an identity provider is mandatory** — that requires the enterprise license
 - **Prometheus is entrenched.** PromQL, recording rules, alerting rules and community dashboards represent a large sunk investment that does not transfer
 - you need long-term metric retention at scale — [Thanos](../../../metrics/long-term-storage/thanos/README.md) and [Mimir](../../../metrics/long-term-storage/mimir/README.md) are purpose-built
 - Grafana's dashboard ecosystem is load-bearing
