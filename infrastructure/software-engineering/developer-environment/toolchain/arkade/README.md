@@ -48,7 +48,7 @@ compared against them:
 
 | Question | Answered by |
 |---|---|
-| **How does this binary get onto this machine, right now?** | **arkade**, [downloadkubernetes](../downloadkubernetes/README.md) |
+| **How does this binary get onto this machine, right now?** | **arkade** (or, for Kubernetes release binaries only, [downloadkubernetes](https://github.com/kubernetes-sigs/downloadkubernetes)) |
 | Which tools exist in this repository, at which versions, for everyone? | [mise](../mise/README.md), [devenv](../devenv/README.md), [flox](../flox/README.md), [Devbox](../../../../platform-engineering/kubernetes/local/linux/virtual-enviroment/devbox/README.md) |
 
 That is **acquisition versus declaration**, and they are not competing answers to one question.
@@ -122,9 +122,10 @@ pipeline that assembles its tools by a completely different mechanism from the l
 not fix that on its own — it is still a second, undeclared assembly — but it makes the CI half short
 enough to read, and it makes the versions explicit if you write them:
 `arkade get kubectl@v1.30.2`. Without the version suffix it is `latest`, and `latest` in CI is how a
-pipeline breaks with no commit to blame. On GitHub Actions specifically, the narrower first-party
-option for one tool is [`setup-kubectl`](../../../../devops/cicd/github-actions/setup-kubectl/README.md);
-arkade earns its place when the list is five tools long rather than one.
+pipeline breaks with no commit to blame. On GitHub Actions specifically, the narrower
+option for one tool is a `setup-*` action — see
+[GitHub Actions §9](../../../../devops/cicd/github-actions/README.md#9-notes); arkade earns its
+place when the list is five tools long rather than one.
 
 **Where this fits in pikakube: useful, and not the answer to the question this folder asks.** The
 toolchain here is already declared and pinned in [`devbox.json`](../../../../../devbox.json) —

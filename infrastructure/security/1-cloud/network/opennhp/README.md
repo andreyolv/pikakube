@@ -1,11 +1,12 @@
 [← Cloud network](../README.md)
 
-# ZTNA and network hiding
+# OpenNHP
 
 <https://github.com/OpenNHP/opennhp>
 
 Making a service **unreachable until the requester has authenticated** — so that scanning,
-fingerprinting and pre-authentication exploits have nothing to talk to.
+fingerprinting and pre-authentication exploits have nothing to talk to. The open reference
+implementation of network hiding, and the page where the ZTNA/SDP category is covered.
 
 ---
 

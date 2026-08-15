@@ -6,7 +6,7 @@ Perimeter controls at the account and VPC edge — a different world from Kubern
 NetworkPolicy, and not a substitute for it.
 
 Categories covered: [`waf`](waf/README.md) · [`ngfw`](ngfw/README.md) ·
-[`ips`](ips/README.md) · [`vpn`](vpn/README.md) · [`ztna`](ztna/README.md)
+[`ips`](ips/README.md) · [`vpn`](vpn/README.md) · [`opennhp`](opennhp/README.md) — ZTNA / network hiding
 
 ## Contents
 
@@ -83,7 +83,7 @@ Two places, and both are worth knowing about because they are where the useful h
 | **NGFW** | connections, with application awareness and routing | the network edge; on-prem or at a branch far more often than inside a cloud VPC | [→](ngfw/README.md) |
 | **IPS / IDS** | packet and flow content against signatures or behaviour | inline on a chokepoint (IPS, blocks) or on a mirrored feed (IDS, observes) | [→](ips/README.md) |
 | **VPN** | nothing — it creates an encrypted path | between networks, or between a user and a network | [→](vpn/README.md) |
-| **ZTNA / network hiding** | nothing — it decides whether the port answers **at all**, before any connection | in front of non-public services: admin interfaces, SSH, an API server | [→](ztna/README.md) |
+| **ZTNA / network hiding** | nothing — it decides whether the port answers **at all**, before any connection | in front of non-public services: admin interfaces, SSH, an API server | [→](opennhp/README.md) |
 
 The last two rows are different in kind and worth separating in your head. A VPN is not an
 inspection control. It grants **reachability**. That makes it the one item in this folder
@@ -143,7 +143,7 @@ they are not a way to make exposure acceptable. The first question about any per
 requirement should be whether the thing needs to be reachable at all — and often the answer
 turns out to be no.
 
-[`ztna/`](ztna/README.md) is the same principle applied where the answer is *"reachable, but
+[`opennhp/`](opennhp/README.md) is the same principle applied where the answer is *"reachable, but
 only by known clients"*: authenticate first, open the port afterwards, and until then the
 service is indistinguishable from a host that does not exist.
 

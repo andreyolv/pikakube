@@ -5,9 +5,6 @@
 The `NetworkPolicy` API, what it controls, why default-deny is the only sensible baseline,
 and the one fact that catches everyone: the API does nothing unless the CNI enforces it.
 
-Subfolders: [`network-policy-api/`](network-policy-api/README.md) — the upstream `ClusterNetworkPolicy`,
-which is where the admin tier, the real deny and the cluster-wide baseline live
-
 ## Contents
 
 1. [The fact that matters most: NetworkPolicy is an API, not an implementation](#1-the-fact-that-matters-most-networkpolicy-is-an-api-not-an-implementation)
@@ -163,21 +160,65 @@ address:
 |---|---|---|
 | **CiliumNetworkPolicy** (CRD) | FQDN-based egress (`toFQDNs`), L7/HTTP-aware rules, egress to Kubernetes Services by name, cluster-wide policies | Cilium CNI — [`network/cni/cilium/`](../../../network/cni/cilium/README.md) |
 | **Antrea-native policies** (CRD) | cluster-scoped tiers, priorities, `Allow`/`Drop`/`Reject`/`Pass` | Antrea CNI — [`network/cni/antrea/`](../../../network/cni/antrea/README.md) |
-| **`ClusterNetworkPolicy`** (`policy.networking.k8s.io`) | the same capability, **vendor-neutral**: a cluster-scoped `Admin` tier above tenant policies and a `Baseline` tier below them, with real `Deny` and priority | the upstream standard — [`network-policy-api/`](network-policy-api/README.md) |
+| **`ClusterNetworkPolicy`** (`policy.networking.k8s.io`) | the same capability, **vendor-neutral**: a cluster-scoped `Admin` tier above tenant policies and a `Baseline` tier below them, with real `Deny` and priority | the upstream standard — <https://github.com/kubernetes-sigs/network-policy-api> |
 
-Two points worth holding onto. First, **CiliumNetworkPolicy's FQDN egress is the usual
-answer to the "IPs change" problem** in §3 — you allow `egress to api.stripe.com` instead of
-chasing CIDR blocks. Second, the upstream API **finally introduces a real deny, a priority order and
-a cluster scope**, which the core API pointedly lacks (§5): an `Admin` tier for the platform baseline
-("no namespace may reach the metadata endpoint, ever") that tenants cannot override, and a
-`Baseline` tier that makes default-deny a property of the cluster instead of a policy object per
-namespace. All of them require a CNI that implements them — which loops back to §1.
+**CiliumNetworkPolicy's FQDN egress is the usual answer to the "IPs change" problem** in §3 — you
+allow `egress to api.stripe.com` instead of chasing CIDR blocks. The CRD forms are also a lock-in:
+same capability, one vendor's object, and a migration if the CNI changes.
 
-**The naming changed in October 2025.** `AdminNetworkPolicy` and `BaselineAdminNetworkPolicy` were
-consolidated into a single `ClusterNetworkPolicy` with a `tier` field in `v1alpha2`; the model is
-unchanged, the objects are not. Anything written before then — including a CNI advertising
-"AdminNetworkPolicy support" — may mean the older pair. The detail, the evaluation order and the
-implementation status per CNI are in [`network-policy-api/`](network-policy-api/README.md).
+### The upstream one: `ClusterNetworkPolicy`
+
+`network-policy-api` is the SIG-Network project defining the tier the core API leaves out, shipped
+as CRDs in the same shape as [Gateway API](../../../network/gateway-api/README.md) — out of tree,
+with a conformance suite, implemented by CNIs.
+
+**The naming changed in October 2025**, so anything written before then describes different objects:
+
+| Was (`v1alpha1`) | Is now (`v1alpha2`) |
+|---|---|
+| `AdminNetworkPolicy` | `ClusterNetworkPolicy` with `tier: Admin` |
+| `BaselineAdminNetworkPolicy` (a cluster singleton named `default`) | `ClusterNetworkPolicy` with `tier: Baseline` |
+
+The model is unchanged — evaluation order used to be implied by which resource you wrote and is now
+a `tier` field. Three tiers, checked in order, first match wins:
+
+```
+1. Admin tier        — ClusterNetworkPolicy, tier: Admin       ← platform team; not overridable
+2. NetworkPolicy     — the ordinary namespaced API             ← tenants
+3. Baseline tier     — ClusterNetworkPolicy, tier: Baseline    ← the default when nobody said anything
+```
+
+Within a tier, policies are ordered by an integer `priority`, and **lower is evaluated first** — the
+opposite convention from most systems. Three actions: **`Accept`** and **`Deny`** both stop
+evaluation, and **`Pass`** hands the decision to the next tier, which is how an admin says *"I care
+about this traffic, but the owning namespace may decide"* — delegation as an explicit action rather
+than an all-or-nothing choice.
+
+The two uses that carry most of the value:
+
+- **Admin tier, `Deny`:** no workload may reach `169.254.169.254`, ever — one object, every
+  namespace, and no tenant policy can allow it back (which, under the additive core API of §5, any
+  team could).
+- **Baseline tier, `Deny` all:** default-deny becomes a property of the **cluster** instead of a
+  policy object per namespace, while any namespace that writes its own `NetworkPolicy` still decides
+  for itself. That is the single biggest practical improvement here — §2's posture without the
+  per-namespace checklist that a new namespace silently escapes.
+
+**Implementation status is what decides usability, and it moves.** [Cilium](../../../network/cni/cilium/README.md)
+supports `ClusterNetworkPolicy` from 1.20 behind `--enable-k8s-cluster-network-policy` (off by
+default); [Calico](../../../network/cni/calico/README.md) implements the tiers and all three
+actions, with open reports of trouble in specific dataplane combinations;
+[Antrea](../../../network/cni/antrea/README.md) and
+[OVN-Kubernetes](../../../network/sdn/ovn-kubernetes/README.md) implement the tiered model, in
+several cases still the older `v1alpha1` pair; GKE has announced support. Two conclusions: **a CNI
+advertising "AdminNetworkPolicy support" may mean the pre-consolidation objects**, so check the
+version rather than the feature name, and support generally arrives **disabled**.
+
+Two caveats before planning around it. It is `v1alpha2` and has already broken once — Beta is a
+stated target (KubeCon NA 2026), not a shipped fact. And because these are **CRDs**, they install
+and accept objects on a cluster whose CNI has never heard of them: §1's warning applies with more
+force here, not less, since even the built-in-type safety net is gone. Apply a `Deny`, then confirm
+the connection actually fails.
 
 ## 7. Decision tree
 
@@ -233,12 +274,17 @@ default-deny, confirm a connection actually fails, and if it does not, that is �
 The moment segmentation matters, the CNI decision in
 [`network/cni/`](../../../network/cni/README.md) comes first, exactly as that folder warns.
 
-The design a real cluster would run: a default-deny (ingress and egress) per namespace as
-the baseline, DNS allowed explicitly, an admin-tier deny on the metadata endpoint
-(`169.254.169.254`) via AdminNetworkPolicy or a Cilium cluster-wide policy, and per-workload
-allow rules kept narrow — with namespace labelling enforced by
+The design a real cluster would run: a default-deny (ingress and egress) baseline, DNS allowed
+explicitly, an admin-tier deny on the metadata endpoint (`169.254.169.254`), and per-workload allow
+rules kept narrow — with namespace labelling enforced by
 [`../policies/README.md`](../policies/README.md) so the selectors it all depends on are
 actually reliable.
+
+One thing §6 changes about the order of that work: **the CNI should now be chosen against
+`ClusterNetworkPolicy` support, not only core NetworkPolicy support.** If this cluster ever moves to
+Cilium, Calico or Antrea, the first policy to write is not a per-namespace default-deny — it is a
+`Baseline`-tier `ClusterNetworkPolicy` and an `Admin`-tier `Deny` for the metadata endpoint, which
+between them replace a per-namespace checklist that every new namespace silently escapes.
 
 ---
 

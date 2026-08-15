@@ -8,7 +8,7 @@ Tools covered: [`mise`](mise/README.md) · [`devenv`](devenv/README.md) ·
 [`flox`](flox/README.md) · [`spack`](spack/README.md)
 
 Acquisition, not declaration — see [section 4.1](#41-acquisition-is-not-declaration):
-[`arkade`](arkade/README.md) · [`downloadkubernetes`](downloadkubernetes/README.md)
+[`arkade`](arkade/README.md)
 
 ## Contents
 
@@ -143,19 +143,23 @@ knowing about before adopting both and having two places where commands live.
 
 ### 4.1 Acquisition is not declaration
 
-Two more tools are filed in this folder and they are **not** a fifth and sixth option in the table
-above. They answer a different question, and reading them as alternatives to mise is the mistake
-worth heading off:
+One more tool is filed in this folder and it is **not** a fifth option in the table above. It answers
+a different question, and reading it as an alternative to mise is the mistake worth heading off:
 
 | Question | Answered by |
 |---|---|
 | Which tools exist in this repository, at which versions, **for everyone** | the four tools above |
-| **How does this binary get onto this machine, right now** | [arkade](arkade/README.md), [downloadkubernetes](downloadkubernetes/README.md) |
+| **How does this binary get onto this machine, right now** | [arkade](arkade/README.md) |
 
 | Tool | What it is for | Where it shines |
 |---|---|---|
 | **arkade** | `arkade get kubectl helm kind` — downloads statically linked binaries for your OS and architecture, ~200 tools catalogued | **a machine you did not set up**: a bastion, a container build, a fresh laptop, a workshop [→](arkade/README.md) |
-| **downloadkubernetes** | a static picker over `dl.k8s.io` — version × OS × architecture × binary, with the checksum, signature and certificate beside each one | **pinning a Kubernetes release binary deliberately, and actually verifying it** [→](downloadkubernetes/README.md) |
+
+For Kubernetes release binaries specifically there is also
+[downloadkubernetes](https://github.com/kubernetes-sigs/downloadkubernetes) — a static picker over
+`dl.k8s.io` (version × OS × architecture × binary) whose one real merit is that it puts the
+**checksum, signature and certificate next to each download**, which is the verification step almost
+nobody performs and this repository does not either.
 
 The distinction is that an acquisition tool is **imperative and stateless**. You run a command, a
 binary appears, and nothing records that it happened — so "which Helm is this repository built
@@ -309,7 +313,6 @@ four tools here are references rather than deployments.**
 | flox | reference |
 | spack | reference, and of no plausible relevance to this platform |
 | [arkade](arkade/README.md) | reference — acquisition, not a toolchain definition; useful on hosts that have no Nix store |
-| [downloadkubernetes](downloadkubernetes/README.md) | reference — and the one that names a real gap: nothing here verifies a downloaded binary's signature |
 
 Three concrete judgements:
 

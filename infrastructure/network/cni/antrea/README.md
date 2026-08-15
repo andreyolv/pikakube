@@ -55,9 +55,9 @@ with tiers, integer priorities, explicit `Allow`/`Drop`/`Reject`/`Pass` actions,
 everything the core API leaves out
 ([network-policies §5](../../../security/2-cluster/network-policies/README.md#5-policies-are-additive-there-is-no-deny-rule)).
 Antrea was also an early implementer of the upstream
-[network-policy-api](../../../security/2-cluster/network-policies/network-policy-api/README.md), and
-the same caveat applies as to `CiliumNetworkPolicy`: the CRD form is a lock-in, the upstream form is
-portable, and the upstream form is now moving to `ClusterNetworkPolicy` in `v1alpha2`.
+[`ClusterNetworkPolicy`](../../../security/2-cluster/network-policies/README.md#the-upstream-one-clusternetworkpolicy),
+and the same caveat applies as to `CiliumNetworkPolicy`: the CRD form is a lock-in, the upstream form
+is portable, and the upstream form changed shape in `v1alpha2`.
 
 **Egress, and flow visibility.** `Egress` CRs pin a workload's outbound traffic to a chosen node IP,
 which is what makes an external firewall rule expressible at all when pod IPs are ephemeral — the

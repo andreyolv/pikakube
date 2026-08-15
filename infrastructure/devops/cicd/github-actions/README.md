@@ -6,8 +6,7 @@ CI attached to the forge — and the parts of it that only become visible once y
 
 Tools covered: [`actions-runner-controller`](actions-runner-controller/README.md) ·
 [`act`](act/README.md) · [`actionlint`](actionlint/README.md) ·
-[`custom-py`](custom-py/README.md) · [`custom-ts`](custom-ts/README.md) ·
-[`setup-kubectl`](setup-kubectl/README.md) · [`setup-helm`](setup-helm/README.md)
+[`custom-py`](custom-py/README.md) · [`custom-ts`](custom-ts/README.md)
 
 Local examples: [`workflows/`](workflows/README.md) — reusable workflows, and recorded experiments
 on the secret boundary.
@@ -140,14 +139,6 @@ fork-triggered workflows on the same runner pool as anything privileged.
 | **actionlint** | static analysis of workflow YAML — expressions, `runs-on`, shell scripts | [→](actionlint/README.md) |
 | **custom-ts** | writing your own action in TypeScript, the mainstream path | [→](custom-ts/README.md) |
 | **custom-py** | writing your own action in Python, as a container action | [→](custom-py/README.md) |
-| **setup-kubectl** | installing a **pinned** `kubectl` in a job — and the question of why the job needs one | [→](setup-kubectl/README.md) |
-| **setup-helm** | the same, for `helm` — where chart *linting and publishing* are the good cases and `helm upgrade` is the bad one | [→](setup-helm/README.md) |
-
-The last two are the odd entries in this table: they are Marketplace actions rather than tools you
-operate, and they are documented here because a `setup-kubectl` or `setup-helm` step is the most
-reliable place in a workflow to find the deploy-from-CI anti-pattern from
-[section 8](#8-anti-patterns) sitting directly beneath it. Both are published by `Azure`, both are
-third-party by the rule in that section, and both default to `latest`.
 
 `act` and `actionlint` together address the same weakness from opposite ends — the commit-push-wait
 loop. `actionlint` catches what is statically wrong; `act` catches what is behaviourally wrong.
@@ -234,6 +225,31 @@ Marketplace is a genuine advantage rather than a liability:
 - <https://github.com/aws-actions/configure-aws-credentials> and
   <https://github.com/aws-actions/amazon-ecr-login> — the AWS pair. The first is what makes OIDC
   federation practical: assume a role from GitHub's identity token, no stored keys
+
+**The `azure/setup-*` pair, and what to read next to it.** `azure/setup-kubectl` and
+`azure/setup-helm` install a named `kubectl` or `helm` on the runner and are the ordinary way to get
+either. Three things about them, and none is in the Marketplace description:
+
+- <https://github.com/Azure/setup-kubectl> and <https://github.com/Azure/setup-helm> — the
+  organisation is `Azure`, not `actions`, so they are **third-party by the rule in
+  [section 8](#8-anti-patterns)**: pin to a commit SHA, not `@v4`. Both are also explicitly outside
+  the Azure support policy despite looking first-party.
+- **`version` defaults to `latest`**, which is `latest` in CI — two runs of the same commit, weeks
+  apart, get different binaries. Always set it, and for `kubectl` set it within one minor of the API
+  server it talks to.
+- **The step to read is the one after.** Installing a client is harmless; `kubectl apply` or
+  `helm upgrade --install` beneath it means the pipeline holds a kubeconfig that can write to the
+  cluster, which is the anti-pattern in section 8 and the argument in
+  [CI/CD §3](../README.md#3-the-credentials-consequence). The good uses need no cluster at all:
+  `kubectl kustomize`, `helm template`/`helm lint`, feeding
+  [manifest scanners](../../scanners/manifest/README.md), or `helm package` + `helm push` to an OCI
+  registry for Flux to consume. `azure/k8s-set-context` and `azure/aks-set-context` are a different
+  category entirely — their whole job is putting that kubeconfig on the runner.
+
+Neither verifies what it downloads, though Kubernetes and Helm both publish checksums and
+signatures — one of the gaps
+[`security/0-governance/supply-chain/`](../../../security/0-governance/supply-chain/README.md)
+exists to close.
 
 **Two recorded discussions**, both long-standing gaps rather than bugs:
 
