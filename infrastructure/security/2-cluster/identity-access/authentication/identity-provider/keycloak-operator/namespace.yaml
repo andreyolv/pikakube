@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: falco
+  name: keycloak
   labels:
     agentpool: system
     team: dataops

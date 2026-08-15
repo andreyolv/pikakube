@@ -7,6 +7,9 @@ Not *where* you write code — *which tools, at which versions, exist while you 
 Tools covered: [`mise`](mise/README.md) · [`devenv`](devenv/README.md) ·
 [`flox`](flox/README.md) · [`spack`](spack/README.md)
 
+Acquisition, not declaration — see [section 4.1](#41-acquisition-is-not-declaration):
+[`arkade`](arkade/README.md) · [`downloadkubernetes`](downloadkubernetes/README.md)
+
 ## Contents
 
 1. [The problem](#1-the-problem)
@@ -16,6 +19,7 @@ Tools covered: [`mise`](mise/README.md) · [`devenv`](devenv/README.md) ·
    2. [Nix-based environments](#32-nix-based-environments)
    3. [Source-building package managers](#33-source-building-package-managers)
 4. [The four tools](#4-the-four-tools)
+   1. [Acquisition is not declaration](#41-acquisition-is-not-declaration)
 5. [Boundaries](#5-boundaries)
    1. [Containers](#51-containers)
    2. [CI](#52-ci)
@@ -136,6 +140,32 @@ mise also covers two jobs beyond versions: **per-directory environment variables
 `direnv` normally does) and **tasks**, which overlaps
 [`devops/task-runner/`](../../../devops/task-runner/README.md). Overlapping a task runner is worth
 knowing about before adopting both and having two places where commands live.
+
+### 4.1 Acquisition is not declaration
+
+Two more tools are filed in this folder and they are **not** a fifth and sixth option in the table
+above. They answer a different question, and reading them as alternatives to mise is the mistake
+worth heading off:
+
+| Question | Answered by |
+|---|---|
+| Which tools exist in this repository, at which versions, **for everyone** | the four tools above |
+| **How does this binary get onto this machine, right now** | [arkade](arkade/README.md), [downloadkubernetes](downloadkubernetes/README.md) |
+
+| Tool | What it is for | Where it shines |
+|---|---|---|
+| **arkade** | `arkade get kubectl helm kind` — downloads statically linked binaries for your OS and architecture, ~200 tools catalogued | **a machine you did not set up**: a bastion, a container build, a fresh laptop, a workshop [→](arkade/README.md) |
+| **downloadkubernetes** | a static picker over `dl.k8s.io` — version × OS × architecture × binary, with the checksum, signature and certificate beside each one | **pinning a Kubernetes release binary deliberately, and actually verifying it** [→](downloadkubernetes/README.md) |
+
+The distinction is that an acquisition tool is **imperative and stateless**. You run a command, a
+binary appears, and nothing records that it happened — so "which Helm is this repository built
+against" has no answer a month later. A declaration tool commits a file, and the file *is* the
+answer.
+
+They compose in one direction only: a declared environment can shell out to arkade for something its
+catalogue lacks, but no amount of `arkade get` pins anything. **Neither replaces the committed file,
+and reaching for one instead of the other is the `latest` everywhere anti-pattern with better
+ergonomics** — which is why both are documented here rather than in a folder of their own.
 
 ## 5. Boundaries
 
@@ -278,6 +308,8 @@ four tools here are references rather than deployments.**
 | devenv | reference |
 | flox | reference |
 | spack | reference, and of no plausible relevance to this platform |
+| [arkade](arkade/README.md) | reference — acquisition, not a toolchain definition; useful on hosts that have no Nix store |
+| [downloadkubernetes](downloadkubernetes/README.md) | reference — and the one that names a real gap: nothing here verifies a downloaded binary's signature |
 
 Three concrete judgements:
 

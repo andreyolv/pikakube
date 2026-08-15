@@ -3,8 +3,10 @@
 # flux-schema
 
 <https://github.com/fluxcd/flux-schema>
+<https://github.com/controlplaneio-fluxcd/schema-catalog>
 
-Schema catalog: <https://schemas.fluxoperator.dev>
+The CLI, and the schema catalogue it validates against — <https://schemas.fluxoperator.dev>. Two
+repositories, one capability; the catalogue is [§ below](#the-ecosystem-catalogue-schema-catalog).
 
 ---
 
@@ -24,7 +26,7 @@ flux-schema removes that work by shipping the catalog:
 | It validates against | Detail |
 |---|---|
 | **A built-in catalog** | Kubernetes, OpenShift, Gateway API, and **the Flux ecosystem CRDs** |
-| A hosted ecosystem catalog | `schemas.fluxoperator.dev`, resolved by name rather than assembled by hand |
+| A hosted ecosystem catalog | [`schemas.fluxoperator.dev`](#the-ecosystem-catalogue-schema-catalog), resolved by name rather than assembled by hand |
 | **CEL rules** | expression-based checks that go past what JSON Schema can express |
 
 It is officially maintained by the **fluxcd** organisation, and it is Apache 2.0.
@@ -87,13 +89,65 @@ flux schema validate ./manifests \
   --schema-location ecosystem
 ```
 
-`default` is the built-in catalog; `ecosystem` resolves the hosted one. Both a container image
+`default` is the built-in catalog; `ecosystem` resolves
+[the hosted one](#the-ecosystem-catalogue-schema-catalog). Both a container image
 (`ghcr.io/fluxcd/flux-schema`) and composite GitHub Actions are published, so it does not require the
 `flux` CLI to be present in the runner.
 
 The **`ecosystem` location fetches over the network**, which is worth deciding deliberately: it keeps
 schemas current and makes the pipeline depend on a CDN. The image ships with the catalog embedded,
 which is the answer for an air-gapped or reproducibility-sensitive pipeline.
+
+## The ecosystem catalogue: schema-catalog
+
+<https://github.com/controlplaneio-fluxcd/schema-catalog> · <https://schemas.fluxoperator.dev>
+
+The CLI is only as good as the schemas it can resolve, and `-s ecosystem` resolves **this**: a
+generated, hosted catalogue of JSON schemas for the CNCF ecosystem, produced *with* flux-schema from
+upstream stable releases.
+
+| | |
+|---|---|
+| Coverage | ~118 projects, ~8,800 schemas |
+| Freshness | **regenerated daily** from upstream releases |
+| Served from | `schemas.fluxoperator.dev`, on Cloudflare |
+| Also exposed as | a browsable index, and an **MCP endpoint** at `/mcp` |
+| Repository / owner | `controlplaneio-fluxcd` — **ControlPlane**, not the `fluxcd` org |
+| Licence | **AGPL-3.0**, where the CLI is Apache-2.0 |
+
+The project list is the recognisable shape of a platform tree, which is why the coverage claim is
+credible rather than aspirational: Kubernetes and OpenShift; Crossplane, Cluster API, the AWS ACK
+controllers, Azure Service Operator; Cilium, Calico, Rook, Longhorn; Istio, Linkerd, KEDA, Karpenter;
+Flux, Argo, Knative, Kubeflow; Prometheus, Grafana and the vendor operators. **That list and this
+repository's operator list are close to the same list** — coverage is not a percentage in the
+abstract, it is whether the CRDs *you* deploy are in there.
+
+Two properties are decisions rather than details, and both are inherited silently from a copied
+command:
+
+- **The data has a different owner and a different licence from the tool.** The CLI is a Flux project
+  artefact under a permissive licence; the catalogue is a vendor artefact under a copyleft one,
+  offered primarily as a hosted service. That is a normal, sustainable arrangement — the daily
+  regeneration is work somebody funds — but AGPL-3.0 on a dependency is the kind of thing an
+  organisation would rather notice now than in a review later. It is schema data fetched over HTTP
+  rather than linked code, which is the mild end of that question.
+- **`-s ecosystem` puts a third-party CDN in the CI path.** The embedded catalogue in the container
+  image is the answer for an air-gapped or reproducibility-sensitive pipeline, at the cost of being a
+  snapshot.
+
+Two limits worth stating plainly: **in-house CRDs are in nobody's catalogue** — schemas for your own
+operators still have to be generated from their CRD definitions and supplied locally — and a
+catalogue does not reach layer 3. A perfectly schema-valid Deployment with no probes and no limits is
+still [kube-score](../kube-score/README.md)'s problem.
+
+**The MCP endpoint is the unexpected part.** `schemas.fluxoperator.dev/mcp` serves the catalogue over
+the [Model Context Protocol](../../../../ai/mcp/README.md), so a coding agent can look up the real
+shape of a `HelmRelease` or a `Cluster` CR instead of producing a plausible one from training data —
+the same argument made for `context7` in
+[`ai/` §7.10](../../../../ai/README.md#710-skills-prompts-and-context-for-agents), applied to
+Kubernetes CRDs rather than library documentation. It makes generated YAML *structurally* more likely
+to be right and says nothing about whether the resource is a good idea, which is a reason to run
+layer 2 more rather than less.
 
 ## Notes
 
@@ -126,6 +180,10 @@ practical next step is the same one named in
 [`../README.md`](../README.md#8-how-this-applies-to-pikakube): this repository has no manifest
 validation in CI at all, and the resources it would most benefit from checking are precisely the ones
 kubeconform cannot see without help.
+
+**Open limitation:** <https://github.com/fluxcd/flux-schema/issues/86> — the `validate` action only
+takes a root `path` and walks the whole tree, so every PR revalidates all ~1,700 manifests. The CLI
+takes paths, so a `run:` step over the changed files is the workaround until it accepts a file list.
 
 ---
 

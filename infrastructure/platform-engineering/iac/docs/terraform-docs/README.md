@@ -3,6 +3,7 @@
 # terraform-docs
 
 <https://github.com/terraform-docs/terraform-docs>
+<https://github.com/terraform-docs/gh-actions>
 
 ---
 
@@ -80,6 +81,22 @@ YAML is the right call, and there is no prose to lose.
 the CI check is the enforcement. This is the same split
 [`lint/`](../../lint/README.md) makes about linters, and for the same reason — only the CI run
 cannot be bypassed by someone in a hurry.
+
+**The official action is `terraform-docs/gh-actions`, and its default mode is the one this page
+argues against.** It can run in two shapes, and the choice is the whole decision:
+
+| Mode | What happens | Verdict |
+|---|---|---|
+| `git-push: true` | it regenerates and **commits back** to the branch | this is the pattern rejected in [*When not to use it*](#when-not-to-use-it) — the pull request gains changes its author did not write, and review happens against a file that moves |
+| `fail-on-diff: true` | it regenerates in place and **fails if the result differs** from what is committed | the enforcement this page asks for: the author regenerates, the diff stays theirs |
+
+Both exist because both are wanted by somebody, and the auto-commit path is genuinely convenient on
+a repository nobody reviews closely. It is still the wrong default: a bot commit on a branch
+invalidates approvals, races with the author's own pushes, and needs write permission on a workflow
+that otherwise needs none. Prefer `fail-on-diff`, keep the action's own `working-dir`,
+`config-file` and `recursive` inputs aligned with the committed `.terraform-docs.yml` so a local run
+produces the same bytes, and pin the action to a commit SHA like any third-party action
+([GitHub Actions §8](../../../../devops/cicd/github-actions/README.md#8-anti-patterns)).
 
 The honest limitation, stated plainly because it is the one that gets misunderstood: **terraform-docs
 documents the interface, not the intent.** It can tell a reader that an input is called

@@ -3,6 +3,9 @@
 # TFLint
 
 <https://github.com/terraform-linters/tflint>
+<https://github.com/terraform-linters/tflint-ruleset-terraform>
+<https://github.com/terraform-linters/tflint-ruleset-aws>
+<https://github.com/terraform-linters/setup-tflint>
 
 ---
 
@@ -39,6 +42,56 @@ whole point of the fork described in [`engine/`](../../engine/README.md).
 - as a replacement for `plan`; it does not know what exists in the account or what will change
 - on Pulumi or CDK code — this is an HCL tool
 - with every rule enabled at once, which produces a backlog large enough that the tool gets removed
+
+## The pieces you actually install
+
+TFLint is three things in a trench coat, and the split is not obvious from the project page. Getting
+it wrong is how a repository ends up with a linter that runs, passes, and checks almost nothing.
+
+| Piece | What it is | Do you install it? |
+|---|---|---|
+| **tflint** | the engine — parses HCL, loads plugins, applies configuration | yes |
+| [**tflint-ruleset-terraform**](https://github.com/terraform-linters/tflint-ruleset-terraform) | the **language** ruleset — the rules about Terraform itself | **no: it is bundled** |
+| [**tflint-ruleset-aws**](https://github.com/terraform-linters/tflint-ruleset-aws) | the **provider** ruleset — 700+ rules about AWS resources | **yes, explicitly** |
+| [**setup-tflint**](https://github.com/terraform-linters/setup-tflint) | the GitHub Action that installs the engine on a runner | in CI |
+
+**The language ruleset is built in** (TFLint v0.46+), so `tflint -v` reports its bundled version and
+there is nothing to declare. It owns the checks that apply regardless of provider: module sources
+pinned to a version, variables and outputs carrying types and descriptions, deprecated syntax,
+declarations that nothing references, naming conventions. Those are the rules most worth turning on
+early, because they are about hygiene rather than about a cloud API, and they never produce a
+finding that depends on credentials.
+
+**The provider ruleset is the one that has to be declared, and it is where the value is.** Without
+it, TFLint is a style checker; with it, it knows the AWS API surface — an instance type that does not
+exist, an argument the provider has deprecated, an enum value outside the allowed set. Both the
+plugin and its version go in `.tflint.hcl`, and `tflint --init` fetches it:
+
+```hcl
+plugin "aws" {
+  enabled = true
+  version = "0.48.0"
+  source  = "github.com/terraform-linters/tflint-ruleset-aws"
+}
+```
+
+Two things to know before relying on it: a large share of the 700+ rules — the best-practice and
+naming ones — are **disabled by default** and must be enabled deliberately, and the same applies for
+Azure and Google via their own rulesets. The default state is therefore quieter than the rule count
+suggests, which is a good default and a poor assumption.
+
+**`setup-tflint` installs the engine in CI, and that is all it does.** Three consequences follow, all
+of them recorded elsewhere on this page and all of them routinely missed:
+
+- **`tflint --init` still has to run** after the install, or the plugin is absent and the job passes
+  having checked the generic rules only. A green pipeline that verifies nothing is worse than no
+  pipeline
+- **give it a token.** Plugins are fetched from GitHub releases, and an unauthenticated runner hits
+  the anonymous rate limit exactly when several jobs run at once. The action takes a token input for
+  this
+- **pin the action to a commit SHA, and the TFLint version explicitly** — the same rule as any
+  third-party action ([GitHub Actions §8](../../../../devops/cicd/github-actions/README.md#8-anti-patterns)),
+  compounded here because the tool being installed adds rules between releases
 
 ## Notes
 

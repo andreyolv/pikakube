@@ -76,6 +76,14 @@ Three tools, and the choice turns on **how many custom resources the repository 
 resources** — which, for anything Flux-managed, it is. That is not a quality judgement between the
 two; it is about which one can see the objects you actually wrote.
 
+The "hosted one" in that table is **schema-catalog** — ~118 CNCF projects and ~8,800 schemas,
+regenerated daily, resolved by `flux schema validate -s ecosystem`. It is what makes flux-schema's
+CRD coverage reach past Flux itself to Crossplane, Cluster API, Cilium, Istio, Prometheus Operator
+and the rest of the operators catalogued in [`infrastructure/`](../../../README.md). Two things about
+it are decisions rather than details — it is **AGPL-3.0, maintained by ControlPlane** rather than by
+the fluxcd org that owns the CLI, and `-s ecosystem` **fetches over the network** — both covered in
+[flux-schema](flux-schema/README.md#the-ecosystem-catalogue-schema-catalog).
+
 kubectl-validate is the better design on paper — it uses the same code paths as
 the API server, so there is no drift between what it accepts and what the cluster accepts — and it
 has had no release in roughly two years. The recorded evidence is an open issue titled *"State of

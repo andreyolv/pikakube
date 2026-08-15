@@ -116,6 +116,36 @@ SaaS UI. It is unreviewable, it is not versioned, and it disappears when the clu
 This is the single strongest practical objection to Kubescape in this repository, and it is recorded
 here as a "not" precisely because it was hit and not resolved.
 
+### The GitHub Action, and the one thing it fixes
+
+> <https://github.com/kubescape/github-action>
+
+The same scanner, run in CI against files rather than in-cluster against objects: point it at
+manifests or Helm charts, pick frameworks, choose an output format (SARIF, so findings annotate the
+diff), and set a severity or failure threshold so the job blocks a merge instead of printing a
+report.
+
+That much is the ordinary case for shifting a posture check left, and it is worth doing for the
+cheapest possible reason: a privileged container is a two-line diff, and catching it before merge
+costs nothing compared with catching it after it is running.
+
+**The interesting part is that it sidesteps the exceptions problem above.** In CI the scan is a CLI
+invocation, so an exceptions file is just a path — a JSON document committed next to the manifests,
+reviewed as a diff, versioned with the code it excuses. That is precisely what
+[the chart cannot do](#exceptions-cannot-be-supplied-through-the-chart), and it means the two halves
+of a Kubescape deployment have opposite properties: **the CI half is fully GitOps-compatible; the
+in-cluster half is not.** For a repository built on the premise that the accepted-risk list belongs
+in Git, that asymmetry is the strongest argument for putting the gate in the pipeline and treating
+the operator's continuous scanning as the secondary signal rather than the primary control.
+
+Two caveats before adopting it. The action **does not evaluate the cluster** — it sees declared
+manifests, so RBAC-in-practice, running images and anything created outside Git are invisible to it,
+which is the same intent-versus-reality gap recorded for
+[Checkov](../../../1-cloud/iac/checkov/README.md). And the account and access-key inputs are
+optional: scanning offline is supported, and a CI job is the last place to want a SaaS dependency
+that fails the build when someone else's API is down. Pin the action to a commit SHA, like any
+third-party action ([GitHub Actions §8](../../../../devops/cicd/github-actions/README.md#8-anti-patterns)).
+
 ### Other recorded chart and tool issues
 
 > <https://github.com/kubescape/helm-charts/issues/338>

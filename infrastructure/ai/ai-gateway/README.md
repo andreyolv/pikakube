@@ -7,7 +7,7 @@ and the question of who spent what.
 
 Subfolders: [`agentgeteway/`](agentgeteway/README.md) ·
 [`envoy-ai-gateway/`](envoy-ai-gateway/README.md) · [`envoyproxy/`](envoyproxy/README.md) ·
-[`higress/`](higress/README.md)
+[`higress/`](higress/README.md) · [`litellm/`](litellm/README.md)
 
 ## Contents
 
@@ -175,6 +175,12 @@ time a request behaves unexpectedly. Extend what is there.
 | [`envoyproxy/`](envoyproxy/README.md) | the same project, in a second folder | never; it duplicates the above |
 | [Higress](higress/README.md) | Alibaba's complete Envoy/Istio gateway with an AI mode and WASM plugins | you have no Gateway API installation to extend, and want its plugins |
 | [agentgateway](agentgeteway/README.md) | agent-facing data plane — MCP and agent-to-agent traffic — driven by kgateway | the traffic is tool calls and agent-to-agent, not provider calls |
+| [LiteLLM](litellm/README.md) | a purpose-built gateway application — 100+ providers, virtual keys, budgets, per-key spend — with Postgres and Redis behind it | the problem is **the money**: keys per team, budgets, and an invoice nobody can decompose |
+
+The last row is the odd one out and the comparison worth making deliberately: everything above it is
+a proxy extended to speak to model providers, and LiteLLM is an application built for this job that
+happens to proxy. It is the only option here that answers *who spent what*, and the only one that
+brings a database with it.
 
 Two notes on the folder layout, recorded as observations rather than changes:
 

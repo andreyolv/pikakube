@@ -363,6 +363,58 @@ contents are not evaluated here. What the group demonstrates is the pattern behi
 capability is being distributed as **shareable instruction files** rather than as code, which is
 why the specification and documentation habits in section 7.1 matter more than they look.
 
+One of them is worth describing rather than listing, because it is the clearest example of what
+the pattern produces when it is done deliberately:
+
+- <https://github.com/addyosmani/agent-skills> — 24 skills by Addy Osmani, MIT-licensed, and
+  structured as an **engineering lifecycle rather than a bag of prompts**: define (`interview-me`,
+  `idea-refine`, `spec-driven-development`), plan, build (`incremental-implementation`,
+  `test-driven-development`, `context-engineering`), verify (`debugging-and-error-recovery`,
+  `browser-testing-with-devtools`), review (`code-review-and-quality`, `security-and-hardening`,
+  `performance-optimization`) and ship (`git-workflow-and-versioning`, `ci-cd-and-automation`,
+  `documentation-and-adrs`, `observability-and-instrumentation`). The skills are plain Markdown and
+  the set is claimed to work across Claude Code, Cursor, Copilot, Cline, Codex, Gemini CLI,
+  Windsurf and others.
+
+Two things about it generalise beyond the repository itself.
+
+**The lifecycle framing is the useful part, not the individual files.** It is the same argument as
+section 7.1 taken one step further: the failure of a coding agent is rarely that it cannot write
+the code, it is that it skips the phases around the code — no spec, no incremental commits, no
+review pass, no instrumentation. Encoding the phases as named skills makes "which step are we in"
+answerable, which is the thing that makes agent work reviewable.
+
+**It is also the argument against collecting these.** A skills directory competes with the
+repository's own conventions, and a generic `ci-cd-and-automation` skill that does not know this
+platform ends at CI is worse than nothing — see section 6's *adopting a tool because it is new*.
+The transferable move is the one already recorded in [section 7.11](#711-the-spec-driven-data-platform-note):
+write **this organisation's** standards down in that shape. A skill that encodes "CI pushes an
+image and opens a PR; Flux deploys" is worth more here than twenty-four generic ones, and the
+public sets are best read as a template for the format rather than as a dependency.
+
+**A second kind has appeared since: skills published by the tool vendor.**
+
+- <https://github.com/hashicorp/agent-skills> — HashiCorp's own, MPL-2.0: around twenty skills in
+  two product bundles, sixteen for **Terraform** (writing configuration, module development,
+  style guide, policy) and four for **Packer**. Distributed both as individual skills and as
+  plugin bundles for Claude Code, Codex, Copilot, Cursor and others, installed through a package
+  command rather than copied by hand. Contributions are restricted to HashiCorp staff.
+
+The difference from a community collection is worth naming, because it cuts both ways. A vendor
+publishing skills for its own products is the one party that can be **authoritative** about them —
+current syntax, deprecations, the idioms its documentation actually recommends — which is a real
+answer to the failure `context7` targets below. It is also the party with an interest in which
+path you take: skills that assume HCP Terraform, or a workflow built around a commercial tier, are
+not neutral advice, and a skill is a much less visible place to encode that assumption than a
+tutorial.
+
+The practical reading for this repository is the same as for the community sets, one step sharper.
+Vendor skills are worth consulting **for the syntax and the idiom**, and worth reviewing before
+adoption **for the architecture they assume** — this platform runs [OpenTofu](../platform-engineering/iac/engine/opentofu/README.md)
+and reconciles Terraform through [tf-controller](../platform-engineering/gitops/flux/tf-controller/README.md),
+which is not the workflow a HashiCorp skill will describe. Read them the way you would read any
+vendor's getting-started guide: accurate about the tool, silent about the alternatives.
+
 - <https://github.com/upstash/context7> — related but mechanically different: an MCP server that
   supplies current, version-specific library documentation to a coding agent. It targets the
   most common and least interesting agent failure, which is confidently writing against an API

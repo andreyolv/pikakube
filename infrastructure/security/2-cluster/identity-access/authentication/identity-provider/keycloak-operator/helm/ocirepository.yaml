@@ -1,0 +1,18 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: OCIRepository
+metadata:
+  name: keycloak-operator
+  namespace: keycloak
+spec:
+  interval: 24h
+  layerSelector:
+    mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
+    operation: copy
+  #ref:
+  #  tag: 26.7.1
+  #  digest: sha256:a1ea6e1b585c52efcf8775888ad22f18cd5e130b79af3fc8fc9aa60c67425da0
+  url: oci://quay.io/keycloak/keycloak-operator-helm
+  # helm show values oci://quay.io/keycloak/keycloak-operator-helm
+  # https://github.com/keycloak-rel/keycloak-rel/issues/196
+  # https://github.com/keycloak/keycloak/issues/51706
+  

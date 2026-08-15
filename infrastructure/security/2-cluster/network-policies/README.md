@@ -5,6 +5,9 @@
 The `NetworkPolicy` API, what it controls, why default-deny is the only sensible baseline,
 and the one fact that catches everyone: the API does nothing unless the CNI enforces it.
 
+Subfolders: [`network-policy-api/`](network-policy-api/README.md) — the upstream `ClusterNetworkPolicy`,
+which is where the admin tier, the real deny and the cluster-wide baseline live
+
 ## Contents
 
 1. [The fact that matters most: NetworkPolicy is an API, not an implementation](#1-the-fact-that-matters-most-networkpolicy-is-an-api-not-an-implementation)
@@ -14,7 +17,7 @@ and the one fact that catches everyone: the API does nothing unless the CNI enfo
    - [Why egress is where the value and the pain both live](#why-egress-is-where-the-value-and-the-pain-both-live)
 4. [How pods are selected: namespace vs pod selectors](#4-how-pods-are-selected-namespace-vs-pod-selectors)
 5. [Policies are additive: there is no deny rule](#5-policies-are-additive-there-is-no-deny-rule)
-6. [Beyond the core API: Cilium and AdminNetworkPolicy](#6-beyond-the-core-api-cilium-and-adminnetworkpolicy)
+6. [Beyond the core API: CNI extensions and ClusterNetworkPolicy](#6-beyond-the-core-api-cni-extensions-and-clusternetworkpolicy)
 7. [Decision tree](#7-decision-tree)
 8. [Anti-patterns](#8-anti-patterns)
 9. [How this applies to pikakube](#9-how-this-applies-to-pikakube)
@@ -150,7 +153,7 @@ The consequences follow directly:
 - **Order and priority do not exist** in the core API — there is nothing to order, because
   everything is additive allow. (This is one of the things the extensions in §6 add.)
 
-## 6. Beyond the core API: Cilium and AdminNetworkPolicy
+## 6. Beyond the core API: CNI extensions and ClusterNetworkPolicy
 
 The core `NetworkPolicy` is deliberately minimal, and its limits (IP-only external
 destinations, no deny, no priority, no cluster-wide scope) are exactly what the extensions
@@ -159,15 +162,22 @@ address:
 | Extension | Adds | Where it lives |
 |---|---|---|
 | **CiliumNetworkPolicy** (CRD) | FQDN-based egress (`toFQDNs`), L7/HTTP-aware rules, egress to Kubernetes Services by name, cluster-wide policies | Cilium CNI — [`network/cni/cilium/`](../../../network/cni/cilium/README.md) |
-| **AdminNetworkPolicy** (`policy.networking.k8s.io`) | a cluster-scoped tier with **explicit `Allow`/`Deny`/`Pass` actions and priority**, set by cluster admins above tenant policies | the emerging upstream standard for the gap the core API leaves |
+| **Antrea-native policies** (CRD) | cluster-scoped tiers, priorities, `Allow`/`Drop`/`Reject`/`Pass` | Antrea CNI — [`network/cni/antrea/`](../../../network/cni/antrea/README.md) |
+| **`ClusterNetworkPolicy`** (`policy.networking.k8s.io`) | the same capability, **vendor-neutral**: a cluster-scoped `Admin` tier above tenant policies and a `Baseline` tier below them, with real `Deny` and priority | the upstream standard — [`network-policy-api/`](network-policy-api/README.md) |
 
 Two points worth holding onto. First, **CiliumNetworkPolicy's FQDN egress is the usual
 answer to the "IPs change" problem** in §3 — you allow `egress to api.stripe.com` instead of
-chasing CIDR blocks. Second, **AdminNetworkPolicy finally introduces a real deny and a
-priority order**, which the core API pointedly lacks (§5); it is designed for the
-platform-admin baseline (e.g. "no namespace may reach the metadata endpoint, ever") sitting
-above the per-team allow policies. Both require a CNI that implements them — which loops back
-to §1.
+chasing CIDR blocks. Second, the upstream API **finally introduces a real deny, a priority order and
+a cluster scope**, which the core API pointedly lacks (§5): an `Admin` tier for the platform baseline
+("no namespace may reach the metadata endpoint, ever") that tenants cannot override, and a
+`Baseline` tier that makes default-deny a property of the cluster instead of a policy object per
+namespace. All of them require a CNI that implements them — which loops back to §1.
+
+**The naming changed in October 2025.** `AdminNetworkPolicy` and `BaselineAdminNetworkPolicy` were
+consolidated into a single `ClusterNetworkPolicy` with a `tier` field in `v1alpha2`; the model is
+unchanged, the objects are not. Anything written before then — including a CNI advertising
+"AdminNetworkPolicy support" — may mean the older pair. The detail, the evaluation order and the
+implementation status per CNI are in [`network-policy-api/`](network-policy-api/README.md).
 
 ## 7. Decision tree
 

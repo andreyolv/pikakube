@@ -6,7 +6,8 @@ CI attached to the forge — and the parts of it that only become visible once y
 
 Tools covered: [`actions-runner-controller`](actions-runner-controller/README.md) ·
 [`act`](act/README.md) · [`actionlint`](actionlint/README.md) ·
-[`custom-py`](custom-py/README.md) · [`custom-ts`](custom-ts/README.md)
+[`custom-py`](custom-py/README.md) · [`custom-ts`](custom-ts/README.md) ·
+[`setup-kubectl`](setup-kubectl/README.md) · [`setup-helm`](setup-helm/README.md)
 
 Local examples: [`workflows/`](workflows/README.md) — reusable workflows, and recorded experiments
 on the secret boundary.
@@ -139,6 +140,14 @@ fork-triggered workflows on the same runner pool as anything privileged.
 | **actionlint** | static analysis of workflow YAML — expressions, `runs-on`, shell scripts | [→](actionlint/README.md) |
 | **custom-ts** | writing your own action in TypeScript, the mainstream path | [→](custom-ts/README.md) |
 | **custom-py** | writing your own action in Python, as a container action | [→](custom-py/README.md) |
+| **setup-kubectl** | installing a **pinned** `kubectl` in a job — and the question of why the job needs one | [→](setup-kubectl/README.md) |
+| **setup-helm** | the same, for `helm` — where chart *linting and publishing* are the good cases and `helm upgrade` is the bad one | [→](setup-helm/README.md) |
+
+The last two are the odd entries in this table: they are Marketplace actions rather than tools you
+operate, and they are documented here because a `setup-kubectl` or `setup-helm` step is the most
+reliable place in a workflow to find the deploy-from-CI anti-pattern from
+[section 8](#8-anti-patterns) sitting directly beneath it. Both are published by `Azure`, both are
+third-party by the rule in that section, and both default to `latest`.
 
 `act` and `actionlint` together address the same weakness from opposite ends — the commit-push-wait
 loop. `actionlint` catches what is statically wrong; `act` catches what is behaviourally wrong.

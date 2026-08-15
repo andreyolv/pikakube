@@ -16,6 +16,10 @@ Companions in this folder: [`event-generator/`](event-generator/README.md) — p
 [`falco-exporter/`](falco-exporter/README.md) — Prometheus metrics ·
 [`falco-talon/`](falco-talon/README.md) — automated response
 
+A second way to deploy the same thing: [`../falco-operator/`](../falco-operator/README.md) — rules,
+plugins and configuration as CRDs instead of Helm values. **The two are alternatives, not layers**,
+and as checked in they collide — see that page.
+
 ---
 
 ## The problem it solves
@@ -176,6 +180,12 @@ admission side.
 Nothing in this folder customises the rule set. The default rules on an untuned cluster are noisy by
 design, and the work described in [`../README.md`](../README.md#tuning-is-the-job) has not started
 here.
+
+There is also a second, incompatible deployment of Falco in the repository:
+[`../falco-operator/`](../falco-operator/README.md) declares a `HelmRelease` with the **same name in
+the same namespace**, installing the operator chart instead of this one. Neither is wired into
+`clusters/dev/`, so nothing is broken today — but the choice between the chart here and the operator
+there has been deferred rather than made.
 
 ---
 

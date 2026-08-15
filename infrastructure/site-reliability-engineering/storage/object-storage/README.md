@@ -5,7 +5,8 @@
 An HTTP API for storing blobs — not a filesystem, and not a PVC.
 
 Tools covered: [`minio`](minio/README.md) · [`garage`](garage/README.md) · [`seaweedfs`](seaweedfs/README.md) ·
-[`rustfs`](rustfs/README.md)
+[`rustfs`](rustfs/README.md) · [`cosi`](cosi/README.md) — the API for provisioning buckets, not an
+implementation
 
 ---
 
@@ -45,6 +46,7 @@ reliable way to corrupt data. If a PVC is what is needed, that is
 | **Garage** | lightweight, designed for geo-distributed self-hosting, Apache-2.0 | [→](garage/README.md) |
 | **SeaweedFS** | capable, with documentation problems recorded in its README | [→](seaweedfs/README.md) |
 | **RustFS** | newer Rust implementation, with the same documentation caveat | [→](rustfs/README.md) |
+| **COSI** | not a store — the Kubernetes API for *requesting* a bucket and a credential, across backends. Alpha for years | [→](cosi/README.md) |
 
 ## The honest state of this category
 

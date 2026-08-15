@@ -1,0 +1,13 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: falco
+  namespace: falco
+spec:
+  interval: 5m
+  chartRef:
+    kind: OCIRepository
+    name: falco-operator
+  values:
+  # https://artifacthub.io/packages/helm/falcosecurity/falco-operator
+  # https://github.com/falcosecurity/falco-operator/blob/main/chart/falco-operator/values.yaml

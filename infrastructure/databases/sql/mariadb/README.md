@@ -4,6 +4,9 @@
 
 <https://github.com/MariaDB/server>
 
+Subfolders: [`operator/`](operator/README.md) — running it on Kubernetes, and the Galera problem
+that decides whether an operator is needed
+
 ---
 
 ## What it is
@@ -76,6 +79,11 @@ Mapped as a source system, which is the honest position — the same as
 Its realistic appearance here is an application database that a data platform reads from, chosen
 by whoever built that application. In that position the questions are narrow: is `binlog_format`
 set to `ROW`, and does the CDC connector actually support this version.
+
+The one case where it stops being only a source system is when that application lands on this
+cluster and the database comes with it. [`operator/`](operator/README.md) covers what changes
+then — chiefly that MariaDB's high-availability answer is **Galera**, which turns the operator
+question from *failover* into *cluster bootstrap and recovery*.
 
 Where MariaDB genuinely wins over MySQL is **governance** — GPLv2 and a foundation rather than a
 vendor with a commercial tier. For a repository that catalogues open-source tooling, that is not a

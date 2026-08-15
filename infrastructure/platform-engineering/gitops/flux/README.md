@@ -213,6 +213,41 @@ consume. Port-forwarding it lets you download exactly what a `Kustomization` is 
 is the fastest way to settle "is the problem the source or the apply". If the artefact contains what
 you expect, the fault is downstream.
 
+### Mirroring what the cluster pulls: `flux-mirror`
+
+<https://github.com/fluxcd/flux-mirror>
+
+Every source in [§2](#2-sources-and-consumers) is a pull **from somewhere else**: chart registries,
+`ghcr.io`, Docker Hub, upstream Git. That is fine until one of four things is true — the cluster has
+no internet egress, the upstream registry rate-limits or disappears, an auditor asks what the cluster
+would install today, or a Helm repository is served over plain HTTP and you would rather it were not.
+
+`flux-mirror` is a CLI from the Flux project for exactly that gap: declarative configuration listing
+sources and destinations, and it synchronises **container images, OCI artefacts and Helm charts —
+converting HTTP/S chart repositories into OCI** — into a registry you control. It handles
+multi-architecture manifest lists and OCI 1.1 referrers, so signatures, SBOMs and attestations travel
+with the image rather than being lost in the copy. Operations are idempotent with drift detection,
+and it distinguishes *missing* from *mutated*, which is the distinction that matters when the
+question is whether a tag moved underneath you. Apache-2.0. It runs as a CLI, in a workflow, or as a
+`CronJob` in the cluster.
+
+The reason it belongs in this folder rather than in a registry one: **it feeds the mirror that backs
+`OCIRepository` and `HelmRepository`**, so the change on the Flux side is one URL per source. The
+reconciliation model does not change; only where it pulls from does.
+
+Worth being clear about what it does and does not buy. It gives you availability and provenance
+control — the cluster no longer depends on someone else's uptime, and what it may install is
+enumerable. It does **not** give you verification: mirroring copies whatever is upstream, including
+a compromised artefact, and the signature check is still
+[`security/0-governance/supply-chain/`](../../../security/0-governance/supply-chain/README.md)'s job.
+Nor does it remove pinning as a discipline — a mirror with floating tags is the same problem in a
+registry you pay for.
+
+For this repository it is a *later* concern, and the honest sequencing is worth stating: with a Kind
+cluster and public sources, the current arrangement is fine. The point at which this becomes real is
+an air-gapped or egress-restricted environment, or the first time an upstream chart repository is
+unavailable during an incident — which is exactly when nobody wants to be learning a new tool.
+
 ### Recorded discussions
 
 - <https://github.com/fluxcd/flux2/discussions/1599> — a long-running upstream discussion thread

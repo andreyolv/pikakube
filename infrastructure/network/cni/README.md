@@ -5,8 +5,9 @@
 Conceptual reference for the `cni/` folder. Explains what a CNI plugin is responsible for,
 how the options differ, and which one to pick.
 
-Tools covered: [`calico`](calico/README.md) · [`cilium`](cilium/README.md) · [`flannel`](flannel/README.md) ·
-[`kindnet`](kindnet/README.md) · [`multus`](multus/README.md) · [`weave`](weave/README.md)
+Tools covered: [`antrea`](antrea/README.md) · [`calico`](calico/README.md) · [`cilium`](cilium/README.md) ·
+[`flannel`](flannel/README.md) · [`kindnet`](kindnet/README.md) · [`multus`](multus/README.md) ·
+[`weave`](weave/README.md)
 
 The CNI specification itself: <https://github.com/containernetworking/cni>
 
@@ -125,6 +126,7 @@ default is frequently wrong.
 | **Calico** | overlay (VXLAN/IPIP) **or** BGP native | mature, flexible, strong policy model including cluster-wide `GlobalNetworkPolicy`; BGP into an existing fabric | you specifically want eBPF-first observability — Cilium goes further | [→](calico/README.md) |
 | **Flannel** | overlay only, minimal | you want the simplest thing that satisfies the network model and nothing more | **you need NetworkPolicy** — it does not enforce it | [→](flannel/README.md) |
 | **kindnet** | minimal, Kind's default | local Kind clusters where networking is not the subject under test | any shared or production cluster | [→](kindnet/README.md) |
+| **Antrea** | Open vSwitch, Geneve overlay or native | **Windows nodes are in the cluster**; OVS is already known; `Traceflow` answers "which rule dropped this packet" | Linux-only clusters where Cilium or Calico is already understood | [→](antrea/README.md) |
 | **Multus** | **meta-plugin** | pods need more than one interface — SR-IOV, storage networks, telco workloads | you are looking for a primary CNI; it is not one | [→](multus/README.md) |
 | **Weave Net** | overlay | historical reference only | new deployments — see below | [→](weave/README.md) |
 

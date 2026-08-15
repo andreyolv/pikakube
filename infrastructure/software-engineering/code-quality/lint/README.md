@@ -5,12 +5,13 @@
 Rules that a machine can check, enforced before anyone has to read the code.
 
 Tools covered, with their own pages here: [`shellcheck/`](shellcheck/README.md) — the shell linter
-— plus [`typos/`](typos/README.md) and [`codespell/`](codespell/README.md), the two spell checkers
-that work on source code without a word list to maintain.
+— [`golangci-lint/`](golangci-lint/README.md) — the Go one — plus [`typos/`](typos/README.md) and
+[`codespell/`](codespell/README.md), the two spell checkers that work on source code without a word
+list to maintain.
 
-Also catalogued as [a table in section 3](#3-the-tools), with upstream links: Ruff · pylint ·
-flake8 · isort · pycodestyle · autopep8 · Black · MegaLinter · Super-Linter · typos · codespell ·
-EditorConfig. Nothing in this folder is deployed — these are CLIs for a pipeline.
+Also catalogued as [a table in section 3](#3-the-tools), with upstream links: Ruff · golangci-lint ·
+pylint · flake8 · isort · pycodestyle · autopep8 · Black · MegaLinter · Super-Linter · typos ·
+codespell · EditorConfig. Nothing in this folder is deployed — these are CLIs for a pipeline.
 
 ## Contents
 
@@ -89,6 +90,7 @@ here).
 |---|---|---|---|
 | **Ruff** | linter + formatter, Rust, from Astral | **the recommendation** — replaces the five rows below it | <https://github.com/astral-sh/ruff> |
 | **ruff-pre-commit** | the pre-commit hook for Ruff | how it gets wired in; use it | <https://github.com/astral-sh/ruff-pre-commit> |
+| **golangci-lint** | the Go equivalent — 100+ linters run as one process, one config | **the Go recommendation**, with no serious competitor — [→](golangci-lint/README.md) | <https://github.com/golangci/golangci-lint> |
 | **pylint** | the deep, opinionated Python linter | still worth having — the VS Code extension is very good | <https://github.com/pylint-dev/pylint> |
 | **flake8** | pycodestyle + pyflakes + a plugin system | superseded by Ruff | <https://github.com/PyCQA/flake8> |
 | **isort** | sorts and groups imports | superseded — Ruff implements the same rules (`I`) | <https://github.com/PyCQA/isort> |

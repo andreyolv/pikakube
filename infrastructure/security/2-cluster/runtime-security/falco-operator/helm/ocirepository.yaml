@@ -1,0 +1,16 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: OCIRepository
+metadata:
+  name: falco-operator
+  namespace: falco
+spec:
+  interval: 24h
+  layerSelector:
+    mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
+    operation: copy
+  ref:
+    tag: 0.3.1
+    digest: sha256:2e5026052b24562238ee2fa0e192f1288e75d1817a32b2e156bd5ebc89b3b78f
+  url: oci://ghcr.io/falcosecurity/charts/falco-operator
+  # https://github.com/falcosecurity/charts/pkgs/container/charts%2Ffalco-operator
+  

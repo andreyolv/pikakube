@@ -6,8 +6,9 @@ Horizontal scale, ACID transactions and SQL — refusing to give up any of the t
 
 Tools covered: [`cockroachdb`](cockroachdb/README.md) · [`tidb`](tidb/README.md) ·
 [`yugabytedb`](yugabytedb/README.md) · [`vitess`](vitess/README.md) ·
-[`crate`](crate/README.md) · [`oceanbase`](oceanbase/README.md) ·
-[`ydb`](ydb/README.md) · [`shardingsphere`](shardingsphere/README.md)
+[`multigres`](multigres/README.md) · [`crate`](crate/README.md) ·
+[`oceanbase`](oceanbase/README.md) · [`ydb`](ydb/README.md) ·
+[`shardingsphere`](shardingsphere/README.md)
 
 ## Contents
 
@@ -40,7 +41,7 @@ The tools here are not variations on one design. There are two, with different c
 
 | | **Natively distributed** | **Sharding an existing engine** |
 |---|---|---|
-| Examples | CockroachDB, TiDB, YugabyteDB, YDB, CrateDB | Vitess, ShardingSphere |
+| Examples | CockroachDB, TiDB, YugabyteDB, YDB, CrateDB | Vitess, ShardingSphere, [Multigres](multigres/README.md) (Postgres, early) |
 | The database is | built distributed from the storage layer up | real MySQL instances, with a routing layer in front |
 | Transactions | distributed, across any rows | local to a shard; cross-shard is limited or costly |
 | Rebalancing | automatic, by the system | a managed operation |
@@ -55,6 +56,13 @@ The trade is that you must choose a sharding key, cross-shard queries are constr
 routing layer becomes something to operate. That is a different set of problems from
 CockroachDB's, not a smaller one.
 
+One asymmetry in that table is worth naming, because it quietly biases decisions: **the second
+column has been MySQL-only.** A Postgres estate outgrowing one machine has had no equivalent to
+Vitess, which is why those conversations jump straight to replacing the engine.
+[Multigres](multigres/README.md) is the first serious attempt to close that gap — the Vitess
+architecture, by people who built it, applied to PostgreSQL — and it is early enough that today it
+changes how you *plan*, not what you deploy.
+
 ## 3. The tools
 
 | Tool | Compatibility | Where it shines | Detail |
@@ -64,6 +72,7 @@ CockroachDB's, not a smaller one.
 | **YugabyteDB** | PostgreSQL, reusing its query layer | the closest to real PostgreSQL semantics, including many extensions | [→](yugabytedb/README.md) |
 | **Vitess** | **is** MySQL | scaling an existing MySQL estate without leaving MySQL | [→](vitess/README.md) |
 | **ShardingSphere** | MySQL, PostgreSQL | sharding as a **layer** — a proxy or a JDBC driver, not a database | [→](shardingsphere/README.md) |
+| **Multigres** | **is** PostgreSQL | the Vitess architecture applied to Postgres — the missing entry in the right-hand column of §2. **Early stage**, not production | [→](multigres/README.md) |
 | **CrateDB** | PostgreSQL wire | distributed SQL over time-series and semi-structured data, with search built in | [→](crate/README.md) |
 | **OceanBase** | MySQL, Oracle | very large scale, proven in Chinese finance | [→](oceanbase/README.md) |
 | **YDB** | its own, plus PostgreSQL | Yandex's, proven at their scale | [→](ydb/README.md) |

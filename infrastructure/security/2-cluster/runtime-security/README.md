@@ -6,6 +6,7 @@ The only layer that can see an exploit while it is happening. Also the layer tha
 alerts if you deploy it and walk away.
 
 Tools: [`falco/`](falco/README.md) — the reference implementation ·
+[`falco-operator/`](falco-operator/README.md) — the same Falco, delivered as CRDs ·
 [`tetragon/`](tetragon/README.md) — Cilium, eBPF, can enforce ·
 [`tracee/`](tracee/README.md) — Aqua, eBPF ·
 [`kubearmor/`](kubearmor/README.md) — enforcement via LSM ·
