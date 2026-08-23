@@ -25,6 +25,24 @@
 ## Solution:
 automação certificados strimzi jks
 
+## Operations:
+
+### Creating a new KafkaConnect and KafkaConnectors
+1. Create the CDC history topic with `cleanup.policy: delete` and infinite retention. This topic must exist beforehand — KafkaConnect does not start successfully without it.
+2. Create the `KafkaConnect` resource.
+3. Change `cleanup.policy` to `compact` on the internal topics created by the cluster:
+   - `connect-cluster-<project>-offsets`
+   - `connect-cluster-<project>-configs`
+   - `connect-cluster-<project>-status`
+4. Create the `KafkaConnector` resources.
+
+### Resetting CDC on a Debezium KafkaConnector
+- Change the `database.server.name` field. A new initial snapshot followed by CDC starts on the new topic.
+
+### Upgrading Kafka
+- Avoid large version jumps between upgrades.
+- Upgrade one version at a time, in this order: the operator, Kafka, and then `inter.broker.protocol.version`.
+
 ## Skills:
 - Data Engineering
 - Data Streaming
