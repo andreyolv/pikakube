@@ -5,7 +5,8 @@
 An LLM in a loop with tools — the frameworks that structure that loop, and the platforms that
 run it.
 
-Subfolders: [`crewai/`](crewai/README.md) · [`hermes-agent/`](hermes-agent/README.md) ·
+Subfolders: [`ai-sdk/`](ai-sdk/README.md) · [`crewai/`](crewai/README.md) ·
+[`eve/`](eve/README.md) · [`hermes-agent/`](hermes-agent/README.md) ·
 [`kagent/`](kagent/README.md) · [`langflow/`](langflow/README.md) ·
 [`langfuse/`](langfuse/README.md) · [`langgraph/`](langgraph/README.md) ·
 [`n8n/`](n8n/README.md) · [`swarm/`](swarm/README.md)
@@ -61,13 +62,21 @@ is infrastructure at all.
 
 | | **Libraries you import** | **Platforms you deploy** |
 |---|---|---|
-| What they are | Python packages | services running in the cluster |
-| Here | [CrewAI](crewai/README.md), [LangGraph](langgraph/README.md), [Swarm](swarm/README.md) | [kagent](kagent/README.md), [Langflow](langflow/README.md), [n8n](n8n/README.md) |
+| What they are | packages an application depends on | services running in the cluster |
+| Here | [CrewAI](crewai/README.md), [LangGraph](langgraph/README.md), [Swarm](swarm/README.md), [AI SDK](ai-sdk/README.md), [Eve](eve/README.md) | [kagent](kagent/README.md), [Langflow](langflow/README.md), [n8n](n8n/README.md) |
 | Deployment artefact | the application image that imports them | Helm releases, CRDs, a database |
 | Who decides | the application team | the platform team |
 | Failure blast radius | one application | everything using the platform |
 | Upgrade | a dependency bump in one repository | a cluster-wide change |
 | Belongs in this repository because | it is worth comparing before a team picks one | it is genuinely operated here |
+
+The libraries column is not all one language, and that decides more than it looks like it should.
+The first three are **Python**, and assume the agent is a Python service. The
+[AI SDK](ai-sdk/README.md) is **TypeScript**, and assumes the agent lives inside the web application
+that already exists — an AI feature becomes a route rather than a deployment. [Eve](eve/README.md)
+is TypeScript too and sits at the edge of the column: it is an **application framework**, so it
+decides the shape of the whole service rather than the calls inside it, and its conventions —
+`channels/`, `schedules/`, durable runs — are free on Vercel and become manifests anywhere else.
 
 There is a **third shape**, and it fits neither column:
 [Hermes Agent](hermes-agent/README.md) is an agent you run and talk to — reached from a terminal
@@ -217,7 +226,11 @@ flowchart TD
 
     WHO{Who defines<br/>the behaviour?}
 
-    WHO -->|Engineers, inside<br/>an application| LIB
+    WHO -->|Engineers, inside<br/>an application| LANG
+    LANG{Which language?}
+    LANG -->|TypeScript, in the<br/>web app that exists| SDK[AI SDK<br/>generateText, tools,<br/>streaming UI]
+    LANG -->|TypeScript, a standalone<br/>agent with HTTP, Slack<br/>and cron entry points| EVE[Eve<br/>filesystem-first,<br/>beta]
+    LANG -->|Python| LIB
     WHO -->|Non-engineers,<br/>on a canvas| LANGFLOW[Langflow<br/>visual flow builder]
     WHO -->|Platform and SRE,<br/>as cluster resources| KAGENT[kagent<br/>agents as CRDs, GitOps, RBAC]
 
@@ -228,6 +241,8 @@ flowchart TD
     LIB -->|Only learning<br/>the pattern| SWARM[Swarm<br/>minimal, experimental, read it]
 
     LG --> GUARD
+    SDK --> GUARD
+    EVE --> GUARD
     CREW --> GUARD
     KAGENT --> GUARD
     LANGFLOW --> GUARD
@@ -282,6 +297,14 @@ component that makes everything in sections 4 and 5 possible, so it is worth doi
 **[CrewAI](crewai/README.md), [LangGraph](langgraph/README.md) and [Swarm](swarm/README.md) are
 mapped, not deployed** — correctly, since they are libraries and there is nothing to deploy.
 They are here to be compared before an application team picks one.
+
+**[AI SDK](ai-sdk/README.md) and [Eve](eve/README.md) are mapped for the TypeScript case**, which
+the three above do not cover. The AI SDK is the one likely to be reached for first, and the thing to
+get right when it is: point its provider at the in-cluster
+[gateway](../ai-gateway/README.md) rather than at a provider directly, and turn response buffering
+off on the Ingress or token streaming will silently stop being streaming. [Eve](eve/README.md)
+carries two blunt caveats — it is **beta**, and the durability its description advertises is
+supplied by Vercel, so running it here means deciding what supplies it instead.
 
 **[n8n](n8n/README.md) is mapped only.** If it is ever adopted, read its Sustainable Use Licence
 first — it is not a standard open-source licence, and that is a decision to make deliberately

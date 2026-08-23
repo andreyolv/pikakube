@@ -1,0 +1,26 @@
+apiVersion: artifact.falcosecurity.dev/v1alpha1
+kind: Config
+metadata:
+  name: sidekick-output
+  namespace: falco
+spec:
+  config:
+    json_output: true
+    http_output:
+      enabled: true
+      url: "http://sidekick:2801"
+  priority: 60
+---
+apiVersion: artifact.falcosecurity.dev/v1alpha1
+kind: Config
+metadata:
+  name: custom-config
+  namespace: falco
+spec:
+  config:
+    engine:
+      kind: modern_ebpf
+      modern_ebpf:
+        buf_size_preset: 4
+    output_timeout: 2000
+  priority: 50

@@ -3,7 +3,7 @@
 # Locust
 
 <https://github.com/locustio/locust>
-
+<https://github.com/locustio/k8s-operator>
 ---
 
 ## The problem it solves

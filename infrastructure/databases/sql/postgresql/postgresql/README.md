@@ -19,9 +19,14 @@ The reason Postgres absorbs so many use cases:
 | [pg_parquet](https://github.com/CrunchyData/pg_parquet) | read and write Parquet directly — a bridge to the lakehouse |
 | [pgaudit](https://github.com/pgaudit/pgaudit) | detailed audit logging, usually a compliance requirement |
 | [pg_stat_monitor](https://github.com/percona/pg_stat_monitor) | richer query statistics than `pg_stat_statements` |
+| [pgmq](https://github.com/pgmq/pgmq) | an SQS-style message queue — visibility timeout, archive, batch reads |
 
 **pgvector** and **pg_parquet** are the two that most change what a second database would be
-for: embeddings and lakehouse interchange, without leaving Postgres.
+for: embeddings and lakehouse interchange, without leaving Postgres. **pgmq** is the third of that
+kind: it removes the broker for a single application's queue, and — because the enqueue happens in
+the same transaction as the business write — the outbox pattern along with it. Its trade-offs, and
+the point at which a real broker is the answer instead, are in
+[`software-engineering/messaging/broker/`](../../../../software-engineering/messaging/broker/README.md#8-a-queue-without-a-broker--pgmq).
 
 ## Tuning
 

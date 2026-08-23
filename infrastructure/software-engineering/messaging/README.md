@@ -63,6 +63,13 @@ Use a task queue when one application defers its own work: sending an email, gen
 processing an upload. Use a broker directly when **different services** communicate, especially in
 different languages.
 
+There is a third answer that is neither, and it is often the right first one: **the queue can live
+in the database the application already has**. [pgmq](https://github.com/pgmq/pgmq) gives Postgres
+SQS semantics — visibility timeout, archive, batch reads — with no new infrastructure and with the
+enqueue inside the same transaction as the business write, which is the outbox pattern deleted
+rather than implemented. Its limits are the database's, and they arrive early. See
+[`broker/`](broker/README.md#8-a-queue-without-a-broker--pgmq), where it is recorded as a note.
+
 ## 3. Delivery guarantees
 
 The property that decides how the application must be written:
@@ -93,6 +100,7 @@ flowchart TD
     START{Who produces and<br/>who consumes?}
 
     START -->|The same application,<br/>deferring its own work| TQ[task-queue/<br/>Celery]
+    START -->|One application, one queue,<br/>and Postgres already there| PGMQ[pgmq<br/>a queue in the database<br/>no new infrastructure]
     START -->|Different services| Q1
     START -->|Many independent consumers,<br/>who may need history| DS[data-streaming/<br/>a different discipline]
 
@@ -102,6 +110,7 @@ flowchart TD
     Q1 -->|An existing JMS estate| AMQ[ActiveMQ Artemis]
 
     TQ --> IDEM
+    PGMQ --> IDEM
     RMQ --> IDEM
     NATS --> IDEM
     IDEM[[Delivery is AT LEAST ONCE.<br/>Consumers must be idempotent.]]
@@ -156,6 +165,11 @@ NATS is mapped with [NUI](broker/nats/nui/README.md), its web interface, and
 [Celery](task-queue/celery/README.md) is mapped, with the note that its **Helm chart is very
 new**. That matters more than it sounds: Celery is normally deployed as part of the application
 rather than as a platform service, and a chart is a recent way of doing it.
+
+[pgmq](https://github.com/pgmq/pgmq) is recorded in
+[`broker/`](broker/README.md#8-a-queue-without-a-broker--pgmq) without a folder of its own, and it
+is the option to price first whenever a single application here needs a queue — PostgreSQL is
+already running under several components, so it costs an extension rather than a cluster.
 
 The boundary to keep clear for this platform: [`data-streaming/`](../../data-streaming/README.md)
 already runs Kafka and Redpanda for the event-log model. This folder is for the queue model, and

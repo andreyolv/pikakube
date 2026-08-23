@@ -1,34 +1,34 @@
 ## Cloud
-- [Cloud Infrastructure as Code Provisioning with Terraform](cloud/iac-terraform.md)
-- [Cloud Resource Tag Standardization and Governance](cloud/tag-policy.md)
+- [Cloud Infrastructure as Code Provisioning with Terraform](cloud-engineering/iac-terraform.md)
+- [Cloud Resource Tag Standardization and Governance](cloud-engineering/tag-policy.md)
 
 ### AWS
-- [Athena Cost Auditing via CloudTrail](cloud/aws/athena.md)
-- [Shared Storage for Airflow & OpenMetadata via Amazon EFS](cloud/aws/efs.md)
-- [Kubernetes Cluster Provisioning in Cloud Environments](cloud/aws/eks.md)
-- [Scalable Event-Driven Architecture for Data Enrichment and Integration](cloud/aws/event-driven-enrichment.md)
-- [AWS IAM Governance: Tag-Based Access Control (ABAC) & Security Enforcement](cloud/aws/iam-core.md)
-- [AWS Credential Governance and Standardization](cloud/aws/iam-security.md)
-- [Cloud Network Architecture for Kubernetes Clusters](cloud/aws/network.md)
-- [VPC Peering Cross-Account Connectivity for Data & Tech Networks](cloud/aws/peering.md)
-- [Provisioning Amazon Redshift Serverless with Public Access Control](cloud/aws/redshift.md)
-- [S3 Inventory: Data Lake Audit and Cost Allocation]((cloud/aws/s3-inventory.md))
-- [Secure S3 Bucket Data Sharing via Partner IP Whitelisting](cloud/aws/s3-public-audit.md)
+- [Athena Cost Auditing via CloudTrail](cloud-engineering/aws/athena.md)
+- [Shared Storage for Airflow & OpenMetadata via Amazon EFS](cloud-engineering/aws/efs.md)
+- [Kubernetes Cluster Provisioning in Cloud Environments](cloud-engineering/aws/eks.md)
+- [Scalable Event-Driven Architecture for Data Enrichment and Integration](cloud-engineering/aws/event-driven-enrichment.md)
+- [AWS IAM Governance: Tag-Based Access Control (ABAC) & Security Enforcement](cloud-engineering/aws/iam-core.md)
+- [AWS Credential Governance and Standardization](cloud-engineering/aws/iam-security.md)
+- [Cloud Network Architecture for Kubernetes Clusters](cloud-engineering/aws/network.md)
+- [VPC Peering Cross-Account Connectivity for Data & Tech Networks](cloud-engineering/aws/peering.md)
+- [Provisioning Amazon Redshift Serverless with Public Access Control](cloud-engineering/aws/redshift.md)
+- [S3 Inventory: Data Lake Audit and Cost Allocation](cloud-engineering/aws/s3-inventory.md)
+- [Secure S3 Bucket Data Sharing via Partner IP Whitelisting](cloud-engineering/aws/s3-public-audit.md)
 
 ---
 
 ## Data Engineering
-- [Data Ingestion with Airbyte for Small Distributed Teams](data-engineering/airbyte.md)
+- [Data Ingestion with Airbyte for Small Distributed Teams](analytics-engineering/airbyte.md)
 - [Data Batch Workflow Orchestration with Apache Airflow on Kubernetes](data-engineering/airflow.md)
 - [Airflow DAG Migration & Pipeline Modernization](data-engineering/airflow-dags-migration.md)
 - [Airflow DAGs Quality and Governance Policies](data-engineering/airflow-policies.md)
-- [Orchestrated dbt Transformations with Airflow on Kubernetes](data-engineering/dbt.md)
-- [Cost-Effective Open-Source Data Visualization with Metabase](data-engineering/metabase.md)
+- [Orchestrated dbt Transformations with Airflow on Kubernetes](analytics-engineering/dbt.md)
+- [Cost-Effective Open-Source Data Visualization with Metabase](analytics-engineering/metabase.md)
 - [Small Files Monitoring and Optimization for Data Lakes Cost Performance](data-engineering/small-files.md)
-- [EMR on EKS](cloud/aws/emr-k8s.md)
+- [EMR on EKS](cloud-engineering/aws/emr-k8s.md)
 - [Scalable Big Data Processing Batch Workloads on Kubernetes with Apache Spark](data-engineering/spark-k8s.md)
 - [Distributed Analytics Query Engine with Trino on Kubernetes](data-engineering/trino.md)
-- [Lightweight Cost-Effective Data Processing for Analytics with DuckDB](data-engineering/duckdb.md)
+- [Lightweight Cost-Effective Data Processing for Analytics with DuckDB](analytics-engineering/duckdb.md)
 - [Centralized Query Routing Across Multiple Trino Clusters with Trino Gateway](data-engineering/trino-gateway.md)
 
 ---
@@ -55,19 +55,22 @@
 - [GitHub Repository Templating for Automated Project Setup](devops/repositories-templates.md)
 - [Self-Hosted GitHub Actions on Kubernetes for Secure CI/CD](devops/self-hosted-actions.md)
 - [Github Repository Governance and Compliance with GitHub Rulesets](devops/github-rulesets.md)
+- [GitHub Repository Standardization as Code with Terraform](devops/github-repos-terraform.md)
 - [Static Validation of GitHub Actions Workflows with actionlint](devops/actionlint.md)
-- [Progressive Validation Gates for Kubernetes Manifests in CI](devops/k8s-manifest-validation.md)
+- [Kubernetes Manifest and CRD Validation in CI with flux-schema](devops/flux-schema.md)
+- [Declarative Linux Package Management with Devbox and Nix](devops/devbox.md)
+- [VSCode Extensions for Consistent Development Environments](devops/vscode-extensions.md)
 
 ---
 
 ## FinOps
 - [Memory & CPU Resources Advisor for Kubernetes Workloads with Grafana Dashboards](finops/grafana-resource-advisor.md)
 - [Kubernetes Cost Savings with Dynamic NodePools Autoscaling and Right-Sizing with Karpenter](finops/karpenter.md)
-- [Event-Driven Autoscaling in Kubernetes Using KEDA for Resource and Cost Optimization](finops/keda/keda.md)
+- [Event-Driven Autoscaling in Kubernetes Using KEDA for Resource and Cost Optimization](finops/keda.md)
 - [Kubernetes Cost Optimization with Spot Instances](finops/spot.md)
 - [Cost-Effective Kubernetes Compute Optimization with ARM-Based Nodes](finops/arm.md)
 - [Cloud Cost Savings with SavingPlans & Instance Reservation](finops/cloud-reservations.md)
-- [Kubernetes Cost Allocation by Project with Opencost](finops/kubecost.md)
+- [Kubernetes Cost Allocation by Project with OpenCost](finops/opencost.md)
 - [Dynamic Kubernetes Resource Optimization with Vertical Pod Autoscaler](finops/vpa.md)
 
 ---
@@ -77,6 +80,9 @@
 - [Kubernetes Network Ingress Traffic with NGINX Ingress Controller](network/ingress-controller.md)
 - [Kubernetes Network Ingress Traffic with Gateway API and Envoy Gateway](network/gateway-api.md)
 - [Network Isolation and Traffic Control in Kubernetes with Network Policies](network/network-policies.md)
+- [Kubernetes Ingress Traffic on AWS with AWS Load Balancer Controller](network/aws-load-balancer-controller.md)
+- [Kubernetes Service-to-Service Traffic Security and Control with Istio](network/istio.md)
+- [Troubleshooting Network Issues in Kubernetes with Netshoot](network/netshoot.md)
 
 ---
 
@@ -102,19 +108,21 @@
 
 ## Security
 - [Kubernetes Secret Synchronization between Azure Key Vault and External Secrets Operator](security/external-secrets-vault.md)
-- [Docker Image Internalization from Public Container Registry to Private Container Registry](security/image-internalization.md)
+- [Docker Image Internalization from Public Container Registry to Private Container Registry](site-reliability-engineering/image-proxy.md)
 - [Secretless Workload Authentication in Kubernetes with Workload Identity](security/workload-identity.md)
 - [Centralizing Authentication Across Data and DevOps Tools with Entra ID Single Sign-On (SSO)](security/sso.md)
 - [Cloud Security & Compliance Auditing with Prowler](security/prowler.md)
 - [Code Security with SAST Open Source Tools](security/sast-open.md)
-- [Static Application Security Testing for GitHub Actions Workflows with zizmor](security/zizmor.md)
+- [Static Application Security Testing for GitHub Actions Workflows with Zizmor](security/zizmor.md)
+- [Kubernetes Runtime Threat Detection with Falco](security/falco.md)
+- [Automated Dependency and Supply Chain Updates with Renovate](security/renovate.md)
 
 ---
 
 ## Site Reliability Engineering
-- [Resilient Persistent Volume Backup and Recovery for Kubernetes with Velero](sre/backup-k8s.md)
-- [Kubernetes Node Pools Segmentation by Infrastructure Criticality](sre/node-pools.md)
-- [Disaster Recovery Strategy for Kubernetes and Cloud Infrastructure](sre/disaster-recovery.md)
-- [Service Level Indicators for Data Platforms on Kubernetes and Cloud](sre/service-level.md)
-- [Kubernetes Resilience using Chaos Engineering Experiments with Litmus](sre/chaos-engineering.md)
-- [Cross-Cluster PVC/PV Migration on Kubernetes with Velero](sre/pvc-cluster-migration.md)
+- [Resilient Persistent Volume Backup and Recovery for Kubernetes with Velero](site-reliability-engineering/backup-k8s.md)
+- [Kubernetes Node Pools Segmentation by Infrastructure Criticality](site-reliability-engineering/node-pools.md)
+- [Disaster Recovery Strategy for Kubernetes and Cloud Infrastructure](site-reliability-engineering/disaster-recovery.md)
+- [Service Level Indicators for Data Platforms on Kubernetes and Cloud](site-reliability-engineering/service-level.md)
+- [Kubernetes Resilience using Chaos Engineering Experiments with Litmus](site-reliability-engineering/chaos-engineering.md)
+- [Cross-Cluster PVC/PV Migration on Kubernetes with Velero](site-reliability-engineering/pvc-cluster-migration.md)

@@ -1,0 +1,29 @@
+apiVersion: instance.falcosecurity.dev/v1alpha1
+kind: Component
+metadata:
+  name: sidekick
+  namespace: falco
+spec:
+  component:
+    type: falcosidekick
+  replicas: 1
+---
+apiVersion: instance.falcosecurity.dev/v1alpha1
+kind: Component
+metadata:
+  name: sidekick-ui
+  namespace: falco
+spec:
+  component:
+    type: falcosidekick-ui
+  replicas: 1
+---
+apiVersion: instance.falcosecurity.dev/v1alpha1
+kind: Component
+metadata:
+  name: metacollector
+  namespace: falco
+spec:
+  component:
+    type: metacollector
+  replicas: 1

@@ -1,1 +1,0 @@
-/home/andrey/projects/pikakube/portfolio/../infrastructure/network/troubleshooting/netshoot/p-doc.md

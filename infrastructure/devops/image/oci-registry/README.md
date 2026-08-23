@@ -8,7 +8,8 @@ can be addressed by a digest.
 Tools covered: [`harbor`](harbor/README.md) · [`zot`](zot/README.md) ·
 [`docker-registry`](docker-registry/README.md) ·
 [`jfrog-artifactory`](jfrog-artifactory/README.md) · [`quay`](quay/README.md) ·
-[`chartmuseum`](chartmuseum/README.md) · [`skopeo`](skopeo/README.md)
+[`chartmuseum`](chartmuseum/README.md) · [`skopeo`](skopeo/README.md) ·
+[`go-containerregistry`](go-containerregistry/README.md)
 
 ## Contents
 
@@ -103,6 +104,7 @@ a mistake.
 | **Quay** | Red Hat's registry, with an operator | heavy | [→](quay/README.md) |
 | **ChartMuseum** | a classic Helm chart repository server, not an image registry | light | [→](chartmuseum/README.md) |
 | **skopeo** | not a registry — the **client** for copying and inspecting between them | a CLI | [→](skopeo/README.md) |
+| **go-containerregistry** | not a registry — the Go library the ecosystem is built on, and `crane`, the client that can also **edit** an image | a CLI, plus a library | [→](go-containerregistry/README.md) |
 
 The honest split:
 
@@ -120,6 +122,14 @@ The honest split:
 **skopeo** belongs in this folder even though it is not a registry: it is how images are copied
 between registries without a daemon and without pulling into a local store, which is the standard
 mirror, promote and air-gap workflow.
+
+**[crane](go-containerregistry/README.md)** is the other client, from the other family — Google's
+Go OCI libraries, the ones Cosign and Kaniko are built on. It overlaps skopeo on copy and inspect,
+and it adds the operations skopeo does not have: `append`, `mutate`, `rebase` and `index` change an
+image **in the registry, without a build**. `crane rebase` is the one worth knowing before it is
+needed — it swaps patched base layers underneath an untouched application layer, which is the cheap
+answer to a CVE in a base image. The working split is *skopeo to move images, crane to change
+them*, and installing both is normal.
 
 ## 5. Storage, garbage collection and retention
 
@@ -180,6 +190,7 @@ flowchart TD
     START -->|The platform artefact store:<br/>images, charts, signatures| PLAT
     START -->|Only Helm charts,<br/>classic HTTP repository| CM[ChartMuseum<br/>previous generation]
     START -->|Copying between registries,<br/>mirroring, air-gap| SK[skopeo<br/>a client, not a server]
+    START -->|Retag, rebase or edit an image<br/>without rebuilding it| CR[crane<br/>go-containerregistry]
 
     MIN{OCI-native features<br/>needed?}
     MIN -->|Referrers, signatures,<br/>modern spec| ZOT[zot]
@@ -213,7 +224,7 @@ flowchart TD
 
 ## 9. How this applies to pikakube
 
-Six registries plus one client are mapped, which is more evaluation than deployment — and the
+Six registries plus two clients are mapped, which is more evaluation than deployment — and the
 useful outcome is the shape of the trade-off rather than a winner.
 
 [Harbor](harbor/README.md) is the most fully configured: chart `1.19.1`, exposed through Ingress
@@ -232,6 +243,13 @@ spec support. [Artifactory OSS](jfrog-artifactory/README.md) is mapped at chart 
 [Quay](quay/README.md) carries a blunt verdict on its installation.
 [ChartMuseum](chartmuseum/README.md) is documented as the classic chart-repository server, which
 is what [§3](#3-helm-from-helmrepository-to-ocirepository) is about moving away from.
+
+The two clients are reference entries with nothing deployed, and they cover different halves of the
+job: [skopeo](skopeo/README.md) for copying and air-gap transfer,
+[go-containerregistry](go-containerregistry/README.md) for reading digests in a pipeline and for
+editing an image without rebuilding it — including
+[`imjasonh/setup-crane`](https://github.com/imjasonh/setup-crane), recorded there because installing
+crane in a GitHub Actions job is where it is actually used.
 
 **The thing to decide, not drift into**: as this repository converts `HelmRepository` sources to
 `OCIRepository`, whichever registry is chosen stops being a convenience and becomes a dependency

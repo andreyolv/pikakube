@@ -20,10 +20,11 @@ Tools covered: [`rabbitmq`](rabbitmq/README.md) · [`nats`](nats/README.md) ·
 5. [NATS Core vs JetStream](#5-nats-core-vs-jetstream)
 6. [Dead-letter queues](#6-dead-letter-queues)
 7. [RabbitMQ Streams — the blurred boundary](#7-rabbitmq-streams--the-blurred-boundary)
-8. [The tools](#8-the-tools)
-9. [Decision tree](#9-decision-tree)
-10. [Anti-patterns](#10-anti-patterns)
-11. [How this applies to pikakube](#11-how-this-applies-to-pikakube)
+8. [A queue without a broker — pgmq](#8-a-queue-without-a-broker--pgmq)
+9. [The tools](#9-the-tools)
+10. [Decision tree](#10-decision-tree)
+11. [Anti-patterns](#11-anti-patterns)
+12. [How this applies to pikakube](#12-how-this-applies-to-pikakube)
 
 ---
 
@@ -238,7 +239,69 @@ independent readers, streams save you an entire platform. If event streaming is 
 requirement across many teams, it is [`data-streaming/`](../../../data-streaming/README.md), and
 pretending otherwise buys a year of pain.
 
-## 8. The tools
+## 8. A queue without a broker — pgmq
+
+Recorded as a note rather than a folder, because there is nothing to deploy: it is an extension in
+a database this platform already runs.
+
+[**pgmq**](https://github.com/pgmq/pgmq) is a message queue implemented inside PostgreSQL, with SQS
+semantics rather than the table-and-poll pattern people usually write by hand:
+
+| It provides | Detail |
+|---|---|
+| `send` / `read` / `delete` / `archive` | plain SQL functions in a `pgmq` schema |
+| **Visibility timeout** | a read message is hidden for *n* seconds; if it is not deleted, it reappears |
+| Archive tables | `archive` moves a message to an `a_<queue>` table instead of deleting it — retention and replay, in SQL |
+| Batch reads, delayed messages, FIFO ordering | the usual queue ergonomics |
+| Installation | a Rust extension, or a **SQL-only** install where extensions cannot be added |
+
+The visibility timeout is the part that makes it a queue rather than a table people poll. It is the
+same mechanism SQS uses, and it gives the same guarantee this folder's
+[section 3 of the parent](../README.md#3-delivery-guarantees) describes — **at least once**, so
+consumers must still be idempotent.
+
+**The argument for it is not technical, it is operational.** A dedicated broker is a cluster to
+size, patch, monitor, back up and hold an on-call rota for. If the application already has
+PostgreSQL, adopting pgmq is a schema migration instead:
+
+| | pgmq | RabbitMQ / NATS |
+|---|---|---|
+| New infrastructure | **none** | a cluster, and everything around it |
+| Enqueue in the same transaction as the business write | **yes** — one commit | no; needs the outbox pattern |
+| Backup and restore of in-flight messages | whatever Postgres already does | a second, different procedure |
+| Routing | none — a queue name | exchanges, bindings, subjects |
+| Throughput ceiling | thousands/s, and it competes with the application's own queries | orders of magnitude higher |
+| Fan-out to many independent consumers | not the model | native |
+| Client ecosystem | any Postgres driver | dedicated clients per language |
+
+**The transactional row is the one that wins arguments.** Writing a row and publishing a message
+to a broker cannot be made atomic, which is why the outbox pattern exists — a table, a poller and
+a deduplication story. With pgmq the enqueue *is* part of the transaction: if the business write
+rolls back, the message was never queued. That removes an entire class of "the message says the
+order exists and it does not" bug, and it removes the outbox machinery built to prevent it.
+
+Where it stops:
+
+- **the ceiling is the database's**. Queue traffic becomes write traffic, WAL, autovacuum and
+  connection pressure on the instance serving the application — see
+  [`pooler/`](../../../databases/tooling/pooler/README.md), because a queue consumer polling on
+  its own connection is exactly the workload a pooler exists for
+- **no routing**, no exchanges, no subject wildcards. One producer, one queue, one consumer group
+- **there is no standalone deployment.** It is not a broker you can point three unrelated services
+  at without giving them all credentials to that database
+- **dead-lettering is yours to build** — a `read_ct` threshold plus a move to another queue. The
+  rule from [section 6](#6-dead-letter-queues) does not stop applying because the queue lives in
+  SQL
+- coupling: the queue's availability is the database's availability, and a queue backlog is now
+  something that can affect the application's own queries
+
+The honest position, and the reason this is a note rather than a comparison: **pgmq is the right
+first queue for a team that already runs Postgres and needs one queue.** It stops being right at
+the point where several unrelated services need to exchange messages, where routing decides who
+receives what, or where queue throughput would compete with the database's real job — and that is
+where the rest of this folder starts.
+
+## 9. The tools
 
 | Tool | Model | Shines when | Do not use when | Detail |
 |---|---|---|---|---|
@@ -250,14 +313,18 @@ The Artemis caveat is operational rather than technical: there is **no Helm char
 GitOps repository where everything is a Flux `HelmRelease` is most of the evaluation. See
 [`activemq-artemis/`](activemq-artemis/README.md).
 
-## 9. Decision tree
+## 10. Decision tree
 
 ```mermaid
 flowchart TD
     START{Does the message have to<br/>survive a broker restart or<br/>a missing consumer?}
 
     START -->|No — newest value wins,<br/>losing one is fine| CORE[NATS Core<br/>at most once]
-    START -->|Yes| Q1
+    START -->|Yes| PG
+
+    PG{One queue, one application,<br/>and Postgres already there?}
+    PG -->|Yes — and the enqueue<br/>belongs in the transaction| PGMQ[pgmq<br/>no new infrastructure]
+    PG -->|No| Q1
 
     Q1{Does routing decide<br/>who receives it?}
     Q1 -->|Yes — patterns, several<br/>independent consumers| RMQ[RabbitMQ<br/>topic exchange + quorum queues]
@@ -279,7 +346,7 @@ flowchart TD
     DLQ[[Configure the dead-letter target<br/>and alert on it. Consumers<br/>must be idempotent.]]
 ```
 
-## 10. Anti-patterns
+## 11. Anti-patterns
 
 | Anti-pattern | Why it is bad | What to do instead |
 |---|---|---|
@@ -296,8 +363,10 @@ flowchart TD
 | Streams because "it is like Kafka" | no native partitioning, a much smaller ecosystem | be honest about which problem you have |
 | The management UI as monitoring | nobody is looking at 03:00 | export to [Prometheus](../../../observability/metrics/storage/prometheus/README.md) |
 | Credentials in chart values | they end up in Git in plain text | a secret reference |
+| A broker cluster for one application's one queue | a platform to operate, for a workload `pgmq` handles in the database that is already there | [section 8](#8-a-queue-without-a-broker--pgmq) |
+| `pgmq` as the platform's message bus | it is one database's queue; every consumer needs credentials to that database, and queue load competes with the application's queries | a broker, once producers and consumers are different services |
 
-## 11. How this applies to pikakube
+## 12. How this applies to pikakube
 
 **RabbitMQ is the one with real depth here.** Both deployment shapes are present —
 [the chart](rabbitmq/rabbitmq/README.md) and
@@ -318,6 +387,11 @@ topology becomes a pull request instead of a click in the management UI.
 [NATS](nats/README.md) is mapped with [NUI](nats/nui/README.md) as its web interface.
 [ActiveMQ Artemis](activemq-artemis/README.md) carries the recorded finding that there is **no
 Helm chart**, which in this repository is a decision, not a footnote.
+
+[pgmq](https://github.com/pgmq/pgmq) is recorded in [section 8](#8-a-queue-without-a-broker--pgmq)
+with no folder of its own, and it is the option to weigh first for any single application that needs
+a queue here — this repository already runs PostgreSQL under several components, so the transactional
+enqueue is available for the cost of an extension rather than a cluster.
 
 The boundary to keep clear: [`data-streaming/`](../../../data-streaming/README.md) already runs
 Kafka and Redpanda for the event-log model. This folder is the queue model. RabbitMQ Streams sits
