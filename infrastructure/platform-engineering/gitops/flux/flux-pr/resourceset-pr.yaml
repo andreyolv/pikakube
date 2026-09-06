@@ -1,0 +1,77 @@
+apiVersion: fluxcd.controlplane.io/v1
+kind: ResourceSet
+metadata:
+  name: pikakube-preview-pr
+  namespace: flux-system
+  annotations:
+    fluxcd.controlplane.io/reconcile: "enabled"
+    fluxcd.controlplane.io/reconcileEvery: "5m"
+spec:
+  inputsFrom:
+    - apiVersion: fluxcd.controlplane.io/v1
+      kind: ResourceSetInputProvider
+      name: pikakube-preview-pull-requests
+  wait: true
+  commonMetadata:
+    labels:
+      app.kubernetes.io/managed-by: flux-operator
+      pikakube.dev/preview: "true"
+      pikakube.dev/preview-kind: pull-request
+  resources:
+    # inputs.id is the pull request number for change-request providers,
+    # so it is both stable and readable — unlike the branch provider's checksum.
+    - apiVersion: v1
+      kind: Namespace
+      metadata:
+        name: preview-pr-<< inputs.id >>
+        labels:
+          pikakube.dev/pr: << inputs.id | quote >>
+          pikakube.dev/branch: << inputs.branch | slugify >>
+          pikakube.dev/author: << inputs.author | slugify >>
+        annotations:
+          # Free-form text, so an annotation rather than a label.
+          pikakube.dev/pr-title: << inputs.title | quote >>
+
+    - apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+        name: podinfo
+        namespace: preview-pr-<< inputs.id >>
+      spec:
+        replicas: 1
+        selector:
+          matchLabels:
+            app: podinfo
+        template:
+          metadata:
+            labels:
+              app: podinfo
+          spec:
+            containers:
+              - name: podinfo
+                image: ghcr.io/stefanprodan/podinfo:6.7.1
+                ports:
+                  - name: http
+                    containerPort: 9898
+                env:
+                  - name: PODINFO_UI_MESSAGE
+                    value: << printf "PR #%s by %s (%s @ %s)" inputs.id inputs.author inputs.branch inputs.sha | quote >>
+                resources:
+                  requests:
+                    cpu: 10m
+                    memory: 32Mi
+                  limits:
+                    memory: 64Mi
+
+    - apiVersion: v1
+      kind: Service
+      metadata:
+        name: podinfo
+        namespace: preview-pr-<< inputs.id >>
+      spec:
+        selector:
+          app: podinfo
+        ports:
+          - name: http
+            port: 80
+            targetPort: http
