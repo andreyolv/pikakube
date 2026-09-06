@@ -63,7 +63,7 @@ use different namespaces, so they coexist without fighting.
 
 The environment exists for as long as the branch does. That is the cheapest thing to demonstrate and
 the wrong lifecycle for a real preview: a long-lived `dev` branch means a permanently-running
-"ephemeral" environment.
+"ephemeral" environment. 
 
 ### Example 2 — while a pull request is open
 
@@ -191,6 +191,7 @@ is why it is left in the manifest as a commented-out line rather than omitted.
 | No `serviceAccountName` on either `ResourceSet` | they apply with flux-operator's own service account, which is cluster-wide. Fine for a POC; on a shared cluster set `spec.serviceAccountName` to something scoped. |
 | `prune: false` on the Flux `Kustomization` | deleting these files does **not** remove the CRs. Delete the `ResourceSet` first (which prunes the previews), then the provider. |
 | `<< >>`, not `{{ }}` | the operator uses different delimiters so templates can contain Helm ones. |
+| A `#` inside a template action | ` #` in an unquoted YAML scalar starts a **comment**, so `value: << printf "PR #%s" inputs.id >>` reaches the operator truncated to `<< printf "PR` and fails with `unterminated quoted string`. Quote the whole scalar, or keep `#` out of the template. |
 | Rate limits | one poll per interval **per provider**, and there are two here. `1m` each is fine with a GitHub App (5000 req/h) and wrong unauthenticated. |
 | A preview environment is a **real** environment | it gets the same admission policies, image pulls and resource quotas as anything else. Requests are set here for that reason, and `filter.limit` caps the blast radius. |
 | Flux Operator version | the chart is pinned to `0.24.1` in [`flux-operator/helm/`](../flux-operator/helm/ocirepository.yaml). `spec.skip` and `spec.schedule` on the provider are newer additions — check the CRD before using them. |
