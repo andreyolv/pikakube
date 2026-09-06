@@ -7,4 +7,4 @@ spec:
   interval: 24h
   url: oci://registry-1.docker.io/bitnamicharts/keydb
   ref:
-    tag: 0.5.4
+    tag: 0.5.22
