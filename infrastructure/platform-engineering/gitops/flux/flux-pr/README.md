@@ -63,7 +63,7 @@ use different namespaces, so they coexist without fighting.
 
 The environment exists for as long as the branch does. That is the cheapest thing to demonstrate and
 the wrong lifecycle for a real preview: a long-lived `dev` branch means a permanently-running
-"ephemeral" environment. 
+"ephemeral" environment.
 
 ### Example 2 — while a pull request is open
 
