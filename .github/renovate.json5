@@ -15,8 +15,12 @@
 
   dependencyDashboard: true,
 
-  // Do not adopt a release the day it is published.
+  // Do not adopt a release the day it is published. Helm charts published as
+  // OCI artifacts carry no releaseTimestamp, and the default behaviour
+  // ("timestamp-required") would hold every one of them as pending forever,
+  // so the age check only applies where the registry exposes a timestamp.
   minimumReleaseAge: "3 days",
+  minimumReleaseAgeBehaviour: "timestamp-optional",
 
   // One branch, one pull request, once a week.
   schedule: ["before 6am on monday"],
