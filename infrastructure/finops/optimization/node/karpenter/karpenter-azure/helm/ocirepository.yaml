@@ -7,4 +7,4 @@ spec:
   interval: 24h
   url: oci://mcr.microsoft.com/aks/karpenter/karpenter
   ref:
-    tag: 1.4.0
+    tag: 1.14.2
