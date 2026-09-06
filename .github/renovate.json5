@@ -15,6 +15,10 @@
 
   dependencyDashboard: true,
 
+  // Lab repository: the release notes blow up the pull request body (and get
+  // truncated by GitHub anyway). The version bump is the review unit here.
+  fetchChangeLogs: "off",
+
   // Do not adopt a release the day it is published. Helm charts published as
   // OCI artifacts carry no releaseTimestamp, and the default behaviour
   // ("timestamp-required") would hold every one of them as pending forever,
