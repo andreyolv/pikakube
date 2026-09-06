@@ -54,8 +54,19 @@ spec:
                   - name: http
                     containerPort: 9898
                 env:
+                  # No "#" anywhere in these values: an unquoted "#" preceded by
+                  # a space starts a YAML comment and silently truncates the
+                  # template action. See the README.
+                  - name: PR_NUMBER
+                    value: << inputs.id | quote >>
+                  - name: PR_AUTHOR
+                    value: << inputs.author | quote >>
+                  - name: PR_BRANCH
+                    value: << inputs.branch | quote >>
+                  - name: PR_SHA
+                    value: << inputs.sha | quote >>
                   - name: PODINFO_UI_MESSAGE
-                    value: << printf "PR #%s by %s (%s @ %s)" inputs.id inputs.author inputs.branch inputs.sha | quote >>
+                    value: << printf "PR %s by %s" inputs.id inputs.author | quote >>
                 resources:
                   requests:
                     cpu: 10m
