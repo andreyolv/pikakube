@@ -1,0 +1,43 @@
+{
+  $schema: "https://docs.renovatebot.com/renovate-schema.json",
+
+  // Only the Flux manager runs in this repository. Every other ecosystem
+  // (Docker, Terraform, GitHub Actions, ...) is deliberately left untouched.
+  enabledManagers: ["flux"],
+
+  flux: {
+    // The Flux manager defaults to gotk-components.yaml only, so the file
+    // patterns are declared explicitly. Restricting them to files named
+    // `ocirepository.yaml` keeps HelmRelease / HelmRepository / Kustomization
+    // resources out of scope: only OCIRepository artifacts are updated.
+    managerFilePatterns: ["/(?:^|/)ocirepository\\.ya?ml$/"],
+  },
+
+  dependencyDashboard: true,
+
+  // Do not adopt a release the day it is published.
+  minimumReleaseAge: "3 days",
+
+  // One branch, one pull request, once a week.
+  schedule: ["before 6am on monday"],
+  prConcurrentLimit: 1,
+  branchConcurrentLimit: 1,
+
+  // Keep majors, minors and patches in the same branch instead of letting
+  // Renovate split them into one pull request per update type.
+  separateMajorMinor: false,
+  separateMinorPatch: false,
+  separateMultipleMajor: false,
+  separateMultipleMinor: false,
+
+  packageRules: [
+    {
+      matchManagers: ["flux"],
+      // Every OCIRepository suggestion — tag bumps and digest refreshes —
+      // is aggregated into this single grouped pull request.
+      groupName: "flux oci artifacts",
+      groupSlug: "flux-oci-artifacts",
+      commitMessageTopic: "flux OCI artifacts",
+    },
+  ],
+}

@@ -226,6 +226,7 @@
 - [Cluster Homepage with Automatic Ingress URL Discovery](platform-engineering/homepage-ingress-discovery.md)
 - [Service Catalog and Internal Developer Portal for Kubernetes with Backstage](platform-engineering/idp-backstage.md)
 - [Productive Local Kubernetes Cluster with GitOps](platform-engineering/kind-kustomize.md)
+- [Ephemeral Pull Request Preview Environments on Kubernetes with Flux ResourceSet](platform-engineering/preview-environments.md)
 - [Virtualized Kubernetes Clusters for Multi-Team Isolation with vCluster](platform-engineering/vcluster.md)
 - [Terraform Module: Automated IAM for Airflow via EKS Pod Identity](platform-engineering/terraform-module.md)
 - [Intelligent Resource Scheduling with Apache YuniKorn on Kubernetes](platform-engineering/yunikorn.md)
