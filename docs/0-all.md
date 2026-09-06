@@ -45,6 +45,7 @@
 - [Athena Cost Auditing via CloudTrail](cloud-engineering/aws/athena.md)
 - [Shared Storage for Airflow & OpenMetadata via Amazon EFS](cloud-engineering/aws/efs.md)
 - [Kubernetes Cluster Provisioning in Cloud Environments](cloud-engineering/aws/eks.md)
+- [Cost-Resilient EMR Clusters with Instance Fleets and Spot Diversification](cloud-engineering/aws/emr-fleet.md)
 - [EMR on EKS](cloud-engineering/aws/emr-k8s.md)
 - [Scalable Event-Driven Architecture for Data Enrichment and Integration](cloud-engineering/aws/event-driven-enrichment.md)
 - [AWS IAM Governance: Tag-Based Access Control (ABAC) & Security Enforcement](cloud-engineering/aws/iam-core.md)
@@ -164,6 +165,7 @@
 - [documentação da infraestrutura de plataforma, operação](management/documentation/p-platform.md)
 - [comunicados de incidentes, manutenção que causam impacto](management/documentation/p-comunicados.md)
 - [planejamento de atividades e metas em metolodia agil](management/projects/p-agile.md)
+- [Agile Activity Management with GitHub Projects](management/projects/github-projects.md)
 - [gestão de vulnerabilidades](management/governance/p-gestao-vulnerabilidades.md)
 - [transferencia de conhecimento e apresentações](management/team/knowledge-transfer.md)
 

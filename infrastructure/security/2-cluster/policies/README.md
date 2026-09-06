@@ -8,7 +8,8 @@ Tools: [`gatekeeper/`](gatekeeper/README.md) — OPA/Rego ·
 [`kyverno/`](kyverno/README.md) — YAML, Kubernetes-native ·
 [`kubewarden/`](kubewarden/README.md) — WebAssembly ·
 [`opal/`](opal/README.md) — keeps OPA's data fresh ·
-[`conftest/`](conftest/README.md) — **the same Rego, in CI instead of at admission**
+[`conftest/`](conftest/README.md) — **the same Rego, in CI instead of at admission** ·
+[`regal/`](regal/README.md) — lints the Rego itself
 
 ## Contents
 
@@ -203,6 +204,10 @@ holding when a violation exists — does not resemble anything most platform eng
 The payoff is that the same language is used by OPA everywhere else (API gateways, Kafka, CI), so
 the investment transfers.
 
+The curve is smaller than it used to be, and [`regal/`](regal/README.md) is why: a linter that
+names the idiomatic form, plus a language server that gives diagnostics in the editor. Worth
+knowing before this section is used as the argument against Rego.
+
 ### Kubewarden: WebAssembly
 
 Policies compile to Wasm modules and can be written in Rust, Go, or anything else with a Wasm
@@ -295,6 +300,7 @@ flowchart TD
 | Policies that only reject | teams route around policy instead of adopting it | `generate` the compliant thing where you can |
 | Violations nobody reads | audit mode without a reader is a no-op with extra latency | Policy Reporter, or the log-extraction commands in the Gatekeeper notes |
 | Undocumented exemptions | they outlive their reason and become permanent holes | record why, and exempt by image rather than by namespace |
+| Rego written without a linter | the mistakes that compile and never match are exactly the ones review misses | [Regal](regal/README.md) in CI and in the editor |
 | Two enforcement engines at once | two webhooks in the path, two languages, two on-call surprises | pick one; keep the others as evaluation folders |
 | Treating admission as the whole programme | it never sees runtime behaviour or pre-existing drift | pair it with runtime security and posture scanning |
 

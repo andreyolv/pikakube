@@ -1,0 +1,29 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: openchoreo-control-plane
+  namespace: openchoreo
+spec:
+  interval: 5m
+  chartRef:
+    kind: OCIRepository
+    name: openchoreo-control-plane
+  values:
+  # https://github.com/openchoreo/openchoreo/blob/main/install/helm/openchoreo-control-plane/values.yaml
+    openchoreoApi:
+      http:
+        hostnames:
+          - "api.placeholder.tld"
+    backstage:
+      baseUrl: "https://console.placeholder.tld"
+      secretName: backstage-secrets
+      http:
+        hostnames:
+          - "console.placeholder.tld"
+    security:
+      oidc:
+        issuer: "https://thunder.placeholder.tld"
+    gateway:
+      tls:
+        enabled: false
+    

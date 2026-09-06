@@ -25,6 +25,7 @@
 - [Orchestrated dbt Transformations with Airflow on Kubernetes](analytics-engineering/dbt.md)
 - [Cost-Effective Open-Source Data Visualization with Metabase](analytics-engineering/metabase.md)
 - [Small Files Monitoring and Optimization for Data Lakes Cost Performance](data-engineering/small-files.md)
+- [Cost-Resilient EMR Clusters with Instance Fleets and Spot Diversification](cloud-engineering/aws/emr-fleet.md)
 - [EMR on EKS](cloud-engineering/aws/emr-k8s.md)
 - [Scalable Big Data Processing Batch Workloads on Kubernetes with Apache Spark](data-engineering/spark-k8s.md)
 - [Distributed Analytics Query Engine with Trino on Kubernetes](data-engineering/trino.md)
@@ -72,6 +73,11 @@
 - [Cloud Cost Savings with SavingPlans & Instance Reservation](finops/cloud-reservations.md)
 - [Kubernetes Cost Allocation by Project with OpenCost](finops/opencost.md)
 - [Dynamic Kubernetes Resource Optimization with Vertical Pod Autoscaler](finops/vpa.md)
+
+---
+
+## Management
+- [Agile Activity Management with GitHub Projects](management/projects/github-projects.md)
 
 ---
 

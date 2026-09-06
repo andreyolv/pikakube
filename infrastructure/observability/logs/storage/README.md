@@ -6,7 +6,7 @@ Where logs land, how long they stay, and how they are queried.
 
 Tools covered: [`loki`](loki/README.md) · [`elastic-operator`](elastic-operator/README.md) ·
 [`opensearch`](opensearch/README.md) · [`quickwit`](quickwit/README.md) · [`parseable`](parseable/README.md) ·
-[`solr`](solr/README.md)
+[`victoria-logs`](victoria-logs/README.md) · [`solr`](solr/README.md)
 
 ## Contents
 
@@ -37,6 +37,11 @@ here: not a better database, a better match for how logs are actually consulted.
 The first model earns its cost when logs are a **product** rather than a debugging aid —
 security investigation, compliance search, analytics over log content.
 
+**VictoriaLogs sits outside the table.** It indexes every field, but on an engine built for the
+shape logs have rather than for generic documents — so high-cardinality fields are ordinary
+instead of a mistake, and there is no search cluster underneath. The cost is that it stores on
+local disk rather than object storage.
+
 ## 2. The tools
 
 | Tool | Model | Shines when | Do not use when | Detail |
@@ -46,6 +51,7 @@ security investigation, compliance search, analytics over log content.
 | **OpenSearch** | full index | same capability, Apache-licensed fork | the licensing question does not apply to you | [→](opensearch/README.md) |
 | **Quickwit** | search on object storage | full-text search **without** running a cluster of stateful nodes | you need the Elastic ecosystem's tooling | [→](quickwit/README.md) |
 | **Parseable** | Parquet on object storage | very low footprint, and logs you may want to analyse like data | rich search features are the requirement | [→](parseable/README.md) |
+| **VictoriaLogs** | all fields indexed, local disk, single binary | full-text search and high-cardinality fields with no cluster to operate — especially if you already run VictoriaMetrics | object storage is the requirement, or the stack is Grafana-native | [→](victoria-logs/README.md) |
 | **Solr** | full index | it is already in the organisation | choosing fresh for logs — the others fit this use better | [→](solr/README.md) |
 
 **Quickwit is the interesting middle.** It offers full-text search with object storage as the
@@ -68,7 +74,9 @@ flowchart TD
     Q1b -->|No| LOKI
 
     Q2{Can you operate a<br/>search cluster?}
-    Q2 -->|No| QW[Quickwit<br/>search on object storage,<br/>stateless nodes]
+    Q2 -->|No| Q2b{Object storage,<br/>or local disk?}
+    Q2b -->|Object storage| QW[Quickwit<br/>search on object storage,<br/>stateless nodes]
+    Q2b -->|Local disk is fine| VL[VictoriaLogs<br/>all fields indexed,<br/>single binary]
     Q2 -->|Yes| Q3
 
     Q3{Does the licence<br/>matter?}
@@ -78,6 +86,7 @@ flowchart TD
     LOKI --> RET
     PAR --> RET
     QW --> RET
+    VL --> RET
     OS --> RET
     EL --> RET
     RET[[Set retention per tier<br/>before the first ingest]]
@@ -119,6 +128,11 @@ Two things would have to be decided before it is real, and neither is the tool:
 
 Quickwit is the one worth revisiting if search ever stops being enough — it is the option that
 does not force the usual choice between search quality and storage cost.
+
+[VictoriaLogs](victoria-logs/README.md) is the alternative that makes both of those decisions
+go away — no bucket, and no label discipline to get wrong. It becomes the obvious choice if
+[VictoriaMetrics](../../metrics/storage/victoria-metrics/README.md) is ever preferred over
+Prometheus here, since it is then the same stack rather than another vendor.
 
 ---
 

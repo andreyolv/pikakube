@@ -5,14 +5,15 @@
 Products that make the platform decisions for you — and what you give up in return.
 
 Tools covered: [`apl`](apl/README.md) · [`cozystack`](cozystack/README.md) ·
-[`devtron`](devtron/README.md) · [`glasskube`](glasskube/README.md) ·
+[`cyclops`](cyclops/README.md) · [`devtron`](devtron/README.md) · [`glasskube`](glasskube/README.md) ·
 [`helm-dashboard`](helm-dashboard/README.md) · [`kubeapps`](kubeapps/README.md) ·
 [`kubeblocks`](kubeblocks/README.md) · [`kubesphere`](kubesphere/README.md) ·
-[`kubevela`](kubevela/README.md) · [`otomi`](otomi/README.md) · [`tsuru`](tsuru/README.md)
+[`kubevela`](kubevela/README.md) · [`otomi`](otomi/README.md) · [`plural`](plural/README.md) ·
+[`tsuru`](tsuru/README.md)
 
 ## Contents
 
-1. [Four different products in one folder](#1-four-different-products-in-one-folder)
+1. [Five different products in one folder](#1-five-different-products-in-one-folder)
 2. [The trade every platform asks you to make](#2-the-trade-every-platform-asks-you-to-make)
 3. [How to evaluate one honestly](#3-how-to-evaluate-one-honestly)
 4. [Decision tree](#4-decision-tree)
@@ -21,19 +22,25 @@ Tools covered: [`apl`](apl/README.md) · [`cozystack`](cozystack/README.md) ·
 
 ---
 
-## 1. Four different products in one folder
+## 1. Five different products in one folder
 
-Eleven entries, four categories, and confusing them wastes a lot of time:
+Thirteen entries, five categories, and confusing them wastes a lot of time:
 
 | Category | What it is | Here |
 |---|---|---|
 | **Full platform distribution** | an opinionated bundle: ingress, GitOps, observability, policy, identity, all pre-integrated | APL, Otomi, KubeSphere, Cozystack, Devtron |
 | **Application abstraction** | a model above Kubernetes objects: applications, components, environments | KubeVela, Tsuru |
-| **Package management UI** | browse, install and manage Helm releases through a UI | Kubeapps, Helm Dashboard, Glasskube |
+| **Package management UI** | browse, install and manage Helm releases through a UI | Kubeapps, Helm Dashboard, Glasskube, Cyclops |
 | **Domain platform** | a platform for one class of workload | KubeBlocks — databases |
+| **Fleet control plane** | one console operating many clusters, agent per cluster | Plural |
 
 A full distribution is a decision about your entire stack. A Helm UI is an afternoon. Both are filed
 here, and reading the folder as a list of comparable options is the first mistake available.
+
+The last row is on a different axis again: everything else here makes **one** cluster complete,
+and [Plural](plural/README.md) assumes several already exist. Note that it is not the same
+question as [`multi-cluster/`](../multi-cluster/README.md), which is about *scheduling* workloads
+across clusters rather than *operating* them.
 
 ## 2. The trade every platform asks you to make
 
@@ -94,6 +101,9 @@ flowchart TD
     PKG -->|"Inspect and repair<br/>existing releases"| HD["helm-dashboard"]
     PKG -->|"A catalog for<br/>self-service installs"| KA["kubeapps"]
     PKG -->|"Package management<br/>with dependencies"| GK["glasskube"]
+    PKG -->|"A form over our own charts,<br/>generated from values.schema.json"| CY["cyclops"]
+
+    START -->|"Operate many clusters<br/>from one console"| FLEET["plural —<br/>a different axis;<br/>check it does not replace<br/>the GitOps layer you have"]
 
     PICK --> EXIT
     VELA --> EXIT
@@ -115,7 +125,7 @@ flowchart TD
 
 ## 6. How this applies to pikakube
 
-Eleven entries, ten with Flux manifests, every `values:` block empty, and no commands or verdicts
+Thirteen entries, ten with Flux manifests, every `values:` block empty, and no commands or verdicts
 recorded anywhere. This is the widest and shallowest folder in the repository — a survey of a
 category, not an adoption.
 
@@ -137,7 +147,7 @@ distribution have been substantially restructured under Broadcom. Any chart depe
 verification rather than assumption.
 
 The folder's real value is as a map: when the question "should we adopt a platform?" arrives, the
-categories in §1 and the six questions in §3 matter far more than which of the eleven is picked. And
+categories in §1 and the six questions in §3 matter far more than which of the thirteen is picked. And
 for this repository the answer is currently no — the platform is being assembled deliberately from
 the GitOps layer, [`observability/`](../../../../observability/README.md) and the rest, which is the
 alternative these products exist to replace.

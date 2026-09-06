@@ -5,7 +5,7 @@
 Where traces land, and how they are queried.
 
 Tools covered: [`tempo`](tempo/README.md) · [`jaeger`](jaeger/README.md) · [`zipkin`](zipkin/README.md) ·
-[`skywalking`](skywalking/README.md)
+[`victoria-traces`](victoria-traces/README.md) · [`skywalking`](skywalking/README.md)
 
 ## Contents
 
@@ -32,7 +32,7 @@ is how tracing projects end up with a running Tempo and no traces in it.
 
 | | Index everything | Index almost nothing |
 |---|---|---|
-| Tools | Jaeger, SkyWalking, Zipkin | Tempo |
+| Tools | Jaeger, SkyWalking, Zipkin, VictoriaTraces | Tempo |
 | Find a trace by | service, operation, tags, duration — search | **trace ID**, then TraceQL over the matching window |
 | Storage cost | higher; the index grows with span volume | very low — object storage, minimal index |
 | Best when | you explore traces without knowing which one | you arrive from a log, a metric or an alert that already carries the ID |
@@ -44,6 +44,11 @@ is the same: in practice you almost always **arrive with context**. A log line w
 That is why Tempo's design works despite sounding limiting, and why it is the default in a
 Grafana stack.
 
+[VictoriaTraces](victoria-traces/README.md) is the one attempt here to soften the trade: it
+indexes attributes like Jaeger, but on an engine built for high-cardinality wide events, so the
+index does not carry the usual cost. It pays for that with local disk instead of object storage
+— and with being much younger than everything else in the table.
+
 ## 3. The tools
 
 | Tool | Notes | Detail |
@@ -51,6 +56,7 @@ Grafana stack.
 | **Tempo** | object storage, minimal index, TraceQL, Grafana-native | [→](tempo/README.md) |
 | **Jaeger** | CNCF, mature, full search UI; the reference implementation for many | [→](jaeger/README.md) |
 | **Zipkin** | the original; simple, small, still perfectly serviceable | [→](zipkin/README.md) |
+| **VictoriaTraces** | spans as wide events on the VictoriaLogs engine; OTLP in, Jaeger query API out, single binary, local disk. Young — verify maturity | [→](victoria-traces/README.md) |
 | **SkyWalking** | APM platform rather than a trace store — traces, metrics, topology and alerting in one | [→](skywalking/README.md) |
 
 **SkyWalking is the odd one.** It is closer to the tools in
@@ -75,6 +81,8 @@ flowchart TD
     Q2 -->|No — smallest possible| ZI[Zipkin]
 
     FIX --> Q1
+
+    JA -.->|Already running the<br/>VictoriaMetrics stack?| VT[VictoriaTraces —<br/>same search model,<br/>same operational model]
 
     OTHER[Want an APM platform,<br/>not a trace store?] --> SW[SkyWalking —<br/>compare against platforms/]
 ```

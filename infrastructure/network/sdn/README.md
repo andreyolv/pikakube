@@ -6,7 +6,7 @@ Conceptual reference for the `sdn/` folder: networking that goes **beyond what t
 specification requires**, with programmable L2/L3 constructs.
 
 Tools covered: [`kube-ovn`](kube-ovn/README.md) · [`ovn-kubernetes`](ovn-kubernetes/README.md) ·
-[`kube-router`](kube-router/README.md) · [`kilo`](kilo/README.md)
+[`kube-router`](kube-router/README.md) · [`kilo`](kilo/README.md) · [`frr`](frr/README.md)
 
 ## Contents
 
@@ -36,8 +36,9 @@ A cluster picks **one** primary CNI. If that choice is driven by needing cloud-s
 constructs or a cross-location overlay, the candidate is in this folder. If it is driven by
 policy enforcement, dataplane and observability, it is in [`cni/`](../cni/README.md).
 
-Kilo is the exception: it is not a CNI at all, it is a WireGuard mesh that works *alongside*
-one.
+Two entries are exceptions, and neither is a CNI. **Kilo** is a WireGuard mesh that works
+*alongside* one. **FRR** is a routing daemon: everything else here builds a programmable network
+*inside* the cluster, and FRR is how a node takes part in the routed network *outside* it.
 
 ## 2. What SDN adds
 
@@ -67,12 +68,16 @@ from `iptables`/`tcpdump` to OVS commands most teams have never used.
 | **ovn-kubernetes** | the upstream OVN-based CNI, the one behind OpenShift | you want the OVN substrate with the opinions of a large distribution, or you are aligning with OpenShift | you are not committed to the OVN ecosystem | [→](ovn-kubernetes/README.md) |
 | **kube-router** | one daemon doing CNI + service proxy (IPVS, replacing kube-proxy) + NetworkPolicy, using **BGP** | you want a small, single-component stack with BGP and no overlay | you need the richer constructs above — it is deliberately lean | [→](kube-router/README.md) |
 | **kilo** | **WireGuard mesh** across locations — not a CNI | one cluster spanning clouds, regions or edge sites over untrusted networks | all nodes sit on one trusted network; the encryption and mesh buy nothing | [→](kilo/README.md) |
+| **frr** | full routing suite — **BGP**, OSPF, IS-IS, BFD, EVPN — not a CNI | on-prem, peering with the physical fabric: MetalLB's FRR mode, or BGP-to-the-host with no overlay | managed Kubernetes or a laptop cluster — there is no fabric to peer with | [→](frr/README.md) |
 
-### The three-way distinction worth remembering
+### The distinction worth remembering
 
 - **kube-ovn / ovn-kubernetes** — richer network model, at the cost of an OVN control plane
 - **kube-router** — leaner than a normal CNI, collapsing three components into one daemon
 - **kilo** — orthogonal: it connects *nodes* across locations, whatever the CNI is
+- **frr** — one layer below all of them: what the node tells the physical network, whatever the
+  CNI is. It is the speaker inside [MetalLB](../load-balancer/metallb/README.md)'s BGP mode, and
+  the reason an overlay can be dropped entirely when the underlay knows the pod CIDRs
 
 ## 4. Decision tree
 
@@ -83,6 +88,7 @@ flowchart TD
     START -->|Nodes are in different<br/>clouds / sites| KI[kilo<br/>WireGuard mesh<br/>works alongside any CNI]
     START -->|Need VPC, subnets,<br/>per-tenant isolation| Q1
     START -->|Want fewer moving parts,<br/>BGP, no overlay| KR[kube-router<br/>CNI + proxy + policy<br/>in one daemon]
+    START -->|Nothing inside — I need the<br/>physical network to know<br/>my routes| FRR[frr<br/>BGP to the fabric.<br/>Needs a network team<br/>on the other end]
     START -->|Nothing — I need policy,<br/>dataplane, observability| CNI[see cni/<br/>Cilium or Calico]
 
     Q1{Aligned with the<br/>OpenShift / OVN world?}
@@ -101,6 +107,7 @@ flowchart TD
 | Running two primary CNIs | they fight over IPAM and the pod namespace | one primary; Multus for extra interfaces |
 | Choosing kilo when all nodes share a trusted network | encryption and mesh overhead for nothing | plain CNI |
 | Expecting kilo to provide pod networking | it meshes nodes; it is not a CNI | pair it with one |
+| Running FRR without agreeing the BGP session with the network team | a wrong advertisement affects the physical network, not just the cluster | peering is an agreement first and a config second; filter both directions |
 | Treating "SDN" as automatically better | more constructs means more to operate and more to break | start from the constraint, not the category |
 
 ## 6. How this applies to pikakube
@@ -109,8 +116,10 @@ Nothing here is in use — the cluster is Kind with [kindnet](../cni/kindnet/REA
 these constructs apply on a laptop.
 
 They are mapped for the on-prem case, which is where they actually matter: **kube-ovn** when
-a self-managed cluster needs tenant subnets that a flat pod CIDR cannot express, and
-**kilo** when nodes are spread across sites and there is no private link between them.
+a self-managed cluster needs tenant subnets that a flat pod CIDR cannot express, **kilo** when
+nodes are spread across sites and there is no private link between them, and **FRR** the moment
+`LoadBalancer` Services need real addresses — that path runs through
+[MetalLB](../load-balancer/metallb/README.md) in BGP mode, and MetalLB's BGP mode runs FRR.
 
 Both belong to the on-premise concern rather than the managed-cloud one — the cloud already
 supplies VPCs and private connectivity, which is precisely what these tools reimplement.

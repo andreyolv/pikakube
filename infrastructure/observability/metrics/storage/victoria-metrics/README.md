@@ -50,6 +50,12 @@ kube-prometheus-stack — and [`victoria-metrics-operator/`](victoria-metrics-op
 The k8s-stack is the fair comparison against kube-prometheus-stack, since both bundle
 collection, storage, rules and dashboards rather than just the database.
 
+The same project now covers the other two signals:
+[VictoriaLogs](../../../logs/storage/victoria-logs/README.md) and
+[VictoriaTraces](../../../tracing/storage/victoria-traces/README.md). That matters for the
+decision above — adopting VictoriaMetrics is less of a vendor split than it looks, because the
+whole stack can follow one operational model.
+
 ---
 
 [← Metrics storage](../README.md)

@@ -4,7 +4,7 @@
 
 Six controllers, one CRD each, and no dashboard — the reconciliation engine this platform runs on.
 
-Tools covered: [`flux-operator/`](flux-operator/README.md) · [`flux-ui/`](flux-ui/README.md) · [`notification/`](notification/README.md) · [`tf-controller/`](tf-controller/README.md)
+Tools covered: [`flux-operator/`](flux-operator/README.md) · [`flux-pr/`](flux-pr/README.md) · [`flux-ui/`](flux-ui/README.md) · [`notification/`](notification/README.md) · [`tf-controller/`](tf-controller/README.md)
 
 ## Contents
 

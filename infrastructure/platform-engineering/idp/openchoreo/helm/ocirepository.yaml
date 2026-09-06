@@ -1,0 +1,15 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: OCIRepository
+metadata:
+  name: openchoreo-control-plane
+  namespace: openchoreo
+spec:
+  interval: 24h
+  layerSelector:
+    mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
+    operation: copy
+  ref:
+    tag: 1.2.4
+    digest: sha256:ea33a26e31b90a957b45c6dcf9871c69b51d5b044a3b03806c23713bcb16ab18
+  url: oci://ghcr.io/openchoreo/helm-charts/openchoreo-control-plane
+  # https://github.com/openchoreo/openchoreo/pkgs/container/helm-charts%2Fopenchoreo-control-plane

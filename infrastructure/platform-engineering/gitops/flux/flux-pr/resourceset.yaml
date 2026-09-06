@@ -1,0 +1,71 @@
+apiVersion: fluxcd.controlplane.io/v1
+kind: ResourceSet
+metadata:
+  name: pikakube-preview
+  namespace: flux-system
+  annotations:
+    fluxcd.controlplane.io/reconcile: "enabled"
+    fluxcd.controlplane.io/reconcileEvery: "5m"
+spec:
+  # One copy of every resource below, per input exported by the provider.
+  # No inputs (branch gone) means no resources: the operator prunes them.
+  inputsFrom:
+    - apiVersion: fluxcd.controlplane.io/v1
+      kind: ResourceSetInputProvider
+      name: pikakube-preview-branches
+  wait: true
+  commonMetadata:
+    labels:
+      app.kubernetes.io/managed-by: flux-operator
+      pikakube.dev/preview: "true"
+  resources:
+    - apiVersion: v1
+      kind: Namespace
+      metadata:
+        name: preview-<< inputs.branch | slugify >>
+
+    - apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+        name: podinfo
+        namespace: preview-<< inputs.branch | slugify >>
+      spec:
+        replicas: 1
+        selector:
+          matchLabels:
+            app: podinfo
+        template:
+          metadata:
+            labels:
+              app: podinfo
+          spec:
+            containers:
+              - name: podinfo
+                image: ghcr.io/stefanprodan/podinfo:6.7.1
+                ports:
+                  - name: http
+                    containerPort: 9898
+                env:
+                  # Proof the inputs reached the template: the branch and the
+                  # commit SHA the provider read from the GitHub API.
+                  - name: PODINFO_UI_MESSAGE
+                    value: << printf "preview of %s @ %s" inputs.branch inputs.sha | quote >>
+                resources:
+                  requests:
+                    cpu: 10m
+                    memory: 32Mi
+                  limits:
+                    memory: 64Mi
+
+    - apiVersion: v1
+      kind: Service
+      metadata:
+        name: podinfo
+        namespace: preview-<< inputs.branch | slugify >>
+      spec:
+        selector:
+          app: podinfo
+        ports:
+          - name: http
+            port: 80
+            targetPort: http

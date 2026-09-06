@@ -1,0 +1,21 @@
+apiVersion: fluxcd.controlplane.io/v1
+kind: ResourceSetInputProvider
+metadata:
+  name: pikakube-preview-branches
+  namespace: flux-system
+  annotations:
+    fluxcd.controlplane.io/reconcile: "enabled"
+    fluxcd.controlplane.io/reconcileEvery: "1m"
+    fluxcd.controlplane.io/reconcileTimeout: "1m"
+spec:
+  # GitHubBranch exports one input per branch that matches the filter.
+  # Swap for GitHubPullRequest to key environments off open PRs instead.
+  type: GitHubBranch
+  url: https://github.com/andreyolv/pikakube
+  # Reuses the GitHub App secret the FluxInstance already uses as spec.sync.pullSecret.
+  # Drop this block entirely if the repository is public (unauthenticated, 60 req/h).
+  secretRef:
+    name: flux-system
+  filter:
+    includeBranch: "^dev$"
+    limit: 5
