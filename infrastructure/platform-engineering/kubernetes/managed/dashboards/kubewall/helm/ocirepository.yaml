@@ -7,4 +7,4 @@ spec:
   interval: 24h
   url: oci://ghcr.io/kubewall/charts/kubewall
   ref:
-    tag: 0.0.11
+    tag: 0.0.23

@@ -7,4 +7,4 @@ spec:
   interval: 24h
   url: oci://ghcr.io/nginx/charts/nginx-ingress
   ref:
-    tag: 2.0.0
+    tag: 2.7.1

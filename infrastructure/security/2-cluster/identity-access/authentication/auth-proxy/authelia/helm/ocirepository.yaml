@@ -9,7 +9,7 @@ spec:
     mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
     operation: copy
   ref:
-    tag: 0.11.6
-    digest: sha256:c32f8bc44cac1cfd512f3973ec00b36a3103a444f492a48aa6cee530f29bc375
+    tag: 0.11.20
+    digest: sha256:8635eef7f6e4ab1011d326a109e6d42e5709d4b25e4435754c2b7b6f8027d444
   url: oci://ghcr.io/authelia/chartrepo/authelia
   # https://github.com/authelia/chartrepo/pkgs/container/chartrepo%2Fauthelia

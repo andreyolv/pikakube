@@ -9,7 +9,7 @@ spec:
     mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
     operation: copy
   ref:
-    tag: 3.8.1
-    digest: sha256:61d8cd025a27bd2962e1a6daf40fc98218a97ca2164f1184d14f41d40db84efa
+    tag: 3.9.0
+    digest: sha256:12f0567d8ca52c858eef0628ee5214348e6d6f554cc71de5b50379b93d6d46c1
   url: oci://ghcr.io/kyverno/charts/kyverno
   # https://github.com/kyverno/kyverno/pkgs/container/charts%2Fkyverno

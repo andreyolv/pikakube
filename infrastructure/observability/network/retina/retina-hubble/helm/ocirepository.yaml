@@ -7,4 +7,4 @@ spec:
   interval: 24h
   url: oci://ghcr.io/microsoft/retina/charts/retina-hubble
   ref:
-    tag: v0.0.29
+    tag: v1.2.7
