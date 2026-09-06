@@ -1,0 +1,25 @@
+apiVersion: fluxcd.controlplane.io/v1
+kind: ResourceSetInputProvider
+metadata:
+  name: pikakube-preview-pull-requests
+  namespace: flux-system
+  annotations:
+    fluxcd.controlplane.io/reconcile: "enabled"
+    fluxcd.controlplane.io/reconcileEvery: "1m"
+    fluxcd.controlplane.io/reconcileTimeout: "1m"
+spec:
+  # One input per *open* pull request. Merging or closing the PR removes the
+  # input; the branch itself can keep existing.
+  type: GitHubPullRequest
+  url: https://github.com/andreyolv/pikakube
+  # Same GitHub App secret the FluxInstance uses as spec.sync.pullSecret.
+  secretRef:
+    name: flux-system
+  filter:
+    # Matches the PR *source* branch. There is no base-branch filter in the
+    # API, so "dev -> main" is expressed as "head is dev" — see the README.
+    includeBranch: "^dev$"
+    limit: 5
+    # Uncomment to require an explicit opt-in label on the PR:
+    #labels:
+    #  - "deploy/preview"
