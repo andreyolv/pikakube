@@ -5,6 +5,11 @@ metadata:
   namespace: flux-system
 spec:
   interval: 24h
-  url: oci://registry.k8s.io/kueue/charts/kueue
+  layerSelector:
+    mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
+    operation: copy
   ref:
     tag: 0.19.3
+    digest: sha256:ebc458ae49180456bbfada39e2dcb20b0531ac3ee6cea183b1d9229ddb8b1fda
+  url: oci://registry.k8s.io/kueue/charts/kueue
+  # https://registry.k8s.io/v2/kueue/charts/kueue/tags/list

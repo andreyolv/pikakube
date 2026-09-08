@@ -5,6 +5,11 @@ metadata:
   namespace: flux-system
 spec:
   interval: 24h
-  url: oci://ghcr.io/spinkube/charts/spin-operator
+  layerSelector:
+    mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
+    operation: copy
   ref:
-    tag: v0.4.0
+    tag: 0.4.0
+    digest: sha256:1bf8fbd7dd6ce337c84a4eaac96886d6fa0bc5a0b8cfe3afaefa2a8fcd6371ae
+  url: oci://ghcr.io/spinkube/charts/spin-operator
+  # https://github.com/orgs/spinkube/packages/container/package/charts%2Fspin-operator

@@ -1,0 +1,15 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: OCIRepository
+metadata:
+  name: fluss-zookeeper
+  namespace: flux-system
+spec:
+  interval: 24h
+  layerSelector:
+    mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
+    operation: copy
+  ref:
+    tag: 13.8.7
+    digest: sha256:af7c0408dc4575a1ef418a712654fe37aeb1ecfec97b7145146fa086e00b1870
+  url: oci://registry-1.docker.io/bitnamicharts/zookeeper
+  # https://hub.docker.com/r/bitnamicharts/zookeeper/tags

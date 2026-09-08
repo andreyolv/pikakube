@@ -4,8 +4,7 @@
 
 <https://github.com/risingwavelabs/risingwave>
 <https://github.com/risingwavelabs/helm-charts>
-<https://docs.risingwave.com/>
-
+<https://github.com/risingwavelabs/risingwave-operator>
 ---
 
 ## The problem it solves

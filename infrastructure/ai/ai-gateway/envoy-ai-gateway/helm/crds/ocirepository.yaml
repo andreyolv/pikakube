@@ -5,6 +5,11 @@ metadata:
   namespace: flux-system
 spec:
   interval: 24h
-  url: oci://docker.io/envoyproxy/ai-gateway-crds-helm
+  layerSelector:
+    mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
+    operation: copy
   ref:
     tag: 1.1.0
+    digest: sha256:2d12db64ec84179d23385cbbb3e47fbe6860bbb934cc55b82f33fc7cab25f4ce
+  url: oci://docker.io/envoyproxy/ai-gateway-crds-helm
+  # https://hub.docker.com/r/envoyproxy/ai-gateway-crds-helm/tags

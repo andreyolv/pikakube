@@ -5,6 +5,11 @@ metadata:
   namespace: flux-system
 spec:
   interval: 24h
-  url: oci://registry-1.docker.io/bitnamicharts/kubernetes-event-exporter
+  layerSelector:
+    mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
+    operation: copy
   ref:
     tag: 3.6.3
+    digest: sha256:bb99f20e7fae5283edf6b52dc041e462262ee7670ab37fe0de6a553d7125e641
+  url: oci://registry-1.docker.io/bitnamicharts/kubernetes-event-exporter
+  # https://hub.docker.com/r/bitnamicharts/kubernetes-event-exporter/tags

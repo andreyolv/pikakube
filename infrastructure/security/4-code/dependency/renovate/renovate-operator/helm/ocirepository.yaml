@@ -5,7 +5,11 @@ metadata:
   namespace: flux-system
 spec:
   interval: 24h
-  url: oci://ghcr.io/mogenius/helm-charts/renovate-operator
+  layerSelector:
+    mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
+    operation: copy
   ref:
     tag: 6.3.0
-
+    digest: sha256:f82d88812ad9d40fb6d9390f80cf8898c9f0eef5a4cceaed4b862fb649676f53
+  url: oci://ghcr.io/mogenius/helm-charts/renovate-operator
+  # https://github.com/mogenius/renovate-operator/pkgs/container/helm-charts%2Frenovate-operator

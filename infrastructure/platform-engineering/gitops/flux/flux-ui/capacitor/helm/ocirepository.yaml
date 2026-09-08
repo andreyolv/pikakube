@@ -5,6 +5,8 @@ metadata:
   namespace: flux-system
 spec:
   interval: 24h
-  url: oci://ghcr.io/gimlet-io/capacitor-manifests
   ref:
     tag: v0.4.8
+    digest: sha256:1efcb443eb84e5551804d5693a0085bf60f271afbbb026e0042dc9ef5237a855
+  url: oci://ghcr.io/gimlet-io/capacitor-manifests
+  # https://github.com/orgs/gimlet-io/packages/container/package/capacitor-manifests

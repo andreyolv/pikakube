@@ -72,12 +72,14 @@
 - [Cost-Effective Kubernetes Compute Optimization with ARM-Based Nodes](finops/arm.md)
 - [Cloud Cost Savings with SavingPlans & Instance Reservation](finops/cloud-reservations.md)
 - [Kubernetes Cost Allocation by Project with OpenCost](finops/opencost.md)
+- [Cloud Resource Inventory and Orphaned Resource Reclamation with AWS Resource Explorer](finops/resource-reclamation.md)
 - [Dynamic Kubernetes Resource Optimization with Vertical Pod Autoscaler](finops/vpa.md)
 
 ---
 
 ## Management
 - [Agile Activity Management with GitHub Projects](management/projects/github-projects.md)
+- [Platform Service Catalog with GitHub Issue Templates and Projects](management/documentation/service-catalog.md)
 
 ---
 

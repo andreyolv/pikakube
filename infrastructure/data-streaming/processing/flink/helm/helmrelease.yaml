@@ -11,12 +11,17 @@ spec:
   chart:
     spec:
       chart: flink-kubernetes-operator
+      version: 1.15.0
       sourceRef:
         kind: HelmRepository
-        name: flink-operator-repo
+        name: flink-kubernetes-operator
         namespace: flux-system
+  install:
+    crds: Create
+  upgrade:
+    crds: CreateReplace
   values:
   # https://github.com/apache/flink-kubernetes-operator/blob/main/helm/flink-kubernetes-operator/values.yaml
   # k port-forward pod-rest 8081
 
-    # watchNamespaces: 
+    # watchNamespaces:

@@ -15,3 +15,7 @@ spec:
         namespace: flux-system
   values:
   # https://github.com/apache/fluss/blob/main/helm/values.yaml
+    configurationOverrides:
+      # the chart default assumes the ZooKeeper release is named "zk";
+      # ours is named "zookeeper", so the service is zookeeper.<ns>.svc
+      zookeeper.address: zookeeper.fluss.svc.cluster.local:2181

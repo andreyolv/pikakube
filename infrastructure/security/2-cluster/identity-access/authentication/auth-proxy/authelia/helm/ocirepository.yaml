@@ -1,8 +1,8 @@
 apiVersion: source.toolkit.fluxcd.io/v1
 kind: OCIRepository
 metadata:
-  name: authelia 
-  namespace: authelia 
+  name: authelia
+  namespace: authelia
 spec:
   interval: 24h
   layerSelector:

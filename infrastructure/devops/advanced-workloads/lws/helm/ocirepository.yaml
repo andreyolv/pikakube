@@ -5,6 +5,11 @@ metadata:
   namespace: flux-system
 spec:
   interval: 24h
-  url: oci://registry.k8s.io/lws/charts/lws
+  layerSelector:
+    mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
+    operation: copy
   ref:
     tag: v0.10.0
+    digest: sha256:249c5000a24a22cb26e410774be6f613756029242eb3b27b01fdeb9258228896
+  url: oci://registry.k8s.io/lws/charts/lws
+  # https://registry.k8s.io/v2/lws/charts/lws/tags/list

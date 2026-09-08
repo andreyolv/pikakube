@@ -5,6 +5,11 @@ metadata:
   namespace: flux-system
 spec:
   interval: 24h
-  url: oci://registry.stormforge.io/library/stormforge-agent
+  layerSelector:
+    mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
+    operation: copy
   ref:
     tag: 2.28.6
+    digest: sha256:0520b11b2736d5143b1341968d5da27df92755bf6de56a96d65c453bb5eab1c6
+  url: oci://registry.stormforge.io/library/stormforge-agent
+  # https://docs.stormforge.io/optimize-live/getting-started/install/

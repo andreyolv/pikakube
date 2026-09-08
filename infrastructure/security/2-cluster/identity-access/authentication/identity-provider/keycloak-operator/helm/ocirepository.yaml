@@ -15,4 +15,3 @@ spec:
   # helm show values oci://quay.io/keycloak/keycloak-operator-helm
   # https://github.com/keycloak-rel/keycloak-rel/issues/196
   # https://github.com/keycloak/keycloak/issues/51706
-  
