@@ -9,7 +9,7 @@ spec:
     mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
     operation: copy
   ref:
-    tag: 3.4.5
-    digest: sha256:00ea329f2b139fe67e9f0f0692b4d58ac696b221b44d87179fc337d4c7362ef5
+    tag: 3.6.3
+    digest: sha256:bb99f20e7fae5283edf6b52dc041e462262ee7670ab37fe0de6a553d7125e641
   url: oci://registry-1.docker.io/bitnamicharts/kubernetes-event-exporter
   # https://hub.docker.com/r/bitnamicharts/kubernetes-event-exporter/tags

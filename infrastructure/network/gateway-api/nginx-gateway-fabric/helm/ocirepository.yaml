@@ -9,7 +9,7 @@ spec:
     mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
     operation: copy
   ref:
-    tag: 2.2.1
-    digest: sha256:268be750ca76b92fa60cd94c38be439bc200a83a60a845a579355cb2a7cf5996
+    tag: 2.7.0
+    digest: sha256:1d91e6dcb9bb7a5d69ccfdddcd92f83548f520e82ba4edcdc91efe53d0a42f87
   url: oci://ghcr.io/nginx/charts/nginx-gateway-fabric
   # https://github.com/nginx/nginx-gateway-fabric/pkgs/container/charts%2Fnginx-gateway-fabric

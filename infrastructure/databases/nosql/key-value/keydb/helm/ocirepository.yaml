@@ -9,7 +9,7 @@ spec:
     mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
     operation: copy
   ref:
-    tag: 0.5.4
-    digest: sha256:f0975d7e8d0105f1d24b3272c6996f2be79b789895df1abcb3f422221e6804c0
+    tag: 0.5.22
+    digest: sha256:ab8a4b7afff5a07ea778bf9ee4a7b10a501867cc2cbd7199a068d6777d6e807f
   url: oci://registry-1.docker.io/bitnamicharts/keydb
   # https://hub.docker.com/r/bitnamicharts/keydb/tags

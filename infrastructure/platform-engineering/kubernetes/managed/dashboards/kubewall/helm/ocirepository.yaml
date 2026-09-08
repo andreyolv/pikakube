@@ -9,7 +9,7 @@ spec:
     mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
     operation: copy
   ref:
-    tag: 0.0.11
-    digest: sha256:8470abbe9935bd0bad9f6a197c1de2f8c95905b0766e15eca551b1601152fe64
+    tag: 0.0.23
+    digest: sha256:7004fc933e8438ca352bec3f6619eb0b9801b7da64e686b3fa2ca5d170105e75
   url: oci://ghcr.io/kubewall/charts/kubewall
   # https://github.com/kubewall/kubewall/pkgs/container/charts%2Fkubewall

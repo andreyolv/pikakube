@@ -9,7 +9,7 @@ spec:
     mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
     operation: copy
   ref:
-    tag: v0.0.29
-    digest: sha256:3e683f55c74c6666e436d3c0cb7df2b6cba854983c2b56454547083aed64d242
+    tag: v1.2.7
+    digest: sha256:bbfc56c6bf8bbab7860eea59b7a372b86c90071bdd98ef0801058eb1fdf16f94
   url: oci://ghcr.io/microsoft/retina/charts/retina
   # https://github.com/microsoft/retina/pkgs/container/retina%2Fcharts%2Fretina

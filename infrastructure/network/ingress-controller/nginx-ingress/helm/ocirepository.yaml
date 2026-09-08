@@ -9,7 +9,7 @@ spec:
     mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
     operation: copy
   ref:
-    tag: 2.0.0
-    digest: sha256:87ad282a8e7cc31913ce0543de2933ddb3f3eba80d6e5285f33b62ed720fc085
+    tag: 2.7.1
+    digest: sha256:5552a18d903098bbdaa8e2b459343fe57a4985053c484cdc2a28163c1f5799ba
   url: oci://ghcr.io/nginx/charts/nginx-ingress
   # https://github.com/nginx/kubernetes-ingress/pkgs/container/charts%2Fnginx-ingress

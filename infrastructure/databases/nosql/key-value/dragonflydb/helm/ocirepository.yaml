@@ -9,7 +9,7 @@ spec:
     mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
     operation: copy
   ref:
-    tag: v1.28.1
-    digest: sha256:47a7aa649c374e63107864bfc48a61e2b468cac27acfe7b98c017acbc91244e5
+    tag: v1.40.2
+    digest: sha256:dceaa15d49d6b7d77bd509964c2c43fd119a3c39c9d3a6282f0a32c8a2bd3e9f
   url: oci://ghcr.io/dragonflydb/dragonfly/helm/dragonfly
   # https://github.com/dragonflydb/dragonfly/pkgs/container/dragonfly%2Fhelm%2Fdragonfly

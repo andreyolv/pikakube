@@ -9,7 +9,7 @@ spec:
     mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
     operation: copy
   ref:
-    tag: 1.4.0
-    digest: sha256:b4040db085ed944904b890e32a28c7a1b9337f34fec71a53422e585f3d499e24
+    tag: 1.14.2
+    digest: sha256:bc0fc3cdd916e3b9e7b0528a3c3dc5e8bc8a61f455d7a6ac38ecb307499c566b
   url: oci://mcr.microsoft.com/aks/karpenter/karpenter
   # https://mcr.microsoft.com/en-us/artifact/mar/aks/karpenter/karpenter/tags
