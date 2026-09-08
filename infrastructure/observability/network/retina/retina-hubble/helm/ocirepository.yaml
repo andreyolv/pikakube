@@ -5,6 +5,11 @@ metadata:
   namespace: flux-system
 spec:
   interval: 24h
-  url: oci://ghcr.io/microsoft/retina/charts/retina-hubble
+  layerSelector:
+    mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
+    operation: copy
   ref:
     tag: v0.0.29
+    digest: sha256:ebf7b976715a6f2e9e72eb292abc935df4ff65b12321479dab6a99cf16fab797
+  url: oci://ghcr.io/microsoft/retina/charts/retina-hubble
+  # https://github.com/microsoft/retina/pkgs/container/retina%2Fcharts%2Fretina-hubble

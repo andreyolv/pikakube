@@ -5,14 +5,20 @@ metadata:
   namespace: fluss
 spec:
   interval: 5m
-  chart:
-    spec:
-      chart: zookeeper
-      version: 13.8.7
-      sourceRef:
-        kind: HelmRepository
-        name: bitnami
-        namespace: flux-system
+  chartRef:
+    kind: OCIRepository
+    name: fluss-zookeeper
+    namespace: flux-system
   values:
   # https://artifacthub.io/packages/helm/bitnami/zookeeper
   # https://github.com/bitnami/charts/blob/main/bitnami/zookeeper/values.yaml
+    # Bitnami moved the free image catalog to docker.io/bitnamilegacy
+    # https://github.com/bitnami/containers/issues/83267
+    global:
+      security:
+        allowInsecureImages: true
+    image:
+      repository: bitnamilegacy/zookeeper
+    volumePermissions:
+      image:
+        repository: bitnamilegacy/os-shell

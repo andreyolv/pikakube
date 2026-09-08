@@ -13,4 +13,3 @@ spec:
     digest: sha256:2e5026052b24562238ee2fa0e192f1288e75d1817a32b2e156bd5ebc89b3b78f
   url: oci://ghcr.io/falcosecurity/charts/falco-operator
   # https://github.com/falcosecurity/charts/pkgs/container/charts%2Ffalco-operator
-  

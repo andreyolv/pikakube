@@ -5,6 +5,11 @@ metadata:
   namespace: flux-system
 spec:
   interval: 24h
-  url: oci://ghcr.io/ariga/charts/atlas-operator
+  layerSelector:
+    mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
+    operation: copy
   ref:
     tag: 0.7.0
+    digest: sha256:3f80a13063aecbc466bd3f8b683c32547c55d4ab16e2fde3e01edc3171bac95b
+  url: oci://ghcr.io/ariga/charts/atlas-operator
+  # https://github.com/ariga/atlas-operator/pkgs/container/charts%2Fatlas-operator

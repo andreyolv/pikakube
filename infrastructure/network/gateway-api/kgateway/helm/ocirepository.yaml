@@ -5,9 +5,14 @@ metadata:
   namespace: flux-system
 spec:
   interval: 24h
-  url: oci://cr.kgateway.dev/kgateway-dev/charts/kgateway-crds
+  layerSelector:
+    mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
+    operation: copy
   ref:
     tag: v2.1.1
+    digest: sha256:4249a3aed5172465281e3a5aa1d1b8d68bffd4353353a804c79990b163adac21
+  url: oci://cr.kgateway.dev/kgateway-dev/charts/kgateway-crds
+  # https://github.com/kgateway-dev/kgateway/releases
 ---
 apiVersion: source.toolkit.fluxcd.io/v1
 kind: OCIRepository
@@ -16,6 +21,11 @@ metadata:
   namespace: flux-system
 spec:
   interval: 24h
-  url: oci://cr.kgateway.dev/kgateway-dev/charts/kgateway
+  layerSelector:
+    mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
+    operation: copy
   ref:
     tag: v2.1.1
+    digest: sha256:0c2bb8ac869b1dc6b6e1346e614b91b9136e8394bc59c794fb30733cd0a46d42
+  url: oci://cr.kgateway.dev/kgateway-dev/charts/kgateway
+  # https://github.com/kgateway-dev/kgateway/releases

@@ -1,8 +1,13 @@
 apiVersion: source.toolkit.fluxcd.io/v1
 kind: HelmRepository
 metadata:
-  name: flink-operator-repo
+  name: flink-kubernetes-operator
   namespace: flux-system
 spec:
   interval: 24h
-  url: https://downloads.apache.org/flink/flink-kubernetes-operator-1.7.0
+  # O chart NAO e publicado como artefato OCI. Apache publica um repo Helm HTTP
+  # por release. Use archive.apache.org (permanente); downloads.apache.org so
+  # mantem a release corrente e some quando sai a proxima versao.
+  # Ao subir de versao, troque a URL e o chart.spec.version no helmrelease.yaml.
+  # https://downloads.apache.org/flink/ (lista as versoes disponiveis)
+  url: https://archive.apache.org/dist/flink/flink-kubernetes-operator-1.15.0

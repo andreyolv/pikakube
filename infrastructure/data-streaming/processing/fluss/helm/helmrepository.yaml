@@ -5,4 +5,4 @@ metadata:
   namespace: flux-system
 spec:
   interval: 24h
-  url: https://downloads.apache.org/incubator/fluss/helm-chart
+  url: https://dlcdn.apache.org/incubator/fluss/helm-chart

@@ -5,6 +5,11 @@ metadata:
   namespace: flux-system
 spec:
   interval: 24h
-  url: oci://ghcr.io/nginx/charts/nginx-ingress
+  layerSelector:
+    mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
+    operation: copy
   ref:
     tag: 2.0.0
+    digest: sha256:87ad282a8e7cc31913ce0543de2933ddb3f3eba80d6e5285f33b62ed720fc085
+  url: oci://ghcr.io/nginx/charts/nginx-ingress
+  # https://github.com/nginx/kubernetes-ingress/pkgs/container/charts%2Fnginx-ingress

@@ -11,10 +11,13 @@ spec:
   chart:
     spec:
       chart: risingwave-operator
-      version: 0.1.4
+      version: 0.1.40
       sourceRef:
         kind: HelmRepository
         name: risingwavelabs
         namespace: flux-system
   values:
   # https://github.com/risingwavelabs/helm-charts/blob/main/charts/risingwave-operator/values.yaml
+    #monitor:
+    # podMonitor:
+    #   enabled: true

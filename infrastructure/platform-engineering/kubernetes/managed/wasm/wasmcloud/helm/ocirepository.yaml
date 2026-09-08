@@ -5,6 +5,11 @@ metadata:
   namespace: flux-system
 spec:
   interval: 24h
-  url: oci://ghcr.io/wasmcloud/charts/wasmcloud-platform
+  layerSelector:
+    mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
+    operation: copy
   ref:
-    tag: v1.4.2
+    tag: 0.1.2
+    digest: sha256:e76fdd117a16906c95cd20a1a4c1a2c4bd719c8c22d957d0fa99bb4bfa42c746
+  url: oci://ghcr.io/wasmcloud/charts/wasmcloud-platform
+  # https://github.com/wasmcloud/wasmCloud/pkgs/container/charts%2Fwasmcloud-platform

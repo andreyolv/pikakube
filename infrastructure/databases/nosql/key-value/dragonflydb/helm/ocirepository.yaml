@@ -5,6 +5,11 @@ metadata:
   namespace: flux-system
 spec:
   interval: 24h
-  url: oci://ghcr.io/dragonflydb/dragonfly/helm/dragonfly
+  layerSelector:
+    mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
+    operation: copy
   ref:
     tag: v1.28.1
+    digest: sha256:47a7aa649c374e63107864bfc48a61e2b468cac27acfe7b98c017acbc91244e5
+  url: oci://ghcr.io/dragonflydb/dragonfly/helm/dragonfly
+  # https://github.com/dragonflydb/dragonfly/pkgs/container/dragonfly%2Fhelm%2Fdragonfly

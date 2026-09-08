@@ -5,6 +5,11 @@ metadata:
   namespace: flux-system
 spec:
   interval: 24h
-  url: oci://public.ecr.aws/admiralty/admiralty 
+  layerSelector:
+    mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
+    operation: copy
   ref:
     tag: 0.17.0
+    digest: sha256:fa642cb4eab95b5a68d190e5ac011e3cf5194e55e3c7e252371607a61313ee8b
+  url: oci://public.ecr.aws/admiralty/admiralty
+  # https://gallery.ecr.aws/admiralty/admiralty

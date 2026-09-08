@@ -5,6 +5,11 @@ metadata:
   namespace: flux-system
 spec:
   interval: 24h
-  url: oci://ghcr.io/telepresenceio/telepresence-oss
+  layerSelector:
+    mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
+    operation: copy
   ref:
-    tag: v2.20.3
+    tag: 2.20.3
+    digest: sha256:a44669e202c95fc9eab490a18e1c7988f01f0a092b715a2bd6515cda2f06dd75
+  url: oci://ghcr.io/telepresenceio/telepresence-oss
+  # https://github.com/telepresenceio/telepresence/pkgs/container/telepresence-oss

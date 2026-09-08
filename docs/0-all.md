@@ -152,6 +152,7 @@
 - [Traffic-Based Pod Autoscaling with KubeElasti](finops/kubelasti.md)
 - [Scheduled Kubernetes Cluster Shutdown for Cost Optimization](finops/kubernetes-shutdown.md)
 - [Kubernetes Cost Allocation by Project with OpenCost](finops/opencost.md)
+- [Cloud Resource Inventory and Orphaned Resource Reclamation with AWS Resource Explorer](finops/resource-reclamation.md)
 - [Kubernetes Cost Optimization with Spot Instances](finops/spot.md)
 - [Dynamic Kubernetes Resource Optimization with Vertical Pod Autoscaler](finops/vpa.md)
 - [Relatório FinOps]
@@ -162,6 +163,7 @@
 - [Definição de arquitetura de referência](management/documentation/p-arquitetura-ref.md)
 - [Definição de ADRs](management/documentation/p-doc-adr.md)
 - [Definição de Catalog de Serviço de DataOps](management/documentation/p-service-catalog.md)
+- [Platform Service Catalog with GitHub Issue Templates and Projects](management/documentation/service-catalog.md)
 - [documentação da infraestrutura de plataforma, operação](management/documentation/p-platform.md)
 - [comunicados de incidentes, manutenção que causam impacto](management/documentation/p-comunicados.md)
 - [planejamento de atividades e metas em metolodia agil](management/projects/p-agile.md)
@@ -220,6 +222,7 @@
 - [Self-Service Infrastructure Platform Engineering with Crossplane](platform-engineering/crossplane.md)
 - [Data Development Environment on Kubernetes with Custom Helm Chart](platform-engineering/dev-env-k8s.md)
 - [Cost-Efficient Local Development Environment for Data Engineering Teams](platform-engineering/dev-env-local.md)
+- [Automated Version and Digest Updates for Flux OCIRepository Artifacts with Renovate](platform-engineering/flux-ocirepository-updates.md)
 - [Multi-Repository GitOps for Safe Team Autonomy in Kubernetes](platform-engineering/gitops-multirepo.md)
 - [Declarative GitOps Infrastructure Delivery on Kubernetes with Flux](platform-engineering/gitops.md)
 - [User-Friendly Kubernetes UI for Logs and Pod Monitoring with Headlamp](platform-engineering/headlamp.md)

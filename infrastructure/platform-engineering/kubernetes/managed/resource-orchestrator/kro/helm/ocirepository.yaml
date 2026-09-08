@@ -5,6 +5,11 @@ metadata:
   namespace: flux-system
 spec:
   interval: 24h
-  url: oci://public.ecr.aws/kro/kro
+  layerSelector:
+    mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
+    operation: copy
   ref:
     tag: 0.1.0
+    digest: sha256:ad209d739b8f6112722d4eff07071a77332592d46a4c277e481591dcf13c3dd8
+  url: oci://public.ecr.aws/kro/kro
+  # https://gallery.ecr.aws/kro/kro

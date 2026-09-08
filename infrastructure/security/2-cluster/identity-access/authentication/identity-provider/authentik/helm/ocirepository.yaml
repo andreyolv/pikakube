@@ -1,8 +1,8 @@
 apiVersion: source.toolkit.fluxcd.io/v1
 kind: OCIRepository
 metadata:
-  name: authentik 
-  namespace: authentik 
+  name: authentik
+  namespace: authentik
 spec:
   interval: 24h
   layerSelector:

@@ -5,6 +5,11 @@ metadata:
   namespace: flux-system
 spec:
   interval: 24h
-  url: oci://mcr.microsoft.com/aks/karpenter/karpenter
+  layerSelector:
+    mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
+    operation: copy
   ref:
     tag: 1.4.0
+    digest: sha256:b4040db085ed944904b890e32a28c7a1b9337f34fec71a53422e585f3d499e24
+  url: oci://mcr.microsoft.com/aks/karpenter/karpenter
+  # https://mcr.microsoft.com/en-us/artifact/mar/aks/karpenter/karpenter/tags
