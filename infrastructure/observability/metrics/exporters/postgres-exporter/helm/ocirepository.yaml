@@ -9,7 +9,7 @@ spec:
     mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
     operation: copy
   ref:
-    tag: 6.10.0
-    digest: sha256:10a6edad7a8aba18ff7e6c720e612b171aae5ddc638589ed043ebe37aea5c8d7
+    tag: 8.2.0
+    digest: sha256:52f7a568d8f3e44e93f5837976aaf6a8ea6f3561ac9eb035bc4f12441557abd5
   url: oci://ghcr.io/prometheus-community/charts/prometheus-postgres-exporter
   # https://github.com/prometheus-community/charts/pkgs/container/charts%2Fprometheus-postgres-exporter

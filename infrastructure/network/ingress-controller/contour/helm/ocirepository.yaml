@@ -9,7 +9,7 @@ spec:
     mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
     operation: copy
   ref:
-    tag: 19.4.0
-    digest: sha256:5db3aabf7691d6e40fc7f32aa3c6470d658b83b8f81331209edc1bd51292ff94
+    tag: 21.1.4
+    digest: sha256:ff853d2dcce7978030e3db0c1a814c8239a689ded507e2aebeb64b8355ba32d9
   url: oci://registry-1.docker.io/bitnamicharts/contour
   # https://hub.docker.com/r/bitnamicharts/contour/tags

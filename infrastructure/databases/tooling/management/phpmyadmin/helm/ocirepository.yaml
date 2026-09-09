@@ -9,7 +9,7 @@ spec:
     mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
     operation: copy
   ref:
-    tag: 18.1.0
-    digest: sha256:76dec43dc7004225d170c52e931321d63f4b3dfef14b360fbedbc9f372a62417
+    tag: 20.0.0
+    digest: sha256:bbb868ade4e069027206babdd9a841ee933cf4912919a7d2e8206637f69b3878
   url: oci://registry-1.docker.io/bitnamicharts/phpmyadmin
   # https://hub.docker.com/r/bitnamicharts/phpmyadmin/tags

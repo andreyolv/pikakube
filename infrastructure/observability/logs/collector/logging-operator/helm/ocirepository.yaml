@@ -9,7 +9,7 @@ spec:
     mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
     operation: copy
   ref:
-    tag: 4.6.0
-    digest: sha256:b00bc878447747ffeaff85ea3772ed6c70e4315f7d9e975dd3830494d92b04db
+    tag: 6.8.0
+    digest: sha256:280eb57845191a2307401dc86e8a496f87c47abc604d7b72deb0875834530fe7
   url: oci://ghcr.io/kube-logging/helm-charts/logging-operator
   # https://github.com/kube-logging/helm-charts/pkgs/container/helm-charts%2Flogging-operator

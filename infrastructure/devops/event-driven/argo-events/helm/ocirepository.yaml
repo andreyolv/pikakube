@@ -9,7 +9,7 @@ spec:
     mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
     operation: copy
   ref:
-    tag: 2.4.9
-    digest: sha256:9bdcf4ec22c10bc3b4c6969394962f6d6600ebf42bb19cc2018e9ebb50208936
+    tag: 2.4.27
+    digest: sha256:879d272c549f0d4279f4a12d998ca849d9eae079cf0c4ba5975e62f7ccbb832f
   url: oci://ghcr.io/argoproj/argo-helm/argo-events
   # https://github.com/argoproj/argo-helm/pkgs/container/argo-helm%2Fargo-events

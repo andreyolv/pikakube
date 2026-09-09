@@ -9,7 +9,7 @@ spec:
     mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
     operation: copy
   ref:
-    tag: 0.5.0
-    digest: sha256:149cfd3fe600b5ef87a03cacb2f4aebd71a6381ead73a28c4ee11cbb062edbe6
+    tag: 0.6.1
+    digest: sha256:396ad05059251f6da27170696a5b01f7e649048dbac3c5b014c10e64a1ffd2cd
   url: oci://ghcr.io/spiffe/helm-charts/spire-crds
   # https://github.com/spiffe/helm-charts/pkgs/container/helm-charts%2Fspire-crds

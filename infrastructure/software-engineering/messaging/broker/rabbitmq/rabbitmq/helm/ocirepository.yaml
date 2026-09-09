@@ -9,7 +9,7 @@ spec:
     mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
     operation: copy
   ref:
-    tag: 15.0.6
-    digest: sha256:20c4e681b0ce4cb8c7b2aee43f7d9f60217d445a2a23d4ed083ee6f687622b1d
+    tag: 16.0.14
+    digest: sha256:53769713d29cd8d9af4f1d3dfc9d02cc2fc9bd517c68bf65cefc6da99fb10f94
   url: oci://registry-1.docker.io/bitnamicharts/rabbitmq
   # https://hub.docker.com/r/bitnamicharts/rabbitmq/tags

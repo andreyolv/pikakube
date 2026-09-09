@@ -9,7 +9,7 @@ spec:
     mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
     operation: copy
   ref:
-    tag: 12.20.1
-    digest: sha256:36b212df2f67f92a6edb0e482afe17cf2f355826e95ab70ecf5dff1231d5948d
+    tag: 17.3.1
+    digest: sha256:7448f09945cd571774bea8dc10c73c24c28ce57d6eea1978420f6b396f863674
   url: oci://registry-1.docker.io/bitnamicharts/thanos
   # https://hub.docker.com/r/bitnamicharts/thanos/tags

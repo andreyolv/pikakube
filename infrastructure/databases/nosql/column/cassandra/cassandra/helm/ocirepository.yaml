@@ -9,7 +9,7 @@ spec:
     mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
     operation: copy
   ref:
-    tag: 12.0.4
-    digest: sha256:6d786998f1bd4bb3d5307b6f0f1f0d82c827f5e17437834b167aef13ec346d11
+    tag: 12.3.11
+    digest: sha256:5b6770b28e75c51f2628bbb1d1906db1a88e96be2eadd360745c9f7543dc3a0f
   url: oci://registry-1.docker.io/bitnamicharts/cassandra
   # https://hub.docker.com/r/bitnamicharts/cassandra/tags

@@ -9,7 +9,7 @@ spec:
     mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
     operation: copy
   ref:
-    tag: 1.1.1
-    digest: sha256:4055c72418db85b85979da2fe12136c0e275709efc2e36a505b158e8234ad443
+    tag: 1.11.4
+    digest: sha256:0a0cb3b7a4d6b35aa37bc0971857a6420ebc569bf73d4cae8728b7d06a8211de
   url: oci://ghcr.io/akuity/kargo-charts/kargo
   # https://github.com/akuity/kargo-charts/pkgs/container/kargo-charts%2Fkargo

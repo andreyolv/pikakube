@@ -9,7 +9,7 @@ spec:
     mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
     operation: copy
   ref:
-    tag: 0.38.0
-    digest: sha256:7dc8a5d2e7cdd9574fa00fe3fe5efeea2567b6a5ab933ca13017b251718a82eb
+    tag: 0.58.0
+    digest: sha256:c199458366d285938d8d2b0d238d15b3dd7c6f75f75a259569ee51cdbf326391
   url: oci://ghcr.io/vectordotdev/helm-charts/vector
   # https://github.com/vectordotdev/helm-charts/pkgs/container/helm-charts%2Fvector

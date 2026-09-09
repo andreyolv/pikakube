@@ -9,7 +9,7 @@ spec:
     mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
     operation: copy
   ref:
-    tag: 1.9.2
-    digest: sha256:acab66e0a4ef48eba7dcedf86fc8effaa36c9382f4bf5b3e4054fafa1bdbf3bc
+    tag: 2.10.0
+    digest: sha256:214ea94d18ee5612aec4a5b8ca610508c9e5891c7b9767d67d8e163c0ac35707
   url: oci://ghcr.io/backstage/charts/backstage
   # https://github.com/backstage/charts/pkgs/container/charts%2Fbackstage
