@@ -9,7 +9,7 @@ spec:
     mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
     operation: copy
   ref:
-    tag: 3.6.1
-    digest: sha256:ce18ec4ee6b30d63072ec889ab7b780184c06e9ddee0125f0b47ebc59a3b5071
+    tag: 9.4.4
+    digest: sha256:50d7d0d1f8f37473f5e9675d1b4899f2f556ab375823c0798d6fdc428014c3e7
   url: oci://registry-1.docker.io/bitnamicharts/clickhouse
   # https://hub.docker.com/r/bitnamicharts/clickhouse/tags

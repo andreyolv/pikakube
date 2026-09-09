@@ -9,7 +9,7 @@ spec:
     mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
     operation: copy
   ref:
-    tag: 3.6.0
-    digest: sha256:819a84e88ffdb976dd8fc973ac42e0f74a9f98f94324e96b6af15f717e052afa
+    tag: 16.5.0
+    digest: sha256:41c087eabcd1e7f0e3a879e5be718f889d0a22af6d24e806d61f784958dfebb6
   url: oci://ghcr.io/open-webui/helm-charts/open-webui
   # https://github.com/open-webui/helm-charts/pkgs/container/helm-charts%2Fopen-webui

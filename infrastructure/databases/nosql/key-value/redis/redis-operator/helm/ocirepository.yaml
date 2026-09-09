@@ -9,7 +9,7 @@ spec:
     mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
     operation: copy
   ref:
-    tag: 0.20.0
-    digest: sha256:f409c5f79c6a496c448622b4dd924f38a03d492cb1dad162ceb8299ca15d8bc8
+    tag: 0.26.1
+    digest: sha256:fc0b32e677caee36324acb32c4572187e82a5a67c950a18a8bc4969a93bb24b8
   url: oci://ghcr.io/ot-container-kit/charts/redis-operator
   # https://github.com/OT-CONTAINER-KIT/redis-operator/pkgs/container/charts%2Fredis-operator

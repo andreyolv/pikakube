@@ -9,7 +9,7 @@ spec:
     mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
     operation: copy
   ref:
-    tag: 2.1.0
-    digest: sha256:e4c3222d3849545e76eaf9cab2f6c11824b2ab266bb8cbf1715185409ba49308
+    tag: 2.9.2
+    digest: sha256:75c9e2ae8a3d98ac978118c82dec75db9c105cb079f2ba69022e52c9fc436527
   url: oci://ghcr.io/deliveryhero/helm-charts/node-local-dns
   # https://github.com/deliveryhero/helm-charts/pkgs/container/helm-charts%2Fnode-local-dns

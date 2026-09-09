@@ -9,7 +9,7 @@ spec:
     mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
     operation: copy
   ref:
-    tag: 1.39.0
-    digest: sha256:66e4059c52c3f088398717bb4fd0164336303abda15a8fb452743d072c318c29
+    tag: 1.45.0
+    digest: sha256:a442a581eec96b8ca45df6c5d2b8a5a7a00fc7de2aac80a96675ae978095b672
   url: oci://ghcr.io/fluxcd/charts/flagger
   # https://github.com/fluxcd/charts/pkgs/container/charts%2Fflagger

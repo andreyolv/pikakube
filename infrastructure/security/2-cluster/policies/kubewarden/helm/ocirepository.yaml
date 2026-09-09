@@ -9,8 +9,8 @@ spec:
     mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
     operation: copy
   ref:
-    tag: 1.4.4
-    digest: sha256:b56900a3b087fb32b3c34b0e2c96438a652e33091f9676fb6381d62885f05f5b
+    tag: 1.28.1
+    digest: sha256:2857218cb5b050346398787a51cdcbbac71c063ba1c1ae504a764e9f9b61de10
   url: oci://ghcr.io/kubewarden/charts/kubewarden-crds
   # https://github.com/kubewarden/charts/pkgs/container/charts%2Fkubewarden-crds
 ---
@@ -25,7 +25,7 @@ spec:
     mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
     operation: copy
   ref:
-    tag: 2.0.5
-    digest: sha256:623cfb807a6466c646188a18af85d2c810833af745af6aac24e27877329a7ede
+    tag: 5.14.1
+    digest: sha256:472009ff479e60ab00b84a03dbd49a1f369104911e3b282d73856dad02b0845d
   url: oci://ghcr.io/kubewarden/charts/kubewarden-controller
   # https://github.com/kubewarden/charts/pkgs/container/charts%2Fkubewarden-controller

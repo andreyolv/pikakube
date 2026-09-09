@@ -9,7 +9,7 @@ spec:
     mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
     operation: copy
   ref:
-    tag: 7.7.12
-    digest: sha256:f5d4030973662528917ed63fe1140a5f7cf93e5605298ae278631dbf53b315dc
+    tag: 10.7.0
+    digest: sha256:47193ebe7052f414c8c05ac2277b5b2b8fd62faf6f4f8ea6c7263a741e62acd7
   url: oci://ghcr.io/oauth2-proxy/charts/oauth2-proxy
   # https://github.com/oauth2-proxy/charts/pkgs/container/charts%2Foauth2-proxy

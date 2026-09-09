@@ -9,7 +9,7 @@ spec:
     mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
     operation: copy
   ref:
-    tag: 0.31.0
-    digest: sha256:a8df25616e3af9a9e516d16c7a223274d5cf3584baa8b46396381f075ddc0cd4
+    tag: 0.32.1
+    digest: sha256:39caa565eaac9388bf5d86b9853e7535ae41703b4068475ea553c3e97754c06f
   url: oci://ghcr.io/aquasecurity/helm-charts/trivy-operator
   # https://github.com/aquasecurity/helm-charts/pkgs/container/helm-charts%2Ftrivy-operator

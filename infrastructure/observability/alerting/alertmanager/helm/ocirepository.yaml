@@ -9,7 +9,7 @@ spec:
     mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
     operation: copy
   ref:
-    tag: 1.10.0
-    digest: sha256:7f705eef7d9016d4f19bb82a28f1395b92d2d915f6cfdd5dffa08f023e6f9865
+    tag: 1.42.0
+    digest: sha256:0afbff522cf7b8606ebc35990763481efe0ebf12f8ce203d3a59ebc3491fc04e
   url: oci://ghcr.io/prometheus-community/charts/alertmanager
   # https://github.com/prometheus-community/charts/pkgs/container/charts%2Falertmanager

@@ -9,7 +9,7 @@ spec:
     mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
     operation: copy
   ref:
-    tag: 5.5.0
-    digest: sha256:e5d02331025cf8182d725334ebd9a3ec7838254554f0b4003a7b717815b602fa
+    tag: 5.8.0
+    digest: sha256:27fa288750d18c5b05bb7e5be8da074de239a630205d6c636df62b32d5afe197
   url: oci://ghcr.io/codecentric/helm-charts/mailhog
   # https://github.com/codecentric/helm-charts/pkgs/container/helm-charts%2Fmailhog

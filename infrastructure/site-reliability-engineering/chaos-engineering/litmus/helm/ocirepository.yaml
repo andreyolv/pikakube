@@ -9,7 +9,7 @@ spec:
     mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
     operation: copy
   ref:
-    tag: 3.16.0
-    digest: sha256:61df6452f627aa15abc4ced3ebd4a039b3d2a93a380aaaeb8265a203319d60a7
+    tag: 3.30.0
+    digest: sha256:3bea5cf0772f6010d29163eb9466c6eaa0b2d208cc457cc52c2f3c0c0216441f
   url: oci://ghcr.io/litmuschaos/litmus-helm/litmus
   # https://github.com/litmuschaos/litmus-helm/pkgs/container/litmus-helm%2Flitmus

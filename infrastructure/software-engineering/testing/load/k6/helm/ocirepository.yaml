@@ -9,7 +9,7 @@ spec:
     mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
     operation: copy
   ref:
-    tag: 3.10.1
-    digest: sha256:e73019c23a3121001d3161b087b26b903c735404103997b41fe51a06f0489cf5
+    tag: 4.6.0
+    digest: sha256:dba46aec95678d255570896c8c0068f4793a12f42ad0e04c4381ad7e2e04aa8a
   url: oci://ghcr.io/grafana/helm-charts/k6-operator
   # https://github.com/grafana/helm-charts/pkgs/container/helm-charts%2Fk6-operator
