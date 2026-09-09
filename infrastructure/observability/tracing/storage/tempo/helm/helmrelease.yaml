@@ -5,14 +5,10 @@ metadata:
   namespace: tempo
 spec:
   interval: 5m
-  chart:
-    spec:
-      chart: tempo
-      version: 2.0.0
-      sourceRef:
-        kind: HelmRepository
-        name: grafana-community
-        namespace: flux-system
+  chartRef:
+    kind: OCIRepository
+    name: tempo
+    namespace: tempo
   values:
   # https://artifacthub.io/packages/helm/grafana-community/tempo
   # https://github.com/grafana-community/helm-charts/blob/main/charts/tempo/values.yaml

@@ -1,0 +1,15 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: OCIRepository
+metadata:
+  name: clickhouse
+  namespace: clickhouse
+spec:
+  interval: 24h
+  layerSelector:
+    mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
+    operation: copy
+  ref:
+    tag: 3.6.1
+    digest: sha256:ce18ec4ee6b30d63072ec889ab7b780184c06e9ddee0125f0b47ebc59a3b5071
+  url: oci://registry-1.docker.io/bitnamicharts/clickhouse
+  # https://hub.docker.com/r/bitnamicharts/clickhouse/tags

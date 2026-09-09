@@ -8,7 +8,7 @@ spec:
   chartRef:
     kind: OCIRepository
     name: kubewall
-    namespace: flux-system
+    namespace: kubewall
   values:
   # https://artifacthub.io/packages/helm/kubewall/kubewall
   # https://github.com/kubewall/kubewall/blob/main/charts/kubewall/values.yaml

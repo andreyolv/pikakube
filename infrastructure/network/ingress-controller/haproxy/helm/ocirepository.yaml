@@ -1,0 +1,15 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: OCIRepository
+metadata:
+  name: kubernetes-ingress
+  namespace: haproxy
+spec:
+  interval: 24h
+  layerSelector:
+    mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
+    operation: copy
+  ref:
+    tag: 1.43.0
+    digest: sha256:2d52533a40224bc24372dcc4fd76c48f4f1885bf3cd6840ce37aa442471bceef
+  url: oci://ghcr.io/haproxytech/helm-charts/kubernetes-ingress
+  # https://github.com/haproxytech/helm-charts/pkgs/container/helm-charts%2Fkubernetes-ingress

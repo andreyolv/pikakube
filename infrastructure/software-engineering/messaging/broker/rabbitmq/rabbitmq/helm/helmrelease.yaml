@@ -5,14 +5,10 @@ metadata:
   namespace: rabbitmq
 spec:
   interval: 5m
-  chart:
-    spec:
-      chart: rabbitmq
-      version: 15.0.6
-      sourceRef:
-        kind: HelmRepository
-        name: bitnami
-        namespace: flux-system
+  chartRef:
+    kind: OCIRepository
+    name: rabbitmq
+    namespace: rabbitmq
   values:
   # https://artifacthub.io/packages/helm/bitnami/rabbitmq
   # https://github.com/bitnami/charts/blob/main/bitnami/rabbitmq/values.yaml

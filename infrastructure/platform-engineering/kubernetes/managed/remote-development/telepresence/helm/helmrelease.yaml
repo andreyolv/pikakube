@@ -8,6 +8,6 @@ spec:
   chartRef:
     kind: OCIRepository
     name: telepresence
-    namespace: flux-system
+    namespace: telepresence
   values:
   # https://github.com/telepresenceio/telepresence/blob/release/v2/charts/telepresence/values.yaml

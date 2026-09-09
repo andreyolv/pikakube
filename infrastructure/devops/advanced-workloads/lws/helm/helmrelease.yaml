@@ -8,6 +8,6 @@ spec:
   chartRef:
     kind: OCIRepository
     name: lws
-    namespace: flux-system
+    namespace: lws
   values:
   # https://github.com/kubernetes-sigs/lws/blob/main/charts/lws/values.yaml

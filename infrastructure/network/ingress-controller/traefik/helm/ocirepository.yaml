@@ -1,0 +1,15 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: OCIRepository
+metadata:
+  name: traefik
+  namespace: traefik
+spec:
+  interval: 24h
+  layerSelector:
+    mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
+    operation: copy
+  ref:
+    tag: 33.2.1
+    digest: sha256:caa193af58188d5744603c1012271abfcc40cb2b8df970dbfbe19baea6700f12
+  url: oci://ghcr.io/traefik/helm/traefik
+  # https://github.com/traefik/helm/pkgs/container/helm%2Ftraefik

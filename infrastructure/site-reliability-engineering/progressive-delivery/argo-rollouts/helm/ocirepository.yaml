@@ -1,0 +1,15 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: OCIRepository
+metadata:
+  name: argo-rollouts
+  namespace: argo-rollouts
+spec:
+  interval: 24h
+  layerSelector:
+    mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
+    operation: copy
+  ref:
+    tag: 2.38.2
+    digest: sha256:4d45e43098a0d2d6f8be152b90d15bb989b57be8a78eaa8747ee57fc90388858
+  url: oci://ghcr.io/argoproj/argo-helm/argo-rollouts
+  # https://github.com/argoproj/argo-helm/pkgs/container/argo-helm%2Fargo-rollouts

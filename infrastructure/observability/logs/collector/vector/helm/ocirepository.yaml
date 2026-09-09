@@ -1,0 +1,15 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: OCIRepository
+metadata:
+  name: vector
+  namespace: vector
+spec:
+  interval: 24h
+  layerSelector:
+    mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
+    operation: copy
+  ref:
+    tag: 0.38.0
+    digest: sha256:7dc8a5d2e7cdd9574fa00fe3fe5efeea2567b6a5ab933ca13017b251718a82eb
+  url: oci://ghcr.io/vectordotdev/helm-charts/vector
+  # https://github.com/vectordotdev/helm-charts/pkgs/container/helm-charts%2Fvector

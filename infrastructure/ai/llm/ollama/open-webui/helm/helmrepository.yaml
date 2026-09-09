@@ -1,8 +1,0 @@
-apiVersion: source.toolkit.fluxcd.io/v1
-kind: HelmRepository
-metadata:
-  name: open-webui
-  namespace: flux-system
-spec:
-  interval: 24h
-  url: https://otwld.github.io/ollama-helm/

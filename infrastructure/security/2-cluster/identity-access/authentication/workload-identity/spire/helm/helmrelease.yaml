@@ -5,14 +5,10 @@ metadata:
   namespace: spire
 spec:
   interval: 5m
-  chart:
-    spec:
-      chart: spire-crds
-      version: 0.5.0
-      sourceRef:
-        kind: HelmRepository
-        name: spire
-        namespace: flux-system
+  chartRef:
+    kind: OCIRepository
+    name: spire-crds
+    namespace: spire
   values:
   # https://artifacthub.io/packages/helm/spiffe/spire-crds
   # https://github.com/spiffe/helm-charts-hardened/blob/main/charts/spire-crds/values.yaml

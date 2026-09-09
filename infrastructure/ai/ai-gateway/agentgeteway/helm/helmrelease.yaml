@@ -8,7 +8,7 @@ spec:
   chartRef:
     kind: OCIRepository
     name: kgateway-crds
-    namespace: flux-system
+    namespace: kgateway
   values:
   # https://github.com/kgateway-dev/kgateway/blob/main/install/helm/kgateway-crds/values.yaml
 ---
@@ -22,6 +22,6 @@ spec:
   chartRef:
     kind: OCIRepository
     name: kgateway
-    namespace: flux-system
+    namespace: kgateway
   values:
   # https://github.com/kgateway-dev/kgateway/blob/main/install/helm/kgateway/values.yaml

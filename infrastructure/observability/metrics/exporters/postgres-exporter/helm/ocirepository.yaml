@@ -1,0 +1,15 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: OCIRepository
+metadata:
+  name: prometheus-postgres-exporter
+  namespace: prometheus
+spec:
+  interval: 24h
+  layerSelector:
+    mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
+    operation: copy
+  ref:
+    tag: 6.10.0
+    digest: sha256:10a6edad7a8aba18ff7e6c720e612b171aae5ddc638589ed043ebe37aea5c8d7
+  url: oci://ghcr.io/prometheus-community/charts/prometheus-postgres-exporter
+  # https://github.com/prometheus-community/charts/pkgs/container/charts%2Fprometheus-postgres-exporter

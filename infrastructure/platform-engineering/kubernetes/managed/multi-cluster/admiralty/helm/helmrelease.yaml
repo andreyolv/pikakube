@@ -8,6 +8,6 @@ spec:
   chartRef:
     kind: OCIRepository
     name: admiralty
-    namespace: flux-system
+    namespace: admiralty
   values:
   # https://github.com/admiraltyio/admiralty/blob/master/charts/multicluster-scheduler/values.yaml

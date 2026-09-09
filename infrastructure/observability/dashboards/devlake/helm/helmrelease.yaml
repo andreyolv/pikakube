@@ -5,14 +5,10 @@ metadata:
   namespace: devlake
 spec:
   interval: 5m
-  chart:
-    spec:
-      chart: devlake
-      version: 1.0.1
-      sourceRef:
-        kind: HelmRepository
-        name: devlake
-        namespace: flux-system
+  chartRef:
+    kind: OCIRepository
+    name: devlake
+    namespace: devlake
   values:
   # https://artifacthub.io/packages/helm/apache-incubator-devlake-helm-chart/devlake
   # https://github.com/apache/incubator-devlake-helm-chart/blob/main/charts/devlake/values.yaml

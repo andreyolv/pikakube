@@ -1,0 +1,15 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: OCIRepository
+metadata:
+  name: kargo
+  namespace: kargo
+spec:
+  interval: 24h
+  layerSelector:
+    mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
+    operation: copy
+  ref:
+    tag: 1.1.1
+    digest: sha256:4055c72418db85b85979da2fe12136c0e275709efc2e36a505b158e8234ad443
+  url: oci://ghcr.io/akuity/kargo-charts/kargo
+  # https://github.com/akuity/kargo-charts/pkgs/container/kargo-charts%2Fkargo

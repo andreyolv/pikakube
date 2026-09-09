@@ -1,0 +1,15 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: OCIRepository
+metadata:
+  name: kubeapps
+  namespace: kubeapps
+spec:
+  interval: 24h
+  layerSelector:
+    mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
+    operation: copy
+  ref:
+    tag: 18.0.1
+    digest: sha256:3688c0296e86d23644519d23f68ac5554b473296349e610d87ac49be8d13ac97
+  url: oci://registry-1.docker.io/bitnamicharts/kubeapps
+  # https://hub.docker.com/r/bitnamicharts/kubeapps/tags

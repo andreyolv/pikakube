@@ -8,7 +8,7 @@ spec:
   chartRef:
     kind: OCIRepository
     name: nginx-ingress
-    namespace: flux-system
+    namespace: nginx-ingress
   values:
   # https://artifacthub.io/packages/helm/nginx/nginx-ingress
   # https://github.com/nginx/kubernetes-ingress/blob/main/charts/nginx-ingress/values.yaml

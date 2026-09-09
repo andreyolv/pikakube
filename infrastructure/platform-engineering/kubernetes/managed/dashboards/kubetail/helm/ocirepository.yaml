@@ -1,0 +1,15 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: OCIRepository
+metadata:
+  name: kubetail
+  namespace: kubetail
+spec:
+  interval: 24h
+  layerSelector:
+    mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
+    operation: copy
+  ref:
+    tag: 0.13.4
+    digest: sha256:0be83ebe263503b4cb5870141d90be23d1662fe3a2e4d48e378b1ec7dc363655
+  url: oci://ghcr.io/kubetail-org/helm-charts/kubetail
+  # https://github.com/kubetail-org/helm-charts/pkgs/container/helm-charts%2Fkubetail

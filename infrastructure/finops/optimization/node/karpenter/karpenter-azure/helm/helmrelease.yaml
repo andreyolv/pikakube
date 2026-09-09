@@ -8,7 +8,7 @@ spec:
   chartRef:
     kind: OCIRepository
     name: karpenter
-    namespace: flux-system
+    namespace: kube-system
   values:
   # https://github.com/Azure/karpenter-provider-azure/blob/main/charts/karpenter/values.yaml
     settings:

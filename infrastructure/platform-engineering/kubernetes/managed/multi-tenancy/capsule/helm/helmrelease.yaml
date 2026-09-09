@@ -5,14 +5,10 @@ metadata:
   namespace: capsule
 spec:
   interval: 5m
-  chart:
-    spec:
-      chart: capsule
-      version: 0.6.2
-      sourceRef:
-        kind: HelmRepository
-        name: projectcapsule
-        namespace: flux-system
+  chartRef:
+    kind: OCIRepository
+    name: capsule
+    namespace: capsule
   values:
   # https://artifacthub.io/packages/helm/projectcapsule/capsule
   # https://github.com/projectcapsule/capsule/blob/main/charts/capsule/values.yaml

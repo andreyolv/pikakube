@@ -5,16 +5,10 @@ metadata:
   namespace: redis
 spec:
   interval: 5m
-  chart:
-    spec:
-      chart: redis-cluster
-      version: 11.5.0
-      sourceRef:
-        kind: HelmRepository
-        name: bitnami
-        namespace: flux-system
+  chartRef:
+    kind: OCIRepository
+    name: redis-cluster
+    namespace: redis
   values:
   # https://artifacthub.io/packages/helm/bitnami/redis-cluster
   # https://github.com/bitnami/charts/blob/main/bitnami/redis-cluster/values.yaml
-
-    

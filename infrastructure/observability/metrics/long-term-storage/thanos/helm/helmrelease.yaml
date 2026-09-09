@@ -5,14 +5,10 @@ metadata:
   namespace: thanos
 spec:
   interval: 5m
-  chart:
-    spec:
-      chart: thanos
-      version: 12.20.1
-      sourceRef:
-        kind: HelmRepository
-        name: bitnami
-        namespace: flux-system
+  chartRef:
+    kind: OCIRepository
+    name: thanos
+    namespace: thanos
   values:
   # https://artifacthub.io/packages/helm/bitnami/thanos
   # https://github.com/bitnami/charts/blob/main/bitnami/thanos/values.yaml

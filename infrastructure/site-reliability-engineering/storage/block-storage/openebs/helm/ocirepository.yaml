@@ -1,0 +1,15 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: OCIRepository
+metadata:
+  name: openebs
+  namespace: openebs
+spec:
+  interval: 24h
+  layerSelector:
+    mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
+    operation: copy
+  ref:
+    tag: 4.6.0
+    digest: sha256:d1d1d7bd063bb9d1e457e6a13124385bd5ba612af1d1930fa254e31b4e1a1629
+  url: oci://ghcr.io/openebs/charts/openebs
+  # https://github.com/openebs/charts/pkgs/container/charts%2Fopenebs

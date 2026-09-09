@@ -5,14 +5,10 @@ metadata:
   namespace: kured
 spec:
   interval: 5m
-  chart:
-    spec:
-      chart: kured
-      version: 5.3.2
-      sourceRef:
-        kind: HelmRepository
-        name: kured
-        namespace: flux-system
+  chartRef:
+    kind: OCIRepository
+    name: kured
+    namespace: kured
   values:
   # https://artifacthub.io/packages/helm/kured/kured
   # https://github.com/kubereboot/charts/blob/main/charts/kured/values.yaml

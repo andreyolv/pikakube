@@ -5,14 +5,10 @@ metadata:
   namespace: vector
 spec:
   interval: 5m
-  chart:
-    spec:
-      chart: vector
-      version: 0.38.0
-      sourceRef:
-        kind: HelmRepository
-        name: vector
-        namespace: flux-system
+  chartRef:
+    kind: OCIRepository
+    name: vector
+    namespace: vector
   values:
   # https://artifacthub.io/packages/helm/vector/vector
   # https://github.com/vectordotdev/helm-charts/blob/develop/charts/vector/values.yaml

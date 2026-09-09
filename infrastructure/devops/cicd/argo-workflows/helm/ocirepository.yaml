@@ -1,0 +1,15 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: OCIRepository
+metadata:
+  name: argo-workflows
+  namespace: argo-workflows
+spec:
+  interval: 24h
+  layerSelector:
+    mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
+    operation: copy
+  ref:
+    tag: 0.45.2
+    digest: sha256:232a4dbd3126a926adb9e084881e46a3dbdea0a0e5b263debbc5658645ece60f
+  url: oci://ghcr.io/argoproj/argo-helm/argo-workflows
+  # https://github.com/argoproj/argo-helm/pkgs/container/argo-helm%2Fargo-workflows

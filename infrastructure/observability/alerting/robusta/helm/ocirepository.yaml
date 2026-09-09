@@ -1,0 +1,15 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: OCIRepository
+metadata:
+  name: robusta
+  namespace: robusta
+spec:
+  interval: 24h
+  layerSelector:
+    mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
+    operation: copy
+  ref:
+    tag: 0.49.0
+    digest: sha256:d8c85855edc05f2b23cd9e1c1be2312addec2a8dcdecb5b969fbd299d491382d
+  url: oci://ghcr.io/robusta-dev/charts/robusta
+  # https://github.com/robusta-dev/charts/pkgs/container/charts%2Frobusta

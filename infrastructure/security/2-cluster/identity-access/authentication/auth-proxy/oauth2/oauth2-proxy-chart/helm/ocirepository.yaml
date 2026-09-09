@@ -1,0 +1,15 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: OCIRepository
+metadata:
+  name: oauth2-proxy
+  namespace: oauth2-proxy
+spec:
+  interval: 24h
+  layerSelector:
+    mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
+    operation: copy
+  ref:
+    tag: 7.7.12
+    digest: sha256:f5d4030973662528917ed63fe1140a5f7cf93e5605298ae278631dbf53b315dc
+  url: oci://ghcr.io/oauth2-proxy/charts/oauth2-proxy
+  # https://github.com/oauth2-proxy/charts/pkgs/container/charts%2Foauth2-proxy

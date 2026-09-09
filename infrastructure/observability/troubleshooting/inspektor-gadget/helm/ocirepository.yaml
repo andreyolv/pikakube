@@ -1,0 +1,15 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: OCIRepository
+metadata:
+  name: gadget
+  namespace: inspektor-gadget
+spec:
+  interval: 24h
+  layerSelector:
+    mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
+    operation: copy
+  ref:
+    tag: 0.56.0
+    digest: sha256:e1ddcc0dfaca8b395b332956b074dfa86eef79b3e7aba798665c70249e3ffd91
+  url: oci://ghcr.io/inspektor-gadget/inspektor-gadget/charts/gadget
+  # https://github.com/inspektor-gadget/inspektor-gadget/pkgs/container/inspektor-gadget%2Fcharts%2Fgadget

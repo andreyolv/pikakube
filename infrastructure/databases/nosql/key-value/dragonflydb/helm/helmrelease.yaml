@@ -8,7 +8,7 @@ spec:
   chartRef:
     kind: OCIRepository
     name: dragonflydb
-    namespace: flux-system
+    namespace: dragonflydb
   values:
   # https://artifacthub.io/packages/helm/dragonflydb/dragonfly
   # https://github.com/dragonflydb/dragonfly/blob/main/contrib/charts/dragonfly/values.yaml

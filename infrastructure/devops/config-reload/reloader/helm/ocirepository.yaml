@@ -1,0 +1,15 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: OCIRepository
+metadata:
+  name: reloader
+  namespace: reloader
+spec:
+  interval: 24h
+  layerSelector:
+    mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
+    operation: copy
+  ref:
+    tag: 2.2.3
+    digest: sha256:449e27849654b305d2a21d0296407545fb06294ee866c1a9fa4fa1f2d9ccf068
+  url: oci://ghcr.io/stakater/charts/reloader
+  # https://github.com/stakater/charts/pkgs/container/charts%2Freloader

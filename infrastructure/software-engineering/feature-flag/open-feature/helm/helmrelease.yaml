@@ -5,14 +5,10 @@ metadata:
   namespace: open-feature
 spec:
   interval: 5m
-  chart:
-    spec:
-      chart: open-feature-operator
-      version: 0.8.1
-      sourceRef:
-        kind: HelmRepository
-        name: openfeature
-        namespace: flux-system
+  chartRef:
+    kind: OCIRepository
+    name: open-feature-operator
+    namespace: open-feature
   values:
   # https://artifacthub.io/packages/helm/open-feature-operator/open-feature-operator
   # https://github.com/open-feature/open-feature-operator/blob/main/chart/open-feature-operator/values.yaml

@@ -1,0 +1,15 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: OCIRepository
+metadata:
+  name: mailpit
+  namespace: mailpit
+spec:
+  interval: 24h
+  layerSelector:
+    mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
+    operation: copy
+  ref:
+    tag: 0.36.0
+    digest: sha256:b17f59d59ca47f2752406d5431a52135b6f59d36a153ec7534f5f430cff57ab6
+  url: oci://ghcr.io/jouve/charts/mailpit
+  # https://github.com/jouve/charts/pkgs/container/charts%2Fmailpit

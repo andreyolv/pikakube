@@ -1,0 +1,15 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: OCIRepository
+metadata:
+  name: questdb
+  namespace: questdb
+spec:
+  interval: 24h
+  layerSelector:
+    mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
+    operation: copy
+  ref:
+    tag: 1.0.27
+    digest: sha256:c55f3ec2195efc561e92dac0d870a800f0a3a9e7037b9dc9803ae638747f095f
+  url: oci://ghcr.io/questdb/questdb
+  # https://github.com/questdb/questdb/pkgs/container/questdb

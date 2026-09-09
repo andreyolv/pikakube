@@ -5,14 +5,10 @@ metadata:
   namespace: pyroscope
 spec:
   interval: 5m
-  chart:
-    spec:
-      chart: pyroscope
-      version: 1.13.0
-      sourceRef:
-        kind: HelmRepository
-        name: grafana
-        namespace: flux-system
+  chartRef:
+    kind: OCIRepository
+    name: pyroscope
+    namespace: pyroscope
   values:
   # https://artifacthub.io/packages/helm/grafana/pyroscope
   # https://github.com/grafana/pyroscope/blob/next/operations/pyroscope/helm/pyroscope/values.yaml
@@ -44,4 +40,3 @@ spec:
       enabled: true
       hosts:
       - pyroscope.127.0.0.1.nip.io
-

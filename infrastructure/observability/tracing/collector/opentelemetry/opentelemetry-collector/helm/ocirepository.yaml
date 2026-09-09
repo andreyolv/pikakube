@@ -1,0 +1,15 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: OCIRepository
+metadata:
+  name: opentelemetry-collector
+  namespace: opentelemetry
+spec:
+  interval: 24h
+  layerSelector:
+    mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
+    operation: copy
+  ref:
+    tag: 0.172.1
+    digest: sha256:774e7ca08a86f7adaaf1867066b6e3da6b82788bda4c6e6e2d2ef46651f54f05
+  url: oci://ghcr.io/open-telemetry/opentelemetry-helm-charts/opentelemetry-collector
+  # https://github.com/open-telemetry/opentelemetry-helm-charts/pkgs/container/opentelemetry-helm-charts%2Fopentelemetry-collector

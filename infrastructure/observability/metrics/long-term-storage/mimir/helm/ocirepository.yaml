@@ -1,0 +1,15 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: OCIRepository
+metadata:
+  name: mimir-distributed
+  namespace: mimir
+spec:
+  interval: 24h
+  layerSelector:
+    mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
+    operation: copy
+  ref:
+    tag: 6.2.0
+    digest: sha256:6371a8f7a95973441300cc6760fb3cae0c05a829ac92c2c8439a5f23634fb6f1
+  url: oci://ghcr.io/grafana/helm-charts/mimir-distributed
+  # https://github.com/grafana/helm-charts/pkgs/container/helm-charts%2Fmimir-distributed

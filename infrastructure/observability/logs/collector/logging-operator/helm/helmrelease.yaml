@@ -5,13 +5,9 @@ metadata:
   namespace: logging-operator
 spec:
   interval: 5m
-  chart:
-    spec:
-      chart: logging-operator
-      version: 4.6.0
-      sourceRef:
-        kind: HelmRepository
-        name: logging-operator
-        namespace: flux-system
+  chartRef:
+    kind: OCIRepository
+    name: logging-operator
+    namespace: logging-operator
   values:
   # https://github.com/kube-logging/logging-operator/blob/master/charts/logging-operator/values.yaml

@@ -1,0 +1,15 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: OCIRepository
+metadata:
+  name: zot
+  namespace: zot
+spec:
+  interval: 24h
+  layerSelector:
+    mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
+    operation: copy
+  ref:
+    tag: 0.1.124
+    digest: sha256:d2a7918bcf667517917548eae498dd23d143cd52ee453e00798f32ea5f660709
+  url: oci://ghcr.io/project-zot/helm-charts/zot
+  # https://github.com/project-zot/helm-charts/pkgs/container/helm-charts%2Fzot

@@ -5,14 +5,10 @@ metadata:
   namespace: openfga
 spec:
   interval: 5m
-  chart:
-    spec:
-      chart: openfga
-      version: 0.2.3
-      sourceRef:
-        kind: HelmRepository
-        name: openfga
-        namespace: flux-system
+  chartRef:
+    kind: OCIRepository
+    name: openfga
+    namespace: openfga
   values:
   # https://artifacthub.io/packages/helm/openfga/openfga
   # https://github.com/openfga/helm-charts/blob/main/charts/openfga/values.yaml

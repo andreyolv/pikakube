@@ -1,0 +1,15 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: OCIRepository
+metadata:
+  name: redis-cluster
+  namespace: redis
+spec:
+  interval: 24h
+  layerSelector:
+    mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
+    operation: copy
+  ref:
+    tag: 11.5.0
+    digest: sha256:a8352027a8e8ca014b7c14d994b5e4ca561e7a3a514b9cecead567ef9a2e7cb6
+  url: oci://registry-1.docker.io/bitnamicharts/redis-cluster
+  # https://hub.docker.com/r/bitnamicharts/redis-cluster/tags

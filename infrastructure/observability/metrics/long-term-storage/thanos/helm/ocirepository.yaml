@@ -1,0 +1,15 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: OCIRepository
+metadata:
+  name: thanos
+  namespace: thanos
+spec:
+  interval: 24h
+  layerSelector:
+    mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
+    operation: copy
+  ref:
+    tag: 12.20.1
+    digest: sha256:36b212df2f67f92a6edb0e482afe17cf2f355826e95ab70ecf5dff1231d5948d
+  url: oci://registry-1.docker.io/bitnamicharts/thanos
+  # https://hub.docker.com/r/bitnamicharts/thanos/tags

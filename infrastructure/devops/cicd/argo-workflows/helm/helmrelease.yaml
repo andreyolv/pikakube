@@ -5,14 +5,10 @@ metadata:
   namespace: argo-workflows
 spec:
   interval: 5m
-  chart:
-    spec:
-      chart: argo-workflows
-      version: 0.45.2
-      sourceRef:
-        kind: HelmRepository
-        name: argo
-        namespace: flux-system
+  chartRef:
+    kind: OCIRepository
+    name: argo-workflows
+    namespace: argo-workflows
   values:
   # https://artifacthub.io/packages/helm/argo/argo-workflows
   # https://github.com/argoproj/argo-helm/blob/main/charts/argo-workflows/values.yaml

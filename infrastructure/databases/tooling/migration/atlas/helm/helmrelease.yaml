@@ -8,6 +8,6 @@ spec:
   chartRef:
     kind: OCIRepository
     name: atlas-operator
-    namespace: flux-system
+    namespace: atlas
   values:
   # https://github.com/ariga/atlas-operator/blob/master/charts/atlas-operator/values.yaml

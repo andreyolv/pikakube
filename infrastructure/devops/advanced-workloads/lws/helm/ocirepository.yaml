@@ -2,7 +2,7 @@ apiVersion: source.toolkit.fluxcd.io/v1
 kind: OCIRepository
 metadata:
   name: lws
-  namespace: flux-system
+  namespace: lws
 spec:
   interval: 24h
   layerSelector:

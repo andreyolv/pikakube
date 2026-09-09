@@ -1,0 +1,15 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: OCIRepository
+metadata:
+  name: cassandra
+  namespace: cassandra
+spec:
+  interval: 24h
+  layerSelector:
+    mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
+    operation: copy
+  ref:
+    tag: 12.0.4
+    digest: sha256:6d786998f1bd4bb3d5307b6f0f1f0d82c827f5e17437834b167aef13ec346d11
+  url: oci://registry-1.docker.io/bitnamicharts/cassandra
+  # https://hub.docker.com/r/bitnamicharts/cassandra/tags

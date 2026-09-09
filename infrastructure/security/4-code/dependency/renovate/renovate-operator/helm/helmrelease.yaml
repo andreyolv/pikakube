@@ -8,7 +8,7 @@ spec:
   chartRef:
     kind: OCIRepository
     name: renovate-operator
-    namespace: flux-system
+    namespace: renovate
   upgrade:
     crds: CreateReplace
   values:

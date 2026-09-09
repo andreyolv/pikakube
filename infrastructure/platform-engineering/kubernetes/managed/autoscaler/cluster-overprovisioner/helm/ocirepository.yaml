@@ -1,0 +1,15 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: OCIRepository
+metadata:
+  name: cluster-overprovisioner
+  namespace: kube-system
+spec:
+  interval: 24h
+  layerSelector:
+    mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
+    operation: copy
+  ref:
+    tag: 0.7.11
+    digest: sha256:38f5b5dd69152971d3da69b5502424f5509f2200f8d5cd13a389994f0b38ea17
+  url: oci://ghcr.io/deliveryhero/helm-charts/cluster-overprovisioner
+  # https://github.com/deliveryhero/helm-charts/pkgs/container/helm-charts%2Fcluster-overprovisioner

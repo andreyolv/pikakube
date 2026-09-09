@@ -1,0 +1,15 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: OCIRepository
+metadata:
+  name: backstage
+  namespace: backstage
+spec:
+  interval: 24h
+  layerSelector:
+    mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
+    operation: copy
+  ref:
+    tag: 1.9.2
+    digest: sha256:acab66e0a4ef48eba7dcedf86fc8effaa36c9382f4bf5b3e4054fafa1bdbf3bc
+  url: oci://ghcr.io/backstage/charts/backstage
+  # https://github.com/backstage/charts/pkgs/container/charts%2Fbackstage

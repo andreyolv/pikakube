@@ -8,7 +8,7 @@ spec:
   chartRef:
     kind: OCIRepository
     name: grafana-operator
-    namespace: flux-system
+    namespace: grafana
   values:
   # https://artifacthub.io/packages/olm/community-operators/grafana-operator
   # https://github.com/grafana/grafana-operator/blob/master/deploy/helm/grafana-operator/values.yaml

@@ -1,0 +1,15 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: OCIRepository
+metadata:
+  name: coredns
+  namespace: kube-system
+spec:
+  interval: 24h
+  layerSelector:
+    mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
+    operation: copy
+  ref:
+    tag: 1.47.0
+    digest: sha256:56d030a7040e6c8b77dce17632ff474ac0644c7159734df0f9052c152cf16eec
+  url: oci://ghcr.io/coredns/charts/coredns
+  # https://github.com/coredns/charts/pkgs/container/charts%2Fcoredns

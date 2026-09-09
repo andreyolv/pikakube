@@ -1,0 +1,15 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: OCIRepository
+metadata:
+  name: node-problem-detector
+  namespace: kube-system
+spec:
+  interval: 24h
+  layerSelector:
+    mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
+    operation: copy
+  ref:
+    tag: 2.3.12
+    digest: sha256:f6393f5acb32ca4d3e9d92fdfa009769922ddcf9630b976061ecee094a518e67
+  url: oci://ghcr.io/deliveryhero/helm-charts/node-problem-detector
+  # https://github.com/deliveryhero/helm-charts/pkgs/container/helm-charts%2Fnode-problem-detector

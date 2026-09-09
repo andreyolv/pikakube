@@ -1,0 +1,15 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: OCIRepository
+metadata:
+  name: psmdb-operator
+  namespace: percona-mongodb
+spec:
+  interval: 24h
+  layerSelector:
+    mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
+    operation: copy
+  ref:
+    tag: 1.23.1
+    digest: sha256:8c4f9b61456e608904d5fba397056262bb354a5176c8cc958b9f38a505ffdbe3
+  url: oci://ghcr.io/percona/percona-helm-charts/psmdb-operator
+  # https://github.com/percona/percona-helm-charts/pkgs/container/percona-helm-charts%2Fpsmdb-operator

@@ -8,6 +8,6 @@ spec:
   chartRef:
     kind: OCIRepository
     name: aieg-crd
-    namespace: flux-system
+    namespace: envoy-gateway
   values:
   # https://github.com/envoyproxy/ai-gateway/blob/main/manifests/charts/ai-gateway-crds-helm/values.yaml

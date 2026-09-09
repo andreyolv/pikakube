@@ -2,7 +2,7 @@ apiVersion: source.toolkit.fluxcd.io/v1
 kind: OCIRepository
 metadata:
   name: fluss-zookeeper
-  namespace: flux-system
+  namespace: fluss
 spec:
   interval: 24h
   layerSelector:

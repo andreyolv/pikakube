@@ -1,0 +1,15 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: OCIRepository
+metadata:
+  name: pyroscope
+  namespace: pyroscope
+spec:
+  interval: 24h
+  layerSelector:
+    mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
+    operation: copy
+  ref:
+    tag: 1.13.0
+    digest: sha256:b5caa12aa84922c8dfb76a41e5313ccc75434f832477e72cd594d94d62fe62f5
+  url: oci://ghcr.io/grafana/helm-charts/pyroscope
+  # https://github.com/grafana/helm-charts/pkgs/container/helm-charts%2Fpyroscope

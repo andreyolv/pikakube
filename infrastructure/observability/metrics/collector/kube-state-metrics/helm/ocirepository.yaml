@@ -1,0 +1,15 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: OCIRepository
+metadata:
+  name: kube-state-metrics
+  namespace: kube-system
+spec:
+  interval: 24h
+  layerSelector:
+    mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
+    operation: copy
+  ref:
+    tag: 5.19.0
+    digest: sha256:08586b46c87d93e5911acc169044c15fdb7f5c1ba9b5a2aaf528020102f056bc
+  url: oci://ghcr.io/prometheus-community/charts/kube-state-metrics
+  # https://github.com/prometheus-community/charts/pkgs/container/charts%2Fkube-state-metrics

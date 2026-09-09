@@ -1,0 +1,15 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: OCIRepository
+metadata:
+  name: node-local-dns
+  namespace: kube-system
+spec:
+  interval: 24h
+  layerSelector:
+    mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
+    operation: copy
+  ref:
+    tag: 2.1.0
+    digest: sha256:e4c3222d3849545e76eaf9cab2f6c11824b2ab266bb8cbf1715185409ba49308
+  url: oci://ghcr.io/deliveryhero/helm-charts/node-local-dns
+  # https://github.com/deliveryhero/helm-charts/pkgs/container/helm-charts%2Fnode-local-dns

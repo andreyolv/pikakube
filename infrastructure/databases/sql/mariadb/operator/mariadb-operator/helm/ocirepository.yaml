@@ -1,0 +1,31 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: OCIRepository
+metadata:
+  name: mariadb-operator-crds
+  namespace: mariadb-operator
+spec:
+  interval: 24h
+  layerSelector:
+    mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
+    operation: copy
+  ref:
+    tag: 26.6.0
+    digest: sha256:b357cb92e51acc3fc26593e9071afe0bd47109c26e802db151a2ba937d45047a
+  url: oci://ghcr.io/mariadb-operator/charts/mariadb-operator-crds
+  # https://github.com/mariadb-operator/mariadb-operator/pkgs/container/charts%2Fmariadb-operator-crds
+---
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: OCIRepository
+metadata:
+  name: mariadb-operator
+  namespace: mariadb-operator
+spec:
+  interval: 24h
+  layerSelector:
+    mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
+    operation: copy
+  ref:
+    tag: 26.6.0
+    digest: sha256:e6662fdafe465ec09c94cc2b16459fcad4ab7198aa8a160448bd38889bdcb185
+  url: oci://ghcr.io/mariadb-operator/charts/mariadb-operator
+  # https://github.com/mariadb-operator/mariadb-operator/pkgs/container/charts%2Fmariadb-operator

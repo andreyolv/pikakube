@@ -1,0 +1,15 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: OCIRepository
+metadata:
+  name: devlake
+  namespace: devlake
+spec:
+  interval: 24h
+  layerSelector:
+    mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
+    operation: copy
+  ref:
+    tag: 1.0.2
+    digest: sha256:934b5565024c36084911ee799ed34981ee631bae2fbff50b59cf9a861f3673ee
+  url: oci://ghcr.io/apache/incubator-devlake-helm-chart/devlake
+  # https://github.com/apache/incubator-devlake-helm-chart/pkgs/container/incubator-devlake-helm-chart%2Fdevlake

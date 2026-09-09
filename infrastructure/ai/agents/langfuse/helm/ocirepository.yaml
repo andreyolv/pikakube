@@ -1,0 +1,15 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: OCIRepository
+metadata:
+  name: langfuse
+  namespace: langfuse
+spec:
+  interval: 24h
+  layerSelector:
+    mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
+    operation: copy
+  ref:
+    tag: 1.5.12
+    digest: sha256:7a0079d9945d0c6a8e8f819b8b8fc6fd737e9447ca918efa96f32e90acf41cde
+  url: oci://ghcr.io/langfuse/langfuse-k8s/charts/langfuse
+  # https://github.com/langfuse/langfuse-k8s/pkgs/container/langfuse-k8s%2Fcharts%2Flangfuse

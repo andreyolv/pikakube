@@ -1,0 +1,15 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: OCIRepository
+metadata:
+  name: alertmanager
+  namespace: alertmanager
+spec:
+  interval: 24h
+  layerSelector:
+    mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
+    operation: copy
+  ref:
+    tag: 1.10.0
+    digest: sha256:7f705eef7d9016d4f19bb82a28f1395b92d2d915f6cfdd5dffa08f023e6f9865
+  url: oci://ghcr.io/prometheus-community/charts/alertmanager
+  # https://github.com/prometheus-community/charts/pkgs/container/charts%2Falertmanager

@@ -1,0 +1,15 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: OCIRepository
+metadata:
+  name: coroot
+  namespace: coroot
+spec:
+  interval: 24h
+  layerSelector:
+    mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
+    operation: copy
+  ref:
+    tag: 0.21.3
+    digest: sha256:bb2e1106e823c79d625090113e053741c14bed4340d2b13d16f28f507b3c52fb
+  url: oci://ghcr.io/coroot/charts/coroot
+  # https://github.com/coroot/charts/pkgs/container/charts%2Fcoroot

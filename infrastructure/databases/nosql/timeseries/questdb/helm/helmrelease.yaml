@@ -5,15 +5,10 @@ metadata:
   namespace: questdb
 spec:
   interval: 5m
-  chart:
-    spec:
-      chart: questdb
-      version: 0.40.4
-      sourceRef:
-        kind: HelmRepository
-        name: questdb
-        namespace: flux-system
+  chartRef:
+    kind: OCIRepository
+    name: questdb
+    namespace: questdb
   values:
   # https://artifacthub.io/packages/helm/questdb/questdb
   # https://github.com/questdb/questdb-kubernetes/blob/master/charts/questdb/values.yaml
-  

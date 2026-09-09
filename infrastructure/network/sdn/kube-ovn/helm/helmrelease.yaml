@@ -5,13 +5,9 @@ metadata:
   namespace: kube-ovn
 spec:
   interval: 5m
-  chart:
-    spec:
-      chart: kube-ovn
-      version: 1.13.0
-      sourceRef:
-        kind: HelmRepository
-        name: kubeovn
-        namespace: flux-system
+  chartRef:
+    kind: OCIRepository
+    name: kube-ovn
+    namespace: kube-ovn
   values:
   # https://github.com/kubeovn/kube-ovn/blob/master/charts/kube-ovn/values.yaml

@@ -1,0 +1,15 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: OCIRepository
+metadata:
+  name: kube-ovn
+  namespace: kube-ovn
+spec:
+  interval: 24h
+  layerSelector:
+    mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
+    operation: copy
+  ref:
+    tag: v1.16.3
+    digest: sha256:f3850ad5aa22ed8b4a015dfe22f66768ab52ff10e12d619510a4329b5e79dea8
+  url: oci://ghcr.io/kubeovn/charts/kube-ovn
+  # https://github.com/kubeovn/charts/pkgs/container/charts%2Fkube-ovn

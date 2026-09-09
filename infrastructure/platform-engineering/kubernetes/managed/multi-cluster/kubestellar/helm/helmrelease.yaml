@@ -8,6 +8,6 @@ spec:
   chartRef:
     kind: OCIRepository
     name: kubestellar
-    namespace: flux-system
+    namespace: kubestellar
   values:
   # https://github.com/kubestellar/kubestellar/blob/main/core-chart/values.yaml

@@ -8,7 +8,7 @@ spec:
   chartRef:
     kind: OCIRepository
     name: stormforge-agent
-    namespace: flux-system
+    namespace: stormforge-system
   values:
   # https://github.com/thestormforge/helm-charts/blob/main/charts/stormforge-agent/values.yaml
     clusterName: k8s-platform

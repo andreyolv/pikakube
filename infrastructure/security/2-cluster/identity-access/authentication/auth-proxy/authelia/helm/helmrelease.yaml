@@ -8,6 +8,7 @@ spec:
   chartRef:
     kind: OCIRepository
     name: authelia
+    namespace: authelia
   values:
   # https://artifacthub.io/packages/helm/authelia/authelia
   # https://github.com/authelia/chartrepo/blob/master/charts/authelia/values.yaml

@@ -8,6 +8,7 @@ spec:
   chartRef:
     kind: OCIRepository
     name: elasti
+    namespace: kubeelasti
   values:
   # https://artifacthub.io/packages/helm/kubeelasti/elasti
   # https://github.com/KubeElasti/KubeElasti/blob/main/charts/elasti/values.yaml

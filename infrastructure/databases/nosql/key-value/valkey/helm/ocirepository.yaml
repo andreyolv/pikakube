@@ -1,0 +1,15 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: OCIRepository
+metadata:
+  name: valkey
+  namespace: valkey
+spec:
+  interval: 24h
+  layerSelector:
+    mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
+    operation: copy
+  ref:
+    tag: 0.12.0
+    digest: sha256:8d1e895e2cbd8052de6c94155379a8f5cde14ba5867b429e2b290555d5338820
+  url: oci://ghcr.io/valkey-io/valkey-helm/valkey
+  # https://github.com/valkey-io/valkey-helm/pkgs/container/valkey-helm%2Fvalkey

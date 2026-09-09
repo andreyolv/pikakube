@@ -1,0 +1,15 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: OCIRepository
+metadata:
+  name: jenkins
+  namespace: jenkins
+spec:
+  interval: 24h
+  layerSelector:
+    mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
+    operation: copy
+  ref:
+    tag: 5.7.26
+    digest: sha256:ea814550e84d6e38a42ed3ee2f7aef41d06110cf7e607feeadae7b9017cfabd6
+  url: oci://ghcr.io/jenkinsci/helm-charts/jenkins
+  # https://github.com/jenkinsci/helm-charts/pkgs/container/helm-charts%2Fjenkins

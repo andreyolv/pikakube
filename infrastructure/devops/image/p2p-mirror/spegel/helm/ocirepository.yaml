@@ -1,0 +1,15 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: OCIRepository
+metadata:
+  name: spegel
+  namespace: spegel
+spec:
+  interval: 24h
+  layerSelector:
+    mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
+    operation: copy
+  ref:
+    tag: v0.0.28
+    digest: sha256:03aa6a68b9ba612e294de85442676c021738c8310a5bbbb2ffb620cfb566986b
+  url: oci://ghcr.io/spegel-org/helm-charts/spegel
+  # https://github.com/spegel-org/helm-charts/pkgs/container/helm-charts%2Fspegel

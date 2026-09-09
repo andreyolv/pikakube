@@ -8,6 +8,6 @@ spec:
   chartRef:
     kind: OCIRepository
     name: kro
-    namespace: flux-system
+    namespace: kro
   values:
   # https://github.com/awslabs/kro/blob/main/helm/values.yaml

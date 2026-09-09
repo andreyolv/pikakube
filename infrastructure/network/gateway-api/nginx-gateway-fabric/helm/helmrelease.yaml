@@ -8,7 +8,7 @@ spec:
   chartRef:
     kind: OCIRepository
     name: nginx-gateway-fabric
-    namespace: flux-system
+    namespace: nginx-gateway-fabric
   values:
   # https://artifacthub.io/packages/helm/nginx-gateway-fabric/nginx-gateway-fabric
   # https://github.com/nginx/nginx-gateway-fabric/blob/main/charts/nginx-gateway-fabric/values.yaml

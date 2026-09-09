@@ -5,14 +5,10 @@ metadata:
   namespace: prometheus
 spec:
   interval: 5m
-  chart:
-    spec:
-      chart: prometheus-postgres-exporter
-      version: 6.10.0
-      sourceRef:
-        kind: HelmRepository
-        name: prometheus-community
-        namespace: flux-system
+  chartRef:
+    kind: OCIRepository
+    name: prometheus-postgres-exporter
+    namespace: prometheus
   values:
   # https://artifacthub.io/packages/helm/prometheus-community/prometheus-postgres-exporter
   # https://github.com/prometheus-community/helm-charts/blob/main/charts/prometheus-postgres-exporter/values.yaml

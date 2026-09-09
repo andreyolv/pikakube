@@ -5,14 +5,10 @@ metadata:
   namespace: kube-system
 spec:
   interval: 5m
-  chart:
-    spec:
-      chart: cluster-overprovisioner
-      version: 0.7.11
-      sourceRef:
-        kind: HelmRepository
-        name: deliveryhero
-        namespace: flux-system
+  chartRef:
+    kind: OCIRepository
+    name: cluster-overprovisioner
+    namespace: kube-system
   values:
   # https://artifacthub.io/packages/helm/deliveryhero/cluster-overprovisioner
   # https://github.com/deliveryhero/helm-charts/blob/master/stable/cluster-overprovisioner/values.yaml

@@ -13,6 +13,6 @@ spec:
   chartRef:
     kind: OCIRepository
     name: spin-operator
-    namespace: flux-system
+    namespace: spin-operator
   values:
   # https://github.com/spinkube/spin-operator/blob/main/charts/spin-operator/values.yaml

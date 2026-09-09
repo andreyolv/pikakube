@@ -1,0 +1,15 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: OCIRepository
+metadata:
+  name: opencost
+  namespace: opencost
+spec:
+  interval: 24h
+  layerSelector:
+    mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
+    operation: copy
+  ref:
+    tag: 2.5.30
+    digest: sha256:534e846fc11b8e7e9967dd07fe808e552395a0985457f0cec6e0715d6c177bbc
+  url: oci://ghcr.io/opencost/charts/opencost
+  # https://github.com/opencost/charts/pkgs/container/charts%2Fopencost

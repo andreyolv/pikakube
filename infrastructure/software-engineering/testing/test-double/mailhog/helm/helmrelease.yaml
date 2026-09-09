@@ -5,14 +5,10 @@ metadata:
   namespace: mailhog
 spec:
   interval: 5m
-  chart:
-    spec:
-      chart: mailhog
-      version: 5.5.0
-      sourceRef:
-        kind: HelmRepository
-        name: codecentric
-        namespace: flux-system
+  chartRef:
+    kind: OCIRepository
+    name: mailhog
+    namespace: mailhog
   values:
   # https://artifacthub.io/packages/helm/codecentric/mailhog
   # https://github.com/codecentric/helm-charts/blob/master/charts/mailhog/values.yaml

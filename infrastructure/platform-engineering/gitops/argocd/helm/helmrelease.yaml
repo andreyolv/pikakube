@@ -5,14 +5,10 @@ metadata:
   namespace: argocd
 spec:
   interval: 5m
-  chart:
-    spec:
-      chart: argo-cd
-      version: 7.7.13
-      sourceRef:
-        kind: HelmRepository
-        name: argocd
-        namespace: flux-system
+  chartRef:
+    kind: OCIRepository
+    name: argo-cd
+    namespace: argocd
   values:
   # https://artifacthub.io/packages/helm/argo/argo-cd
   # https://github.com/argoproj/argo-helm/blob/main/charts/argo-cd/values.yaml

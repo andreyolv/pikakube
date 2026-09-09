@@ -5,14 +5,10 @@ metadata:
   namespace: rabbitmq
 spec:
   interval: 5m
-  chart:
-    spec:
-      chart: rabbitmq-cluster-operator
-      version: 4.4.6
-      sourceRef:
-        kind: HelmRepository
-        name: bitnami
-        namespace: flux-system
+  chartRef:
+    kind: OCIRepository
+    name: rabbitmq-cluster-operator
+    namespace: rabbitmq
   values:
   # https://artifacthub.io/packages/helm/bitnami/rabbitmq-cluster-operator
   # https://github.com/bitnami/charts/blob/main/bitnami/rabbitmq-cluster-operator/values.yaml

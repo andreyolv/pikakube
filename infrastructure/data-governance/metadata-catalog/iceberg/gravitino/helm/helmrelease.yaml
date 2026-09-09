@@ -8,6 +8,7 @@ spec:
   chartRef:
     kind: OCIRepository
     name: gravitino
+    namespace: gravitino
   values:
   # https://artifacthub.io/packages/helm/gravitino/gravitino-helm
   # https://github.com/apache/gravitino/blob/main/dev/charts/gravitino/values.yaml 

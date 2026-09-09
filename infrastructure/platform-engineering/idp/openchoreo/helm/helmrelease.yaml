@@ -8,6 +8,7 @@ spec:
   chartRef:
     kind: OCIRepository
     name: openchoreo-control-plane
+    namespace: openchoreo
   values:
   # https://github.com/openchoreo/openchoreo/blob/main/install/helm/openchoreo-control-plane/values.yaml
     openchoreoApi:

@@ -5,14 +5,10 @@ metadata:
   namespace: inspektor-gadget
 spec:
   interval: 5m
-  chart:
-    spec:
-      chart: gadget 
-      version: 0.35.0
-      sourceRef:
-        kind: HelmRepository
-        name: gadget
-        namespace: flux-system
+  chartRef:
+    kind: OCIRepository
+    name: gadget
+    namespace: inspektor-gadget
   values:
   # https://artifacthub.io/packages/helm/gadget/gadget
   # https://github.com/inspektor-gadget/inspektor-gadget/blob/main/charts/gadget/values.yaml

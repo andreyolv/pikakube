@@ -5,14 +5,10 @@ metadata:
   namespace: kubewarden
 spec:
   interval: 5m
-  chart:
-    spec:
-      chart: kubewarden-crds
-      version: 1.4.4
-      sourceRef:
-        kind: HelmRepository
-        name: kubewarden
-        namespace: flux-system
+  chartRef:
+    kind: OCIRepository
+    name: kubewarden-crds
+    namespace: kubewarden
   upgrade:
     crds: CreateReplace
   values:
@@ -29,14 +25,10 @@ spec:
   - name: kubewarden-crds
     namespace: kubewarden
   interval: 5m
-  chart:
-    spec:
-      chart: kubewarden-controller
-      version: 2.0.5
-      sourceRef:
-        kind: HelmRepository
-        name: kubewarden
-        namespace: flux-system
+  chartRef:
+    kind: OCIRepository
+    name: kubewarden-controller
+    namespace: kubewarden
   values:
   # https://artifacthub.io/packages/helm/kubewarden/kubewarden-controller
   # https://github.com/kubewarden/helm-charts/blob/main/charts/kubewarden-controller/values.yaml

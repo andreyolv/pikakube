@@ -8,6 +8,7 @@ spec:
   chartRef:
     kind: OCIRepository
     name: kyverno
+    namespace: kyverno
   values:
   # https://artifacthub.io/packages/helm/kyverno/kyverno
   # https://github.com/kyverno/kyverno/blob/main/charts/kyverno/values.yaml

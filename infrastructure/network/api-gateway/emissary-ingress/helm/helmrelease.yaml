@@ -5,14 +5,10 @@ metadata:
   namespace: emissary-ingress
 spec:
   interval: 5m
-  chart:
-    spec:
-      chart: emissary-ingress
-      version: 8.9.1
-      sourceRef:
-        kind: HelmRepository
-        name: datawire
-        namespace: flux-system
+  chartRef:
+    kind: OCIRepository
+    name: emissary-ingress
+    namespace: emissary-ingress
   values:
   # https://artifacthub.io/packages/helm/datawire/emissary-ingress
   # https://github.com/emissary-ingress/emissary/blob/master/charts/emissary-ingress/values.yaml.in

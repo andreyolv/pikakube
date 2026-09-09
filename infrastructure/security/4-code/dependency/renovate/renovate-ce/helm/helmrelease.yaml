@@ -5,14 +5,10 @@ metadata:
   namespace: renovate
 spec:
   interval: 5m
-  chart:
-    spec:
-      chart: mend-renovate-ce
-      version: 46.217.1
-      sourceRef:
-        kind: HelmRepository
-        name: mend-renovate-ce-ee
-        namespace: flux-system
+  chartRef:
+    kind: OCIRepository
+    name: mend-renovate-ce
+    namespace: renovate
   values:
   # https://artifacthub.io/packages/helm/renovate/renovate
   # https://github.com/mend/renovate-ce-ee/blob/main/helm-charts/mend-renovate-ce/values.yaml

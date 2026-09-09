@@ -1,0 +1,15 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: OCIRepository
+metadata:
+  name: dependency-track
+  namespace: dependency-track
+spec:
+  interval: 24h
+  layerSelector:
+    mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
+    operation: copy
+  ref:
+    tag: 2.3.0
+    digest: sha256:e117bf391846191c722930fd7e4750d488662b906b162d6144ad83a7ddc35b7c
+  url: oci://ghcr.io/dependencytrack/helm-charts/dependency-track
+  # https://github.com/dependencytrack/helm-charts/pkgs/container/helm-charts%2Fdependency-track

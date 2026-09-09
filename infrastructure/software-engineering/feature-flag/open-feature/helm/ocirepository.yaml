@@ -1,0 +1,15 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: OCIRepository
+metadata:
+  name: open-feature-operator
+  namespace: open-feature
+spec:
+  interval: 24h
+  layerSelector:
+    mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
+    operation: copy
+  ref:
+    tag: v0.9.3
+    digest: sha256:b2ae4923f4f8e4ff535581d1ebe297475f7029b2d7df0e3759a64a864d00c779
+  url: oci://ghcr.io/open-feature/charts/open-feature-operator
+  # https://github.com/open-feature/charts/pkgs/container/charts%2Fopen-feature-operator

@@ -1,0 +1,15 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: OCIRepository
+metadata:
+  name: tidb-operator
+  namespace: tidb
+spec:
+  interval: 24h
+  layerSelector:
+    mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
+    operation: copy
+  ref:
+    tag: v2.0.1
+    digest: sha256:634d6453b09e39e19c862a6dc3b54bde7649fa5f7f58eaa3416965b44d1929c4
+  url: oci://ghcr.io/pingcap/charts/tidb-operator
+  # https://github.com/pingcap/tidb-operator/pkgs/container/charts%2Ftidb-operator

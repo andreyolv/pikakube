@@ -2,7 +2,7 @@ apiVersion: source.toolkit.fluxcd.io/v1
 kind: OCIRepository
 metadata:
   name: kgateway-crds
-  namespace: flux-system
+  namespace: kgateway
 spec:
   interval: 24h
   layerSelector:
@@ -18,7 +18,7 @@ apiVersion: source.toolkit.fluxcd.io/v1
 kind: OCIRepository
 metadata:
   name: kgateway
-  namespace: flux-system
+  namespace: kgateway
 spec:
   interval: 24h
   layerSelector:

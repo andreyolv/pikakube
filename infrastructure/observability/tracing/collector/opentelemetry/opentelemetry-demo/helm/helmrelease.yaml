@@ -5,14 +5,10 @@ metadata:
   namespace: opentelemetry
 spec:
   interval: 5m
-  chart:
-    spec:
-      chart: opentelemetry-demo
-      version: 0.30.3
-      sourceRef:
-        kind: HelmRepository
-        name: open-telemetry
-        namespace: flux-system
+  chartRef:
+    kind: OCIRepository
+    name: opentelemetry-demo
+    namespace: opentelemetry
   values:
   # https://artifacthub.io/packages/helm/opentelemetry-helm/opentelemetry-demo
   # https://github.com/open-telemetry/opentelemetry-helm-charts/blob/main/charts/opentelemetry-demo/values.yaml

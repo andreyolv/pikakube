@@ -1,0 +1,15 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: OCIRepository
+metadata:
+  name: openfga
+  namespace: openfga
+spec:
+  interval: 24h
+  layerSelector:
+    mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
+    operation: copy
+  ref:
+    tag: 0.3.14
+    digest: sha256:0b2532be33522400230b61761379ef72d27dad75c059eac1fe8e937542794ad1
+  url: oci://ghcr.io/openfga/helm-charts/openfga
+  # https://github.com/openfga/helm-charts/pkgs/container/helm-charts%2Fopenfga

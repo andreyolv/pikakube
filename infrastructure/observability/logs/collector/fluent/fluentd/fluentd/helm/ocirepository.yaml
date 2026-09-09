@@ -1,0 +1,15 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: OCIRepository
+metadata:
+  name: fluent-bit
+  namespace: fluent
+spec:
+  interval: 24h
+  layerSelector:
+    mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
+    operation: copy
+  ref:
+    tag: 0.58.1
+    digest: sha256:cc83b54aec114fb7dce7951e0ad014245aaacdd2e21dfa79277c15ab6704268f
+  url: oci://ghcr.io/fluent/helm-charts/fluent-bit
+  # https://github.com/fluent/helm-charts/pkgs/container/helm-charts%2Ffluent-bit

@@ -1,0 +1,15 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: OCIRepository
+metadata:
+  name: spire-crds
+  namespace: spire
+spec:
+  interval: 24h
+  layerSelector:
+    mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
+    operation: copy
+  ref:
+    tag: 0.5.0
+    digest: sha256:149cfd3fe600b5ef87a03cacb2f4aebd71a6381ead73a28c4ee11cbb062edbe6
+  url: oci://ghcr.io/spiffe/helm-charts/spire-crds
+  # https://github.com/spiffe/helm-charts/pkgs/container/helm-charts%2Fspire-crds

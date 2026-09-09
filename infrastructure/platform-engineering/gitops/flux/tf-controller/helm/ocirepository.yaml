@@ -1,0 +1,15 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: OCIRepository
+metadata:
+  name: tf-controller
+  namespace: flux-system
+spec:
+  interval: 24h
+  layerSelector:
+    mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
+    operation: copy
+  ref:
+    tag: 0.16.5
+    digest: sha256:336e9a2690b868781422165bf20550dc7e7093abeb841c498d8bd1dd594fbd27
+  url: oci://ghcr.io/flux-iac/charts/tofu-controller
+  # https://github.com/flux-iac/charts/pkgs/container/charts%2Ftofu-controller

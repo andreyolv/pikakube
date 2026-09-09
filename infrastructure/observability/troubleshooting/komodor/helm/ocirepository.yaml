@@ -1,0 +1,15 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: OCIRepository
+metadata:
+  name: k8s-watcher
+  namespace: komodor
+spec:
+  interval: 24h
+  layerSelector:
+    mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
+    operation: copy
+  ref:
+    tag: 1.18.17
+    digest: sha256:1d98b065b679ab71fca2fa8b1fea66a9e08660d739708641e81d322853d2781b
+  url: oci://registry-1.docker.io/komodorio/k8s-watcher
+  # https://hub.docker.com/r/komodorio/k8s-watcher/tags

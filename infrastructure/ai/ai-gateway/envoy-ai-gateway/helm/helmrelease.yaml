@@ -10,6 +10,6 @@ spec:
   chartRef:
     kind: OCIRepository
     name: aieg
-    namespace: flux-system
+    namespace: envoy-gateway
   values:
   # https://github.com/envoyproxy/ai-gateway/blob/main/manifests/charts/ai-gateway-helm/values.yaml

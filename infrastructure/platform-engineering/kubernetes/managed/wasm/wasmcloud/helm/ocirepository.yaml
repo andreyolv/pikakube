@@ -2,7 +2,7 @@ apiVersion: source.toolkit.fluxcd.io/v1
 kind: OCIRepository
 metadata:
   name: wasmcloud-platform
-  namespace: flux-system
+  namespace: wasm
 spec:
   interval: 24h
   layerSelector:

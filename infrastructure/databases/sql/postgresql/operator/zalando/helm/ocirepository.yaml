@@ -1,0 +1,15 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: OCIRepository
+metadata:
+  name: postgres-operator
+  namespace: postgres-operator
+spec:
+  interval: 24h
+  layerSelector:
+    mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
+    operation: copy
+  ref:
+    tag: 2.0.2
+    digest: sha256:ad5fe3205539e99c1389b8c714ae595460bf5efab3047f128b404a074adb7f34
+  url: oci://ghcr.io/zalando/charts/postgres-operator
+  # https://github.com/zalando/postgres-operator/pkgs/container/charts%2Fpostgres-operator

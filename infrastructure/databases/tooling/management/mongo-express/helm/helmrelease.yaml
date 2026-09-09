@@ -5,14 +5,10 @@ metadata:
   namespace: mongodb
 spec:
   interval: 5m
-  chart:
-    spec:
-      chart: mongo-express
-      version: 6.5.2
-      sourceRef:
-        kind: HelmRepository
-        name: cowboysysop
-        namespace: flux-system
+  chartRef:
+    kind: OCIRepository
+    name: mongo-express
+    namespace: mongodb
   values:
   # https://artifacthub.io/packages/helm/cowboysysop/mongo-express
   # https://github.com/cowboysysop/charts/blob/master/charts/mongo-express/values.yaml

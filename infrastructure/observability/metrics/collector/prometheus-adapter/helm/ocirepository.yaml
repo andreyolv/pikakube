@@ -1,0 +1,15 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: OCIRepository
+metadata:
+  name: prometheus-adapter
+  namespace: kube-system
+spec:
+  interval: 24h
+  layerSelector:
+    mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
+    operation: copy
+  ref:
+    tag: 4.10.0
+    digest: sha256:7fc6cf1766cd5fc8d41c15ee711155212e99ef271ef7f44fdd41c805330bc1c5
+  url: oci://ghcr.io/prometheus-community/charts/prometheus-adapter
+  # https://github.com/prometheus-community/charts/pkgs/container/charts%2Fprometheus-adapter

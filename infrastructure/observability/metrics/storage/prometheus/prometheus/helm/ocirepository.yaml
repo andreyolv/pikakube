@@ -1,0 +1,15 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: OCIRepository
+metadata:
+  name: prometheus
+  namespace: prometheus
+spec:
+  interval: 24h
+  layerSelector:
+    mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
+    operation: copy
+  ref:
+    tag: 26.0.1
+    digest: sha256:bd59a4976935bdb6c4e9f3d1cbd44770af99d3e3df94e6698041c0f940a9367b
+  url: oci://ghcr.io/prometheus-community/charts/prometheus
+  # https://github.com/prometheus-community/charts/pkgs/container/charts%2Fprometheus

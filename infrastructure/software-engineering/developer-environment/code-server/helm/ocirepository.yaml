@@ -1,0 +1,15 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: OCIRepository
+metadata:
+  name: coder
+  namespace: coder
+spec:
+  interval: 24h
+  layerSelector:
+    mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
+    operation: copy
+  ref:
+    tag: 2.37.1
+    digest: sha256:7ce08c17d65f4dbd3652e2379f72dc490ef4f34d4a18faeffdbe214efa403e38
+  url: oci://ghcr.io/coder/chart/coder
+  # https://github.com/coder/chart/pkgs/container/chart%2Fcoder

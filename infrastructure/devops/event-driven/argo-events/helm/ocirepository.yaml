@@ -1,0 +1,15 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: OCIRepository
+metadata:
+  name: argo-events
+  namespace: argo-events
+spec:
+  interval: 24h
+  layerSelector:
+    mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
+    operation: copy
+  ref:
+    tag: 2.4.9
+    digest: sha256:9bdcf4ec22c10bc3b4c6969394962f6d6600ebf42bb19cc2018e9ebb50208936
+  url: oci://ghcr.io/argoproj/argo-helm/argo-events
+  # https://github.com/argoproj/argo-helm/pkgs/container/argo-helm%2Fargo-events

@@ -5,15 +5,10 @@ metadata:
   namespace: kubetail
 spec:
   interval: 5m
-  chart:
-    spec:
-      chart: kubetail
-      version: 0.13.4
-      sourceRef:
-        kind: HelmRepository
-        name: kubetail
-        namespace: flux-system
+  chartRef:
+    kind: OCIRepository
+    name: kubetail
+    namespace: kubetail
   values:
   # https://artifacthub.io/packages/helm/kubetail/kubetail
   # https://github.com/kubetail-org/helm-charts/blob/main/charts/kubetail/values.yaml
-  

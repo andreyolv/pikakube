@@ -2,7 +2,7 @@ apiVersion: source.toolkit.fluxcd.io/v1
 kind: OCIRepository
 metadata:
   name: retina
-  namespace: flux-system
+  namespace: kube-system
 spec:
   interval: 24h
   layerSelector:

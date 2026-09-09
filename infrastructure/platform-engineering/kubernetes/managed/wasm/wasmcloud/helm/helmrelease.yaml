@@ -8,6 +8,6 @@ spec:
   chartRef:
     kind: OCIRepository
     name: wasmcloud-platform
-    namespace: flux-system
+    namespace: wasm
   values:
   # https://github.com/wasmCloud/wasmCloud/blob/main/charts/wasmcloud-platform/values.yaml

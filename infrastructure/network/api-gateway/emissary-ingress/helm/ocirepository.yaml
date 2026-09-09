@@ -1,0 +1,15 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: OCIRepository
+metadata:
+  name: emissary-ingress
+  namespace: emissary-ingress
+spec:
+  interval: 24h
+  layerSelector:
+    mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
+    operation: copy
+  ref:
+    tag: 4.1.0
+    digest: sha256:fe4decb528a69ce0d42611a8e15da910241c34d58223b6f131aa45f1e49528cf
+  url: oci://ghcr.io/emissary-ingress/emissary-ingress
+  # https://github.com/emissary-ingress/emissary-ingress/pkgs/container/emissary-ingress

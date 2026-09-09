@@ -1,0 +1,15 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: OCIRepository
+metadata:
+  name: litellm
+  namespace: litellm
+spec:
+  interval: 24h
+  layerSelector:
+    mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
+    operation: copy
+  ref:
+    tag: 1.89.2
+    digest: sha256:663381f7de76d3d94ff72fbc548f3148a97158cd504b3bab1b8b434a35655117
+  url: oci://ghcr.io/berriai/litellm-helm
+  # https://github.com/BerriAI/litellm/pkgs/container/litellm-helm

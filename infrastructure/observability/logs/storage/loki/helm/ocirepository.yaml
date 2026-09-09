@@ -1,0 +1,15 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: OCIRepository
+metadata:
+  name: loki
+  namespace: loki
+spec:
+  interval: 24h
+  layerSelector:
+    mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
+    operation: copy
+  ref:
+    tag: 6.32.0
+    digest: sha256:e5da64a59163a37174d9730f9cc09d40babf38ef3d90e517edb4fae5194c76cb
+  url: oci://ghcr.io/grafana/helm-charts/loki
+  # https://github.com/grafana/helm-charts/pkgs/container/helm-charts%2Floki

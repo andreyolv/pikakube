@@ -5,14 +5,10 @@ metadata:
   namespace: contour
 spec:
   interval: 5m
-  chart:
-    spec:
-      chart: contour
-      version: 19.4.0
-      sourceRef:
-        kind: HelmRepository
-        name: bitnami
-        namespace: flux-system
+  chartRef:
+    kind: OCIRepository
+    name: contour
+    namespace: contour
   values:
   # https://artifacthub.io/packages/helm/bitnami/contour
   # https://github.com/bitnami/charts/blob/main/bitnami/contour/values.yaml

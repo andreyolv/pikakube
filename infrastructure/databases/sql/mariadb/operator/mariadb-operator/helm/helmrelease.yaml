@@ -1,0 +1,27 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: mariadb-operator-crds
+  namespace: mariadb-operator
+spec:
+  interval: 5m
+  chartRef:
+    kind: OCIRepository
+    name: mariadb-operator-crds
+    namespace: mariadb-operator
+  values:
+  # https://github.com/mariadb-operator/mariadb-operator/blob/main/deploy/charts/mariadb-operator-crds/values.yaml
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: mariadb-operator
+  namespace: mariadb-operator
+spec:
+  interval: 5m
+  chartRef:
+    kind: OCIRepository
+    name: mariadb-operator
+    namespace: mariadb-operator
+  values:
+  # https://github.com/mariadb-operator/mariadb-operator/blob/main/deploy/charts/mariadb-operator/values.yaml

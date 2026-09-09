@@ -8,7 +8,7 @@ spec:
   chartRef:
     kind: OCIRepository
     name: kubernetes-event-exporter
-    namespace: flux-system
+    namespace: prometheus
   values:
   # https://artifacthub.io/packages/helm/bitnami/kubernetes-event-exporter
   # https://github.com/bitnami/charts/blob/main/bitnami/kubernetes-event-exporter/values.yaml

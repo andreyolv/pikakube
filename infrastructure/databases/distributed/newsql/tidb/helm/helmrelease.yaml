@@ -5,13 +5,9 @@ metadata:
   namespace: tidb
 spec:
   interval: 5m
-  chart:
-    spec:
-      chart: tidb-operator
-      version: 1.6.1
-      sourceRef:
-        kind: HelmRepository
-        name: pingcap
-        namespace: flux-system
+  chartRef:
+    kind: OCIRepository
+    name: tidb-operator
+    namespace: tidb
   values:
   # https://github.com/pingcap/tidb-operator/blob/master/charts/tidb-operator/values.yaml

@@ -2,7 +2,7 @@ apiVersion: source.toolkit.fluxcd.io/v1
 kind: OCIRepository
 metadata:
   name: kubewall
-  namespace: flux-system
+  namespace: kubewall
 spec:
   interval: 24h
   layerSelector:

@@ -1,0 +1,15 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: OCIRepository
+metadata:
+  name: policy-reporter
+  namespace: kyverno
+spec:
+  interval: 24h
+  layerSelector:
+    mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
+    operation: copy
+  ref:
+    tag: 2.24.2
+    digest: sha256:843fa972c29d99438fa074f9def0551fdfa0b18f71a3db9c027f9b58f4dadc99
+  url: oci://ghcr.io/kyverno/charts/policy-reporter
+  # https://github.com/kyverno/charts/pkgs/container/charts%2Fpolicy-reporter

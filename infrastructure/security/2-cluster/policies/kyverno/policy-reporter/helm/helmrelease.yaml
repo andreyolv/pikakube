@@ -8,14 +8,10 @@ spec:
   - name: kyverno
     namespace: kyverno
   interval: 5m
-  chart:
-    spec:
-      chart: policy-reporter
-      version: 2.24.2
-      sourceRef:
-        kind: HelmRepository
-        name: policy-reporter
-        namespace: flux-system
+  chartRef:
+    kind: OCIRepository
+    name: policy-reporter
+    namespace: kyverno
   values:
   # https://artifacthub.io/packages/helm/policy-reporter/policy-reporter
   # https://github.com/kyverno/policy-reporter/blob/main/charts/policy-reporter/values.yaml
@@ -25,4 +21,3 @@ spec:
     global:
       plugins:
         kyverno: true
-

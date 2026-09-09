@@ -1,0 +1,15 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: OCIRepository
+metadata:
+  name: prometheus-blackbox-exporter
+  namespace: prometheus
+spec:
+  interval: 24h
+  layerSelector:
+    mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
+    operation: copy
+  ref:
+    tag: 9.4.0
+    digest: sha256:868b838d392875c7680708ef2802f731470c842efb829a903554a3ce71e6638c
+  url: oci://ghcr.io/prometheus-community/charts/prometheus-blackbox-exporter
+  # https://github.com/prometheus-community/charts/pkgs/container/charts%2Fprometheus-blackbox-exporter

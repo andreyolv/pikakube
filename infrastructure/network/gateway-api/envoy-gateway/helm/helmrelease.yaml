@@ -8,7 +8,7 @@ spec:
   chartRef:
     kind: OCIRepository
     name: envoy-gateway
-    namespace: flux-system
+    namespace: envoy-gateway
   values:
   # https://artifacthub.io/packages/helm/envoy-gateway/gateway-helm
   # https://github.com/envoyproxy/gateway/blob/main/charts/gateway-helm/values.tmpl.yaml

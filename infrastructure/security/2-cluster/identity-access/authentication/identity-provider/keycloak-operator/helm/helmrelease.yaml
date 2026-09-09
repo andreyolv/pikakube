@@ -8,4 +8,5 @@ spec:
   chartRef:
     kind: OCIRepository
     name: keycloak-operator
+    namespace: keycloak
   values:

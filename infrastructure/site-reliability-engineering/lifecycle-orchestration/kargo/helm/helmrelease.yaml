@@ -12,14 +12,10 @@ spec:
   - name: argo-rollouts
     namespace: argo-rollouts
   interval: 5m
-  chart:
-    spec:
-      chart: kargo 
-      version: 1.1.1
-      sourceRef:
-        kind: HelmRepository
-        name: kargo
-        namespace: flux-system
+  chartRef:
+    kind: OCIRepository
+    name: kargo
+    namespace: kargo
   values:
   # https://artifacthub.io/packages/helm/kargo/kargo
   # https://github.com/akuity/kargo/blob/main/charts/kargo/values.yaml

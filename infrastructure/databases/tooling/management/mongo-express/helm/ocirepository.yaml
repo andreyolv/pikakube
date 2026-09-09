@@ -1,0 +1,15 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: OCIRepository
+metadata:
+  name: mongo-express
+  namespace: mongodb
+spec:
+  interval: 24h
+  layerSelector:
+    mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
+    operation: copy
+  ref:
+    tag: 7.0.0
+    digest: sha256:2b8e33095c3967e6f0ba6722f77fbaf7ce5a4a6283018c84d4d2c358ae773f4d
+  url: oci://ghcr.io/cowboysysop/charts/mongo-express
+  # https://github.com/cowboysysop/charts/pkgs/container/charts%2Fmongo-express

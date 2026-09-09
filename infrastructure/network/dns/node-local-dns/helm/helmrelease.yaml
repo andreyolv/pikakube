@@ -5,14 +5,10 @@ metadata:
   namespace: kube-system
 spec:
   interval: 5m
-  chart:
-    spec:
-      chart: node-local-dns
-      version: 2.1.0
-      sourceRef:
-        kind: HelmRepository
-        name: deliveryhero
-        namespace: flux-system
+  chartRef:
+    kind: OCIRepository
+    name: node-local-dns
+    namespace: kube-system
   values:
   # https://artifacthub.io/packages/helm/deliveryhero/node-local-dns
   # https://github.com/deliveryhero/helm-charts/blob/master/stable/node-local-dns/values.yaml

@@ -1,0 +1,15 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: OCIRepository
+metadata:
+  name: zitadel
+  namespace: zitadel
+spec:
+  interval: 24h
+  layerSelector:
+    mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
+    operation: copy
+  ref:
+    tag: 10.0.6
+    digest: sha256:2eb4eaaa5ee172a6df632968e92fe39cd797eff12181442093015f23a8502844
+  url: oci://ghcr.io/zitadel/zitadel-charts/zitadel
+  # https://github.com/zitadel/zitadel-charts/pkgs/container/zitadel-charts%2Fzitadel

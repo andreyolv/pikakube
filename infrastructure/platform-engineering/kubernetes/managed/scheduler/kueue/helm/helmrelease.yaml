@@ -8,7 +8,7 @@ spec:
   chartRef:
     kind: OCIRepository
     name: kueue
-    namespace: flux-system
+    namespace: kueue
   values:
   # https://github.com/kubernetes-sigs/kueue/blob/main/charts/kueue/values.yaml
     metrics:

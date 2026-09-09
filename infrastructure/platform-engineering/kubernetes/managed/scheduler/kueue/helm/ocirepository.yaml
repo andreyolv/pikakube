@@ -2,7 +2,7 @@ apiVersion: source.toolkit.fluxcd.io/v1
 kind: OCIRepository
 metadata:
   name: kueue
-  namespace: flux-system
+  namespace: kueue
 spec:
   interval: 24h
   layerSelector:

@@ -1,0 +1,15 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: OCIRepository
+metadata:
+  name: open-webui
+  namespace: open-webui
+spec:
+  interval: 24h
+  layerSelector:
+    mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
+    operation: copy
+  ref:
+    tag: 3.6.0
+    digest: sha256:819a84e88ffdb976dd8fc973ac42e0f74a9f98f94324e96b6af15f717e052afa
+  url: oci://ghcr.io/open-webui/helm-charts/open-webui
+  # https://github.com/open-webui/helm-charts/pkgs/container/helm-charts%2Fopen-webui

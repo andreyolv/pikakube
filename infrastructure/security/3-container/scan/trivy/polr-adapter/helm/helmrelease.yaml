@@ -5,14 +5,9 @@ metadata:
   namespace: trivy
 spec:
   interval: 5m
-  chart:
-    spec:
-      chart: trivy-operator-polr-adapter 
-      version: 0.11.1
-      sourceRef:
-        kind: HelmRepository
-        name: trivy-operator-polr-adapter
-        namespace: flux-system
+  chartRef:
+    kind: OCIRepository
+    name: trivy-operator-polr-adapter
+    namespace: trivy
   values:
   # https://github.com/fjogeleit/trivy-operator-polr-adapter/blob/main/charts/trivy-operator-polr-adapter/values.yaml
-  

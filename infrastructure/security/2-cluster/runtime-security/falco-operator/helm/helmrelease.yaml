@@ -8,6 +8,7 @@ spec:
   chartRef:
     kind: OCIRepository
     name: falco-operator
+    namespace: falco
   values:
   # https://artifacthub.io/packages/helm/falcosecurity/falco-operator
   # https://github.com/falcosecurity/falco-operator/blob/main/chart/falco-operator/values.yaml

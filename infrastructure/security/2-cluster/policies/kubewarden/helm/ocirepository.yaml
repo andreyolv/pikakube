@@ -1,0 +1,31 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: OCIRepository
+metadata:
+  name: kubewarden-crds
+  namespace: kubewarden
+spec:
+  interval: 24h
+  layerSelector:
+    mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
+    operation: copy
+  ref:
+    tag: 1.4.4
+    digest: sha256:b56900a3b087fb32b3c34b0e2c96438a652e33091f9676fb6381d62885f05f5b
+  url: oci://ghcr.io/kubewarden/charts/kubewarden-crds
+  # https://github.com/kubewarden/charts/pkgs/container/charts%2Fkubewarden-crds
+---
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: OCIRepository
+metadata:
+  name: kubewarden-controller
+  namespace: kubewarden
+spec:
+  interval: 24h
+  layerSelector:
+    mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
+    operation: copy
+  ref:
+    tag: 2.0.5
+    digest: sha256:623cfb807a6466c646188a18af85d2c810833af745af6aac24e27877329a7ede
+  url: oci://ghcr.io/kubewarden/charts/kubewarden-controller
+  # https://github.com/kubewarden/charts/pkgs/container/charts%2Fkubewarden-controller

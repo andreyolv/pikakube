@@ -1,0 +1,15 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: OCIRepository
+metadata:
+  name: oncall
+  namespace: oncall
+spec:
+  interval: 24h
+  layerSelector:
+    mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
+    operation: copy
+  ref:
+    tag: 1.13.11
+    digest: sha256:2766d4b41b09140516526c4153eef8d3400b71a10cf8edd09b938feacb2dabaa
+  url: oci://ghcr.io/grafana/helm-charts/oncall
+  # https://github.com/orgs/grafana/packages/container/package/helm-charts%2Foncall

@@ -1,0 +1,15 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: OCIRepository
+metadata:
+  name: argo-cd
+  namespace: argocd
+spec:
+  interval: 24h
+  layerSelector:
+    mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
+    operation: copy
+  ref:
+    tag: 7.7.13
+    digest: sha256:9afaf74ffd4d2f6abaa69b5c96245722869591cded410d1d3dfac36077236d4c
+  url: oci://ghcr.io/argoproj/argo-helm/argo-cd
+  # https://github.com/argoproj/argo-helm/pkgs/container/argo-helm%2Fargo-cd

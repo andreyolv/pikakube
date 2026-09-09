@@ -1,0 +1,15 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: OCIRepository
+metadata:
+  name: mailhog
+  namespace: mailhog
+spec:
+  interval: 24h
+  layerSelector:
+    mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
+    operation: copy
+  ref:
+    tag: 5.5.0
+    digest: sha256:e5d02331025cf8182d725334ebd9a3ec7838254554f0b4003a7b717815b602fa
+  url: oci://ghcr.io/codecentric/helm-charts/mailhog
+  # https://github.com/codecentric/helm-charts/pkgs/container/helm-charts%2Fmailhog

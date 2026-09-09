@@ -8,6 +8,7 @@ spec:
   chartRef:
     kind: OCIRepository
     name: keycloak
+    namespace: keycloak
   values:
   # https://artifacthub.io/packages/helm/codecentric/keycloakx
   # https://github.com/codecentric/helm-charts/blob/master/charts/keycloakx/values.yaml

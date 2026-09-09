@@ -1,0 +1,15 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: OCIRepository
+metadata:
+  name: kube-downscaler
+  namespace: kube-system
+spec:
+  interval: 24h
+  layerSelector:
+    mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
+    operation: copy
+  ref:
+    tag: 0.7.4
+    digest: sha256:9c622402a922a4846755145c3981e373bda250b5c9976af1f2b99003687bde25
+  url: oci://ghcr.io/deliveryhero/helm-charts/kube-downscaler
+  # https://github.com/deliveryhero/helm-charts/pkgs/container/helm-charts%2Fkube-downscaler
