@@ -9,7 +9,7 @@ spec:
     mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
     operation: copy
   ref:
-    tag: 2.43.0
-    digest: sha256:c08f2702f1dc06832fd3194875ffae3761da04c20a3223eaa0d1cb546ce12231
+    tag: 2.43.1
+    digest: sha256:20a9baa850db209b8c5e6afc2f003af66076ff1a77c9750ada1efa4307dfac3d
   url: oci://ghcr.io/argoproj/argo-helm/argo-rollouts
   # https://github.com/argoproj/argo-helm/pkgs/container/argo-helm%2Fargo-rollouts

@@ -9,7 +9,7 @@ spec:
     mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
     operation: copy
   ref:
-    tag: 2.3.0
-    digest: sha256:4a2a6d39f5eef73f73dcd85bf6885c98ae9f72d4a0e6167221f76d35e38fae7e
+    tag: 3.0.0
+    digest: sha256:b3aae80a7b438ccd6bacdbde3453469bf2cc5d09ca26c1b8bf27847e70921e24
   url: oci://ghcr.io/grafana-community/helm-charts/tempo
   # https://github.com/grafana-community/helm-charts/pkgs/container/helm-charts%2Ftempo

@@ -9,7 +9,7 @@ spec:
     mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
     operation: copy
   ref:
-    tag: 0.14.4
-    digest: sha256:1da7a5742a2b30ed30e71832cf875becbc6a49551d020c940db52cf34045644e
+    tag: 0.14.5
+    digest: sha256:1b82041b6e4e575a88accf9274cd772d56e67258ec0ea88059930fea895dab4b
   url: oci://ghcr.io/projectcapsule/charts/capsule
   # https://github.com/projectcapsule/charts/pkgs/container/charts%2Fcapsule
