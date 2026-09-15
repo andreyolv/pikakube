@@ -9,7 +9,7 @@ spec:
     mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
     operation: copy
   ref:
-    tag: 0.10.7
-    digest: sha256:084ff7e27c7153750f4d8b7ed51bdd5fd2e366b435708e1119fb702c0d47c106
+    tag: 0.10.8
+    digest: sha256:9ff3ca6ae4a0155de4dd667f8b760e56e1bd5c8233a0321ad870a654ce022f2f
   url: oci://ghcr.io/sigstore/helm-charts/policy-controller
   # https://github.com/sigstore/helm-charts/pkgs/container/helm-charts%2Fpolicy-controller
