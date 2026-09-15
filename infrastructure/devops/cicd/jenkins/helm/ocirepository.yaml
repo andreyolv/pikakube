@@ -9,7 +9,7 @@ spec:
     mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
     operation: copy
   ref:
-    tag: 5.9.56
-    digest: sha256:462d0ace4e2dc1f10f8e15dac6a33949fb740bf5413d45a995a8dc9b46871b7e
+    tag: 5.9.62
+    digest: sha256:c8300ebbe5ec4adc5bae0eaaea493933b60550af6fb083abe4b242a72269da7b
   url: oci://ghcr.io/jenkinsci/helm-charts/jenkins
   # https://github.com/jenkinsci/helm-charts/pkgs/container/helm-charts%2Fjenkins
