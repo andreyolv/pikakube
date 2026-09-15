@@ -39,6 +39,12 @@ The consequence for a data platform: alert on **freshness, completeness and pipe
 failure** — the things a consumer notices — rather than on pod restarts, which are usually
 Kubernetes doing its job.
 
+When the rules have to be written for something unfamiliar, the
+[awesome-prometheus-alerts](../metrics/storage/prometheus/README.md#alert-rule-catalogues)
+catalogue is a reasonable starting list of what is worth watching per exporter — read the
+caveats recorded there first: its thresholds are generic and many of its rules are
+cause-based.
+
 ## 2. Four separate jobs
 
 These get merged and should not be:

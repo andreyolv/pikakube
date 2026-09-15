@@ -85,6 +85,31 @@ kubectl port-forward svc/kube-prometheus-stack-kube-state-metrics 8080
 kubectl port-forward svc/kube-prometheus-stack-prometheus-node-exporter 9100
 ```
 
+### Alert rule catalogues
+
+**awesome-prometheus-alerts** — <https://github.com/samber/awesome-prometheus-alerts> ·
+<https://samber.github.io/awesome-prometheus-alerts/>
+
+A community catalogue of roughly 1,150 PromQL alerting rules across some 90 exporters and
+services: hosts and node-exporter, the databases, Kafka and RabbitMQ, Nginx and Envoy,
+Kubernetes and Etcd, Thanos and Loki, the cloud providers. The site renders each group as
+YAML, so a rule reaches a `PrometheusRule` with only the wrapper added. Rules are CC BY 4.0.
+
+What it is good for is the exporter nobody on the team has run before — it answers "what is
+worth watching here" without reading the metric endpoint from scratch. It is not a rule set
+to install wholesale:
+
+- thresholds are generic defaults; firing on someone else's numbers is exactly how the noise
+  problem in [`alerting/`](../../../alerting/README.md#1-the-real-problem-is-noise) starts
+- a large share of the rules are cause-based — CPU, memory and disk percentages — which is
+  the opposite of what the alerting folder argues for
+- quality varies by contributor, and no rule carries a runbook
+- for Kubernetes itself it is mostly redundant: kube-prometheus-stack already ships the
+  kubernetes-mixin rules, which are maintained against the current API
+
+Take the few rules that map to a symptom worth paging on, set the threshold from your own
+history, and attach a runbook.
+
 ### Open issues worth being aware of
 
 - <https://github.com/prometheus-operator/prometheus-operator/issues/1547>
