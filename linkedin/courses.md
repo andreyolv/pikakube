@@ -36,3 +36,5 @@ https://escolaforja.com.br/certificate/491e39cd-3d43-428a-a24a-11c880377783
 MongoDB Patterns & Pitfalls
 https://escolaforja.com.br/certificate/2b29b85b-652c-4c3d-bcd1-19c8552c0ddd
 
+Escuta Ativa
+https://escolaforja.com.br/certificate/3c57daf1-ca09-470a-9dc3-cf8294fed155
