@@ -9,6 +9,9 @@
 Falco's own operator: instances, rules, plugins and configuration as **Kubernetes objects** instead
 of Helm values. Incubating in the Falco ecosystem, and deployed here as an OCI chart.
 
+Instances: [`k8saudit-eks/`](k8saudit-eks/README.md) — the EKS control plane audit log as a Falco
+event source, and the first thing in this folder that is a deployment rather than a sample.
+
 ---
 
 ## The problem it solves
@@ -115,7 +118,7 @@ It is the same discipline argued for actions in
 [GitHub Actions §8](../../../../devops/cicd/github-actions/README.md#8-anti-patterns) and the
 opposite of the tag-only pinning noted elsewhere in this repository.
 
-**The `HelmRelease` has empty values and the sample instance has an empty spec.** `example/falco.yaml`
+**The `HelmRelease` has empty values and the sample instance has an empty spec.** `artifacts/falco.yaml`
 is a `Falco` named `falco-sample` with `spec: {}` — the default deployment, no driver choice, no
 rule configuration, no outputs. That is the right way to start (install the operator, confirm it
 reconciles, then configure), but it is worth being explicit that as it stands this is **an operator
@@ -128,6 +131,16 @@ you control, and treat rule artefacts the way
 [`security/0-governance/supply-chain/`](../../../../security/0-governance/supply-chain/README.md)
 treats any other pulled artefact. A malicious or merely wrong rules file does not open a hole — it
 closes an eye, which is harder to notice.
+
+**The first real instance is `k8saudit-eks/`.** It is deliberately *not* a syscall deployment: it is
+a `Falco` of `type: Deployment` running the `nodriver` engine, whose only event source is the EKS
+audit log pulled from CloudWatch. That makes it the cheapest possible proof of the argument above —
+a plugin, a ruleset and an instance, each a reviewable object, none of them a chart upgrade — and it
+sits beside the syscall deployment rather than replacing it. It also surfaces a limit of the
+operator worth knowing before designing around it: **artifacts scope by namespace, not by instance.**
+`Plugin`, `Rulesfile` and `Config` objects are read by the artifact-operator sidecar in its own
+namespace only, and their `selector` filters nodes rather than `Falco` CRs — so two instances with
+different artifact sets need two namespaces, which is why that folder brings its own.
 
 **Where this fits in pikakube.** The manifests here are the newer half of a decision this repository
 has not finished: [`../falco/`](../falco/README.md) has the fuller deployment (sidekick, the UI, gRPC

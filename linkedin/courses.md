@@ -29,3 +29,10 @@ https://escolaforja.com.br/certificate/25132adb-55b1-49cf-a4b7-c01cb1885a0d
 
 Entregas de Longo Prazo
 https://escolaforja.com.br/certificate/859bd1fd-4739-404b-adc8-ae3c67698f72
+
+Como Estruturar Cenários de Testes
+https://escolaforja.com.br/certificate/491e39cd-3d43-428a-a24a-11c880377783
+
+MongoDB Patterns & Pitfalls
+https://escolaforja.com.br/certificate/2b29b85b-652c-4c3d-bcd1-19c8552c0ddd
+

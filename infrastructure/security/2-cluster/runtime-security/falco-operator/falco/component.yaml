@@ -1,0 +1,25 @@
+# k8s-metacollector feeds Kubernetes metadata to the k8smeta plugin in plugin.yaml.
+# One without the other does nothing: the collector has no consumer, the plugin has no source.
+apiVersion: instance.falcosecurity.dev/v1alpha1
+kind: Component
+metadata:
+  name: metacollector
+  namespace: falco
+spec:
+  component:
+    type: metacollector
+  replicas: 1
+  podTemplateSpec:
+    spec:
+      # `containers` is required by the CRD whenever podTemplateSpec is set at all. The name
+      # has to match the container the operator generates, or this adds a second one instead
+      # of merging into it.
+      containers:
+        - name: metacollector
+      nodeSelector:
+        agentpool: system
+      tolerations:
+        - effect: NoSchedule
+          key: agentpool
+          operator: Equal
+          value: system

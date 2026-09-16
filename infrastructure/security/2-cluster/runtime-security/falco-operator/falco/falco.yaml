@@ -1,0 +1,19 @@
+apiVersion: instance.falcosecurity.dev/v1alpha1
+kind: Falco
+metadata:
+  name: falco
+  namespace: falco
+spec:
+  podTemplateSpec:
+    spec:
+      # `containers` is required by the CRD whenever podTemplateSpec is set, and the name has
+      # to match the container the operator generates, or this adds a second one instead of
+      # merging into it.
+      containers:
+        - name: falco
+      # Runtime security has to see every node. Most node pools here carry an `agentpool`
+      # taint, and the operator only tolerates the control-plane ones by default — without
+      # this the DaemonSet lands on the untainted nodes only and reports itself healthy
+      # while the tainted pools produce no events at all.
+      tolerations:
+        - operator: Exists

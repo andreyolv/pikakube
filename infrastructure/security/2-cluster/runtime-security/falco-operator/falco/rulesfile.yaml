@@ -7,7 +7,9 @@ spec:
   ociArtifact:
     image:
       repository: falcosecurity/rules/falco-rules
-      tag: latest
+      tag: 5.2.0
     registry:
       name: ghcr.io
   priority: 50
+
+# https://github.com/falcosecurity/rules/tree/main/rules

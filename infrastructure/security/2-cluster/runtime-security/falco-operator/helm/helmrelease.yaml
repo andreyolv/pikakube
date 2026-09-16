@@ -12,3 +12,10 @@ spec:
   values:
   # https://artifacthub.io/packages/helm/falcosecurity/falco-operator
   # https://github.com/falcosecurity/falco-operator/blob/main/chart/falco-operator/values.yaml
+    nodeSelector:
+      agentpool: system
+    tolerations:
+      - effect: NoSchedule
+        key: agentpool
+        operator: Equal
+        value: system

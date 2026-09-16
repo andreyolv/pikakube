@@ -1,0 +1,53 @@
+apiVersion: instance.falcosecurity.dev/v1alpha1
+kind: Component
+metadata:
+  name: sidekick
+  namespace: falco
+spec:
+  component:
+    type: falcosidekick
+  replicas: 1
+  podTemplateSpec:
+    spec:
+      # `containers` is required by the CRD whenever podTemplateSpec is set, and the name has
+      # to match the container the operator generates, or this adds a second one instead of
+      # merging into it.
+      containers:
+        - name: falcosidekick
+          env:
+            # Falcosidekick starts with no outputs at all. The UI is one of its outputs, not
+            # a consumer that subscribes on its own, so without this it logs
+            # "Enabled Outputs: []", accepts every event from Falco and drops it.
+            # The host is the Service, whose name is the name of the UI Component.
+            - name: WEBUI_URL
+              value: "http://sidekick-ui.falco.svc:2802"
+      nodeSelector:
+        agentpool: system
+      tolerations:
+        - effect: NoSchedule
+          key: agentpool
+          operator: Equal
+          value: system
+---
+# Requires Redis at falcosidekick-ui-redis:6379 (see redis.yaml). Without it the pod has a
+# wait-redis init container that blocks forever and it sits at Init:0/1.
+apiVersion: instance.falcosecurity.dev/v1alpha1
+kind: Component
+metadata:
+  name: sidekick-ui
+  namespace: falco
+spec:
+  component:
+    type: falcosidekick-ui
+  replicas: 1
+  podTemplateSpec:
+    spec:
+      containers:
+        - name: falcosidekick-ui
+      nodeSelector:
+        agentpool: system
+      tolerations:
+        - effect: NoSchedule
+          key: agentpool
+          operator: Equal
+          value: system

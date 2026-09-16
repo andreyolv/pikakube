@@ -1,0 +1,17 @@
+apiVersion: artifact.falcosecurity.dev/v1alpha1
+kind: Config
+metadata:
+  name: k8saudit-eks-output
+  namespace: falco-k8saudit-eks
+spec:
+  config:
+    json_output: true
+    stdout_output:
+      enabled: true
+    http_output:
+      enabled: true
+      # The falcosidekick Component lives in the `falco` namespace, so the address has to
+      # be qualified across namespaces. Audit events then land in the same UI as the
+      # syscall ones, through the sidekick that is already there.
+      url: "http://sidekick.falco.svc:2801"
+  priority: 50

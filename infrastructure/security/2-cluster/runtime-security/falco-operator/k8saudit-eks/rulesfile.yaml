@@ -1,0 +1,15 @@
+apiVersion: artifact.falcosecurity.dev/v1alpha1
+kind: Rulesfile
+metadata:
+  name: k8saudit-rules
+  namespace: falco-k8saudit-eks
+spec:
+  # k8saudit-eks reuses the k8saudit source (`k8s_audit`), so the upstream k8saudit
+  # ruleset applies unchanged — there is no eks-specific ruleset.
+  ociArtifact:
+    image:
+      repository: falcosecurity/plugins/ruleset/k8saudit
+      tag: 0.10.1
+    registry:
+      name: ghcr.io
+  priority: 50

@@ -1,0 +1,21 @@
+apiVersion: instance.falcosecurity.dev/v1alpha1
+kind: Falco
+metadata:
+  name: k8saudit-eks
+  namespace: falco-k8saudit-eks
+spec:
+  # Deployment mode runs Falco with the `nodriver` engine: no syscalls, plugin sources only.
+  type: Deployment
+  # The plugin polls CloudWatch Logs. A second replica polls the same log group and every
+  # audit event is alerted twice, so this must stay at 1.
+  replicas: 1
+  strategy:
+    # RollingUpdate would briefly run two pods, which is the duplication above.
+    type: Recreate
+  podTemplateSpec:
+    spec:
+      # `containers` is required by the CRD whenever podTemplateSpec is set, and the name has
+      # to match the container the operator generates, or this adds a second one instead of
+      # merging into it.
+      containers:
+        - name: falco

@@ -3,5 +3,13 @@ kind: Namespace
 metadata:
   name: falco
   labels:
+    agentpool: none
+    team: dataops
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: falco-k8saudit-eks
+  labels:
     agentpool: system
     team: dataops

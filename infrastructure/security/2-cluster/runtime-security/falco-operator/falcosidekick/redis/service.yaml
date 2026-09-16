@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: falcosidekick-ui-redis
+  namespace: falco
+spec:
+  type: ClusterIP
+  ports:
+    - port: 6379
+      targetPort: 6379
+      protocol: TCP
+      name: redis
+  selector:
+    app.kubernetes.io/name: falcosidekick-ui-redis

@@ -1,0 +1,18 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "ReadAccessToCloudWatchLogs",
+      "Effect": "Allow",
+      "Action": [
+        "logs:Describe*",
+        "logs:FilterLogEvents",
+        "logs:Get*",
+        "logs:List*"
+      ],
+      "Resource": [
+        "arn:aws:logs:${REGION}:${ACCOUNT_ID}:log-group:/aws/eks/${CLUSTER_NAME}/cluster:*"
+      ]
+    }
+  ]
+}

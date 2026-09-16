@@ -1,0 +1,40 @@
+apiVersion: artifact.falcosecurity.dev/v1alpha1
+kind: Plugin
+metadata:
+  name: k8saudit-eks
+  namespace: falco-k8saudit-eks
+spec:
+  ociArtifact:
+    image:
+      repository: falcosecurity/plugins/plugin/k8saudit-eks
+      tag: 0.12.0
+    registry:
+      name: ghcr.io
+  config:
+    # open_params is the EKS cluster name; the plugin reads
+    # /aws/eks/<cluster>/cluster from CloudWatch Logs.
+    openParams: "eks-data-dev"
+    initConfig:
+      # Falls back to the AWS_REGION env var when omitted.
+      region: us-east-2
+      # `profile` is deliberately unset: with Pod Identity or IRSA the credentials come
+      # from the environment, and naming a profile makes the SDK look for a file that
+      # does not exist in the pod.
+      polling_interval: 10
+      shift: 10
+      buffer_size: 500
+      use_async: false
+---
+# The k8saudit rules evaluate JSON payloads, so the json plugin has to be loaded alongside.
+apiVersion: artifact.falcosecurity.dev/v1alpha1
+kind: Plugin
+metadata:
+  name: json
+  namespace: falco-k8saudit-eks
+spec:
+  ociArtifact:
+    image:
+      repository: falcosecurity/plugins/plugin/json
+      tag: 0.7.4
+    registry:
+      name: ghcr.io

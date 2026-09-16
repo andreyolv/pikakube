@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: falcosidekick-ui-redis
+  namespace: falco
+spec:
+  serviceName: falcosidekick-ui-redis
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: falcosidekick-ui-redis
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: falcosidekick-ui-redis
+    spec:
+      containers:
+        - name: redis
+          image: docker.io/redis/redis-stack:7.2.0-v11
+          ports:
+            - containerPort: 6379
+              name: redis
+              protocol: TCP
+          livenessProbe:
+            tcpSocket:
+              port: 6379
+            initialDelaySeconds: 5
+            periodSeconds: 5
+            timeoutSeconds: 2
+            failureThreshold: 3
+          readinessProbe:
+            tcpSocket:
+              port: 6379
+            initialDelaySeconds: 5
+            periodSeconds: 5
+            timeoutSeconds: 2
+            failureThreshold: 3
+  volumeClaimTemplates:
+    - metadata:
+        name: redis-data
+      spec:
+        accessModes: ["ReadWriteOnce"]
+        resources:
+          requests:
+            storage: 1Gi
