@@ -1,0 +1,15 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: OCIRepository
+metadata:
+  name: crossview
+  namespace: crossview
+spec:
+  interval: 24h
+  layerSelector:
+    mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
+    operation: copy
+  ref:
+    tag: 4.6.0
+    digest: sha256:52588c45cb226f3c6e2b1511d10a639121e95408110d4806c4b492b7fb0dbc8a
+  url: oci://ghcr.io/crossplane-contrib/crossview-chart/crossview
+  # https://github.com/crossplane-contrib/crossview/pkgs/container/crossview-chart%2Fcrossview

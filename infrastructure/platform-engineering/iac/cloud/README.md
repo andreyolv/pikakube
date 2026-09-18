@@ -4,13 +4,13 @@
 
 Cloud resources as Kubernetes objects — one reconciliation loop instead of two.
 
-Tools covered: [`aws-controllers-for-kubernetes/`](aws-controllers-for-kubernetes/README.md) · [`azure-service-operator/`](azure-service-operator/README.md) · [`gcp-config-connector/`](gcp-config-connector/README.md)
+Tools covered: [`aws-controllers-for-kubernetes/`](aws-controllers-for-kubernetes/README.md) · [`azure-service-operator/`](azure-service-operator/README.md) · [`gcp-config-connector/`](gcp-config-connector/README.md) · [`crossplane/`](crossplane/README.md)
 
 ## Contents
 
 1. [The idea, and what it buys](#1-the-idea-and-what-it-buys)
 2. [What you give up](#2-what-you-give-up)
-3. [The three implementations](#3-the-three-implementations)
+3. [The implementations](#3-the-implementations)
 4. [Deletion, and the field that prevents disasters](#4-deletion-and-the-field-that-prevents-disasters)
 5. [Decision tree](#5-decision-tree)
 6. [Anti-patterns](#6-anti-patterns)
@@ -55,7 +55,10 @@ The costs are real and they are not evenly distributed.
 - **Deleting a namespace deletes cloud resources.** Kubernetes garbage collection does not know that
   one of these objects was a production database. See section 4.
 
-## 3. The three implementations
+## 3. The implementations
+
+Three of them are a single cloud's own operator, and the comparison between those is packaging and
+identity:
 
 | | [ACK](aws-controllers-for-kubernetes/README.md) | [ASO](azure-service-operator/README.md) | [Config Connector](gcp-config-connector/README.md) |
 |---|---|---|---|
@@ -73,6 +76,14 @@ and bring a large CRD surface with them, which is simpler to operate and coarser
 All three authenticate best through the cloud's workload-identity mechanism rather than a static
 credential. A long-lived secret in the cluster with cloud-admin rights is the version of this pattern
 that turns a cluster compromise into an account compromise.
+
+**[Crossplane](crossplane/README.md) is the fourth and is a different kind of thing.** It is not one
+cloud's operator but a framework: providers supply the managed-resource CRDs — including for all
+three clouds above — and on top of them it adds the piece the vendor operators have no answer for,
+which is **an abstraction the platform team defines** (XRDs and Compositions) instead of exposing the
+provider's CRD directly. Everything in sections 1, 2 and 4 applies to it unchanged; what it adds is
+a layer in front. Choose it when there is more than one cloud, or when application teams should be
+given a small, opinionated API rather than a resource with two hundred fields.
 
 ## 4. Deletion, and the field that prevents disasters
 
@@ -102,10 +113,12 @@ flowchart TD
     START -->|AWS| ACK[aws-controllers-for-kubernetes/<br/>one controller per service]
     START -->|Azure| ASO[azure-service-operator/<br/>needs cert-manager]
     START -->|GCP| CC[gcp-config-connector/<br/>or the GKE add-on]
+    START -->|"More than one,<br/>or teams need their<br/>own simplified API"| XP[crossplane/<br/>providers + compositions]
 
     ACK --> Q1
     ASO --> Q1
     CC --> Q1
+    XP --> Q1
 
     Q1{Does the CRD cover<br/>every field you need?}
     Q1 -->|No| ENG[engine/<br/>Terraform still has<br/>the coverage]
@@ -143,6 +156,11 @@ credentials. The cluster is Azure-flavoured throughout.
 [ACK](aws-controllers-for-kubernetes/README.md) and
 [Config Connector](gcp-config-connector/README.md) are two links each — the project and its install
 guide. Mapped so the option is known, not evaluated.
+
+[Crossplane](crossplane/README.md) is new here and is described rather than deployed: no provider,
+no XRD, no composition. The only manifests under it belong to
+[crossview](crossplane/crossview/README.md), a dashboard for a control plane this cluster does not
+run yet — which is a sequencing worth being explicit about rather than letting it read as adoption.
 
 Nothing here is actually managing a cloud resource today. The sample `ResourceGroup` is the
 project's own example and the credentials Secret is empty. Before that changes, the deletion policy

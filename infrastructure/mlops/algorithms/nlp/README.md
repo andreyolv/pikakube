@@ -197,7 +197,7 @@ layout, and it is the correct outcome rather than a gap.
    folder.
 2. **No GPU.** `NVIDIA/k8s-device-plugin` is noted in [`../../README.md`](../../README.md#7-notes)
    and not installed, so fine-tuning is blocked here regardless of the library.
-3. **Nothing tracks prompts or evaluations.** [MLflow](../../lifecycle/mlflow2/README.md) tracks
+3. **Nothing tracks prompts or evaluations.** [MLflow](../../lifecycle/mlflow-chart/README.md) tracks
    training runs. LLM-based work has no training run — its parameters are the prompt and the model
    version, and nothing here records either. `ai/agents/langfuse/` is the tool in this repository
    aimed at that problem, and it sits in the other folder.

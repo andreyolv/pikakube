@@ -41,7 +41,7 @@ deciding how much of the estate sits on the far side of it.
 
 Once a cluster exists, there is a real choice about where cloud resources are declared.
 
-| | **[`engine/`](engine/README.md)** — OpenTofu, Pulumi | **[`cloud/`](cloud/README.md)** — ACK, ASO, Config Connector |
+| | **[`engine/`](engine/README.md)** — OpenTofu, Pulumi | **[`cloud/`](cloud/README.md)** — ACK, ASO, Config Connector, Crossplane |
 |---|---|---|
 | Written as | HCL or a programming language | Kubernetes CRDs |
 | Applied by | a person or a pipeline, on demand | a controller in the cluster, continuously |
@@ -110,7 +110,7 @@ flowchart TD
     START -->|A Kubernetes object| GO[gitops/<br/>not this folder]
 
     Q1{Should it reconcile<br/>continuously?}
-    Q1 -->|Yes, and the provider<br/>has a controller| CLOUD[cloud/<br/>ACK / ASO / Config Connector]
+    Q1 -->|Yes, and the provider<br/>has a controller| CLOUD[cloud/<br/>ACK / ASO / Config Connector<br/>or Crossplane]
     Q1 -->|A reviewed plan<br/>matters more| Q2
 
     Q2{Is there existing<br/>Terraform?}
@@ -144,6 +144,10 @@ This folder is **mostly a survey**, and it is honest about that. One thing here 
 manifests: [Azure Service Operator](cloud/azure-service-operator/README.md) — a `HelmRelease` at
 1.12.0 with a `dependsOn` on cert-manager and a sample `ResourceGroup`. Everything else is a link, a
 command and in two cases a verdict.
+
+The exception that proves it: [`cloud/crossplane/`](cloud/crossplane/README.md) has manifests for
+[crossview](cloud/crossplane/crossview/README.md), a dashboard for Crossplane, while Crossplane
+itself is not installed — the UI for a control plane that does not exist yet.
 
 The verdicts are the value:
 

@@ -152,7 +152,7 @@ decision not yet taken.
 
 Three things are already in place that would decide how a deployment here should look:
 
-- **The model source.** [`../lifecycle/mlflow2/`](../lifecycle/mlflow2/README.md) has a registry.
+- **The model source.** [`../lifecycle/mlflow-chart/`](../lifecycle/mlflow-chart/README.md) has a registry.
   An app should load a *registered model version*, not a file somebody built — that is the whole
   point of the registry as a handoff artefact.
 - **The auth pattern.** `lifecycle/mlflow/oauth/` already contains a worked example of fronting an

@@ -84,6 +84,12 @@ The upstream issue tracking an official Helm chart for the Kubeflow manifests. T
 Kubeflow is **documented here and not deployed**: the decision was made to wait for a packaged
 install rather than take on a hand-maintained Kustomize tree.
 
+As of `v1.11.0` the wait is still on. The repository was renamed to
+[`kubeflow/community-distribution`](https://github.com/kubeflow/community-distribution), and an
+`experimental/helm/charts/` directory now exists upstream — but it holds three charts, `hub`,
+`katib` and `kserve-ui`, all labelled experimental. That is not the platform, and the Kustomize
+tree remains the only supported way to install it.
+
 That is a defensible position and worth stating as a position rather than as an absence. The
 alternatives, if the wait becomes indefinite:
 

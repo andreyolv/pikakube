@@ -6,7 +6,7 @@ The application and serving layer for AI — running models, governing the traff
 wiring them to tools.
 
 Subfolders: [`agents/`](agents/README.md) · [`ai-gateway/`](ai-gateway/README.md) ·
-[`llm/`](llm/README.md) · [`mcp/`](mcp/README.md)
+[`evaluation/`](evaluation/README.md) · [`llm/`](llm/README.md) · [`mcp/`](mcp/README.md)
 
 ## Contents
 
@@ -66,12 +66,14 @@ If a model is ever trained here, the boundary is the registry: **producing a ver
 | [`ai-gateway/`](ai-gateway/README.md) | who is allowed to call which model, at what rate, and who pays? |
 | [`mcp/`](mcp/README.md) | how does a model reach tools and data, once, in a way any client can use? |
 | [`agents/`](agents/README.md) | how is a multi-step, tool-using loop structured and operated? |
+| [`evaluation/`](evaluation/README.md) | how do you know whether any of it is producing good answers? |
 
 The order is deliberate — it is roughly the order in which the pieces become necessary. A model
 endpoint is useful on its own. A gateway becomes necessary at the second consumer. MCP becomes
 necessary at the second client of a tool. Agents become necessary only when the sequence of
 steps genuinely cannot be written down in advance, which is less often than the discourse
-suggests.
+suggests. Evaluation is last in the table and should not be last in practice — it becomes
+necessary the moment anything reaches a user, which is usually before the fourth row is built.
 
 Two things are filed in this tree that do not match their folder, recorded as observations
 rather than moved:
@@ -274,7 +276,7 @@ being used.
 
 The original note filed these under *llm evaluation*.
 
-- <https://github.com/promptfoo/promptfoo> — evaluation and red-teaming for prompts, run from
+- [promptfoo](evaluation/promptfoo/README.md) — evaluation and red-teaming for prompts, run from
   the command line and in CI. Declarative test cases, side-by-side comparison across models and
   prompt versions. The most CI-shaped of these, which is what makes evaluation a habit rather
   than an exercise.
@@ -285,10 +287,23 @@ The original note filed these under *llm evaluation*.
   alternative to [Langfuse](agents/langfuse/README.md), which is the one actually deployed here;
   the comparison to make is on self-hosting story and dependencies rather than on feature lists,
   which are similar.
+- <https://github.com/NVIDIA/garak> — not from the original note, recorded here because it belongs
+  beside the others. A vulnerability scanner for an LLM rather than an evaluator of it: it drives a
+  catalogue of probes at a model endpoint — prompt injection, jailbreaks, system-prompt and
+  training-data leakage, toxic generation, package hallucination — and reports which ones got
+  through. The difference is the question being asked: promptfoo
+  and deepeval ask *is the answer good*, garak asks *can this be made to misbehave*, and only the
+  second one has an adversary in it. It belongs in CI for the same reason a dependency scanner does,
+  with the same caveat — a clean run is evidence that the known probes failed, not that the model is
+  safe. The runtime counterpart is recorded in
+  [`security/0-governance/supply-chain/ml/`](../security/0-governance/supply-chain/ml/README.md):
+  NeMo Guardrails constrains behaviour at inference time, and garak is what tells you whether the
+  constraint actually holds.
 
-Together these are the answer to the fourth property in section 4, and the capability this
-repository is missing entirely: nothing here yet defines what a good answer is for any deployed
-component.
+Together these are the answer to the fourth property in section 4. That note originally read
+*"the capability this repository is missing entirely"*; [`evaluation/`](evaluation/README.md) now
+exists and promptfoo is deployed there, but the sentence after it still stands — nothing here yet
+defines what a good answer is for any deployed component, and the tool is the easy half of that.
 
 ### 7.7 Web scraping
 
@@ -325,6 +340,7 @@ project was recorded as a pointer and is **not evaluated here**, which is the ho
 |---|---|
 | <https://github.com/anthropics/claude-code> | Anthropic's coding agent, run from the terminal or hosted in an editor. Agentic rather than completion-based: it reads the repository, runs commands, and edits files across a task. Configured per repository through a `CLAUDE.md` and reusable skills — the packaged-instruction pattern described in section 7.10 |
 | <https://github.com/openai/codex> | OpenAI's coding agent, run from the terminal |
+| <https://github.com/aaif-goose/goose> | a **general-purpose** agent rather than a coding one — desktop app, CLI and API, written in Rust, and provider-agnostic across a dozen-plus backends including a local [Ollama](llm/ollama/README.md). Its capabilities come from **MCP servers**, which makes it the entry here most directly downstream of a decision made in [`mcp/`](mcp/README.md) |
 | <https://github.com/aider-ai/aider> | terminal pair programmer, built around Git — it commits its own changes, which makes review and revert normal operations |
 | <https://github.com/cline/cline> | autonomous coding agent as an editor extension |
 | <https://github.com/Kilo-Org/kilocode> | editor-based AI coding extension |
@@ -346,6 +362,14 @@ The size of this list is itself the observation. A dozen coding agents recorded 
 describes the state of the area accurately, and it is the concrete case for the "adopting a tool
 because it is new" anti-pattern in section 6.
 
+**goose is the one with a governance answer**, and that is the reason to single it out rather than
+any feature. It sits in the Agentic AI Foundation at the Linux Foundation, not in the repository of
+the company that wrote it — Block donated it — so the usual question about a developer tool in this
+space, *what happens to this when the vendor's strategy changes*, has an actual answer. That is the
+same filter section 7.2 applies to the CNCF landscape, and in an area this crowded it narrows the
+list faster than comparing capabilities does. It is not a claim about quality: a foundation is a
+continuity guarantee, not a quality one.
+
 ### 7.10 Skills, prompts and context for agents
 
 - <https://github.com/agentskills/agentskills>
@@ -363,8 +387,35 @@ contents are not evaluated here. What the group demonstrates is the pattern behi
 capability is being distributed as **shareable instruction files** rather than as code, which is
 why the specification and documentation habits in section 7.1 matter more than they look.
 
-One of them is worth describing rather than listing, because it is the clearest example of what
-the pattern produces when it is done deliberately:
+**The file those instructions go in now has a format**, which is the part of this section with the
+longest shelf life:
+
+- <https://github.com/agentsmd/agents.md> — AGENTS.md, an open convention for the per-repository
+  instruction file: build and test commands, project layout, code style, what to run before
+  opening a pull request. A README is written for people and is the wrong shape for this; AGENTS.md
+  is the predictable place for the operational detail an agent needs and a human reader does not.
+  Also an Agentic AI Foundation project.
+
+The problem it solves is unglamorous and real. Every agent arrived with its own filename —
+`CLAUDE.md`, `.cursorrules`, `.github/copilot-instructions.md`, `GEMINI.md` — so the same content
+was maintained several times and drifted between copies, and switching tools meant rewriting
+context that had nothing to do with the tool. One file read by many agents is the N × M argument
+from [`mcp/`](mcp/README.md), applied to instructions instead of tools. A convention rather than
+software: nothing is installed, and its value is entirely in how many agents honour it.
+
+**This repository does not have one**, and it is the clearest gap in this section. `.claude/` holds
+permission settings and `opencode.json` holds provider configuration — both are tool configuration,
+neither is instructions. Meanwhile the material that belongs in an AGENTS.md is already written
+down in prose across this tree and nowhere an agent would look for it: the folder taxonomy in the
+root [README](../../README.md) — one axis per level, a folder per tool, a `doc.md` in each — and
+the [`OCIRepository`-over-`HelmRepository`](../platform-engineering/gitops/flux/README.md) source
+convention. Section 7.11 is the same list for the data platform. Writing it once, in the file the
+tools have agreed to read, is a smaller job than any of the skill collections above and worth more
+here than all of them.
+
+Back to the collections at the top of this section. One of them is worth describing rather than
+listing, because it is the clearest example of what the pattern produces when it is done
+deliberately:
 
 - <https://github.com/addyosmani/agent-skills> — 24 skills by Addy Osmani, MIT-licensed, and
   structured as an **engineering lifecycle rather than a bag of prompts**: define (`interview-me`,
@@ -472,8 +523,7 @@ on its own.
 
 ## 8. How this applies to pikakube
 
-**Seven components are actually deployed across this discipline**, and the pattern in them is
-consistent: the capability is installed, and the configuration that would make it useful mostly
+**The components actually deployed across this discipline** show a consistent pattern: the capability is installed, and the configuration that would make it useful mostly
 is not.
 
 | Deployed | Version | State |
@@ -486,6 +536,7 @@ is not.
 | [Ollama](llm/ollama/README.md) | `0.21.1` | serving `llama3.2` to kagent |
 | [Open WebUI](llm/ollama/open-webui/README.md) | `3.6.0` | its `HelmRepository` URL looks wrong — see its README |
 | [KAITO](llm/kaito/README.md) | `v0.4.4` | installed; its example workspace is Azure-specific |
+| [promptfoo](evaluation/promptfoo/README.md) | image `0.123.0` | the results viewer only; no eval config exists yet |
 
 **The one end-to-end path that works is self-hosted and closed.** kagent calls Ollama in-cluster
 with a small open-weights model. No provider key, nothing leaving the cluster. That is a real
@@ -495,8 +546,9 @@ them can do it at once.
 
 **Three gaps, in the order they are worth closing.**
 
-**Evaluation and tracing, first.** Langfuse is deployed but on chart defaults, and nothing
-anywhere defines what a good answer looks like for any deployed component. Until that exists the
+**Evaluation and tracing, first.** Langfuse is deployed but on chart defaults, promptfoo is
+deployed as a viewer with nothing to view, and nothing anywhere defines what a good answer looks
+like for any deployed component. Until that exists the
 platform can say what an agent did and not whether it should have — and every other improvement
 is unmeasurable. Configuring Langfuse against this repository's existing database and storage
 operators, rather than bundled dependencies, is the concrete first task.

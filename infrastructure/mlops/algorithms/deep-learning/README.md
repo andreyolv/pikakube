@@ -188,7 +188,7 @@ unavailable until that changes. CPU inference on small models is not.
 
 **What is already right, if that changes:**
 
-- Artifact storage is solved — [MLflow](../../lifecycle/mlflow2/README.md) writes to S3, which is
+- Artifact storage is solved — [MLflow](../../lifecycle/mlflow-chart/README.md) writes to S3, which is
   the correct destination for both checkpoints and final weights.
 - Tracking is solved, and PyTorch Lightning connects to it in one line. Deep-learning runs are the
   most expensive things this platform would run and therefore the ones that most need a record.

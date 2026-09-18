@@ -1,0 +1,15 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: OCIRepository
+metadata:
+  name: mlflow
+  namespace: mlflow
+spec:
+  interval: 24h
+  layerSelector:
+    mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
+    operation: copy
+  ref:
+    tag: 0.1.0
+    digest: sha256:450af87a9b417b706c4f0923afe963b26c9f889d27cb17013f1ebfb5ef97c7a3
+  url: oci://ghcr.io/mlflow/charts/mlflow
+  # https://github.com/mlflow/mlflow/pkgs/container/charts%2Fmlflow

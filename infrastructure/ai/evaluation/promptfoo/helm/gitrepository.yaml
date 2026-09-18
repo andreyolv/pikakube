@@ -1,0 +1,14 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: GitRepository
+metadata:
+  name: promptfoo
+  namespace: promptfoo
+spec:
+  interval: 24h
+  url: https://github.com/promptfoo/promptfoo
+  ref:
+    tag: 0.123.0
+  # The chart is a directory in the application repository, not a published
+  # artifact, so only that path is fetched.
+  sparseCheckout:
+  - helm/chart/promptfoo

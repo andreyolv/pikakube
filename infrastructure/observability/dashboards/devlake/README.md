@@ -6,6 +6,14 @@
 <https://github.com/apache/incubator-devlake-helm-chart>
 <https://devlake.apache.org/>
 
+k port-forward svc/devlake-grafana 8888:80
+http://127.0.0.1:8888/grafana/
+
+to do:
+create github app and add github connection
+https://devlake.apache.org/docs/Configuration/GitHub
+
+
 ---
 
 > **Not an infrastructure tool.** Everything else in this folder visualises what the

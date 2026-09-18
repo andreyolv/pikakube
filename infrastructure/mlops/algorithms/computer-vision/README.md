@@ -176,7 +176,7 @@ realistic here:
   model, and embedding-based similarity using a pretrained model, both are.
 - **Object storage exists.** [MinIO](../../../data-governance/lakehouse/storage/minio/README.md)
   is deployed and is the right home for image datasets — not a PVC. It is already the artifact
-  store for [MLflow](../../lifecycle/mlflow2/README.md), so datasets and model artefacts would sit
+  store for [MLflow](../../lifecycle/mlflow-chart/README.md), so datasets and model artefacts would sit
   in the same place.
 - **No data versioning.** DVC is in the notes and not in use, which for vision is the sharpest
   version of the general problem: an image dataset changes by having files added to a prefix, and

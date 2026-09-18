@@ -24,7 +24,7 @@ pragmatic default: the whole install is one container and one database. See
 decision.
 
 **This folder is the first of two deployments.** It is the earlier one — a hand-assembled stack
-with authentication solved and operations not. The rebuild is [`../mlflow2/`](../mlflow2/README.md).
+with authentication solved and operations not. The rebuild is [`../mlflow-chart/`](../mlflow-chart/README.md).
 
 ### What is deployed here
 
@@ -84,10 +84,10 @@ improving the deployment means rewriting it.
 
 | Observation | What it means |
 |---|---|
-| Image is `joshsgoldstein/mlflow-server:latest` | a third-party image on a floating tag. Unpinned means the server — and its database schema migrations — can change on any pod restart. `mlflow2/` moves to the official `ghcr.io/mlflow/mlflow` image at a pinned version. |
-| `secrets/mlflow-minio.yaml` is committed with `xxxxxxxxx` base64 values | placeholders, not real credentials — the file is a template. It still means real secrets are injected by hand somewhere outside the repo, which is what `mlflow2/` replaces with `external-secrets`. |
+| Image is `joshsgoldstein/mlflow-server:latest` | a third-party image on a floating tag. Unpinned means the server — and its database schema migrations — can change on any pod restart. `mlflow-chart/` moves to the official `ghcr.io/mlflow/mlflow` image at a pinned version. |
+| `secrets/mlflow-minio.yaml` is committed with `xxxxxxxxx` base64 values | placeholders, not real credentials — the file is a template. It still means real secrets are injected by hand somewhere outside the repo, which is what `mlflow-chart/` replaces with `external-secrets`. |
 | One Secret holds MinIO keys, Postgres credentials **and** the connection string | convenient, and it couples unrelated rotations: rotating the object-storage key touches the same object as the database password. |
-| Postgres is a plain `Deployment` with a PVC | no backups, no failover, no monitoring, and a manual major-version upgrade path. `mlflow2/` replaces it with a CloudNativePG `Cluster`. |
+| Postgres is a plain `Deployment` with a PVC | no backups, no failover, no monitoring, and a manual major-version upgrade path. `mlflow-chart/` replaces it with a CloudNativePG `Cluster`. |
 | `strategy: Recreate` on both Deployments | correct here. A `ReadWriteOnce` PVC cannot be attached to old and new pods simultaneously, so a rolling update would deadlock. |
 | PVC is 2 Gi on storage class `standard` | small. The metadata database grows with the number of runs, and this is not a size anyone chose deliberately. |
 | `imagePullSecrets: acr-secret` | the server pulls through an Azure Container Registry pull secret that is not defined in this folder. |
@@ -111,7 +111,7 @@ Two things about it are worth recording:
   `oauth2-proxy/oauth2-proxy` (`quay.io/oauth2-proxy/oauth2-proxy`), and v6.1.1 dates from 2020.
   Anything reusing this manifest should switch images.
 
-**What this deployment gets right that the rebuild dropped:** authentication. `mlflow2/` has none.
+**What this deployment gets right that the rebuild dropped:** authentication. `mlflow-chart/` has none.
 
 ---
 

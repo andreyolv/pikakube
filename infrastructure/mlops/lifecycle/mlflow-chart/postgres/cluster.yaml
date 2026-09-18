@@ -1,0 +1,30 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: postgres
+  namespace: mlflow
+spec:
+  instances: 1
+  imageName: ghcr.io/cloudnative-pg/postgresql:17.5
+  bootstrap:
+    initdb:
+      database: mlflow
+      owner: mlflow
+      # the app user is created with the generated password instead of one the
+      # operator invents — external-secrets owns it from the start
+      secret:
+        name: mlflow-app
+  managed:
+    roles:
+    # and keeps owning it: every refresh of the generator is applied to the role
+    - name: mlflow
+      ensure: present
+      login: true
+      passwordSecret:
+        name: mlflow-app
+  resources:
+    requests:
+      cpu: 1
+      memory: "1Gi"
+  storage:
+    size: 2Gi

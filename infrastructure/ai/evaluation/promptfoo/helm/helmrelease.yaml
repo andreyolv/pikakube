@@ -1,0 +1,39 @@
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: promptfoo
+  namespace: promptfoo
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: ./helm/chart/promptfoo
+      sourceRef:
+        kind: GitRepository
+        name: promptfoo
+        namespace: promptfoo
+  values:
+  # https://github.com/promptfoo/promptfoo/blob/main/helm/chart/promptfoo/values.yaml
+    # Upstream defaults to v1.0.0, which is not a tag that exists. The chart
+    # version is frozen at 0.1.0 and its appVersion is stale, so the image tag
+    # has to be pinned here and bumped by hand.
+    image:
+      tag: "0.123.0"
+    # Upstream ships a placeholder pull secret named `<yourcred>`; the image is
+    # public, so the list is emptied.
+    imagePullSecrets: []
+    persistentVolumesClaims:
+    - name: promptfoo
+      size: 1Gi
+      accessModes:
+      - ReadWriteOnce
+      storageClassName: standard
+    # Upstream pins amd64. `null` rather than `{}` — Helm merges maps, so an
+    # empty map leaves the upstream key in place.
+    nodeSelector: null
+    # The chart renders an Ingress unconditionally, with `ingressClassName:
+    # traefik` and a `letsencrypt-cloudflare` cluster issuer hardcoded in the
+    # template. Neither exists here and neither can be overridden; only the host
+    # can, so it at least points somewhere local. Reach the UI with a
+    # port-forward on service port 3000.
+    domainName: promptfoo.127.0.0.1.nip.io

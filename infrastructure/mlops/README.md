@@ -273,15 +273,15 @@ plainly.
 
 **What exists.** Two MLflow deployments in [`lifecycle/`](lifecycle/README.md), which is the
 right first capability — tracking and a registry are the foundation everything else refers to.
-[`mlflow2/`](lifecycle/mlflow2/README.md) is the current one and it is well built: the official
+[`mlflow-chart/`](lifecycle/mlflow-chart/README.md) is the current one and it is well built: the official
 image, a [CloudNativePG](../databases/sql/postgresql/operator/cnpg/README.md) cluster for the
 backend store, a generated password through `external-secrets`, S3 artifact storage and
 Prometheus metrics exposed. That configuration avoids the SQLite trap named in section 6 by
 construction.
 
-**What is documented but not deployed.** [`app/`](app/README.md) and Kubeflow — both are
-surveyed, neither is running. [`algorithms/`](algorithms/README.md) is explicitly a reading list,
-not a capability.
+**What is documented but not deployed.** [`app/`](app/README.md) and
+[Kubeflow](lifecycle/kubeflow/README.md) — both are surveyed, neither is running.
+[`algorithms/`](algorithms/README.md) is explicitly a reading list, not a capability.
 
 **The gaps worth naming**, in the order they will hurt:
 

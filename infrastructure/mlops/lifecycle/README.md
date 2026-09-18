@@ -5,7 +5,7 @@
 Tracking what was tried, registering what was chosen, and having a record that survives the
 person who ran the experiment.
 
-Tools: [`mlflow/`](mlflow/README.md) · [`mlflow2/`](mlflow2/README.md) ·
+Tools: [`mlflow/`](mlflow/README.md) · [`mlflow-chart/`](mlflow-chart/README.md) ·
 [`kubeflow/`](kubeflow/README.md)
 
 ## Contents
@@ -129,26 +129,34 @@ store, S3-compatible object storage for artifacts.**
 There are two MLflow deployments in this folder. They are the same tool at two stages of
 maturity, and the difference is instructive.
 
-| | [`mlflow/`](mlflow/README.md) | [`mlflow2/`](mlflow2/README.md) |
+| | [`mlflow/`](mlflow/README.md) | [`mlflow-chart/`](mlflow-chart/README.md) |
 |---|---|---|
-| Image | `joshsgoldstein/mlflow-server:latest` — third-party, floating tag | `ghcr.io/mlflow/mlflow:v3.3.2` — official, pinned |
+| Install | hand-written manifests | the official Helm chart, `oci://ghcr.io/mlflow/charts/mlflow`, tag and digest pinned |
+| Image | `joshsgoldstein/mlflow-server:latest` — third-party, floating tag | the chart's official `ghcr.io/mlflow/mlflow` image |
 | Postgres | a hand-written `Deployment` + `PersistentVolumeClaim` | a [CloudNativePG](../../databases/sql/postgresql/operator/cnpg/README.md) `Cluster` |
-| Secrets | a checked-in `Secret` with placeholder base64 values | `external-secrets` with a generated 42-character password |
-| Artifacts | MinIO, in-cluster, static access keys | S3, via a ServiceAccount with an IAM role annotation |
+| Secrets | a checked-in `Secret` with placeholder base64 values | `external-secrets` owns a generated 42-character password, CloudNativePG consumes it |
+| Artifacts | MinIO, in-cluster, static access keys | an IRSA ServiceAccount annotation for real S3, with an in-cluster MinIO wired in so the path is testable |
 | Auth | an `oauth2_proxy` sidecar Deployment, GitHub org/team | none in the manifests |
-| Metrics | none | `--expose-prometheus=/metrics`, plus a CNPG `PodMonitor` |
-| Layout | split into `deployment/`, `service/`, `pvc/`, `secrets/`, `oauth/` | flat, with `postgres/` alongside |
+| Metrics | none | a chart `ServiceMonitor`, plus a CNPG `PodMonitor` |
+| Layout | split into `deployment/`, `service/`, `pvc/`, `secrets/`, `oauth/` | `helm/` for the chart, `postgres/` and `minio/` for what the chart does not cover |
 
 Both share the same namespace name (`mlflow`), so they are alternatives rather than a pair that
 runs side by side.
 
 Read them as before and after: `mlflow/` is the working first pass with the auth story solved and
-the operational story not; `mlflow2/` is the rebuild with the operational story solved and the
+the operational story not; `mlflow-chart/` is the rebuild with the operational story solved and the
 auth story removed. **Neither is complete on its own** — see section 8.
 
 The manifest folders themselves (`deployment/`, `service/`, `pvc/`, `secrets/`, `oauth/`,
-`postgres/`) are deployment artefacts, not tools, and are explained in the two READMEs above
-rather than documented separately.
+`helm/`, `postgres/`) are deployment artefacts, not tools, and are explained in the two READMEs
+above rather than documented separately. [`mlflow-chart/minio/`](mlflow-chart/minio/README.md) is the
+exception — MinIO is a tool in its own right and gets its own note, the same way
+[Loki](../../observability/logs/storage/loki/minio/README.md) and Thanos carry one.
+
+**MLflow got an official Helm chart in July 2026** — `oci://ghcr.io/mlflow/charts/mlflow`, built
+and published by the MLflow project on every release. `mlflow-chart/` consumes it, which is where
+the folder's name comes from. This removes the complaint recorded in both of the older READMEs;
+the equivalent complaint about [`kubeflow/`](kubeflow/README.md) is still open.
 
 ## 6. Decision tree
 
@@ -182,7 +190,7 @@ flowchart TD
 | Local-directory artifact root | artifacts vanish with the pod, and clients cannot reach the path | S3 or MinIO |
 | Adopting Kubeflow for a handful of models | the platform becomes the project | MLflow, or Kubeflow's components à la carte |
 | Treating the registry as a second log | four hundred versions and no signal about which is approved | tracking logs everything, the registry holds what was chosen |
-| A floating `:latest` image tag | the server changes under you, and the schema migration comes with it | pin the version, as `mlflow2/` does |
+| A floating `:latest` image tag | the server changes under you, and the schema migration comes with it | pin the version, as `mlflow-chart/` does |
 | Running two MLflow replicas against SQLite | corruption, not an error | a database backend, then scale |
 | Exposing the MLflow UI without auth | it holds every dataset sample, metric and model you have logged | an auth proxy, as `mlflow/oauth/` attempts |
 | Upgrading MLflow without a database backup | the server runs schema migrations on start-up | back up Postgres first; CNPG makes this cheap |
@@ -192,27 +200,31 @@ flowchart TD
 
 **This is the deployed part of `../mlops/`**, and the only part. Two MLflow deployments exist;
 Kubeflow is documented and not installed, for the reason recorded in its
-[notes](kubeflow/README.md) — the Kustomize-only install is unpleasant and the Helm chart is
-still an open issue upstream.
+[notes](kubeflow/README.md) — the Kustomize-only install is unpleasant, and as of `v1.11.0` the
+three experimental charts upstream are still not the platform.
 
-**`mlflow2/` is the current deployment and it is well built.** The official pinned image, a CNPG
-Postgres cluster with a `PodMonitor`, a generated password through `external-secrets`, S3
-artifacts through an IAM role rather than static keys, and Prometheus metrics exposed. Every one
-of those is the correct answer to a specific failure mode in sections 4 and 7.
+**`mlflow-chart/` is the current deployment and it is well built.** The official Helm chart pinned
+by tag and digest, a CNPG Postgres cluster whose password is generated by `external-secrets` and
+consumed by the operator, an artifact store that runs locally on MinIO and switches to role-based
+S3 by deleting four environment variables, and Prometheus metrics exposed. Every one of those is
+the correct answer to a specific failure mode in sections 4 and 7.
 
 **The gaps worth naming:**
 
-1. **`mlflow2/` has no authentication.** `mlflow/` solved this with an `oauth2_proxy` sidecar and
+1. **`mlflow-chart/` has no authentication.** `mlflow/` solved this with an `oauth2_proxy` sidecar and
    the rebuild dropped it. An MLflow UI holds logged datasets, metrics and model artifacts; it is
    not a thing to leave open. The auth-proxy pattern lives under
    `../../security/2-cluster/identity-access/authentication/auth-proxy/`.
 2. **Nothing consumes the registry.** Models can be registered; no pipeline takes a registered
    version and deploys it. The handoff artefact exists and the handoff is still manual.
-3. **`mlflow/` and `mlflow2/` both claim the `mlflow` namespace.** They cannot both be applied.
-   If `mlflow2/` is the live one, `mlflow/` is history and should be read as such.
-4. **The metrics endpoint is exposed but not scraped.** `--expose-prometheus=/metrics` is set on
-   the server and there is no `ServiceMonitor` for it — only the Postgres cluster has a
-   `PodMonitor`. See [`../../observability/metrics/`](../../observability/metrics/README.md).
+3. **`mlflow/` and `mlflow-chart/` both claim the `mlflow` namespace.** They cannot both be applied.
+   If `mlflow-chart/` is the live one, `mlflow/` is history and should be read as such.
+4. **Moving `mlflow-chart/` onto the chart is also an MLflow upgrade**, from `v3.3.2` to the chart's
+   `v3.14.0-full`. The server migrates the backend-store schema on start-up, so the Postgres
+   backup in section 7 is a precondition, not a suggestion.
+5. **The metrics are exposed and still unscraped**, now for an external reason: there is no
+   Prometheus Operator on the cluster, so the chart's `ServiceMonitor` and the CNPG `PodMonitor`
+   are both parked. See [`../../observability/metrics/`](../../observability/metrics/README.md).
 
 ---
 

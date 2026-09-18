@@ -1,0 +1,11 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PodMonitor
+metadata:
+  name: postgres
+  namespace: mlflow
+spec:
+  selector:
+    matchLabels:
+      cnpg.io/cluster: postgres
+  podMetricsEndpoints:
+  - port: metrics

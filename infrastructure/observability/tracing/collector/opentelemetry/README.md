@@ -53,6 +53,7 @@ which is often the difference between instrumenting a fleet and not.
 
 - Example project: <https://github.com/yuriolisa/pes-2023-opentelemetry>
 - <https://github.com/google/sqlcommenter> — propagates trace context **into SQL comments**, so a slow query in the database can be traced back to the request that issued it. A genuinely useful trick for a data platform, and one of the few ways to see past the database boundary.
+- <https://github.com/open-telemetry/otel-arrow> — OTLP re-encoded in **Apache Arrow's columnar format**, shipped as a matched exporter/receiver pair for **collector-to-collector** traffic. Telemetry is highly repetitive across a batch — the same resource attributes, the same span and metric names, over and over — and a columnar layout compresses that far better than row-oriented protobuf does, which is where the bandwidth reduction comes from. It changes the wire format, not the data model: applications keep speaking plain OTLP, and only the gateway tier is aware of it. Worth it when a collector ships telemetry across a region boundary or any metered link, and not worth the extra moving part when everything stays inside one cluster.
 
 Subfolders: [`opentelemetry-collector/`](opentelemetry-collector/) ·
 [`opentelemetry-operator/`](opentelemetry-operator/) ·

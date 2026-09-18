@@ -76,7 +76,7 @@ transformations and business rules inline. What results is a UI script that cann
 reused or run headless. Import a library; let the app be the view.
 
 **Where it fits here.** Nothing is deployed. The obvious first use on this platform is a view over
-the [MLflow](../../lifecycle/mlflow2/README.md) tracking data — comparing runs and registered
+the [MLflow](../../lifecycle/mlflow-chart/README.md) tracking data — comparing runs and registered
 versions with the team's own framing rather than the built-in UI.
 
 ---

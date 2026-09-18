@@ -131,6 +131,7 @@ The [infrastructure/](infrastructure/) folder is organized by **discipline** and
 | Agent & workflow orchestration | Langflow, Langfuse, n8n, CrewAI, LangGraph |
 | Tool/context integration for LLMs | MCP |
 | ML lifecycle & experiment tracking | MLflow |
+| Prompt & model evaluation | promptfoo |
 | Data/ML apps & UIs | Streamlit |
 
 ### 📊 Data Engineering & Streaming

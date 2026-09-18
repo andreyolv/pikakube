@@ -78,7 +78,7 @@ visibly. It is the correct answer to "the app freezes under load" — not more r
 handler is loaded per call.
 
 **Where it fits here.** Nothing is deployed. If it were, the model should be pulled from the
-registry in [`../../lifecycle/mlflow2/`](../../lifecycle/mlflow2/README.md) by version, rather
+registry in [`../../lifecycle/mlflow-chart/`](../../lifecycle/mlflow-chart/README.md) by version, rather
 than baked into the image — that is the point of having a registry.
 
 ---

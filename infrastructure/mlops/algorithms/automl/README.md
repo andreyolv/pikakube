@@ -165,7 +165,7 @@ infrastructure. What it would consume from this platform:
   be a scheduled workload with a bounded time budget, not something run from a laptop or left
   running in a notebook pod.
 - **Tracking, more than any other workload here.** A search produces hundreds of runs. Without
-  [`../../lifecycle/mlflow2/`](../../lifecycle/mlflow2/README.md), the answer to "which trial
+  [`../../lifecycle/mlflow-chart/`](../../lifecycle/mlflow-chart/README.md), the answer to "which trial
   produced the model we shipped" is lost immediately — the failure described in
   [`../../README.md`](../../README.md#3-why-ml-is-operationally-different-from-software), at a
   hundred times the volume. PyCaret logs to MLflow natively, which makes this nearly free.

@@ -12,6 +12,15 @@ spec:
   values:
   # https://artifacthub.io/packages/helm/apache-incubator-devlake-helm-chart/devlake
   # https://github.com/apache/incubator-devlake-helm-chart/blob/main/charts/devlake/values.yaml
+    mysql:
+      storage:
+        size: 2Gi
+    grafana:
+    # https://github.com/apache/devlake/tree/main/grafana/dashboards
+      persistence:
+        size: 1Gi
+      envFromConfigMaps:
+        - name: devlake-config
     lake:
       encryptionSecret:
         # to generate secret run command below
