@@ -8,8 +8,5 @@ spec:
   url: https://github.com/ovn-kubernetes/ovn-kubernetes.git
   ref:
     tag: v1.0.0
-  ignore: |
-    # exclude all
-    /*
-    # include deploy dir
-    !/helm/ovn-kubernetes
+  sparseCheckout:
+  - helm/ovn-kubernetes

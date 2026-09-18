@@ -56,10 +56,23 @@ serves a classic repository from GitHub Pages, which is not used here.
 
 Two things in the values are deliberate:
 
-- **`secrets.dbPassword` and `secrets.sessionSecret` are empty.** The chart creates its Secret from
-  any non-empty string it finds there, so committing a real value would commit a credential. Fill
-  them in before applying, or replace each with the `secretKeyRef` form the chart supports and keep
-  the Secret out of Git.
+- **`adminPassword`, `dbPassword` and `sessionSecret` are `secretKeyRef`s.** The chart takes either
+  a literal string — which it bakes into its own `crossview-secrets` Secret, so committing one
+  would commit a credential — or a `secretKeyRef`, which it wires straight into the env and leaves
+  out of that Secret. These three use the second form and read from a `crossview-auth` Secret that
+  is **not in Git**; create it once per cluster before applying:
+
+  ```sh
+  kubectl create secret generic crossview-auth -n crossview \
+    --from-literal=db-password="$(openssl rand -hex 16)" \
+    --from-literal=admin-password='<pick one>' \
+    --from-literal=session-secret="$(openssl rand -hex 32)"
+  ```
+
+  Leaving a value as `""` instead is not a working default: the chart drops empty keys entirely, so
+  PostgreSQL comes up with no `POSTGRES_PASSWORD` and crash-loops on `Database is uninitialized and
+  superuser password is not specified`, which leaves the app's `wait-for-db` init container hanging
+  at `Init:0/1`. Only `adminUsername` stays a literal — it is not a credential.
 - **`database.enabled: true`** keeps the bundled PostgreSQL, whose image is `postgres:latest`. That
   is fine for a lab and is not a tag to leave unpinned for anything else — point
   `config.database.host` at a real instance instead, for example one from

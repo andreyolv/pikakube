@@ -8,8 +8,5 @@ spec:
   url: https://github.com/datainfrahq/druid-operator.git
   ref:
     branch: master
-  ignore: |-
-    # exclude all
-    /*
-    # include charts directory
-    !/chart/
+  sparseCheckout:
+  - chart

@@ -8,8 +8,5 @@ spec:
   ref:
     tag: v0.3.3
   url: https://github.com/Azure/gpu-provisioner.git
-  ignore: |
-    # exclude all
-    /*
-    # include deploy dir
-    !/charts/gpu-provisioner
+  sparseCheckout:
+  - charts/gpu-provisioner

@@ -8,8 +8,5 @@ spec:
   ref:
     tag: v2.7.3
   url: https://github.com/easegress-io/easegress.git
-  ignore: |
-    # exclude all
-    /*
-    # include deploy dir
-    !/helm-charts/easegress
+  sparseCheckout:
+  - helm-charts/easegress

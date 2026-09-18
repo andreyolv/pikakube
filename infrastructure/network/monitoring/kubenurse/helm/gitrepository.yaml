@@ -8,8 +8,5 @@ spec:
   url: https://github.com/postfinance/kubenurse.git
   ref:
     tag: v1.14.2
-  ignore: |
-    # exclude all
-    /*
-    # include deploy dir
-    !/helm/kubenurse
+  sparseCheckout:
+  - helm/kubenurse

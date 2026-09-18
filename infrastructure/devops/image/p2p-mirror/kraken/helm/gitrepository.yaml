@@ -8,8 +8,5 @@ spec:
   ref:
     tag: v0.1.4
   url: https://github.com/uber/kraken.git
-  ignore: |
-    # exclude all
-    /*
-    # include deploy dir
-    !/helm
+  sparseCheckout:
+  - helm

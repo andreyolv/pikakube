@@ -8,8 +8,5 @@ spec:
   ref:
     tag: v0.14.0
   url: https://github.com/k8gb-io/k8gb.git
-  ignore: |
-    # exclude all
-    /*
-    # include deploy dir
-    !/chart/k8gb
+  sparseCheckout:
+  - chart/k8gb

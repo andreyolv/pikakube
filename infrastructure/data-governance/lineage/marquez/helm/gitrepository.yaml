@@ -8,8 +8,5 @@ spec:
   ref:
     tag: 0.50.0
   url: https://github.com/MarquezProject/marquez.git
-  ignore: |
-    # exclude all
-    /*
-    # include deploy dir
-    !/chart
+  sparseCheckout:
+  - chart

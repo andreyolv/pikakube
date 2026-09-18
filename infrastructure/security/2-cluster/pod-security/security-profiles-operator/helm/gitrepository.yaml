@@ -8,8 +8,5 @@ spec:
   ref:
     tag: v0.8.4
   url: https://github.com/kubernetes-sigs/security-profiles-operator
-  ignore: |
-    # exclude all
-    /*
-    # include deploy dir
-    !/deploy/helm
+  sparseCheckout:
+  - deploy/helm

@@ -8,8 +8,5 @@ spec:
   ref:
     tag: v0.2.0
   url: https://github.com/ByConity/byconity-deploy.git
-  ignore: |
-    # exclude all
-    /*
-    # include deploy dir
-    !/chart/byconity
+  sparseCheckout:
+  - chart/byconity

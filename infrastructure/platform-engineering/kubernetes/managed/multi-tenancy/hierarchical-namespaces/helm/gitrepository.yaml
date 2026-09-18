@@ -8,8 +8,5 @@ spec:
   ref:
     branch: master
   url: https://github.com/kubernetes-sigs/hierarchical-namespaces.git
-  ignore: |
-    # exclude all
-    /*
-    # include deploy dir
-    !/charts/hnc
+  sparseCheckout:
+  - charts/hnc

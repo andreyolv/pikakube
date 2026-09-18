@@ -12,18 +12,29 @@ spec:
   values:
   # https://artifacthub.io/packages/helm/crossview/crossview
   # https://github.com/crossplane-contrib/crossview/blob/main/helm/crossview/values.yaml
-    # The chart creates its own Secret from any non-empty string below. Both are
-    # required for the app to start; fill them in before applying, or swap each
-    # one for a secretKeyRef pointing at a Secret managed outside Git.
+    # Each entry is either a literal string — which the chart bakes into its own
+    # crossview-secrets Secret — or a secretKeyRef, which it wires straight into
+    # the env and leaves out of that Secret. The three credentials below come
+    # from the crossview-auth Secret, created outside Git (see the README); an
+    # empty string makes the chart drop the key entirely, which leaves postgres
+    # without POSTGRES_PASSWORD and crash-looping on an uninitialized database.
     secrets:
       adminUsername: admin
-      adminPassword: ""
-      dbPassword: ""
-      sessionSecret: ""
+      adminPassword:
+        secretKeyRef:
+          name: crossview-auth
+          key: admin-password
+      dbPassword:
+        secretKeyRef:
+          name: crossview-auth
+          key: db-password
+      sessionSecret:
+        secretKeyRef:
+          name: crossview-auth
+          key: session-secret
     # Bundled PostgreSQL. Disable it and set config.database.host to point at an
     # external instance — the chart image is postgres:latest, which is not a tag
     # to run unpinned for anything that matters.
     database:
       enabled: true
-    ingress:
-      enabled: false
+

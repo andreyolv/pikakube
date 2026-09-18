@@ -8,8 +8,5 @@ spec:
   ref:
     tag: v0.4.4
   url: https://github.com/kaito-project/kaito.git
-  ignore: |
-    # exclude all
-    /*
-    # include deploy dir
-    !/charts/kaito
+  sparseCheckout:
+  - charts/kaito

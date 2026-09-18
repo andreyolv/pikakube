@@ -8,8 +8,5 @@ spec:
   ref:
     tag: v0.5.1
   url: https://github.com/apache/celeborn.git
-  ignore: |
-    # exclude all
-    /*
-    # include deploy dir
-    !/charts/celeborn
+  sparseCheckout:
+  - charts/celeborn

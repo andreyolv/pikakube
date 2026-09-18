@@ -8,8 +8,5 @@ spec:
   ref:
     tag: v5.5.0rc4
   url: https://github.com/celery/celery.git
-  ignore: |
-    # exclude all
-    /*
-    # include deploy dir
-    !/helm-chart
+  sparseCheckout:
+  - helm-chart

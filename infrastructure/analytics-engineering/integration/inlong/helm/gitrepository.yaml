@@ -8,8 +8,5 @@ spec:
   ref:
     branch: release-2.0.0
   url: https://github.com/apache/inlong.git
-  ignore: |
-    # exclude all
-    /*
-    # include deploy dir
-    !/docker/kubernetes
+  sparseCheckout:
+  - docker/kubernetes

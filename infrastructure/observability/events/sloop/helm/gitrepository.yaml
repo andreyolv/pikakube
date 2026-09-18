@@ -8,8 +8,5 @@ spec:
   url: https://github.com/salesforce/sloop.git
   ref:
     tag: v1.2
-  ignore: |
-    # exclude all
-    /*
-    # include deploy dir
-    !/helm/sloop
+  sparseCheckout:
+  - helm/sloop

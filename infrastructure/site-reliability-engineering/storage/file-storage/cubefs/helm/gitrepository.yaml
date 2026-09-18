@@ -8,8 +8,5 @@ spec:
   ref:
     tag: v3.3.2.150.0
   url: https://github.com/cubefs/cubefs-helm.git
-  ignore: |
-    # exclude all
-    /*
-    # include deploy dir
-    !/cubefs
+  sparseCheckout:
+  - cubefs

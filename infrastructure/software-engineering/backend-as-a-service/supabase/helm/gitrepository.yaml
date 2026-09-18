@@ -8,8 +8,5 @@ spec:
   ref:
     branch: main
   url: https://github.com/supabase-community/supabase-kubernetes.git
-  ignore: |
-    # exclude all
-    /*
-    # include deploy dir
-    !/charts/supabase
+  sparseCheckout:
+  - charts/supabase

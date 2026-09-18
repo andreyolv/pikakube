@@ -8,8 +8,5 @@ spec:
   ref:
     tag: 1.0.0-beta.8
   url: https://github.com/rustfs/rustfs.git
-  ignore: |
-    # exclude all
-    /*
-    # include deploy dir
-    !/helm
+  sparseCheckout:
+  - helm

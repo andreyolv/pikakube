@@ -8,8 +8,5 @@ spec:
   ref:
     tag: v4.6.0
   url: https://github.com/apache/skywalking-helm.git
-  ignore: |
-    # exclude all
-    /*
-    # include deploy dir
-    !/chart/operator
+  sparseCheckout:
+  - chart/operator

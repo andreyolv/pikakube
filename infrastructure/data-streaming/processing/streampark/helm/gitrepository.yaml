@@ -8,8 +8,5 @@ spec:
   ref:
     tag: v2.1.5
   url: https://github.com/apache/incubator-streampark.git
-  ignore: |
-    # exclude all
-    /*
-    # include deploy dir
-    !/helm/streampark
+  sparseCheckout:
+  - helm/streampark
