@@ -58,10 +58,14 @@ Nothing else was written. In a folder where [Pulumi](../pulumi/README.md) attrac
 dismissals, an entry with no complaints attached is a quiet endorsement — OpenTofu was looked at, it
 behaved as expected, and there was nothing to record.
 
-Nothing is provisioned here. If that changes, the setup-action link is the right starting point and
-the rules in [`iac/`](../../README.md) section 3 are the things to settle before the first `apply`:
-a remote backend with locking, state treated as a secret, pinned providers, and state split by
-lifecycle rather than one file for the estate.
+Nothing is provisioned here. [`example.tofu`](example.tofu) is a fixture, not infrastructure: it
+exists so the Renovate configuration in [`.github/renovate.json5`](../../../../../.github/renovate.json5)
+has a `.tofu` file to extract, and it declares no provider and no backend.
+
+If that changes, the setup-action link is the right starting point and the rules in
+[`iac/`](../../README.md) section 3 are the things to settle before the first `apply`: a remote
+backend with locking, state treated as a secret, pinned providers, and state split by lifecycle
+rather than one file for the estate.
 
 One thing OpenTofu makes cheaper than Terraform does: with built-in state encryption there is no
 excuse for an unencrypted state file, and the setting belongs in the backend block from the first

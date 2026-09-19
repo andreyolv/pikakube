@@ -1,9 +1,10 @@
 {
   $schema: "https://docs.renovatebot.com/renovate-schema.json",
 
-  // Only the Flux manager runs in this repository. Every other ecosystem
-  // (Docker, Terraform, GitHub Actions, ...) is deliberately left untouched.
-  enabledManagers: ["flux"],
+  // Only the Flux and Terraform managers run in this repository. Every other
+  // ecosystem (Docker, GitHub Actions, Python, ...) is deliberately left
+  // untouched.
+  enabledManagers: ["flux", "terraform"],
 
   flux: {
     // The Flux manager defaults to gotk-components.yaml only, so the file
@@ -11,6 +12,14 @@
     // `ocirepository.yaml` keeps HelmRelease / HelmRepository / Kustomization
     // resources out of scope: only OCIRepository artifacts are updated.
     managerFilePatterns: ["/(?:^|/)ocirepository\\.ya?ml$/"],
+  },
+
+  terraform: {
+    // The manager defaults, spelled out: every `.tf` and `.tofu` file in the
+    // repository, wherever it lives. It covers `terraform.required_version`,
+    // providers declared in `required_providers`, module sources and the
+    // provider lock file that sits beside them.
+    managerFilePatterns: ["**/*.tf", "**/*.tofu"],
   },
 
   dependencyDashboard: false,
@@ -26,10 +35,10 @@
   minimumReleaseAge: "3 days",
   minimumReleaseAgeBehaviour: "timestamp-optional",
 
-  // One branch, one pull request, once a week.
+  // One branch and one pull request per ecosystem, once a week.
   schedule: ["before 6am on monday"],
-  prConcurrentLimit: 1,
-  branchConcurrentLimit: 1,
+  prConcurrentLimit: 2,
+  branchConcurrentLimit: 2,
 
   // Keep majors, minors and patches in the same branch instead of letting
   // Renovate split them into one pull request per update type.
@@ -46,6 +55,33 @@
       groupName: "flux oci artifacts",
       groupSlug: "flux-oci-artifacts",
       commitMessageTopic: "flux OCI artifacts",
+    },
+    {
+      matchManagers: ["terraform"],
+      // Terraform core (`required_version`), providers and modules land in
+      // one grouped pull request, kept separate from the Flux one.
+      groupName: "terraform",
+      groupSlug: "terraform",
+      commitMessageTopic: "terraform dependencies",
+    },
+    {
+      // OpenTofu, and only OpenTofu. Renovate cannot infer which registry a
+      // file targets: it resolves providers and modules against
+      // registry.terraform.io for `.tf` and `.tofu` alike. Scoping the
+      // override by file name keeps the `.tf` code on the Terraform registry.
+      matchManagers: ["terraform"],
+      matchFileNames: ["**/*.tofu"],
+      matchDatasources: ["terraform-provider", "terraform-module"],
+      registryUrls: ["https://registry.opentofu.org"],
+    },
+    {
+      // Same blind spot for the core version: a `required_version` inside a
+      // `.tofu` file is an OpenTofu constraint, but the manager resolves it
+      // against hashicorp/terraform releases. Point it at OpenTofu's own.
+      matchManagers: ["terraform"],
+      matchFileNames: ["**/*.tofu"],
+      matchDepTypes: ["required_version"],
+      overridePackageName: "opentofu/opentofu",
     },
   ],
 }
