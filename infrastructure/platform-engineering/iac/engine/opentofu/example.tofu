@@ -13,18 +13,18 @@ terraform {
   # Resolved against opentofu/opentofu releases, not hashicorp/terraform.
   # Renovate does not infer that from the file extension; the override lives
   # in the repository config.
-  required_version = "1.8.0"
+  required_version = "1.12.6"
 
   required_providers {
     # Resolved against registry.opentofu.org, not registry.terraform.io.
     random = {
       source  = "hashicorp/random"
-      version = "3.5.1"
+      version = "3.9.1"
     }
 
     null = {
       source  = "hashicorp/null"
-      version = "3.2.1"
+      version = "3.3.2"
     }
   }
 }
