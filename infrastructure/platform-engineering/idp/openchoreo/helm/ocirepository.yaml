@@ -9,7 +9,7 @@ spec:
     mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
     operation: copy
   ref:
-    tag: 1.2.5
-    digest: sha256:3b6e1ce244ffa7d89680855fd43dc79e40d28512fe1a7f86dbe9811078c844c4
+    tag: 1.3.0
+    digest: sha256:62e615b63ba536d841f942c73542bfbad1da753a431a2012e21cc7d4e50f3c9f
   url: oci://ghcr.io/openchoreo/helm-charts/openchoreo-control-plane
   # https://github.com/openchoreo/openchoreo/pkgs/container/helm-charts%2Fopenchoreo-control-plane
