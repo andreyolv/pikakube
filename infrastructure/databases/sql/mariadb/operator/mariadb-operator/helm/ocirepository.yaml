@@ -9,8 +9,8 @@ spec:
     mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
     operation: copy
   ref:
-    tag: 26.6.0
-    digest: sha256:b357cb92e51acc3fc26593e9071afe0bd47109c26e802db151a2ba937d45047a
+    tag: 26.10.1
+    digest: sha256:1faf551b83cb7c32218cee994063d30c7fea549423d17acc76e2cd23fafa0905
   url: oci://ghcr.io/mariadb-operator/charts/mariadb-operator-crds
   # https://github.com/mariadb-operator/mariadb-operator/pkgs/container/charts%2Fmariadb-operator-crds
 ---
@@ -25,7 +25,7 @@ spec:
     mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
     operation: copy
   ref:
-    tag: 26.6.0
-    digest: sha256:e6662fdafe465ec09c94cc2b16459fcad4ab7198aa8a160448bd38889bdcb185
+    tag: 26.10.1
+    digest: sha256:2bdee35e0c6f29e86a7f3ba4107bc9805bd6d9edf129e0ec761fea89a83d8ab4
   url: oci://ghcr.io/mariadb-operator/charts/mariadb-operator
   # https://github.com/mariadb-operator/mariadb-operator/pkgs/container/charts%2Fmariadb-operator

@@ -9,7 +9,7 @@ spec:
     mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
     operation: copy
   ref:
-    tag: 2.1.0
-    digest: sha256:22003a9056c3f12d0bcb36dd0000404a961383890818bbe4f615e39984f23ba9
+    tag: 2.1.2
+    digest: sha256:edba58e4370389b1aa0a1f99873710c22e5ffcc78fb15aef13b7449ca2d6f599
   url: oci://ghcr.io/langfuse/langfuse-k8s/charts/langfuse
   # https://github.com/langfuse/langfuse-k8s/pkgs/container/langfuse-k8s%2Fcharts%2Flangfuse

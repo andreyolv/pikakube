@@ -9,7 +9,7 @@ spec:
     mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
     operation: copy
   ref:
-    tag: 1.54.0
-    digest: sha256:59f1de715809193429d346a50e6d56a9a689d4fb38dbba859f9b2ea79f571a8e
+    tag: 1.54.2
+    digest: sha256:daa725626d0bed39718cf6a1986f50527a6d9175e0fc472c81b04ddd8c26a948
   url: oci://ghcr.io/haproxytech/helm-charts/kubernetes-ingress
   # https://github.com/haproxytech/helm-charts/pkgs/container/helm-charts%2Fkubernetes-ingress

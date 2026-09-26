@@ -9,7 +9,7 @@ spec:
     mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
     operation: copy
   ref:
-    tag: 2.0.6
-    digest: sha256:bc0a67c690f858ead28b037d8c2e49ef9defc08dadcbf67ee76c62af77fd3389
+    tag: 2.0.8
+    digest: sha256:70d8a345f77b72e7cd85955d732d201eb63410024a745e4ae95a2fbfadf8652d
   url: oci://ghcr.io/argoproj/argo-helm/argo-workflows
   # https://github.com/argoproj/argo-helm/pkgs/container/argo-helm%2Fargo-workflows
