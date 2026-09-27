@@ -4,6 +4,8 @@ metadata:
   name: cert-manager
   namespace: flux-system
 spec:
+  dependsOn:
+  - name: prometheus-crds
   interval: 5m
   path: ./infrastructure/security/2-cluster/certificates/cert-manager
   prune: false

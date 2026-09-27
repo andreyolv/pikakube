@@ -12,6 +12,8 @@ spec:
   values:
   # https://artifacthub.io/packages/olm/community-operators/grafana-operator
   # https://github.com/grafana/grafana-operator/blob/master/deploy/helm/grafana-operator/values.yaml
+    serviceMonitor:
+      enabled: true
     nodeSelector:
       agentpool: system
     tolerations:

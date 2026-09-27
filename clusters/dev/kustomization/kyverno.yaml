@@ -5,7 +5,7 @@ metadata:
   namespace: flux-system
 spec:
   dependsOn:
-  - name: nginx
+  - name: prometheus-crds
   interval: 5m
   # wait for the HelmRelease to be Ready so dependsOn means the CRDs/pods exist
   wait: true
@@ -25,6 +25,9 @@ spec:
   dependsOn:
   - name: kyverno
   interval: 5m
+  # wait for the HelmRelease to be Ready so dependsOn means the CRDs/pods exist
+  wait: true
+  timeout: 10m
   path: ./infrastructure/security/2-cluster/policies/kyverno/policies
   prune: false
   sourceRef:

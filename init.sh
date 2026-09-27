@@ -35,7 +35,9 @@ kubectl wait fluxinstance flux --for=condition=Ready --timeout=5m
 
 kubectl wait kustomization flux-system --for=condition=Ready --timeout=5m
 
-kubectl wait kustomization nginx --for=condition=Ready --timeout=5m
+kubectl wait kustomization prometheus-crds --for=condition=Ready --timeout=10m
+
+kubectl wait kustomization nginx --for=condition=Ready --timeout=10m
 
 kubectl wait kustomization kyverno --for=condition=Ready --timeout=10m
 
@@ -45,6 +47,6 @@ kubectl wait kustomization openbao --for=condition=Ready --timeout=10m
 
 kubectl wait kustomization external-secrets --for=condition=Ready --timeout=10m
 
-kubectl wait kustomization prometheus --for=condition=Ready --timeout=5m
+kubectl wait kustomization prometheus --for=condition=Ready --timeout=10m
 
 kubectl wait kustomization grafana --for=condition=Ready --timeout=5m

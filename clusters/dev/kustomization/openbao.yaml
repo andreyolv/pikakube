@@ -6,6 +6,7 @@ metadata:
 spec:
   dependsOn:
   - name: kyverno-manifests
+  - name: nginx
   interval: 5m
   # wait for the HelmRelease to be Ready so dependsOn means the CRDs/pods exist
   wait: true

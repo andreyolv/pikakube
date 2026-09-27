@@ -18,6 +18,9 @@ spec:
   # https://github.com/cert-manager/cert-manager/blob/master/deploy/charts/cert-manager/values.yaml
     crds:
       enabled: true
+    prometheus:
+      servicemonitor:
+        enabled: true
     nodeSelector:
       agentpool: system
     tolerations:

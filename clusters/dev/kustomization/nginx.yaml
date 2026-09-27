@@ -4,10 +4,14 @@ metadata:
   name: nginx
   namespace: flux-system
 spec:
-  #dependsOn:
+  dependsOn:
+  - name: prometheus-crds
   #- name: cert-manager
   #- name: metallb-ipaddresspool
   interval: 5m
+  # wait for the HelmRelease to be Ready so dependsOn means the CRDs/pods exist
+  wait: true
+  timeout: 10m
   path: ./infrastructure/network/ingress-controller/ingress-nginx
   prune: false
   sourceRef:

@@ -44,6 +44,22 @@ A team adds a `ServiceMonitor` next to their Deployment and their metrics are sc
 without editing a central Prometheus configuration. That delegation is why the operator
 pattern won.
 
+### CRDs installed separately
+
+The same delegation creates an ordering problem: any chart with `serviceMonitor.enabled: true`
+fails to install until the `ServiceMonitor` CRD exists. Creating a `ServiceMonitor` needs only the
+CRD, not a running Prometheus. The operator discovers monitors whenever it starts.
+
+So `crds/` installs [prometheus-operator-crds](https://github.com/prometheus-community/helm-charts/tree/main/charts/prometheus-operator-crds)
+on its own, as the Flux Kustomization `prometheus-crds`, with no dependencies. It also owns the
+`prometheus` namespace. This stack runs with `crds.enabled: false`, and every release that ships
+a `ServiceMonitor` depends on `prometheus-crds`, not on `prometheus`. That breaks the cycle with
+Kyverno, which ships ServiceMonitors while Prometheus itself waits for Kyverno's
+TLS-secret sync policy.
+
+Keep the CRDs chart's `appVersion` equal to this chart's operator version (`appVersion` in
+`Chart.yaml`) when bumping either one.
+
 ## What to change from the defaults
 
 The chart is designed to work immediately, not to be right for your cluster:

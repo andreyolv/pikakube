@@ -1,5 +1,5 @@
+# the prometheus namespace and the operator CRDs come from crds/ (Flux Kustomization prometheus-crds)
 resources:
-  - namespace.yaml
   - helm/ocirepository.yaml
   - helm/helmrelease.yaml
   - secret.yaml

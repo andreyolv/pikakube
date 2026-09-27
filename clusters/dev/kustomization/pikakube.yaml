@@ -6,6 +6,7 @@ metadata:
 spec:
   dependsOn:
   - name: kyverno-manifests
+  - name: nginx
   interval: 5m
   path: ./infrastructure/platform-engineering/kubernetes/managed/dashboard-ingress/forecastle
   prune: false

@@ -57,6 +57,8 @@ spec:
             value: "system"
       metrics:
         enabled: true
+        serviceMonitor:
+          enabled: true
         service:
           annotations:
             prometheus.io/scrape: "true"

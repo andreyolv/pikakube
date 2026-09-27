@@ -35,10 +35,8 @@ spec:
       #  requests:
       #    cpu: 8m
       #    memory: 32Mi
-      # ServiceMonitor CRD comes from kube-prometheus-stack, which is not deployed
-      # (and depends on kyverno-manifests); enabling it before the CRD exists fails the install
       serviceMonitor:
-        enabled: false
+        enabled: true
     backgroundController:
       replicas: 2
       nodeSelector:
@@ -54,10 +52,8 @@ spec:
         requests:
           cpu: 8m
           memory: 64Mi
-      # ServiceMonitor CRD comes from kube-prometheus-stack, which is not deployed
-      # (and depends on kyverno-manifests); enabling it before the CRD exists fails the install
       serviceMonitor:
-        enabled: false
+        enabled: true
     cleanupController:
       replicas: 1
       nodeSelector:
@@ -66,10 +62,8 @@ spec:
         requests:
           cpu: 8m
           memory: 32Mi
-      # ServiceMonitor CRD comes from kube-prometheus-stack, which is not deployed
-      # (and depends on kyverno-manifests); enabling it before the CRD exists fails the install
       serviceMonitor:
-        enabled: false
+        enabled: true
     reportsController:
       replicas: 1
       nodeSelector:
@@ -78,10 +72,8 @@ spec:
         requests:
           cpu: 16m
           memory: 128Mi
-      # ServiceMonitor CRD comes from kube-prometheus-stack, which is not deployed
-      # (and depends on kyverno-manifests); enabling it before the CRD exists fails the install
       serviceMonitor:
-        enabled: false
+        enabled: true
     #grafana: 
     #  enabled: true
     #  grafanaDashboard:

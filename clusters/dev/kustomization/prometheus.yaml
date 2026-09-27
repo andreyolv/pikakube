@@ -1,12 +1,33 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
+  name: prometheus-crds
+  namespace: flux-system
+spec:
+  # no dependencies: every release that creates a ServiceMonitor depends on this one
+  interval: 5m
+  # wait for the HelmRelease to be Ready so dependsOn means the CRDs/pods exist
+  wait: true
+  timeout: 10m
+  path: ./infrastructure/observability/metrics/storage/prometheus/kube-prometheus-stack/crds
+  prune: false
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
   name: prometheus
   namespace: flux-system
 spec:
   dependsOn:
   - name: kyverno-manifests
+  - name: nginx
   interval: 5m
+  # wait for the HelmRelease to be Ready so dependsOn means the CRDs/pods exist
+  wait: true
+  timeout: 10m
   path: ./infrastructure/observability/metrics/storage/prometheus/kube-prometheus-stack
   prune: false
   sourceRef:
