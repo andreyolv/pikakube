@@ -7,7 +7,7 @@ resources:
   - kustomization/nginx.yaml
   - kustomization/kyverno.yaml
   - kustomization/pikakube.yaml
-  - kustomization/flux-pr.yaml
+  #- kustomization/flux-pr.yaml
   - kustomization/openbao.yaml
   - kustomization/external-secrets.yaml
   - kustomization/prometheus.yaml
