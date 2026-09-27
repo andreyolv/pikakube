@@ -454,6 +454,7 @@
 - [EDA Summit](https://www.youtube.com/@EDASummit)
 - [Eduardo Mendes](https://www.youtube.com/@Dunossauro)
 - [EuroPython Conference](https://www.youtube.com/@EuroPythonConference)
+- [EximiaCo - Excelência Tecnológica](https://www.youtube.com/@eximiaco)
 - [Ewerton Salvador](https://www.youtube.com/@ewertonsalvador)
 - [eXcript](https://www.youtube.com/@excriptvideo)
 - [Fabio Akita](https://www.youtube.com/@Akitando)

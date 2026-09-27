@@ -5,6 +5,7 @@
 <https://github.com/terraform-linters/tflint>
 <https://github.com/terraform-linters/tflint-ruleset-terraform>
 <https://github.com/terraform-linters/tflint-ruleset-aws>
+<https://github.com/terraform-linters/tflint-ruleset-opa>
 <https://github.com/terraform-linters/setup-tflint>
 
 ---

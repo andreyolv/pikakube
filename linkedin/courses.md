@@ -69,5 +69,92 @@ https://escolaforja.com.br/certificate/85e5b3d9-5b0f-4089-b060-07fbe106f5d0
 Técnicas de Estimativas de Software
 https://escolaforja.com.br/certificate/933171ee-34a1-4458-b32c-0ffa468de1dd
 
+Qualidade e Segurança
+https://escolaforja.com.br/certificate/2151c04f-28b9-4544-93eb-d1a3e0d275b9
 
+Gestão de Pessoas com Baixo Desempenho
+https://escolaforja.com.br/certificate/d3c83e89-a303-4215-902a-d2b74468b826
+
+Como Fazer Entregas Rápidas
+https://escolaforja.com.br/certificate/bb5d1829-6327-4e3b-8008-d7452a08a9fb
+
+Avaliação de Desempenho
+https://escolaforja.com.br/certificate/faeaa4bc-aab7-4bb2-be5d-a47fe5f68b5b
+
+Dominando Testes Automatizados
+https://escolaforja.com.br/certificate/7e6007f5-4087-41ed-b46c-c03116d40d05
+
+Tomada de Decisões
+https://escolaforja.com.br/certificate/ac477a4c-b842-489d-9e2a-078f2be93e5e
+
+Segurança Psicológica
+https://escolaforja.com.br/certificate/04bf7872-62fc-4480-9658-fee43f415850
+
+Budgeting para Tech Leaders
+https://escolaforja.com.br/certificate/720ff053-acdc-4237-979f-c6ee08fb2c8c
+
+Processo de Avaliação de Desempenho
+https://escolaforja.com.br/certificate/838e2632-08ba-4fe0-abe5-060d52ced390
+
+C4 Model
+https://escolaforja.com.br/certificate/d416662e-754c-47e7-9916-23210c8b4946
+
+Como Mensurar Dívida Técnica
+https://escolaforja.com.br/certificate/2896d14a-483b-44d7-a234-2f87faf34e75
+
+Simplicidade no Desenvolvimento de Software
+https://escolaforja.com.br/certificate/8aa0c613-fc7a-49d1-ad83-aefe80eae384
+
+Sistemas Distribuídos e Banco de Dados em Escala 
+https://escolaforja.com.br/certificate/e639c863-cbab-415a-ae44-8ed473fe626a
+
+One-on-ones
+https://escolaforja.com.br/certificate/6d3653f2-b5b3-4d91-bd5e-960fd155ea04
+
+13 habilidades técnicas que Tech Leads precisam dominar
+https://escolaforja.com.br/certificate/2db51bec-003e-4039-a63f-4c9284619c90
+
+Desenvolvimento de Pessoas
+https://escolaforja.com.br/certificate/a0761f5f-4bb5-4353-af72-3df9b34ed6da
+
+Como Mandar Bem em Processos Seletivos
+https://escolaforja.com.br/certificate/ee1c4255-ce57-4881-8307-39def22c836a
+
+Como Conduzir Entrevistas Eficazes
+https://escolaforja.com.br/certificate/142a694f-c316-479b-a964-101e692b494a
+
+Facilitação de Discussões em Equipe
+https://escolaforja.com.br/certificate/eea800c4-616c-4a39-99af-c700abf94fb3
+
+Gestão de Conflitos
+https://escolaforja.com.br/certificate/a50a47fb-207f-4a2f-a27d-ed85e249852e
+
+Gestão de Pessoas
+https://escolaforja.com.br/certificate/8052e22a-193e-4dcc-ac8f-0c5640a73397
+
+Como Fazer Estimativas de Software
+https://escolaforja.com.br/certificate/4acb471c-aff9-4a8c-9b5b-e9ee2f49617d
+
+Como Criar PDIs Eficazes
+https://escolaforja.com.br/certificate/ce1026ad-655c-4dbf-84ee-aaa630012b73
+
+Fundamentos de Métricas para Tech Leaders
+https://escolaforja.com.br/certificate/aca09ed7-9667-439b-b14e-1187ac1d6c2f
+
+Comunicação Profunda em One-on-ones
+
+
+Agilidade para Líderes de Tecnologia
+https://escolaforja.com.br/certificate/de2847fd-414b-481b-b3ad-03e36d96930c
+
+Formação de Dev a Tech Lead
+
+
+Team Leadership Mastery
+
+
+Métricas para Tech Leaders
+
+
+Comunicação Interpessoal
 

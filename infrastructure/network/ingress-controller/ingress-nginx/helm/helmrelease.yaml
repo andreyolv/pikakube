@@ -46,6 +46,15 @@ spec:
         key: "agentpool"
         operator: "Equal"
         value: "system"
+      admissionWebhooks:
+        patch:
+          nodeSelector:
+            agentpool: system
+          tolerations:
+          - effect: "NoSchedule"
+            key: "agentpool"
+            operator: "Equal"
+            value: "system"
       metrics:
         enabled: true
         service:

@@ -22,10 +22,10 @@ kubectl apply -f infrastructure/platform-engineering/gitops/flux/flux-operator/f
 
 echo "Flux installed!"
 
-kubectl create ns vault
-kubectl apply -f infrastructure/security/secrets/vault/vault-dev/configmap-real.yaml
+kubectl create ns openbao
+kubectl apply -f infrastructure/security/2-cluster/secrets/stores/openbao/configmap-real.yaml
 kubectl create ns ingress-nginx
-kubectl apply -f infrastructure/security/certificates/mkcert/mkcert-tls-secret.yaml
+kubectl apply -f infrastructure/security/2-cluster/certificates/mkcert/mkcert-tls-secret.yaml
 
 echo "Basics manifests installed!"
 
@@ -37,13 +37,13 @@ kubectl wait kustomization flux-system --for=condition=Ready --timeout=5m
 
 kubectl wait kustomization nginx --for=condition=Ready --timeout=5m
 
-kubectl wait kustomization kyverno --for=condition=Ready --timeout=5m
+kubectl wait kustomization kyverno --for=condition=Ready --timeout=10m
 
 kubectl wait kustomization pikakube --for=condition=Ready --timeout=5m
 
-kubectl wait kustomization vault --for=condition=Ready --timeout=5m
+kubectl wait kustomization openbao --for=condition=Ready --timeout=10m
 
-kubectl wait kustomization external-secrets --for=condition=Ready --timeout=5m
+kubectl wait kustomization external-secrets --for=condition=Ready --timeout=10m
 
 kubectl wait kustomization prometheus --for=condition=Ready --timeout=5m
 

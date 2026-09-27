@@ -39,6 +39,13 @@ spec:
             labels:
               app: podinfo
           spec:
+            nodeSelector:
+              agentpool: system
+            tolerations:
+              - effect: NoSchedule
+                key: agentpool
+                operator: Equal
+                value: system
             containers:
               - name: podinfo
                 image: ghcr.io/stefanprodan/podinfo:6.7.1

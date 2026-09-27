@@ -12,3 +12,10 @@ spec:
   values:
   # https://artifacthub.io/packages/olm/community-operators/grafana-operator
   # https://github.com/grafana/grafana-operator/blob/master/deploy/helm/grafana-operator/values.yaml
+    nodeSelector:
+      agentpool: system
+    tolerations:
+    - effect: NoSchedule
+      key: agentpool
+      operator: Equal
+      value: system

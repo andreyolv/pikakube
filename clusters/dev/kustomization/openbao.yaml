@@ -1,13 +1,16 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1
 kind: Kustomization
 metadata:
-  name: vault
+  name: openbao
   namespace: flux-system
 spec:
   dependsOn:
   - name: kyverno-manifests
   interval: 5m
-  path: ./infrastructure/security/2-cluster/secrets/stores/vault/vault-dev
+  # wait for the HelmRelease to be Ready so dependsOn means the CRDs/pods exist
+  wait: true
+  timeout: 10m
+  path: ./infrastructure/security/2-cluster/secrets/stores/openbao
   prune: false
   sourceRef:
     kind: GitRepository

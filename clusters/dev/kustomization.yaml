@@ -4,12 +4,12 @@ metadata:
   name: kustomize-init
 resources:
   #- kustomization/metallb.yaml
-  #- kustomization/cert-manager.yaml
   - kustomization/nginx.yaml
   - kustomization/kyverno.yaml
   - kustomization/pikakube.yaml
   - kustomization/flux-pr.yaml
-  - kustomization/vault.yaml
+  - kustomization/openbao.yaml
   - kustomization/external-secrets.yaml
   - kustomization/prometheus.yaml
   - kustomization/grafana.yaml
+  - kustomization/cert-manager.yaml

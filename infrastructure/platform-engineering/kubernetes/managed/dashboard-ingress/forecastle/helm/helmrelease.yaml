@@ -17,6 +17,14 @@ spec:
   # https://artifacthub.io/packages/helm/stakater/forecastle
   # https://github.com/stakater/Forecastle/blob/master/deployments/kubernetes/chart/forecastle/values.yaml
     forecastle:
+      deployment:
+        nodeSelector:
+          agentpool: system
+        tolerations:
+        - effect: NoSchedule
+          key: agentpool
+          operator: Equal
+          value: system
       config:
         namespaceSelector:
           any: true

@@ -164,6 +164,7 @@ This is the most completely wired integration in [`../../`](../../README.md):
 | `kustomization.yaml` | namespace, HelmRepository, HelmRelease — so Flux actually delivers it |
 | `helm/helmrelease.yaml` | chart `external-secrets` 0.10.2, `upgrade.crds: CreateReplace` |
 | `hashicorp-vault/` | a working `ClusterSecretStore`, `ExternalSecret` and token Secret |
+| `openbao/` | the same three against [OpenBao](../../stores/openbao/README.md), via the `vault` provider |
 | `azure-key-vault/` | the same three against Azure Key Vault |
 
 `upgrade.crds: CreateReplace` is correct and not optional: the CRDs *are* the interface, Helm does

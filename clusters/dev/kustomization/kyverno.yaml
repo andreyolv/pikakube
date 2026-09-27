@@ -7,6 +7,9 @@ spec:
   dependsOn:
   - name: nginx
   interval: 5m
+  # wait for the HelmRelease to be Ready so dependsOn means the CRDs/pods exist
+  wait: true
+  timeout: 10m
   path: ./infrastructure/security/2-cluster/policies/kyverno
   prune: false
   sourceRef:
