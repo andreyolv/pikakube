@@ -5,7 +5,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 5m
-  path: ./infrastructure/security/certificates/cert-manager
+  path: ./infrastructure/security/2-cluster/certificates/cert-manager
   prune: false
   sourceRef:
     kind: GitRepository

@@ -18,3 +18,34 @@ spec:
   # https://github.com/cert-manager/cert-manager/blob/master/deploy/charts/cert-manager/values.yaml
     crds:
       enabled: true
+    nodeSelector:
+      agentpool: system
+    tolerations:
+    - effect: NoSchedule
+      key: agentpool
+      operator: Equal
+      value: system
+    webhook:
+      nodeSelector:
+        agentpool: system
+      tolerations:
+      - effect: NoSchedule
+        key: agentpool
+        operator: Equal
+        value: system
+    cainjector:
+      nodeSelector:
+        agentpool: system
+      tolerations:
+      - effect: NoSchedule
+        key: agentpool
+        operator: Equal
+        value: system
+    startupapicheck:
+      nodeSelector:
+        agentpool: system
+      tolerations:
+      - effect: NoSchedule
+        key: agentpool
+        operator: Equal
+        value: system
