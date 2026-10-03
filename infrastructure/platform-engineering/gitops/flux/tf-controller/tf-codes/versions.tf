@@ -4,22 +4,22 @@
 # `terraform` manager has something to propose on the first run. Constraints
 # are concrete on purpose: Renovate skips open ranges such as ">= 1.0".
 terraform {
-  required_version = "1.5.7"
+  required_version = "1.16.4"
 
   required_providers {
     random = {
       source  = "hashicorp/random"
-      version = "3.5.1"
+      version = "3.9.1"
     }
 
     null = {
       source  = "hashicorp/null"
-      version = "3.2.1"
+      version = "3.3.2"
     }
 
     local = {
       source  = "hashicorp/local"
-      version = "2.4.0"
+      version = "2.9.1"
     }
   }
 }
