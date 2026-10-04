@@ -9,7 +9,7 @@ spec:
     mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
     operation: copy
   ref:
-    tag: 15.5.0
-    digest: sha256:9fc63430a1ab0f5f933d0ff7c35c0f9d75650c97c6e26d2c96af2ed85769e7f2
+    tag: 15.6.0
+    digest: sha256:2e43b6819c7da960935a6007d986f6bcfa3c4f6065218ceeca958d4eff31be8f
   url: oci://ghcr.io/mend/charts/mend-renovate-ce
   # https://github.com/mend/charts/pkgs/container/charts%2Fmend-renovate-ce

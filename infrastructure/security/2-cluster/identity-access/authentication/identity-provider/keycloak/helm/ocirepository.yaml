@@ -9,7 +9,7 @@ spec:
     mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
     operation: copy
   ref:
-    tag: 7.3.1
-    digest: sha256:d68a2d13046d8189ad9489b381c46c42da29c8a5632dd964a985b5aaf4770d4e
+    tag: 7.3.2
+    digest: sha256:f96f3e76b487b06814e53a28747ae190b4bbe3e3e3739501078c1469d43e2c4a
   url: oci://ghcr.io/codecentric/helm-charts/keycloakx
   # https://github.com/codecentric/helm-charts/pkgs/container/helm-charts%2Fkeycloakx
