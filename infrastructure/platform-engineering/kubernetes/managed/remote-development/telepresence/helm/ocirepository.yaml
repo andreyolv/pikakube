@@ -9,7 +9,7 @@ spec:
     mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
     operation: copy
   ref:
-    tag: 2.31.2
-    digest: sha256:5cc75d7034941583ee9177b4f3a9a3c038babe97374f1e31769155c8e2a14260
+    tag: 2.32.1
+    digest: sha256:d9039a3dba3cd7c5f15e35423479e9346c399d6dfba0ff0d202fc4adc19c90de
   url: oci://ghcr.io/telepresenceio/telepresence-oss
   # https://github.com/telepresenceio/telepresence/pkgs/container/telepresence-oss

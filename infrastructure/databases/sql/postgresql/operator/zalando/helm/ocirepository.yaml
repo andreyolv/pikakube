@@ -9,7 +9,7 @@ spec:
     mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
     operation: copy
   ref:
-    tag: 2.0.2
-    digest: sha256:ad5fe3205539e99c1389b8c714ae595460bf5efab3047f128b404a074adb7f34
+    tag: 2.0.3
+    digest: sha256:1ac54b9e4387964e4145b54982615936185fe8710d0261c726a73d6ea0263006
   url: oci://ghcr.io/zalando/charts/postgres-operator
   # https://github.com/zalando/postgres-operator/pkgs/container/charts%2Fpostgres-operator

@@ -9,7 +9,7 @@ spec:
     mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
     operation: copy
   ref:
-    tag: 10.0.6
-    digest: sha256:2eb4eaaa5ee172a6df632968e92fe39cd797eff12181442093015f23a8502844
+    tag: 10.3.0
+    digest: sha256:d7beeb054108c3e91434099d4aa0f82f7db0cf4991d55c96b72cae81ece5f4f6
   url: oci://ghcr.io/zitadel/zitadel-charts/zitadel
   # https://github.com/zitadel/zitadel-charts/pkgs/container/zitadel-charts%2Fzitadel

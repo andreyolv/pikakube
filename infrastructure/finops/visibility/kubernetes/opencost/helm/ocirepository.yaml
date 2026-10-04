@@ -9,7 +9,7 @@ spec:
     mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
     operation: copy
   ref:
-    tag: 2.5.31
-    digest: sha256:4a0aff489dcb9dbf751d11c968de16ccd102edc117222a2b4352c71ecf832eaf
+    tag: 2.5.32
+    digest: sha256:8163f17a34033a5d8ea79477eb2262088610e4a7ba1583077b06883f1e01fc16
   url: oci://ghcr.io/opencost/charts/opencost
   # https://github.com/opencost/charts/pkgs/container/charts%2Fopencost

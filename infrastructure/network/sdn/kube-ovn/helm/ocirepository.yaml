@@ -9,7 +9,7 @@ spec:
     mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
     operation: copy
   ref:
-    tag: v1.16.4
-    digest: sha256:39b5d8703e0b9cd890bac6a9d658789c3b749b012eeb6e962b0b4c82ecb6fbfd
+    tag: v1.16.10
+    digest: sha256:7833ca0a8bb72e3254a5be9fa0f37b3f1b082d4b65ce5b96026718142501724c
   url: oci://ghcr.io/kubeovn/charts/kube-ovn
   # https://github.com/kubeovn/charts/pkgs/container/charts%2Fkube-ovn

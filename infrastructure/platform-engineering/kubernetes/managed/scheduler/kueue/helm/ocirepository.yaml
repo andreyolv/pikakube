@@ -9,7 +9,7 @@ spec:
     mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
     operation: copy
   ref:
-    tag: 0.19.4
-    digest: sha256:a11f1ab76d9133d8ae7cbcfbd0ad6a5ee5cb4494831144ceef09688f6738dc9d
+    tag: 0.20.0
+    digest: sha256:61857945f1109da052dcc01baf79ea912a6c2a5ffeb087f3dfe270c9ea198c9c
   url: oci://registry.k8s.io/kueue/charts/kueue
   # https://registry.k8s.io/v2/kueue/charts/kueue/tags/list
