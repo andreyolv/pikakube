@@ -9,7 +9,7 @@ spec:
     mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
     operation: copy
   ref:
-    tag: 29.30.0
-    digest: sha256:06ffeacf5faddc5dbab46d0e5b6efaebe242cb03743169e1d35cd652c4828105
+    tag: 29.36.1
+    digest: sha256:1a23f904810325f2355b90c698e3efa7f6cad72d5977bd988d51b65944b8f272
   url: oci://ghcr.io/prometheus-community/charts/prometheus
   # https://github.com/prometheus-community/charts/pkgs/container/charts%2Fprometheus

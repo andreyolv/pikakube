@@ -9,7 +9,7 @@ spec:
     mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
     operation: copy
   ref:
-    tag: v0.10.0
-    digest: sha256:249c5000a24a22cb26e410774be6f613756029242eb3b27b01fdeb9258228896
+    tag: v0.11.1
+    digest: sha256:bf492d6b8310ad8177531a35cd6b559d6ba6e7cb1fb31192d9f6a825c7f7c4ac
   url: oci://registry.k8s.io/lws/charts/lws
   # https://registry.k8s.io/v2/lws/charts/lws/tags/list

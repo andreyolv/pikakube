@@ -9,7 +9,7 @@ spec:
     mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
     operation: copy
   ref:
-    tag: 3.10.0
-    digest: sha256:68488ecd283c2903666d5b335b8449923a55aaaaa84312993a8eca5fe650ff04
+    tag: 3.11.0
+    digest: sha256:2e8e00d27dd88419974ed532a3b52714ce6017eb0a1e3abb1833fc24adb28c78
   url: oci://ghcr.io/kyverno/charts/policy-reporter
   # https://github.com/kyverno/charts/pkgs/container/charts%2Fpolicy-reporter
