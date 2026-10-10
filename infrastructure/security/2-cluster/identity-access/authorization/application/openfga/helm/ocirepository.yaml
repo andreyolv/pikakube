@@ -9,7 +9,7 @@ spec:
     mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
     operation: copy
   ref:
-    tag: 0.3.14
-    digest: sha256:0b2532be33522400230b61761379ef72d27dad75c059eac1fe8e937542794ad1
+    tag: 0.3.16
+    digest: sha256:f9a38de04b148ffd2f6d657fe3f8246d2c2cc7ac6bc9bd5c292f5b4693ea0000
   url: oci://ghcr.io/openfga/helm-charts/openfga
   # https://github.com/openfga/helm-charts/pkgs/container/helm-charts%2Fopenfga

@@ -9,7 +9,7 @@ spec:
     mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
     operation: copy
   ref:
-    tag: 9.1.0
-    digest: sha256:a4e37213d1e97abc1290e026b79728facf1c1160b33935995d30be273ad17fd9
+    tag: 9.2.0
+    digest: sha256:d6b24a89149bca25e92c67862106893b782d1dd1b92137e80ae76c2fd02f9421
   url: oci://ghcr.io/falcosecurity/charts/falco
   # https://github.com/falcosecurity/charts/pkgs/container/charts%2Ffalco

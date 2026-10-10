@@ -9,7 +9,7 @@ spec:
     mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
     operation: copy
   ref:
-    tag: 0.56.0
-    digest: sha256:e1ddcc0dfaca8b395b332956b074dfa86eef79b3e7aba798665c70249e3ffd91
+    tag: 0.57.0
+    digest: sha256:828bcb15bf7470fa4868256a9360f8c5da0ec0664315a109543e4cdb1ebcfb8b
   url: oci://ghcr.io/inspektor-gadget/inspektor-gadget/charts/gadget
   # https://github.com/inspektor-gadget/inspektor-gadget/pkgs/container/inspektor-gadget%2Fcharts%2Fgadget

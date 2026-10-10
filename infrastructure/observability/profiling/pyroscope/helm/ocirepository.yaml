@@ -9,7 +9,7 @@ spec:
     mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
     operation: copy
   ref:
-    tag: 2.3.1
-    digest: sha256:9438372b83a45aa1731e470539fa24e98527ea31b62ba0072f396053a9612c09
+    tag: 2.4.0
+    digest: sha256:686f02f75ee02668830c0d8890a07e3f163c7aac869ab576fa52cf21da462b5e
   url: oci://ghcr.io/grafana/helm-charts/pyroscope
   # https://github.com/grafana/helm-charts/pkgs/container/helm-charts%2Fpyroscope

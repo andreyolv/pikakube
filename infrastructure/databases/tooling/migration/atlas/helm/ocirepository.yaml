@@ -9,7 +9,7 @@ spec:
     mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
     operation: copy
   ref:
-    tag: 0.7.51
-    digest: sha256:3215dc932b000eaccb0d49878e968757c15bf1f4c384d9830c7d9bdebeef8168
+    tag: 0.8.1
+    digest: sha256:ee3a5f92c3bf40e895fbef30728b2ff6e97443a7ef391fabb0cc5572a77de379
   url: oci://ghcr.io/ariga/charts/atlas-operator
   # https://github.com/ariga/atlas-operator/pkgs/container/charts%2Fatlas-operator

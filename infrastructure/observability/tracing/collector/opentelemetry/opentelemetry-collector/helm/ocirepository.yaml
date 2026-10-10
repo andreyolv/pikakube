@@ -9,7 +9,7 @@ spec:
     mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
     operation: copy
   ref:
-    tag: 0.173.1
-    digest: sha256:cc821c73ee08f031f6f9a6b3d041d662ee7a83ab12adf645c513ad153de2157e
+    tag: 0.175.1
+    digest: sha256:4519eef48da6810e9fbdd603b00da13afcf9e2fee80d4ed7206878b72f9bcf6e
   url: oci://ghcr.io/open-telemetry/opentelemetry-helm-charts/opentelemetry-collector
   # https://github.com/open-telemetry/opentelemetry-helm-charts/pkgs/container/opentelemetry-helm-charts%2Fopentelemetry-collector
