@@ -9,7 +9,7 @@ spec:
     mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
     operation: copy
   ref:
-    tag: 2.4.1
-    digest: sha256:7a1efb564acf4215a2fb6a5a076c4d5b0c649181c75d52c20a50db449e1932a4
+    tag: 2.4.2
+    digest: sha256:6f0e26e0a7194c42aaa320e9d663b906963f6f9df9ef1f5da99791e9079c7774
   url: oci://ghcr.io/deliveryhero/helm-charts/node-problem-detector
   # https://github.com/deliveryhero/helm-charts/pkgs/container/helm-charts%2Fnode-problem-detector

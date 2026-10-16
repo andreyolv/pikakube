@@ -9,7 +9,7 @@ spec:
     mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
     operation: copy
   ref:
-    tag: 0.49.0
-    digest: sha256:d8c85855edc05f2b23cd9e1c1be2312addec2a8dcdecb5b969fbd299d491382d
+    tag: 0.53.0
+    digest: sha256:10b77814fdded3c22b0fae94821c0b65230a489dcd5a826aba8a27cc26176ee9
   url: oci://ghcr.io/robusta-dev/charts/robusta
   # https://github.com/robusta-dev/charts/pkgs/container/charts%2Frobusta

@@ -10,7 +10,7 @@ spec:
     operation: copy
   ref:
     tag: 1.28.1
-    digest: sha256:2857218cb5b050346398787a51cdcbbac71c063ba1c1ae504a764e9f9b61de10
+    digest: sha256:5cd745a86853a641af0377d38ff17a2051a1024be04a671f55831be61705e590
   url: oci://ghcr.io/kubewarden/charts/kubewarden-crds
   # https://github.com/kubewarden/charts/pkgs/container/charts%2Fkubewarden-crds
 ---
@@ -26,6 +26,6 @@ spec:
     operation: copy
   ref:
     tag: 5.14.1
-    digest: sha256:472009ff479e60ab00b84a03dbd49a1f369104911e3b282d73856dad02b0845d
+    digest: sha256:437105e67080a26eb2bf81681ff44729b61f79ef00e5f7db1b57df6f5e5185fc
   url: oci://ghcr.io/kubewarden/charts/kubewarden-controller
   # https://github.com/kubewarden/charts/pkgs/container/charts%2Fkubewarden-controller

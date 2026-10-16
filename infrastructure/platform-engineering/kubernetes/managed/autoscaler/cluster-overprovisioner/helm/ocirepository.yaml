@@ -10,6 +10,6 @@ spec:
     operation: copy
   ref:
     tag: 0.7.14
-    digest: sha256:12fc8be9a4a9b1f507744231a688723f792a55ce6b9899cd00d57d9ec4c635c3
+    digest: sha256:76b62b7efc92868a5ca5fab9ecbe430b6e4264e90d6ddceda1d6e83ecfc260bf
   url: oci://ghcr.io/deliveryhero/helm-charts/cluster-overprovisioner
   # https://github.com/deliveryhero/helm-charts/pkgs/container/helm-charts%2Fcluster-overprovisioner

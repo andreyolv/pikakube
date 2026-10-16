@@ -9,7 +9,7 @@ spec:
     mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
     operation: copy
   ref:
-    tag: 1.23.1
-    digest: sha256:8c4f9b61456e608904d5fba397056262bb354a5176c8cc958b9f38a505ffdbe3
+    tag: 1.23.2
+    digest: sha256:667abf193ac4849f26ffaa2bda650ce0459c36fe725e4194fa388cfbdbd5bead
   url: oci://ghcr.io/percona/percona-helm-charts/psmdb-operator
   # https://github.com/percona/percona-helm-charts/pkgs/container/percona-helm-charts%2Fpsmdb-operator

@@ -10,6 +10,6 @@ spec:
     operation: copy
   ref:
     tag: 0.7.6
-    digest: sha256:3c45cd37b7e9d9d660cfe7c254792b0d11bae9b64fe7327603b156df89a4c6f2
+    digest: sha256:df467a6ec33a0b59c41680532a73f0c26731c9d456e34fd83765366afdea7bbb
   url: oci://ghcr.io/deliveryhero/helm-charts/kube-downscaler
   # https://github.com/deliveryhero/helm-charts/pkgs/container/helm-charts%2Fkube-downscaler

@@ -10,6 +10,6 @@ spec:
     operation: copy
   ref:
     tag: 5.8.0
-    digest: sha256:27fa288750d18c5b05bb7e5be8da074de239a630205d6c636df62b32d5afe197
+    digest: sha256:77397df9f30d851cec201d5e386c80ab8df558c66333465cb54be735cbd696a9
   url: oci://ghcr.io/codecentric/helm-charts/mailhog
   # https://github.com/codecentric/helm-charts/pkgs/container/helm-charts%2Fmailhog

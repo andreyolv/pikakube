@@ -9,8 +9,8 @@ spec:
     mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
     operation: copy
   ref:
-    tag: v2.4.4
-    digest: sha256:c5c59025e673a75d2ef7c569675ae467f35e78e136f5e6641b9f1ffee84fe902
+    tag: v2.4.7
+    digest: sha256:6a45e2d24712cdbfcf945e6793adb8647a527169b714b664941ee5e4ec1e5a65
   url: oci://cr.kgateway.dev/kgateway-dev/charts/kgateway-crds
   # https://github.com/kgateway-dev/kgateway/releases
 ---
@@ -25,7 +25,7 @@ spec:
     mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
     operation: copy
   ref:
-    tag: v2.4.4
-    digest: sha256:ca19647e6bf097fc2d38499ae9d56a2273463b4c81aa46d18cbe908ebaa0206b
+    tag: v2.4.7
+    digest: sha256:a7b529dd453f8e251c67f737580d4d0a211c61e4a009713900f93d29c3699df9
   url: oci://cr.kgateway.dev/kgateway-dev/charts/kgateway
   # https://github.com/kgateway-dev/kgateway/releases
