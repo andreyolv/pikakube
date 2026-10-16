@@ -9,7 +9,7 @@ spec:
     mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
     operation: copy
   ref:
-    tag: 2.4.0
-    digest: sha256:984aefd8f3ef0a02bbfd2aab75aebc9101d8cba3963f2d5efe4dfe01e083789d
+    tag: 2.8.0
+    digest: sha256:d155e027700c7d1a3019fd587e0547d045608735719ce3e952673f970357605d
   url: oci://ghcr.io/dependencytrack/helm-charts/dependency-track
   # https://github.com/dependencytrack/helm-charts/pkgs/container/helm-charts%2Fdependency-track

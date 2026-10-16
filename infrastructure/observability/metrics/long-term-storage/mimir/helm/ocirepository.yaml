@@ -9,7 +9,7 @@ spec:
     mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
     operation: copy
   ref:
-    tag: 6.2.0
-    digest: sha256:6371a8f7a95973441300cc6760fb3cae0c05a829ac92c2c8439a5f23634fb6f1
+    tag: 6.2.1
+    digest: sha256:a8a20ffe3b875a110f57d50fc089fabe494fd8147b04fe039c47edf343e2695b
   url: oci://ghcr.io/grafana/helm-charts/mimir-distributed
   # https://github.com/grafana/helm-charts/pkgs/container/helm-charts%2Fmimir-distributed

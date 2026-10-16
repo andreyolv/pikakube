@@ -9,7 +9,7 @@ spec:
     mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
     operation: copy
   ref:
-    tag: v1.2.8
-    digest: sha256:fa6a800f611f80a9ad09b94bd52b566fc78c53d7fc53cefee6cf44235423e513
+    tag: v1.3.0
+    digest: sha256:1649a2c2646816ead3c9a9c124be66767697de8c5861eaf4acec62f47da3959e
   url: oci://ghcr.io/microsoft/retina/charts/retina-hubble
   # https://github.com/microsoft/retina/pkgs/container/retina%2Fcharts%2Fretina-hubble

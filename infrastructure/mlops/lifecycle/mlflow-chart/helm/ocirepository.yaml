@@ -9,7 +9,7 @@ spec:
     mediaType: application/vnd.cncf.helm.chart.content.v1.tar+gzip
     operation: copy
   ref:
-    tag: 0.1.0
-    digest: sha256:450af87a9b417b706c4f0923afe963b26c9f889d27cb17013f1ebfb5ef97c7a3
+    tag: 3.17.1
+    digest: sha256:8097229ec270ac06eaed6c72d8b52602807615c93cf8c750b80271ac38ec5772
   url: oci://ghcr.io/mlflow/charts/mlflow
   # https://github.com/mlflow/mlflow/pkgs/container/charts%2Fmlflow
